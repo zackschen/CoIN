@@ -71,7 +71,6 @@ if __name__ == "__main__":
             res = pattern.findall(pred_text)
             if len(res) > 0:
                 answer = res[0].upper()  # 'A', 'B', ...
-                print(answer)
             else:
                 answer = "FAILED"
             

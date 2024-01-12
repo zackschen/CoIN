@@ -7,7 +7,8 @@ from llava.eval.m4c_evaluator import EvalAIAnswerProcessor
 
 def parse_args():
     parser = argparse.ArgumentParser()
-    parser.add_argument('--dir', type=str, default="./results/Instructions/VQAv2/Zero_shot")
+    parser.add_argument('--dir', type=str, default="./results/CLIT_slim/VQAv2/Finetune")
+    parser.add_argument('--test-split', type=str, default='/home/chencheng/Code/LLaVA/playground/Instructions_slim/VQAv2/val.json')
     return parser.parse_args()
 
 
@@ -16,7 +17,7 @@ if __name__ == '__main__':
     args = parse_args()
 
     src = os.path.join(args.dir, 'merge.jsonl')
-    test_split = '/home/chencheng/Code/LLaVA/playground/Instructions/VQAv2/test.json'
+    test_split = args.test_split
     dst = os.path.join(args.dir, 'answers_upload.json')
     os.makedirs(os.path.dirname(dst), exist_ok=True)
 

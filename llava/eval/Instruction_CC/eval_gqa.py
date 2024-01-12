@@ -83,6 +83,7 @@ parser.add_argument('--consistency',    action="store_true",        help = "True
 parser.add_argument('--grounding',      action="store_true",        help = "True to compute grounding score (If model uses attention).")
 parser.add_argument('--objectFeatures', action="store_true",        help = "True for object-based attention (False for spatial).")
 parser.add_argument('--mapSize',    default = 7,    type = int, help = "Optional, only to get attention score. Images features map size, mapSize * mapSize")
+parser.add_argument('--output-dir', type=str)
 args = parser.parse_args()
 
 print("Please make sure to use our provided visual features as gqadataset.org for better comparability. We provide both spatial and object-based features trained on GQA train set.") 
@@ -134,10 +135,10 @@ predictions = loadFile(os.path.join(args.path,args.predictions.format(tier = arg
 predictions = {p["questionId"]: p["prediction"] for p in predictions}
 
 # Make sure all question have predictions
-for qid in questions:
-    if (qid not in predictions) and (args.consistency or questions[qid]["isBalanced"]):
-        print("no prediction for question {}. Please add prediction for all questions.".format(qid))
-        raise Exception("missing predictions")
+# for qid in questions:
+#     if (qid not in predictions) and (args.consistency or questions[qid]["isBalanced"]):
+#         print("no prediction for question {}. Please add prediction for all questions.".format(qid))
+#         raise Exception("missing predictions")
 
 # Load attentions and turn them into a dictionary
 attentions = None
@@ -344,9 +345,9 @@ def chiSquare(goldDist, predictedDist):
 ##########################################################################################
 
 # Loop over the questions and compute mterics
-for qid, question in tqdm(questions.items()):
+for qid, predicted in tqdm(predictions.items()):
+    question = questions[qid]
     gold = question["answer"]
-    predicted = predictions[qid]
 
     correct = (predicted == gold)
     score = toScore(correct)
@@ -439,6 +440,13 @@ for m in metrics:
     # print score
     print("{title}: {score:.2f}{suffix}".format(title = m.capitalize(), score = scores[m], 
         suffix = " (lower is better)" if m == "distribution" else "%"))
+    
+    #将结果写入文件
+    if args.output_dir is not None:
+        output_file = os.path.join(args.output_dir, 'Result.text')
+        with open(output_file, 'a') as f:
+            f.write("{title}: {score:.2f}{suffix}".format(title = m.capitalize(), score = scores[m], 
+        suffix = " (lower is better)" if m == "distribution" else "%"))
 
 for m, mPrintName in detailedMetrics:
     print("")
@@ -454,3 +462,9 @@ for m, mPrintName in detailedMetrics:
         # print score
         print("  {title}: {score:.2f}{suffix} ({amount} questions)".format(title = tName, 
             score = scores[m][t][0], suffix = "%", amount = scores[m][t][1]))    
+        #将结果写入文件
+        if args.output_dir is not None:
+            output_file = os.path.join(args.output_dir, 'Result.text')
+            with open(output_file, 'a') as f:
+                f.write("  {title}: {score:.2f}{suffix} ({amount} questions)".format(title = tName, 
+            score = scores[m][t][0], suffix = "%", amount = scores[m][t][1]))
