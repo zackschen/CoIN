@@ -282,3 +282,4 @@ class LlavaMetaForCausalLM(ABC):
                     p.requires_grad = False
                 for p in self.get_output_embeddings().parameters():
                     p.requires_grad = False
+

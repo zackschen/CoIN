@@ -39,7 +39,7 @@ def eval_model(args):
     os.makedirs(os.path.dirname(answers_file), exist_ok=True)
     ans_file = open(answers_file, "w")
     for i, line in enumerate(tqdm(questions)):
-        idx = line["id"]
+        idx = line["question_id"]
         question = line['text']
         qs = question.replace('<image>', '').strip()
         cur_prompt = qs

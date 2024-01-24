@@ -7,8 +7,8 @@ from llava.eval.m4c_evaluator import EvalAIAnswerProcessor
 
 def parse_args():
     parser = argparse.ArgumentParser()
-    parser.add_argument('--dir', type=str, default="./results/CLIT_slim/VQAv2/Finetune")
-    parser.add_argument('--test-split', type=str, default='/home/chencheng/Code/LLaVA/playground/Instructions_slim/VQAv2/val.json')
+    parser.add_argument('--dir', type=str, default="./results/CLIT/VQAv2/Zero_shot")
+    parser.add_argument('--test-split', type=str, default='./playground/data/vqav2/llava_vqav2_mscoco_test-dev2015.jsonl')
     return parser.parse_args()
 
 
@@ -31,7 +31,7 @@ if __name__ == '__main__':
 
     results = {x['question_id']: x['text'] for x in results}
     with open(test_split, 'r') as f:
-        test_split =json.load(f)
+        test_split = json.load(f)
     split_ids = set([x['question_id'] for x in test_split])
 
     print(f'total results: {len(results)}, total split: {len(test_split)}, error_line: {error_line}')
@@ -41,6 +41,7 @@ if __name__ == '__main__':
     answer_processor = EvalAIAnswerProcessor()
 
     for x in test_split:
+        assert x['question_id'] in results
         if x['question_id'] not in results:
             all_answers.append({
                 'question_id': x['question_id'],

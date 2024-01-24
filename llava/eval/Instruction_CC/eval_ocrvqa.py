@@ -26,7 +26,7 @@ def eval_single(annotation_file, result_file):
     right = 0
     for result in results:
         annotation = annotations[result['question_id']]
-        answers = annotation['answers']
+        answers = annotation['answer']
         total += len(answers)
         if 'Unanswerable' in result['text'] :
             continue

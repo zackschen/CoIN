@@ -2,7 +2,6 @@ import os
 import argparse
 import json
 import re
-import cv2
 from PIL import Image, ImageFile, ImageDraw
 from tqdm import tqdm
 from llava.eval.m4c_evaluator import TextVQAAccuracyEvaluator
@@ -10,8 +9,8 @@ from llava.eval.m4c_evaluator import TextVQAAccuracyEvaluator
 
 def get_args():
     parser = argparse.ArgumentParser()
-    parser.add_argument('--test-file', type=str, default='playground/Instructions_slim/Grounding/test.json')
-    parser.add_argument('--result-file', type=str, default='results/CLIT_slim_new/VisualGenome/VQAv2/merge.jsonl')
+    parser.add_argument('--test-file', type=str, default='playground/Instructions/Grounding/test.json')
+    parser.add_argument('--result-file', type=str, default='results/CLIT/VisualGenome/Finetune/merge.jsonl')
     parser.add_argument('--output-dir', type=str)
     return parser.parse_args()
 

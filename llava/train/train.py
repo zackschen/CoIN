@@ -19,11 +19,11 @@ import copy
 from dataclasses import dataclass, field
 import json, deepspeed
 import logging
-import pathlib
+import pathlib, random
 from typing import Dict, Optional, Sequence, List
 
 import torch
-
+import sys
 import transformers
 
 from llava.constants import IGNORE_INDEX, IMAGE_TOKEN_INDEX, DEFAULT_IMAGE_TOKEN, DEFAULT_IM_START_TOKEN, DEFAULT_IM_END_TOKEN
@@ -66,6 +66,8 @@ class ModelArguments:
 class DataArguments:
     data_path: str = field(default=None,
                            metadata={"help": "Path to the training data."})
+    memory_data_path: str = field(default=None,
+                           metadata={"help": "Path to the memory data."})
     lazy_preprocess: bool = False
     is_multimodal: bool = False
     image_folder: Optional[str] = field(default=None)
@@ -633,6 +635,14 @@ class LazySupervisedDataset(Dataset):
                  data_args: DataArguments):
         super(LazySupervisedDataset, self).__init__()
         list_data_dict = json.load(open(data_path, "r"))
+
+        if data_args.memory_data_path is not None:
+            rank0_print("Adding memory data... {}".format(data_args.memory_data_path))
+            list_memory_data_dict = json.load(open(data_args.memory_data_path, "r"))
+
+            list_data_dict = list_data_dict + list_memory_data_dict
+            
+            random.shuffle(list_data_dict)
 
         rank0_print("Formatting inputs...Skip in lazy mode")
         self.tokenizer = tokenizer
