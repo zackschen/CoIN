@@ -27,7 +27,6 @@ import sys
 import transformers
 
 from llava.constants import IGNORE_INDEX, IMAGE_TOKEN_INDEX, DEFAULT_IMAGE_TOKEN, DEFAULT_IM_START_TOKEN, DEFAULT_IM_END_TOKEN
-from peft.utils import WEIGHTS_NAME, set_peft_model_state_dict
 from torch.utils.data import Dataset
 from llava.train.llava_trainer import LLaVATrainer
 
@@ -37,7 +36,7 @@ from llava.mm_utils import tokenizer_image_token
 
 sys.path.append('/home/chencheng/Code/LLaVA/')
 
-from CLIT.peft import PeftModel, TaskType, get_peft_model, CLITMOELoraConfig
+from CLIT.peft import PeftModel, TaskType, get_peft_model, CLITMOELoraConfig, WEIGHTS_NAME, set_peft_model_state_dict
 
 from PIL import Image, ImageFile
 ImageFile.LOAD_TRUNCATED_IMAGES = True
