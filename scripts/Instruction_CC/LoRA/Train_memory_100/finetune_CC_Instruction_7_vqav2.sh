@@ -28,7 +28,7 @@ deepspeed --include localhost:0,1,2,3,4,5 --master_port 29600 llava/train/train_
     --bf16 True \
     --output_dir ./checkpoints/Instruction/Only_Pretrain_1.5_Memory_100/VQAv2/llava-1.5-7b-lora \
     --num_train_epochs 1 \
-    --per_device_train_batch_size 10 \
+    --per_device_train_batch_size 8 \
     --per_device_eval_batch_size 16 \
     --gradient_accumulation_steps 1 \
     --evaluation_strategy "no" \
