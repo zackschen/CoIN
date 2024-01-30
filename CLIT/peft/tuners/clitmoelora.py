@@ -298,14 +298,13 @@ class CLITMOELoraLinear(nn.Linear, CLITMOELoraLayer):
         self.active_adapter = adapter_name
 
 
-    def merge(self, task_id):
+    def merge(self):
         if self.active_adapter not in self.lora_A.keys():
             return
         if self.merged:
             warnings.warn("Already merged. Nothing to do.")
             return
         if self.r[self.active_adapter] > 0:
-            expert_weight = self.lora_gate[self.active_adapter](self.lora_task_embedding[self.active_adapter](task_id))
             for i in range(self.expert_num):
                 lora_A_weights = self.lora_A[self.active_adapter].loraA[i].mlp.weight
                 lora_B_weights = self.lora_B[self.active_adapter].loraB[i].mlp.weight
@@ -315,11 +314,10 @@ class CLITMOELoraLinear(nn.Linear, CLITMOELoraLayer):
                         self.fan_in_fan_out,
                     )
                     * self.scaling[self.active_adapter]
-                    * expert_weight[..., i]
                 )
             self.merged = True
 
-    def unmerge(self, expert_weight):
+    def unmerge(self):
         if self.active_adapter not in self.lora_A.keys():
             return
         if not self.merged:
@@ -335,7 +333,6 @@ class CLITMOELoraLinear(nn.Linear, CLITMOELoraLayer):
                         self.fan_in_fan_out,
                     )
                     * self.scaling[self.active_adapter]
-                    * expert_weight[..., i]
                 )
             self.merged = False
 

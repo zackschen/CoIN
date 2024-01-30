@@ -13,7 +13,7 @@
 #    limitations under the License.
 
 
-import os
+import os, sys
 import warnings
 import shutil
 
@@ -21,6 +21,10 @@ from transformers import AutoTokenizer, AutoModelForCausalLM, AutoConfig, BitsAn
 import torch
 from llava.model import *
 from llava.constants import DEFAULT_IMAGE_PATCH_TOKEN, DEFAULT_IM_START_TOKEN, DEFAULT_IM_END_TOKEN
+sys.path.append('/home/chencheng/Code/LLaVA/')
+
+
+
 
 
 def load_pretrained_model(model_path, model_base, model_name, load_8bit=False, load_4bit=False, device_map="auto", device="cuda", **kwargs):
@@ -74,7 +78,8 @@ def load_pretrained_model(model_path, model_base, model_name, load_8bit=False, l
                 non_lora_trainables = {(k[6:] if k.startswith('model.') else k): v for k, v in non_lora_trainables.items()}
             model.load_state_dict(non_lora_trainables, strict=False)
 
-            from peft import PeftModel
+            from CLIT.peft import PeftModel
+
             print('Loading LoRA weights...')
             model = PeftModel.from_pretrained(model, model_path)
             print('Merging LoRA weights...')
@@ -108,7 +113,7 @@ def load_pretrained_model(model_path, model_base, model_name, load_8bit=False, l
         # Load language model
         if model_base is not None:
             # PEFT model
-            from peft import PeftModel
+            from CLIT.peft import PeftModel
             tokenizer = AutoTokenizer.from_pretrained(model_base, use_fast=False)
             model = AutoModelForCausalLM.from_pretrained(model_base, low_cpu_mem_usage=True, **kwargs)
             print(f"Loading LoRA weights from {model_path}")
