@@ -45,6 +45,6 @@ for IDX in $(seq 0 $((CHUNKS-1))); do
 done
 
 python -m llava.eval.Instruction_CC.eval_textvqa \
-    --annotation-file /home/chencheng/Code/LLaVA/cl_dataset/TextVQA/TextVQA_0.5.1_val.json \
+    --annotation-file /home/chencheng/Code/CLT/cl_dataset/TextVQA/TextVQA_0.5.1_val.json \
     --result-file $output_file \
     --output-dir $RESULT_DIR/$STAGE \

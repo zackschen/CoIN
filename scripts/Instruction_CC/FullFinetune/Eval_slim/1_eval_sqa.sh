@@ -45,7 +45,7 @@ for IDX in $(seq 0 $((CHUNKS-1))); do
 done
 
 python llava/eval/Instruction_CC/eval_science_qa.py \
-    --base-dir /home/chencheng/Code/LLaVA/cl_dataset/ScienceQA \
+    --base-dir /home/chencheng/Code/CLT/cl_dataset/ScienceQA \
     --result-file $output_file \
     --output-file $RESULT_DIR/$STAGE/output.jsonl \
     --output-result $RESULT_DIR/$STAGE/output_result.jsonl \
