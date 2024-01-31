@@ -1,5 +1,5 @@
 bash scripts/Instruction_CC/LoRA/Train_MOE/Train_all.sh
-# bash scripts/Instruction_CC/LoRA/Eval/eval_Trained.sh
+bash scripts/Instruction_CC/LoRA/Eval_MOE/eval_Trained.sh
 # bash scripts/Instruction_CC/LoRA/Eval/eval_Zero_shot.sh
 
 # bash scripts/Instruction_CC/LoRA/Train_new/Train_all.sh

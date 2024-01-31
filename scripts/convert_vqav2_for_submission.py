@@ -7,8 +7,8 @@ from llava.eval.m4c_evaluator import EvalAIAnswerProcessor
 
 def parse_args():
     parser = argparse.ArgumentParser()
-    parser.add_argument('--dir', type=str, default="./results/CLIT/VQAv2/Zero_shot")
-    parser.add_argument('--test-split', type=str, default='./playground/data/vqav2/llava_vqav2_mscoco_test-dev2015.jsonl')
+    parser.add_argument('--dir', type=str, default="./results/CLIT/VQAv2/OCRVQA")
+    parser.add_argument('--test-split', type=str, default='./playground/Instructions/VQAv2/test.json')
     return parser.parse_args()
 
 
