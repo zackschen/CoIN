@@ -20,6 +20,7 @@ from ..utils import (
     _freeze_adapter,
     _get_submodules,
     transpose,
+    ModulesToSaveWrapper,
 )
 from .lora import (
     LoraConfig,
@@ -223,7 +224,43 @@ class CLITMOELoraModel(LoraModel):
             peft_config.merge_weights = True
         return peft_config
 
+    def _unload_and_optionally_merge(self, merge=True):
+        if getattr(self.model, "is_loaded_in_8bit", False) or getattr(self.model, "is_loaded_in_4bit", False):
+            raise ValueError("Cannot merge LORA layers when the model is loaded in 8-bit mode")
 
+        key_list = [key for key, _ in self.model.named_modules() if "lora" not in key]
+        for key in key_list:
+            try:
+                parent, target, target_name = _get_submodules(self.model, key)
+            except AttributeError:
+                continue
+            if isinstance(target, LoraLayer):
+                if isinstance(target, nn.Embedding):
+                    new_module = torch.nn.Embedding(target.in_features, target.out_features)
+                elif isinstance(target, nn.Conv2d):
+                    new_module = torch.nn.Conv2d(
+                        target.in_channels,
+                        target.out_channels,
+                        kernel_size=target.kernel_size,
+                        stride=target.stride,
+                        padding=target.padding,
+                        dilation=target.dilation,
+                    )
+                else:
+                    bias = target.bias is not None
+                    if getattr(target, "is_target_conv_1d_layer", False):
+                        new_module = Conv1D(target.out_features, target.in_features)
+                    else:
+                        new_module = torch.nn.Linear(target.in_features, target.out_features, bias=bias)
+                if merge:
+                    target.merge()
+                # self._replace_module(parent, target_name, new_module, target)
+
+            # save any additional trainable modules part of `modules_to_save`
+            if isinstance(target, ModulesToSaveWrapper):
+                setattr(parent, target_name, target.modules_to_save[target.active_adapter])
+
+        return self.model
 
 class CLITMOELoraLayer(LoraLayer):
 

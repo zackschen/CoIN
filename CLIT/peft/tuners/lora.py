@@ -465,7 +465,7 @@ class LoraModel(torch.nn.Module):
                         new_module = torch.nn.Linear(target.in_features, target.out_features, bias=bias)
                 if merge:
                     target.merge()
-                # self._replace_module(parent, target_name, new_module, target)
+                self._replace_module(parent, target_name, new_module, target)
 
             # save any additional trainable modules part of `modules_to_save`
             if isinstance(target, ModulesToSaveWrapper):
