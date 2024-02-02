@@ -305,16 +305,16 @@ class CLITMOELoraLinear(nn.Linear, CLITMOELoraLayer):
             warnings.warn("Already merged. Nothing to do.")
             return
         if self.r[self.active_adapter] > 0:
-            for i in range(self.expert_num):
-                lora_A_weights = self.lora_A[self.active_adapter].loraA[i].mlp.weight
-                lora_B_weights = self.lora_B[self.active_adapter].loraB[i].mlp.weight
-                self.weight.data += (
-                    transpose(
-                        lora_B_weights @ lora_A_weights,
-                        self.fan_in_fan_out,
-                    )
-                    * self.scaling[self.active_adapter]
-                )
+            # for i in range(self.expert_num):
+            #     lora_A_weights = self.lora_A[self.active_adapter].loraA[i].mlp.weight
+            #     lora_B_weights = self.lora_B[self.active_adapter].loraB[i].mlp.weight
+            #     self.weight.data += (
+            #         transpose(
+            #             lora_B_weights @ lora_A_weights,
+            #             self.fan_in_fan_out,
+            #         )
+            #         * self.scaling[self.active_adapter]
+            #     )
             self.merged = True
 
     def unmerge(self):
@@ -324,16 +324,16 @@ class CLITMOELoraLinear(nn.Linear, CLITMOELoraLayer):
             warnings.warn("Already unmerged. Nothing to do.")
             return
         if self.r[self.active_adapter] > 0:
-            for i in range(self.expert_num):
-                lora_A_weights = self.lora_A[self.active_adapter].loraA[i].mlp.weight
-                lora_B_weights = self.lora_B[self.active_adapter].loraB[i].mlp.weight
-                self.weight.data -= (
-                    transpose(
-                        lora_B_weights @ lora_A_weights,
-                        self.fan_in_fan_out,
-                    )
-                    * self.scaling[self.active_adapter]
-                )
+            # for i in range(self.expert_num):
+            #     lora_A_weights = self.lora_A[self.active_adapter].loraA[i].mlp.weight
+            #     lora_B_weights = self.lora_B[self.active_adapter].loraB[i].mlp.weight
+            #     self.weight.data -= (
+            #         transpose(
+            #             lora_B_weights @ lora_A_weights,
+            #             self.fan_in_fan_out,
+            #         )
+            #         * self.scaling[self.active_adapter]
+            #     )
             self.merged = False
 
     def forward(self, x: torch.Tensor, **kwargs):
@@ -349,6 +349,7 @@ class CLITMOELoraLinear(nn.Linear, CLITMOELoraLayer):
             result = F.linear(x, transpose(self.weight, self.fan_in_fan_out), bias=self.bias)
 
             x = x.to(self.lora_A[self.active_adapter].loraA[0].weight.dtype)
+            self.router = self.router.to(x.device)
             router = self.router[self.active_adapter](x)
             router = torch.softmax(router, dim=-1)
             for i in range(self.expert_num):

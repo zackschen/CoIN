@@ -73,15 +73,26 @@ def eval_model(args):
         stopping_criteria = [KeywordsStoppingCriteria(keywords, tokenizer, input_ids)] if conv.version == "v0" else None
 
         with torch.inference_mode():
-            output_ids = model.generate(
-                input_ids,
-                images=images,
-                do_sample=True if args.temperature > 0 else False,
-                temperature=args.temperature,
-                max_new_tokens=1024,
-                use_cache=True,
-                stopping_criteria=stopping_criteria,
-            )
+            if 'MOE' in model_path:
+                output_ids = model.generate(
+                    input_ids,
+                    images=images,
+                    do_sample=True if args.temperature > 0 else False,
+                    temperature=args.temperature,
+                    max_new_tokens=1024,
+                    use_cache=True,
+                    stopping_criteria=stopping_criteria,
+                )
+            else:
+                output_ids = model.generate(
+                    input_ids,
+                    images=images,
+                    do_sample=True if args.temperature > 0 else False,
+                    temperature=args.temperature,
+                    max_new_tokens=1024,
+                    use_cache=True,
+                    stopping_criteria=stopping_criteria,
+                )
 
         input_token_len = input_ids.shape[1]
         n_diff_input_output = (input_ids != output_ids[:, :input_token_len]).sum().item()

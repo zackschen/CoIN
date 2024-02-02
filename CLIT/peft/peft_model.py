@@ -1789,13 +1789,28 @@ class PeftModelForCausalLMLORAMOE(PeftModelForCausalLM):
             return self.base_model(inputs_embeds=inputs_embeds, **kwargs)
 
 
-    def generate(self, **kwargs):
+    def generate(self, 
+                input_ids=None, 
+                attention_mask=None, 
+                inputs_embeds=None, 
+                labels=None, 
+                output_attentions=None, 
+                output_hidden_states=None, 
+                return_dict=None, 
+                **kwargs):
         peft_config = self.active_peft_config
 
         self.base_model.prepare_inputs_for_generation = self.prepare_inputs_for_generation
         try:
             if not isinstance(peft_config, PromptLearningConfig):
-                outputs = self.base_model.generate(**kwargs)
+                outputs = self.base_model.generate(input_ids=input_ids,
+                                                   attention_mask=attention_mask,
+                                                    inputs_embeds=inputs_embeds,
+                                                    labels=labels,
+                                                    output_attentions=output_attentions,
+                                                    output_hidden_states=output_hidden_states,
+                                                    return_dict=return_dict,
+                                                    **kwargs,)
             else:
                 if "input_ids" not in kwargs:
                     raise ValueError("input_ids must be provided for Peft model generation")

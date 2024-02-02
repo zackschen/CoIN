@@ -612,7 +612,7 @@ class LoraModel(torch.nn.Module):
         >>> base_model = AutoModelForCausalLM.from_pretrained("tiiuae/falcon-40b")
         >>> peft_model_id = "smangrul/falcon-40B-int4-peft-lora-sfttrainer-sample"
         >>> model = PeftModel.from_pretrained(base_model, peft_model_id)
-        >>> merged_model = model.merge_and_unload()
+        >>> merged_model = model.()
         ```
         """
         return self._unload_and_optionally_merge()
