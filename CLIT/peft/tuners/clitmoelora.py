@@ -12,7 +12,8 @@ import torch.nn as nn
 import torch.nn.functional as F
 from torch.nn.parameter import Parameter
 from transformers.pytorch_utils import Conv1D
-from typing import Optional, Tuple, Union
+from transformers.modeling_outputs import CausalLMOutputWithPast
+from typing import Optional, Tuple, Union, List
 from ..utils import (
     TRANSFORMERS_MODELS_TO_LORA_TARGET_MODULES_MAPPING,
     PeftType,
@@ -59,7 +60,6 @@ class CLITMOELoraModel(LoraModel):
         self.forward = self.model.forward
         self.peft_config = config
         self.add_adapter(adapter_name, self.peft_config[adapter_name])
-
 
     def add_adapter(self, adapter_name, config=None):
         if config is not None:  # get the lora config
@@ -283,8 +283,8 @@ class CLITMOELoraLinear(nn.Linear, CLITMOELoraLayer):
                                expert_num=self.expert_num)
         
         # init the Gate network
-        self.router = nn.ModuleDict({})
-        self.router.update(nn.ModuleDict({adapter_name: nn.Linear(self.in_features, self.expert_num, bias=False)}))
+        self.lora_router = nn.ModuleDict({})
+        self.lora_router.update(nn.ModuleDict({adapter_name: nn.Linear(self.in_features, self.expert_num, bias=False)}))
 
         # Freezing the pre-trained weight matrix
         self.weight.requires_grad = False
@@ -345,12 +345,12 @@ class CLITMOELoraLinear(nn.Linear, CLITMOELoraLayer):
             if self.r[self.active_adapter] > 0 and self.merged: # merge the adapter to linear
                 self.unmerge()
             result = F.linear(x, transpose(self.weight, self.fan_in_fan_out), bias=self.bias)
-        elif self.r[self.active_adapter] > 0 and not self.merged:   # general lora process
+        elif self.r[self.active_adapter] > 0:   # general lora process
             result = F.linear(x, transpose(self.weight, self.fan_in_fan_out), bias=self.bias)
 
             x = x.to(self.lora_A[self.active_adapter].loraA[0].weight.dtype)
-            self.router = self.router.to(x.device)
-            router = self.router[self.active_adapter](x)
+            self.lora_router = self.lora_router.to(x.device)
+            router = self.lora_router[self.active_adapter](x)
             router = torch.softmax(router, dim=-1)
             for i in range(self.expert_num):
                 result += ( # lora process

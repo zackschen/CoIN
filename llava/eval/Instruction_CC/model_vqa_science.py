@@ -82,6 +82,7 @@ def eval_model(args):
                 use_cache=True,
                 stopping_criteria=stopping_criteria,
             )
+
         input_token_len = input_ids.shape[1]
         n_diff_input_output = (input_ids != output_ids[:, :input_token_len]).sum().item()
         if n_diff_input_output > 0:
