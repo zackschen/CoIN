@@ -12,12 +12,12 @@ else
 fi
 
 if [ ! -n "$2" ] ;then
-    MODELPATH='./checkpoints/Instruction/Only_Pretrain_1.5_new/VisualGenome/llava-1.5-7b-lora'
+    MODELPATH='./checkpoints/Instruction/Only_Pretrain_1.5_new/Grounding/llava-1.5-7b-lora'
 else
     MODELPATH=$2
 fi
 
-RESULT_DIR="./results/CLIT_new/VisualGenome"
+RESULT_DIR="./results/CLIT_new/Grounding"
 
 for IDX in $(seq 0 $((CHUNKS-1))); do
     CUDA_VISIBLE_DEVICES=${GPULIST[$IDX]} python -m llava.eval.Instruction_CC.model_vqa_cc_instruction \

@@ -24,7 +24,7 @@ deepspeed --include localhost:0,1,2,3,4,5,6 --master_port 29600 llava/train/trai
     --image_aspect_ratio pad \
     --group_by_modality_length True \
     --bf16 True \
-    --output_dir ./checkpoints/Instruction/Only_Pretrain_1.5_slim_new_full/VisualGenome/llava-1.5-7b-lora \
+    --output_dir ./checkpoints/Instruction/Only_Pretrain_1.5_slim_new_full/Grounding/llava-1.5-7b-lora \
     --num_train_epochs 1 \
     --per_device_train_batch_size 8 \
     --per_device_eval_batch_size 16 \
