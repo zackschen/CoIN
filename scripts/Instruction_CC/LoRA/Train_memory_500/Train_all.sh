@@ -1,6 +1,6 @@
 #!/bin/bash
 
-sh /home/chencheng/Code/LLaVA/scripts/Instruction_CC/LoRA/Train/finetune_CC_Instruction_1_Science.sh
+# sh /home/chencheng/Code/LLaVA/scripts/Instruction_CC/LoRA/Train/finetune_CC_Instruction_1_Science.sh
 sh /home/chencheng/Code/LLaVA/scripts/Instruction_CC/LoRA/Train/finetune_CC_Instruction_2_TextVQA.sh
 sh /home/chencheng/Code/LLaVA/scripts/Instruction_CC/LoRA/Train/finetune_CC_Instruction_3_ImageNet.sh
 sh /home/chencheng/Code/LLaVA/scripts/Instruction_CC/LoRA/Train/finetune_CC_Instruction_4_GQA.sh
