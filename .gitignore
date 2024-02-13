@@ -24,7 +24,6 @@ output
 
 checkpoints
 cl_dataset
-playground
 ckpts*
 
 .ipynb_checkpoints
