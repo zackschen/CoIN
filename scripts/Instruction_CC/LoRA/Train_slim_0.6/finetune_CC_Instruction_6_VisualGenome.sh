@@ -42,4 +42,4 @@ deepspeed --include localhost:0,1,2,3 --master_port 29600 llava/train/train_mem.
     --gradient_checkpointing True \
     --dataloader_num_workers 4 \
     --lazy_preprocess True \
-    --report_to wandb
+    --report_to none

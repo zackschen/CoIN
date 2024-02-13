@@ -31,4 +31,4 @@ deepspeed --include localhost:0,1,2,3,4,5 --master_port=29500 llava/train/train_
     --freeze_backbone \
     --tune_mm_mlp_adapter True \
     --mm_projector_lr 2e-5 \
-    --report_to wandb \
+    --report_to none \
