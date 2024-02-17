@@ -27,7 +27,7 @@ for dir_ in dirs:
     if dir_ == 'Multitask':
         continue
     train_path = os.path.join('./playground/Instructions',dir_,'train.json')
-    train_new_path = os.path.join('./playground/Instructions_slim',dir_,'train_new.json')
+    train_new_path = os.path.join('./playground/Instructions',dir_,'train_new.json')
     if os.path.exists(train_new_path):
         train_path = train_new_path
     if os.path.exists(train_path):
