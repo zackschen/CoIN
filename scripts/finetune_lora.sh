@@ -46,4 +46,4 @@ deepspeed llava/train/train_mem.py \
     --gradient_checkpointing True \
     --lazy_preprocess True \
     --dataloader_num_workers 4 \
-    --report_to wandb
+    --report_to none
