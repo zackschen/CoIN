@@ -17,7 +17,7 @@ else
     MODELPATH=$2
 fi
 
-RESULT_DIR="./results/CLIT_memo100train_testslim/TextVQA"
+RESULT_DIR="./results/CLIT_normaltrain_testslim/TextVQA"
 
 for IDX in $(seq 0 $((CHUNKS-1))); do
     CUDA_VISIBLE_DEVICES=${GPULIST[$IDX]} python -m llava.eval.Instruction_CC.model_text_vqa \
@@ -45,6 +45,11 @@ for IDX in $(seq 0 $((CHUNKS-1))); do
 done
 
 python -m llava.eval.Instruction_CC.eval_textvqa \
-    --annotation-file /home/chencheng/Code/LLaVA/cl_dataset/TextVQA/TextVQA_0.5.1_val.json \
+    --annotation-file ./cl_dataset/TextVQA/TextVQA_0.5.1_val.json \
     --result-file $output_file \
     --output-dir $RESULT_DIR/$STAGE \
+
+python playground/create_prompt.py \
+    --rule ./llava/eval/table/rule.json \
+    --questions ./playground/Instructions_slim/TextVQA/val.json \
+    --results $output_file \

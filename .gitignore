@@ -21,6 +21,8 @@ dist
 .DS_Store
 wandb
 output
+images_to_show
+playground/data
 
 checkpoints
 cl_dataset

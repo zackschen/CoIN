@@ -9,7 +9,7 @@ def get_args():
 
     parser.add_argument('--experiment',
                         type=str,
-                        required=True)
+                        default='normal_science')
 
     args = parser.parse_args()
     return args
@@ -29,6 +29,8 @@ def get_gt(data_path):
         assert os.path.isdir(image_path), image_path
         assert os.path.isdir(qa_path), qa_path
         for file in os.listdir(qa_path):
+            if file == 'readme.txt':
+                continue
             if not file.endswith('.txt'):
                 continue
             for line in open(os.path.join(qa_path, file)):
@@ -49,7 +51,7 @@ if __name__ == "__main__":
     result_dir = os.path.join('eval_tool', 'answers', experiment)
     os.makedirs(result_dir, exist_ok=True)
 
-    answers = [json.loads(line) for line in open(os.path.join('answers', f'{experiment}.jsonl'))]
+    answers = [json.loads(line) for line in open(os.path.join(f'answers/{experiment}', f'{experiment}.jsonl'))]
 
     results = defaultdict(list)
     for answer in answers:

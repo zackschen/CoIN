@@ -17,7 +17,7 @@ else
     MODELPATH=$2
 fi
 
-RESULT_DIR="./results/CLIT_memo100train_testslim/ScienceQA"
+RESULT_DIR="./results/CLIT_normaltrain_testslim/ScienceQA"
 
 for IDX in $(seq 0 $((CHUNKS-1))); do
     CUDA_VISIBLE_DEVICES=${GPULIST[$IDX]} python -m llava.eval.Instruction_CC.model_vqa_science \
@@ -49,3 +49,8 @@ python llava/eval/Instruction_CC/eval_science_qa.py \
     --result-file $output_file \
     --output-file $RESULT_DIR/$STAGE/output.jsonl \
     --output-result $RESULT_DIR/$STAGE/output_result.jsonl \
+
+python playground/create_prompt.py \
+    --rule ./llava/eval/table/rule.json \
+    --questions ./playground/Instructions_slim/ScienceQA/test.json \
+    --results $output_file \

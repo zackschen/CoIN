@@ -9,7 +9,7 @@ MODEL_VERSION="vicuna-7b-v1.5"
 # MODEL_VERSION="Llama-2-7b-chat-hf"
 ################## LLaMA-2 ##################
 
-deepspeed --include localhost:0,1,3,4,5,6,7 --master_port 29600 llava/train/train_mem.py \
+deepspeed --include localhost:0,1,2,3,4,5,6 --master_port 29600 llava/train/train_mem.py \
     --deepspeed ./scripts/zero3_offload.json \
     --lora_enable True --lora_r 128 --lora_alpha 256 --mm_projector_lr 2e-5 \
     --model_name_or_path checkpoints/Vicuna/vicuna-7b-v1.5 \
@@ -31,7 +31,8 @@ deepspeed --include localhost:0,1,3,4,5,6,7 --master_port 29600 llava/train/trai
     --per_device_eval_batch_size 16 \
     --gradient_accumulation_steps 1 \
     --evaluation_strategy "no" \
-    --save_strategy "epoch" \
+    --save_strategy "steps" \
+    --save_steps 50000 \
     --learning_rate 2e-4 \
     --weight_decay 0. \
     --warmup_ratio 0.03 \

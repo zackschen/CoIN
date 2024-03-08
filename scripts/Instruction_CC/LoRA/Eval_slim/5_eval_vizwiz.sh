@@ -17,7 +17,7 @@ else
     MODELPATH=$2
 fi
 
-RESULT_DIR="./results/CLIT_memo100train_testslim/VizWiz"
+RESULT_DIR="./results/CLIT_normaltrain_testslim/VizWiz"
 
 for IDX in $(seq 0 $((CHUNKS-1))); do
     CUDA_VISIBLE_DEVICES=${GPULIST[$IDX]} python -m llava.eval.Instruction_CC.model_vizwiz \
@@ -49,3 +49,8 @@ python -m llava.eval.Instruction_CC.eval_vizwiz \
     --result-file $output_file \
     --annotation-file ./playground/Instructions_slim/VizWiz/val.json \
     --output-dir $RESULT_DIR/$STAGE \
+
+python playground/create_prompt.py \
+    --rule ./llava/eval/table/rule.json \
+    --questions ./playground/Instructions_slim/VizWiz/val.json \
+    --results $output_file \

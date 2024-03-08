@@ -17,13 +17,13 @@ else
     MODELPATH=$2
 fi
 
-RESULT_DIR="./results/CLIT_slim_0.1/TextVQA"
+RESULT_DIR="./results/CLIT_slim_new_0.1/TextVQA"
 
 for IDX in $(seq 0 $((CHUNKS-1))); do
     CUDA_VISIBLE_DEVICES=${GPULIST[$IDX]} python -m llava.eval.Instruction_CC.model_text_vqa \
         --model-path $MODELPATH \
         --model-base ./checkpoints/Vicuna/vicuna-7b-v1.5 \
-        --question-file ./playground/Instructions_slim/TextVQA/val.json \
+        --question-file ./playground/Instructions_slim/TextVQA/val_new.json \
         --image-folder ./cl_dataset \
         --answers-file $RESULT_DIR/$STAGE/${CHUNKS}_${IDX}.jsonl \
         --num-chunks $CHUNKS \
@@ -45,6 +45,6 @@ for IDX in $(seq 0 $((CHUNKS-1))); do
 done
 
 python -m llava.eval.Instruction_CC.eval_textvqa \
-    --annotation-file /home/chencheng/Code/LLaVA/cl_dataset/TextVQA/TextVQA_0.5.1_val.json \
+    --annotation-file ./cl_dataset/TextVQA/TextVQA_0.5.1_val.json \
     --result-file $output_file \
     --output-dir $RESULT_DIR/$STAGE \

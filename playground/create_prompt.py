@@ -3,9 +3,10 @@ import json, os, argparse
 
 def parse_args():
     parser = argparse.ArgumentParser()
-    parser.add_argument('--results', type=str, default="./results/CLIT/ScienceQA/GQA")
-    parser.add_argument('--questions', type=str, default='./playground/Instructions/ScienceQA/test.json')
-    parser.add_argument('-r', '--rule', default='./llava/eval/table/rule.json')
+    parser.add_argument('--results', type=str, default="./results/CLIT_slim_new_0.1/Grounding/Finetune/merge.jsonl")
+    parser.add_argument('--questions', type=str, default='./playground/Instructions_slim/Grounding/test.json')
+    parser.add_argument('--rule', default='./llava/eval/table/rule.json')
+    parser.add_argument('--rule_temp', default='CLIT')
     return parser.parse_args()
 
 if __name__ == '__main__':
@@ -27,15 +28,21 @@ if __name__ == '__main__':
         question_id = ans['question_id']
         question = question_dict[question_id]
 
-        question_label = question['text'].split('\n')[:-1]
-        question_label = '\n'.join(question_label)
-        answer = ans['text']
-        groundtruth = question['answer']
+        
+        if args.rule_temp == 'CLIT':
+            groundtruth = question['answer']
+            question_label = question['text'].split('\n')[:-1]
+            question_label = '\n'.join(question_label)
+            answer = ans['text']
+        else:
+            question_label = question['text']
+            answer = ans['text']
+            groundtruth = question['answer_bbox']
 
         system_dict = {"role": "system",
                     "content": "You are a helpful and precise assistant for checking the quality of the answer.",}
         
-        rule = rule_dict['CLIT']
+        rule = rule_dict[args.rule_temp]
         prompt = rule['prompt']
 
         content = (f'[Context]\n'

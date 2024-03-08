@@ -17,7 +17,7 @@ else
     MODELPATH=$2
 fi
 
-RESULT_DIR="./results/CLIT_memo100train_testslim/GQA"
+RESULT_DIR="./results/CLIT_normaltrain_testslim/GQA"
 
 for IDX in $(seq 0 $((CHUNKS-1))); do
     CUDA_VISIBLE_DEVICES=${GPULIST[$IDX]} python -m llava.eval.Instruction_CC.model_gqa \
@@ -47,3 +47,8 @@ done
 python scripts/convert_gqa_for_eval.py --src $output_file --dst $RESULT_DIR/$STAGE/testdev_balanced_predictions.json
 
 python llava/eval/Instruction_CC/eval_gqa.py --tier testdev_balanced --path $RESULT_DIR/$STAGE --output-dir $RESULT_DIR/$STAGE 
+
+python playground/create_prompt.py \
+    --rule ./llava/eval/table/rule.json \
+    --questions ./playground/Instructions_slim/GQA/test.json \
+    --results $output_file \

@@ -21,7 +21,7 @@ length = 10000
 train_choice = np.random.choice(len(multi_datas),length,replace=False)
 train_choice = [multi_datas[i] for i in train_choice]
 
-json.dump(train_choice,open('/home/chencheng/Code/LLaVA/playground/Instructions_slim/Grounding/train.json','w'),indent=4)
+# json.dump(train_choice,open('/home/chencheng/Code/LLaVA/playground/Instructions_slim/Grounding/train.json','w'),indent=4)
 
 test_multi_datas = []
 for dir_ in dirs:
