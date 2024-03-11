@@ -24,6 +24,7 @@ output
 images_to_show
 playground/data
 
+results
 checkpoints
 cl_dataset
 ckpts*
