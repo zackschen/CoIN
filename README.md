@@ -1,7 +1,6 @@
 # CLIT: A Benchmark of ContinuaL Instruction Tuning for Multimodel Large Language Model
 
-Cheng Chen, Junchen Zhu, Xu Luo, Hnegtao Shen, LianLi Gao, Jingkuan Song,
-ACM MM 2023.
+Cheng Chen, Junchen Zhu, Xu Luo, Hengtao Shen, LianLi Gao, Jingkuan Song.
 
 <img src="./assets/architecture.png">
 
