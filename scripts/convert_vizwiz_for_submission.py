@@ -8,8 +8,8 @@ from llava.eval.m4c_evaluator import EvalAIAnswerProcessor
 def parse_args():
     parser = argparse.ArgumentParser()
     parser.add_argument('--annotation-file', type=str, default='./playground/Instructions/VizWiz/test.json')
-    parser.add_argument('--result-file', type=str, default='results/CLIT/VizWiz/Zero_shot/merge.jsonl')
-    parser.add_argument('--result-upload-file', type=str, default='results/CLIT/VizWiz/Zero_shot/upload.json')
+    parser.add_argument('--result-file', type=str, default='results/CoIN/VizWiz/Zero_shot/merge.jsonl')
+    parser.add_argument('--result-upload-file', type=str, default='results/CoIN/VizWiz/Zero_shot/upload.json')
     return parser.parse_args()
 
 

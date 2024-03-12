@@ -58,7 +58,7 @@ After downloading all of them, organize the data as follows:
 │   └── test_images
 ```
 
-Then, please download the instructions from our datasets path: [CLIT_Dataset](https://huggingface.co/datasets/Zacks-Chen/CLIT/tree/main)
+Then, please download the instructions from our datasets path: [CoIN_Dataset](https://huggingface.co/datasets/Zacks-Chen/CoIN/tree/main)
 then, organize the instructions as follows:
 ```
 ├── Instruction_Type1

@@ -36,7 +36,7 @@ from llava.mm_utils import tokenizer_image_token
 
 sys.path.append('/home/chencheng/Code/LLaVA/')
 
-from CLIT.peft import PeftModel, TaskType, get_peft_model, CLITMOELoraConfig, WEIGHTS_NAME, set_peft_model_state_dict
+from CoIN.peft import PeftModel, TaskType, get_peft_model, CLITMOELoraConfig, WEIGHTS_NAME, set_peft_model_state_dict
 
 from PIL import Image, ImageFile
 ImageFile.LOAD_TRUNCATED_IMAGES = True
