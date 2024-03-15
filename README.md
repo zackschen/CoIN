@@ -90,5 +90,18 @@ For training with MoeLoRA, you could train scripts in `scripts/CoIN/Train_MOE`.
 ## Evaluation
 We have prepared the scripts to evaluate the trained model in `scripts/CoIN/Eval`.
 
+## Citation
+```
+@misc{chen2024coin,
+    title={CoIN: A Benchmark of Continual Instruction tuNing for Multimodel Large Language Model}, 
+    author={Cheng Chen and Junchen Zhu and Xu Luo and Hengtao Shen and Lianli Gao and Jingkuan Song},
+    year={2024},
+    eprint={2403.08350},
+    archivePrefix={arXiv},
+    primaryClass={cs.CV}
+}
+```
+
 ## Acknowledgement
 [LLaVA](https://github.com/haotian-liu/LLaVA): the codebase we built upon, and our base model LLaVA-1.5-7b that has the amazing vision-language capabilities!
+
