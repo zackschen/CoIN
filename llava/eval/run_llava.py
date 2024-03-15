@@ -9,7 +9,7 @@ from llava.constants import (
     IMAGE_PLACEHOLDER,
 )
 from llava.conversation import conv_templates, SeparatorStyle
-from llava.model.builder import load_pretrained_model
+from llava.LLaVA_model.builder import load_pretrained_model
 from llava.utils import disable_torch_init
 from llava.mm_utils import (
     process_images,

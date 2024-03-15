@@ -32,7 +32,7 @@ from torch.utils.data import Dataset
 from llava.train.llava_trainer import LLaVATrainer
 
 from llava import conversation as conversation_lib
-from llava.model import *
+from llava.LLaVA_model import *
 from llava.mm_utils import tokenizer_image_token
 
 from PIL import Image, ImageFile

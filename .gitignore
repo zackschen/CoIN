@@ -22,7 +22,7 @@ dist
 wandb
 output
 images_to_show
-playground/data
+playground
 
 checkpoints
 cl_dataset
