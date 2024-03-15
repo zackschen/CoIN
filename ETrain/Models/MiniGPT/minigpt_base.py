@@ -47,6 +47,7 @@ class MiniGPTBase(BaseModel):
             lora_alpha=lora_alpha,
             lora_dropout=lora_dropout,
         )
+        self.config = self.llama_model.config
 
         self.visual_encoder, self.ln_vision = self.init_vision_encoder(
             vit_model, img_size, drop_path_rate, use_grad_checkpoint, vit_precision, freeze_vit

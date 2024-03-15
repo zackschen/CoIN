@@ -41,6 +41,6 @@ def create_MiniGPT_data_module(tokenizer: transformers.PreTrainedTokenizer,
                                 train_dataset,
                                 local_rank) -> Dict:
     data_collator = DataCollatorForSupervisedDataset(tokenizer=tokenizer)
-    return dict(train_dataset=train_dataset,
+    return dict(train_dataset=train_dataset['clit_scienceqa']['train'],
                 eval_dataset=None,
                 data_collator=data_collator)
