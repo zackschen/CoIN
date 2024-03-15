@@ -5,7 +5,7 @@ model:
   image_size: 224
   end_sym: "</s>"
   llama_model: "/mnt/hdd1/chencheng/llama2_hf/Llama-2-7b-chat-hf/"
-  ckpt: "checkpoints/checkpoint_stage2.pth"
+  ckpt: "checkpoints/MiniGPT/checkpoint_stage2.pth"
   use_grad_checkpoint: True
   chat_template: True
   lora_r: 64
