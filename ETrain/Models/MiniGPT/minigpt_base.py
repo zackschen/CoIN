@@ -4,6 +4,7 @@ import random
 import torch
 from torch.cuda.amp import autocast as autocast
 import torch.nn as nn
+from typing import List, Optional, Tuple, Union
 
 from ETrain.utils.MiniGPT.common.registry import registry
 from ETrain.Models.MiniGPT.base_model import BaseModel
@@ -271,10 +272,17 @@ class MiniGPTBase(BaseModel):
 
         return cond_embeds, cond_atts, regress_embeds, regress_atts, part_targets
 
-    def forward(self, samples, reduction='mean'):
+    def forward(self, 
+                input_ids: torch.LongTensor = None,
+                attention_mask: Optional[torch.Tensor] = None,
+                position_ids: Optional[torch.LongTensor] = None,
+                past_key_values: Optional[List[torch.FloatTensor]] = None,
+                inputs_embeds: Optional[torch.FloatTensor] = None,
+                labels: Optional[torch.LongTensor] = None):
+        reduction='mean'
         # prepare the embedding to condition and the embedding to regress
-        cond_embeds, cond_atts, regress_embeds, regress_atts, part_targets = \
-            self.preparing_embedding(samples)
+        samples = input_ids
+        cond_embeds, cond_atts, regress_embeds, regress_atts, part_targets = self.preparing_embedding(samples)
 
         # concat the embedding to condition and the embedding to regress
         inputs_embeds, attention_mask, input_lens = \
@@ -291,22 +299,20 @@ class MiniGPTBase(BaseModel):
 
         # ensemble the final targets
         targets = torch.ones([inputs_embeds.shape[0], inputs_embeds.shape[1]],
-                             dtype=torch.long).fill_(-100)
+                             dtype=torch.long, device = inputs_embeds.device).fill_(-100)
 
         for i, target in enumerate(part_targets):
             targets[i, input_lens[i]+1:input_lens[i]+len(target)+1] = target  # plus 1 for bos
 
-        with self.maybe_autocast():
-            outputs = self.llama_model(
-                inputs_embeds=inputs_embeds,
-                attention_mask=attention_mask,
-                return_dict=True,
-                labels=targets,
-                reduction=reduction
-            )
-        loss = outputs.loss
+        outputs = self.llama_model(
+            inputs_embeds=inputs_embeds,
+            attention_mask=attention_mask,
+            return_dict=True,
+            labels=targets,
+            reduction=reduction
+        )
 
-        return {"loss": loss}
+        return outputs
 
     def embed_tokens(self, token_ids):
         if hasattr(self.llama_model.base_model, 'model'): ## lora wrapped model

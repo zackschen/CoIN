@@ -559,49 +559,56 @@ class CLITBuilder(BaseDatasetBuilder):
 
         return datasets
 
+@registry.register_builder("clit_scienceqa")
+class CLITScienceQABuilder(CLITBuilder):
+    train_dataset_cls = CLITDataset
+    DATASET_CONFIG_DICT = {
+        "default": "configs/MiniGPT/datasets/CLIT/CLIT_scienceqa.yaml",
+    }
+
 @registry.register_builder("clit_gqa")
-class CLITBuilder(CLITBuilder):
+class CLITGQABuilder(CLITBuilder):
     train_dataset_cls = CLITDataset
     DATASET_CONFIG_DICT = {
         "default": "configs/MiniGPT/datasets/CLIT/CLIT_gqa.yaml",
     }
 
 @registry.register_builder("clit_grounding")
-class CLITBuilder(CLITBuilder):
+class CLITGroundingBuilder(CLITBuilder):
     train_dataset_cls = CLITDataset
     DATASET_CONFIG_DICT = {
         "default": "configs/MiniGPT/datasets/CLIT/CLIT_grounding.yaml",
     }
 @registry.register_builder("clit_imagenet")
-class CLITBuilder(CLITBuilder):
+class CLITImageNetBuilder(CLITBuilder):
     train_dataset_cls = CLITDataset
     DATASET_CONFIG_DICT = {
         "default": "configs/MiniGPT/datasets/CLIT/CLIT_imagenet.yaml",
     }
 
 @registry.register_builder("clit_ocrvqa")
-class CLITBuilder(CLITBuilder):
+class CLITOCRVQABuilder(CLITBuilder):
     train_dataset_cls = CLITDataset
     DATASET_CONFIG_DICT = {
         "default": "configs/MiniGPT/datasets/CLIT/CLIT_ocrvqa.yaml",
     }
 
 @registry.register_builder("clit_textvqa")
-class CLITBuilder(CLITBuilder):
+class CLITTextVQABuilder(CLITBuilder):
     train_dataset_cls = CLITDataset
     DATASET_CONFIG_DICT = {
         "default": "configs/MiniGPT/datasets/CLIT/CLIT_textvqa.yaml",
     }
 
 @registry.register_builder("clit_vizwiz")
-class CLITBuilder(CLITBuilder):
+class CLITVizWizBuilder(CLITBuilder):
     train_dataset_cls = CLITDataset
     DATASET_CONFIG_DICT = {
         "default": "configs/MiniGPT/datasets/CLIT/CLIT_vizwiz.yaml",
     }
 
 @registry.register_builder("clit_vqav2")
-class CLITBuilder(CLITBuilder):
+class CLITVQAV2Builder(CLITBuilder):
     train_dataset_cls = CLITDataset
     DATASET_CONFIG_DICT = {
         "default": "configs/MiniGPT/datasets/CLIT/CLIT_vqav2.yaml",

@@ -1,5 +1,6 @@
 from ETrain.utils.MiniGPT.common.registry import registry
 from .minigpt_dataset import *
+from torch.utils.data.dataset import ConcatDataset
 
 def build_datasets(cfg):
         """
@@ -31,4 +32,11 @@ def build_datasets(cfg):
 
             datasets[name] = dataset
 
-        return datasets
+        concat_datasets = []
+        for name in datasets:
+            dataset = datasets[name]
+            concat_datasets.append(dataset['train'])
+        
+        Concated_Dataset = ConcatDataset(concat_datasets)
+
+        return datasets, Concated_Dataset

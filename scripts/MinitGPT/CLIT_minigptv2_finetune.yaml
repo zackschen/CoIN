@@ -12,8 +12,18 @@ model:
   lora_alpha: 256
 
 datasets:
-  clit_scienceqa: 
-    batch_size: 1
+  clit_textvqa: 
+    batch_size: 2
+    vis_processor:
+      train:
+        name: "blip2_image_train"
+        image_size: 224
+    text_processor:
+      train:
+        name: "blip_caption"
+
+  clit_textvqa: 
+    batch_size: 2
     vis_processor:
       train:
         name: "blip2_image_train"

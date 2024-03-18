@@ -113,9 +113,9 @@ def main():
     setup_logger()
     cfg.pretty_print()
 
-    datasets = build_datasets(cfg)
+    datasets, Concated_Dataset = build_datasets(cfg)
     model, tokenizer = create_MiniGPT4_model(cfg)
-    data_module = create_MiniGPT_data_module(tokenizer, datasets, 0)
+    data_module = create_MiniGPT_data_module(tokenizer, Concated_Dataset, 0)
 
     trainer = Trainer(model=model,
                     tokenizer=tokenizer,
