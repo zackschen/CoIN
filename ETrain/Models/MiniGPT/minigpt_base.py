@@ -1,6 +1,6 @@
 import logging
 import random
-
+import os
 import torch
 from torch.cuda.amp import autocast as autocast
 import torch.nn as nn
@@ -9,8 +9,11 @@ from typing import List, Optional, Tuple, Union
 from ETrain.utils.MiniGPT.common.registry import registry
 from ETrain.Models.MiniGPT.base_model import BaseModel
 from transformers import StoppingCriteria, StoppingCriteriaList
-
 from ETrain.utils.MiniGPT.conversation.conversation import StoppingCriteriaSub
+
+from ETrain.utils.MiniGPT.common.dist_utils import (
+    main_process,
+)
 
 class MiniGPTBase(BaseModel):
     """
@@ -418,3 +421,26 @@ class MiniGPTBase(BaseModel):
                 all_losses[i, num_cand[i]:] = 9999
         output_class_ranks = torch.argsort(all_losses, dim=-1)
         return output_class_ranks.tolist()
+    
+    @main_process
+    def _save_checkpoint(self,output_dir):
+        """
+        Save the checkpoint at the current epoch.
+        """
+        param_grad_dic = {
+            k: v.requires_grad for (k, v) in self.named_parameters()
+        }
+        state_dict = self.state_dict()
+        for k in list(state_dict.keys()):
+            if k in param_grad_dic.keys() and not param_grad_dic[k]:
+                # delete parameters that do not require gradient
+                del state_dict[k]
+        save_obj = {
+            "model": state_dict,
+        }
+        save_to = os.path.join(
+            output_dir,
+            "checkpoint.pth",
+        )
+        logging.info("Saving checkpoint to {}.".format(save_to))
+        torch.save(save_obj, save_to)
