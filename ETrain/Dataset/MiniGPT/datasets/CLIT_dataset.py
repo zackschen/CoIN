@@ -91,32 +91,32 @@ class CLITDataset(Dataset):
     
 class CLIT_ScientQADataset(CLITDataset):
     def __getitem__(self, index):
-        return super.__getitem__(index)
+        return super(CLIT_ScientQADataset,self).__getitem__(index)
     
 class CLIT_GQADataset(CLITDataset):
     def __getitem__(self, index):
-        return super.__getitem__(index)
+        return super(CLIT_GQADataset,self).__getitem__(index)
     
 class CLIT_GroundingDataset(CLITDataset):
     def __getitem__(self, index):
-        return super.__getitem__(index)
+        return super(CLIT_GroundingDataset,self).__getitem__(index)
     
 class CLIT_ImageNetDataset(CLITDataset):
     def __getitem__(self, index):
-        return super.__getitem__(index)
+        return super(CLIT_ImageNetDataset,self).__getitem__(index)
     
 class CLIT_OCRVQADataset(CLITDataset):
     def __getitem__(self, index):
-        return super.__getitem__(index)
+        return super(CLIT_OCRVQADataset,self).__getitem__(index)
     
 class CLIT_TextVQADataset(CLITDataset):
     def __getitem__(self, index):
-        return super.__getitem__(index)
+        return super(CLIT_TextVQADataset,self).__getitem__(index)
     
 class CLIT_VizWizDataset(CLITDataset):
     def __getitem__(self, index):
-        return super.__getitem__(index)
+        return super(CLIT_VizWizDataset,self).__getitem__(index)
 
 class CLIT_VQAv2Dataset(CLITDataset):
     def __getitem__(self, index):
-        return super.__getitem__(index)
+        return super(CLIT_VQAv2Dataset,self).__getitem__(index)

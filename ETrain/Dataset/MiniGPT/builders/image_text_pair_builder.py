@@ -18,7 +18,7 @@ from ETrain.Dataset.MiniGPT.datasets.aok_vqa_datasets import AOKVQADataset
 from ETrain.Dataset.MiniGPT.datasets.coco_vqa_datasets import COCOVQADataset
 from ETrain.Dataset.MiniGPT.datasets.ocrvqa_dataset import OCRVQADataset
 from ETrain.Dataset.MiniGPT.datasets.coco_caption import COCOCapDataset
-from ETrain.Dataset.MiniGPT.datasets.CLIT_dataset import CLITDataset
+from ETrain.Dataset.MiniGPT.datasets.CLIT_dataset import *
 
 @registry.register_builder("multitask_conversation")
 class MultitaskConversationBuilder(BaseDatasetBuilder):
@@ -534,7 +534,7 @@ class CCSBUAlignBuilder(BaseDatasetBuilder):
 
         return datasets
 
-@registry.register_builder("clit_scienceqa")
+@registry.register_builder("clit_dataset")
 class CLITBuilder(BaseDatasetBuilder):
     train_dataset_cls = CLITDataset
     DATASET_CONFIG_DICT = {
@@ -561,55 +561,55 @@ class CLITBuilder(BaseDatasetBuilder):
 
 @registry.register_builder("clit_scienceqa")
 class CLITScienceQABuilder(CLITBuilder):
-    train_dataset_cls = CLITDataset
+    train_dataset_cls = CLIT_ScientQADataset
     DATASET_CONFIG_DICT = {
         "default": "configs/MiniGPT/datasets/CLIT/CLIT_scienceqa.yaml",
     }
 
 @registry.register_builder("clit_gqa")
 class CLITGQABuilder(CLITBuilder):
-    train_dataset_cls = CLITDataset
+    train_dataset_cls = CLIT_GQADataset
     DATASET_CONFIG_DICT = {
         "default": "configs/MiniGPT/datasets/CLIT/CLIT_gqa.yaml",
     }
 
 @registry.register_builder("clit_grounding")
 class CLITGroundingBuilder(CLITBuilder):
-    train_dataset_cls = CLITDataset
+    train_dataset_cls = CLIT_GroundingDataset
     DATASET_CONFIG_DICT = {
         "default": "configs/MiniGPT/datasets/CLIT/CLIT_grounding.yaml",
     }
 @registry.register_builder("clit_imagenet")
 class CLITImageNetBuilder(CLITBuilder):
-    train_dataset_cls = CLITDataset
+    train_dataset_cls = CLIT_ImageNetDataset
     DATASET_CONFIG_DICT = {
         "default": "configs/MiniGPT/datasets/CLIT/CLIT_imagenet.yaml",
     }
 
 @registry.register_builder("clit_ocrvqa")
 class CLITOCRVQABuilder(CLITBuilder):
-    train_dataset_cls = CLITDataset
+    train_dataset_cls = CLIT_OCRVQADataset
     DATASET_CONFIG_DICT = {
         "default": "configs/MiniGPT/datasets/CLIT/CLIT_ocrvqa.yaml",
     }
 
 @registry.register_builder("clit_textvqa")
 class CLITTextVQABuilder(CLITBuilder):
-    train_dataset_cls = CLITDataset
+    train_dataset_cls = CLIT_TextVQADataset
     DATASET_CONFIG_DICT = {
         "default": "configs/MiniGPT/datasets/CLIT/CLIT_textvqa.yaml",
     }
 
 @registry.register_builder("clit_vizwiz")
 class CLITVizWizBuilder(CLITBuilder):
-    train_dataset_cls = CLITDataset
+    train_dataset_cls = CLIT_VizWizDataset
     DATASET_CONFIG_DICT = {
         "default": "configs/MiniGPT/datasets/CLIT/CLIT_vizwiz.yaml",
     }
 
 @registry.register_builder("clit_vqav2")
 class CLITVQAV2Builder(CLITBuilder):
-    train_dataset_cls = CLITDataset
+    train_dataset_cls = CLIT_VQAv2Dataset
     DATASET_CONFIG_DICT = {
         "default": "configs/MiniGPT/datasets/CLIT/CLIT_vqav2.yaml",
     }

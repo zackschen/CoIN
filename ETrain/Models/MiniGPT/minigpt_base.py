@@ -67,13 +67,16 @@ class MiniGPTBase(BaseModel):
         self.visual_encoder.to("cpu")
         self.visual_encoder.float()
 
+    def gradient_checkpointing_enable(self):
+        self.llama_model.gradient_checkpointing_enable()
+
     def get_context_emb(self, prompt, img_list):
         device = img_list[0].device
         prompt_segs = prompt.split('<ImageHere>')
         assert len(prompt_segs) == len(img_list) + 1, "Unmatched numbers of image placeholders and images."
         seg_tokens = [
             self.llama_tokenizer(
-                seg, return_tensors="pt", add_special_tokens=i==0).to(device).input_ids # only add bos to the first seg
+                seg, return_tensors="pt", add_special_tokens=i==0).input_ids # only add bos to the first seg
             for i, seg in enumerate(prompt_segs)
         ]
         seg_embs = [self.embed_tokens(seg_t) for seg_t in seg_tokens]
@@ -94,7 +97,7 @@ class MiniGPTBase(BaseModel):
                 return_tensors="pt",
                 padding="longest",
                 add_special_tokens=False
-            ).to(self.device)
+            )
             prompt_embeds = self.embed_tokens(prompt_tokens.input_ids)
             atts_prompt = prompt_tokens.attention_mask
             return prompt_embeds, atts_prompt
@@ -113,12 +116,12 @@ class MiniGPTBase(BaseModel):
                 interleave_emb = []
                 for idx, seg in enumerate(p_segs[:-1]):
                     p_tokens = self.llama_tokenizer(
-                        seg, return_tensors="pt", add_special_tokens=False).to(img_embeds.device)
+                        seg, return_tensors="pt", add_special_tokens=False)
                     p_embed = self.embed_tokens(p_tokens.input_ids)
                     interleave_emb.append(torch.cat([p_embed, each_img_embed[None][:, idx * pn:(idx + 1) * pn]], dim=1))
                 wrapped_emb = torch.cat(interleave_emb, dim=1)
                 p_tokens = self.llama_tokenizer(
-                    p_segs[-1], return_tensors="pt", add_special_tokens=False).to(img_embeds.device)
+                    p_segs[-1], return_tensors="pt", add_special_tokens=False)
                 p_embed = self.embed_tokens(p_tokens.input_ids)
                 wrapped_emb = torch.cat([wrapped_emb, p_embed], dim=1)
                 emb_lists.append(wrapped_emb)
@@ -176,10 +179,10 @@ class MiniGPTBase(BaseModel):
             questions, answers = conv_q[batch_idx], conv_a[batch_idx]
             questions = [self.llama_tokenizer(self.llama_tokenizer.bos_token + q,
                                               return_tensors="pt",
-                                              add_special_tokens=False).to(self.device) for q in questions[1:]]  # the first question is handled in the prompt wrap function, skip it
+                                              add_special_tokens=False) for q in questions[1:]]  # the first question is handled in the prompt wrap function, skip it
             answers = [self.llama_tokenizer(a + self.end_sym,
                                             return_tensors="pt",
-                                            add_special_tokens=False).to(self.device) for a in answers]
+                                            add_special_tokens=False) for a in answers]
             cur_id = []
             cur_target = []
             for i in range(len(questions)):
@@ -260,7 +263,7 @@ class MiniGPTBase(BaseModel):
                 truncation=True,
                 max_length=self.max_txt_len,
                 add_special_tokens=False
-            ).to(self.device)
+            )
 
             regress_token_ids = regress_tokens.input_ids
             regress_atts = regress_tokens.attention_mask
@@ -316,7 +319,7 @@ class MiniGPTBase(BaseModel):
 
     def embed_tokens(self, token_ids):
         if hasattr(self.llama_model.base_model, 'model'): ## lora wrapped model
-            embeds = self.llama_model.base_model.model.model.embed_tokens(token_ids)
+            embeds = self.llama_model.base_model.model.model.embed_tokens(token_ids.to(self.device))
         else:
             embeds = self.llama_model.base_model.embed_tokens(token_ids)
         return embeds
@@ -341,9 +344,9 @@ class MiniGPTBase(BaseModel):
         '''
 
         stopping_criteria = StoppingCriteriaList([StoppingCriteriaSub(
-            stops=[torch.tensor([i]).to(self.device) for i in stop_words_ids])])
+            stops=[torch.tensor([i]) for i in stop_words_ids])])
 
-        img_embeds, atts_img = self.encode_img(images.to(self.device))
+        img_embeds, atts_img = self.encode_img(images)
         image_lists = [[image_emb[None]] for image_emb in img_embeds]
 
         batch_embs = [self.get_context_emb(text, img_list) for text, img_list in zip(texts, image_lists)]

@@ -13,7 +13,7 @@ model:
 
 datasets:
   clit_textvqa: 
-    batch_size: 2
+    batch_size: 10
     vis_processor:
       train:
         name: "blip2_image_train"
@@ -22,8 +22,8 @@ datasets:
       train:
         name: "blip_caption"
 
-  clit_textvqa: 
-    batch_size: 2
+  clit_gqa: 
+    batch_size: 10
     vis_processor:
       train:
         name: "blip2_image_train"

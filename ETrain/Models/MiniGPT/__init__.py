@@ -30,8 +30,8 @@ def create_MiniGPT4_model(cfg):
     model_config = cfg.model_cfg
 
     model_cls = registry.get_model_class(model_config.arch)
-    model =  model_cls.from_config(model_config)
-    return model
+    model, tokenizer =  model_cls.from_config(model_config)
+    return model, tokenizer
 
 
 def load_model(name, model_type, is_eval=False, device="cpu", checkpoint=None):
