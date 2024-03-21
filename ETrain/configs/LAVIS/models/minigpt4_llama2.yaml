@@ -12,7 +12,7 @@ model:
   # generation configs
   prompt: ""
 
-  llama_model: "please set this value to the path of llama2-chat-7b"
+  llama_model: "/mnt/hdd1/chencheng/llama2_hf/Llama-2-7b-chat-hf"
 
 preprocess:
     vis_processor:

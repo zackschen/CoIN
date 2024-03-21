@@ -24,7 +24,7 @@ from ETrain.Dataset.LAVIS.datasets.CLIT_dataset import *
 class MultitaskConversationBuilder(BaseDatasetBuilder):
     train_dataset_cls = MultiTaskConversationDataset
     DATASET_CONFIG_DICT = {
-        "default": "configs/MiniGPT/datasets/multitask_conversation/default.yaml",
+        "default": "configs/LAVIS/datasets/multitask_conversation/default.yaml",
     }
 
     def build_datasets(self):
@@ -50,7 +50,7 @@ class MultitaskConversationBuilder(BaseDatasetBuilder):
 class UnnaturalInstructionBuilder(BaseDatasetBuilder):
     train_dataset_cls = UnnaturalDataset
     DATASET_CONFIG_DICT = {
-        "default": "configs/MiniGPT/datasets/nlp/unnatural_instruction.yaml",
+        "default": "configs/LAVIS/datasets/nlp/unnatural_instruction.yaml",
     }
 
     def build_datasets(self):
@@ -75,7 +75,7 @@ class UnnaturalInstructionBuilder(BaseDatasetBuilder):
 class LlavaDetailBuilder(BaseDatasetBuilder):
     train_dataset_cls = LlavaDetailDataset
     DATASET_CONFIG_DICT = {
-        "default": "configs/MiniGPT/datasets/llava/detail.yaml",
+        "default": "configs/LAVIS/datasets/llava/detail.yaml",
     }
 
     def build_datasets(self):
@@ -102,7 +102,7 @@ class LlavaDetailBuilder(BaseDatasetBuilder):
 class LlavaReasonBuilder(BaseDatasetBuilder):
     train_dataset_cls = LlavaReasonDataset
     DATASET_CONFIG_DICT = {
-        "default": "configs/MiniGPT/datasets/llava/reason.yaml",
+        "default": "configs/LAVIS/datasets/llava/reason.yaml",
     }
 
     def build_datasets(self):
@@ -127,7 +127,7 @@ class LlavaReasonBuilder(BaseDatasetBuilder):
 class LlavaReasonBuilder(BaseDatasetBuilder):
     train_dataset_cls = LlavaConversationDataset
     DATASET_CONFIG_DICT = {
-        "default": "configs/MiniGPT/datasets/llava/conversation.yaml",
+        "default": "configs/LAVIS/datasets/llava/conversation.yaml",
     }
 
     def build_datasets(self):
@@ -185,14 +185,14 @@ class AllRefCOCOBuilder(BaseDatasetBuilder):
 class RefCOCOBuilder(AllRefCOCOBuilder):
     train_dataset_cls = ReferCOCODataset
     DATASET_CONFIG_DICT = {
-        "default": "configs/MiniGPT/datasets/coco_bbox/refcoco.yaml",
+        "default": "configs/LAVIS/datasets/coco_bbox/refcoco.yaml",
     }
 
 @registry.register_builder("refcocop")
 class RefCOCOPBuilder(AllRefCOCOBuilder):
     train_dataset_cls = ReferCOCODataset
     DATASET_CONFIG_DICT = {
-        "default": "configs/MiniGPT/datasets/coco_bbox/refcocop.yaml",
+        "default": "configs/LAVIS/datasets/coco_bbox/refcocop.yaml",
     }
 
 
@@ -200,14 +200,14 @@ class RefCOCOPBuilder(AllRefCOCOBuilder):
 class RefCOCOGBuilder(AllRefCOCOBuilder):
     train_dataset_cls = ReferCOCODataset
     DATASET_CONFIG_DICT = {
-        "default": "configs/MiniGPT/datasets/coco_bbox/refcocog.yaml",
+        "default": "configs/LAVIS/datasets/coco_bbox/refcocog.yaml",
     }
 
 @registry.register_builder("invrefcoco")
 class RefCOCOBuilder(AllRefCOCOBuilder):
     train_dataset_cls = InvReferCOCODataset
     DATASET_CONFIG_DICT = {
-        "default": "configs/MiniGPT/datasets/coco_bbox/invrefcoco.yaml",
+        "default": "configs/LAVIS/datasets/coco_bbox/invrefcoco.yaml",
     }
 
 
@@ -215,7 +215,7 @@ class RefCOCOBuilder(AllRefCOCOBuilder):
 class RefCOCOPBuilder(AllRefCOCOBuilder):
     train_dataset_cls = InvReferCOCODataset
     DATASET_CONFIG_DICT = {
-        "default": "configs/MiniGPT/datasets/coco_bbox/invrefcocop.yaml",
+        "default": "configs/LAVIS/datasets/coco_bbox/invrefcocop.yaml",
     }
 
 
@@ -223,14 +223,14 @@ class RefCOCOPBuilder(AllRefCOCOBuilder):
 class RefCOCOGBuilder(AllRefCOCOBuilder):
     train_dataset_cls = InvReferCOCODataset
     DATASET_CONFIG_DICT = {
-        "default": "configs/MiniGPT/datasets/coco_bbox/invrefcocog.yaml",
+        "default": "configs/LAVIS/datasets/coco_bbox/invrefcocog.yaml",
     }
 
 @registry.register_builder("refvg")
 class RefVisualGenomeBuilder(BaseDatasetBuilder):
     train_dataset_cls = ReferVisualGenomeDataset
     DATASET_CONFIG_DICT = {
-        "default": "configs/MiniGPT/datasets/vg/ref.yaml",
+        "default": "configs/LAVIS/datasets/vg/ref.yaml",
     }
 
     def build_datasets(self):
@@ -257,7 +257,7 @@ class RefVisualGenomeBuilder(BaseDatasetBuilder):
 class TextcapCaptionBuilder(BaseDatasetBuilder):
     train_dataset_cls = TextCapDataset
 
-    DATASET_CONFIG_DICT = {"default": "configs/MiniGPT/datasets/textcaps/caption.yaml"}
+    DATASET_CONFIG_DICT = {"default": "configs/LAVIS/datasets/textcaps/caption.yaml"}
 
     def _download_ann(self):
         pass
@@ -290,13 +290,13 @@ class COCOVQABuilder(BaseDatasetBuilder):
     train_dataset_cls = COCOVQADataset
 
     DATASET_CONFIG_DICT = {
-        "default": "configs/MiniGPT/datasets/coco/defaults_vqa.yaml",
+        "default": "configs/LAVIS/datasets/coco/defaults_vqa.yaml",
     }
 
 @registry.register_builder("ok_vqa")
 class OKVQABuilder(COCOVQABuilder):
     DATASET_CONFIG_DICT = {
-        "default": "configs/MiniGPT/datasets/okvqa/defaults.yaml",
+        "default": "configs/LAVIS/datasets/okvqa/defaults.yaml",
     }
 
 
@@ -304,14 +304,14 @@ class OKVQABuilder(COCOVQABuilder):
 class AOKVQABuilder(BaseDatasetBuilder):
     train_dataset_cls = AOKVQADataset
 
-    DATASET_CONFIG_DICT = {"default": "configs/MiniGPT/datasets/aokvqa/defaults.yaml"}
+    DATASET_CONFIG_DICT = {"default": "configs/LAVIS/datasets/aokvqa/defaults.yaml"}
 
 
 @registry.register_builder("gqa")
 class GQABuilder(BaseDatasetBuilder):
     train_dataset_cls = GQADataset
     DATASET_CONFIG_DICT = {
-        "default": "configs/MiniGPT/datasets/gqa/balanced_val.yaml",
+        "default": "configs/LAVIS/datasets/gqa/balanced_val.yaml",
     }
 
 
@@ -321,7 +321,7 @@ class GQABuilder(BaseDatasetBuilder):
 class GroundedCaptionBuilder(BaseDatasetBuilder):
     train_dataset_cls = GroundedDetailDataset
     DATASET_CONFIG_DICT = {
-        "default": "configs/MiniGPT/datasets/flickr/default.yaml",
+        "default": "configs/LAVIS/datasets/flickr/default.yaml",
     }
 
     def build_datasets(self):
@@ -347,7 +347,7 @@ class GroundedCaptionBuilder(BaseDatasetBuilder):
 class CaptionToPhraseBuilder(BaseDatasetBuilder):
     train_dataset_cls = CaptionToObjectDataset
     DATASET_CONFIG_DICT = {
-        "default": "configs/MiniGPT/datasets/flickr/caption_to_phrase.yaml",
+        "default": "configs/LAVIS/datasets/flickr/caption_to_phrase.yaml",
     }
 
     def build_datasets(self):
@@ -372,7 +372,7 @@ class CaptionToPhraseBuilder(BaseDatasetBuilder):
 class CaptionToPhraseBuilder(BaseDatasetBuilder):
     train_dataset_cls = PhraseToObjectDataset
     DATASET_CONFIG_DICT = {
-        "default": "configs/MiniGPT/datasets/flickr/object_to_phrase.yaml",
+        "default": "configs/LAVIS/datasets/flickr/object_to_phrase.yaml",
     }
 
     def build_datasets(self):
@@ -424,14 +424,14 @@ class DocumentVQABuilder(BaseDatasetBuilder):
 @registry.register_builder("ocrvqa")
 class OCRVQABuilder(DocumentVQABuilder):
     train_dataset_cls = OCRVQADataset
-    DATASET_CONFIG_DICT = {"default": "configs/MiniGPT/datasets/ocrvqa/ocrvqa.yaml"}
+    DATASET_CONFIG_DICT = {"default": "configs/LAVIS/datasets/ocrvqa/ocrvqa.yaml"}
 
 
 @registry.register_builder("cc_sbu")
 class CCSBUBuilder(BaseDatasetBuilder):
     train_dataset_cls = CCSBUDataset
 
-    DATASET_CONFIG_DICT = {"default": "configs/MiniGPT/datasets/cc_sbu/defaults.yaml"}
+    DATASET_CONFIG_DICT = {"default": "configs/LAVIS/datasets/cc_sbu/defaults.yaml"}
 
     def _download_ann(self):
         pass
@@ -463,7 +463,7 @@ class CCSBUBuilder(BaseDatasetBuilder):
 class LaionBuilder(BaseDatasetBuilder):
     train_dataset_cls = LaionDataset
 
-    DATASET_CONFIG_DICT = {"default": "configs/MiniGPT/datasets/laion/defaults.yaml"}
+    DATASET_CONFIG_DICT = {"default": "configs/LAVIS/datasets/laion/defaults.yaml"}
 
     def _download_ann(self):
         pass
@@ -497,7 +497,7 @@ class COCOCapBuilder(BaseDatasetBuilder):
     train_dataset_cls = COCOCapDataset
 
     DATASET_CONFIG_DICT = {
-        "default": "configs/MiniGPT/datasets/coco/caption.yaml",
+        "default": "configs/LAVIS/datasets/coco/caption.yaml",
     }
 
 
@@ -507,7 +507,7 @@ class CCSBUAlignBuilder(BaseDatasetBuilder):
     train_dataset_cls = CCSBUAlignDataset
 
     DATASET_CONFIG_DICT = {
-        "default": "configs/MiniGPT/datasets/cc_sbu/align.yaml",
+        "default": "configs/LAVIS/datasets/cc_sbu/align.yaml",
     }
 
     def build_datasets(self):

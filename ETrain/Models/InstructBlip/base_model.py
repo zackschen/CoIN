@@ -17,6 +17,8 @@ from omegaconf import OmegaConf
 from ETrain.utils.LAVIS.common.dist_utils import (
     main_process,
 )
+from transformers.deepspeed import is_deepspeed_zero3_enabled
+from transformers.modeling_utils import _load_state_dict_into_model
 
 class BaseModel(nn.Module):
     """Base class for models."""
@@ -171,7 +173,29 @@ class BaseModel(nn.Module):
         )
         logging.info("Saving checkpoint to {}.".format(save_to))
         torch.save(save_obj, save_to)
-        
+
+    def load_from_pretrained(self, url_or_filename):
+        if is_url(url_or_filename):
+            cached_file = download_cached_file(
+                url_or_filename, check_hash=False, progress=True
+            )
+            checkpoint = torch.load(cached_file, map_location="cpu")
+        elif os.path.isfile(url_or_filename):
+            checkpoint = torch.load(url_or_filename, map_location="cpu")
+        else:
+            raise RuntimeError("checkpoint url or path is invalid")
+
+        state_dict = checkpoint["model"]
+        if is_deepspeed_zero3_enabled():
+            msg = _load_state_dict_into_model(self,state_dict,start_prefix = '')
+        else:
+            msg = self.load_state_dict(state_dict, strict=False)
+
+        # logging.info("Missing keys {}".format(msg.missing_keys))
+        logging.info("load checkpoint from %s" % url_or_filename)
+
+        return msg
+    
 class BaseEncoder(nn.Module):
     """
     Base class for primitive encoders, such as ViT, TimeSformer, etc.

@@ -4,7 +4,7 @@ model:
 
   max_txt_len: 160
   end_sym: "###"
-  prompt_path: "prompts/alignment.txt"
+  prompt_path: "ETrain/Models/MiniGPT/prompts/alignment.txt"
   prompt_template: '###Human: {} ###Assistant: '
   ckpt: "checkpoints/MiniGPT/pretrained_minigpt4_7b_stage1.pth"
 
@@ -14,18 +14,8 @@ model:
   lora_alpha: 256
 
 datasets:
-  clit_textvqa: 
-    batch_size: 10
-    vis_processor:
-      train:
-        name: "blip2_image_train"
-        image_size: 224
-    text_processor:
-      train:
-        name: "blip_caption"
-
-  clit_gqa: 
-    batch_size: 10
+  cc_sbu_align:
+    batch_size: 12
     vis_processor:
       train:
         name: "blip2_image_train"

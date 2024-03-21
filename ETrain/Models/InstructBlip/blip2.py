@@ -24,7 +24,6 @@ from ETrain.Models.InstructBlip.Qformer import BertConfig, BertLMHeadModel
 from ETrain.Models.InstructBlip.eva_vit import create_eva_vit_g
 from ETrain.Models.InstructBlip.clip_vit import create_clip_vit_L
 from transformers import BertTokenizer
-from transformers.modeling_utils import _load_state_dict_into_model
 from ETrain.Models.InstructBlip.base_model import LayerNorm
 
 class Blip2Base(BaseModel):
@@ -72,28 +71,6 @@ class Blip2Base(BaseModel):
         ln_vision = LayerNorm(visual_encoder.num_features)
         self.vit_name = model_name
         return visual_encoder, ln_vision
-
-
-    def load_from_pretrained(self, url_or_filename):
-        if is_url(url_or_filename):
-            cached_file = download_cached_file(
-                url_or_filename, check_hash=False, progress=True
-            )
-            checkpoint = torch.load(cached_file, map_location="cpu")
-        elif os.path.isfile(url_or_filename):
-            checkpoint = torch.load(url_or_filename, map_location="cpu")
-        else:
-            raise RuntimeError("checkpoint url or path is invalid")
-
-        state_dict = checkpoint["model"]
-
-        # msg = self.load_state_dict(state_dict, strict=False)
-        msg = _load_state_dict_into_model(self,state_dict,start_prefix = '')
-
-        # logging.info("Missing keys {}".format(msg.missing_keys))
-        logging.info("load checkpoint from %s" % url_or_filename)
-
-        return msg
 
     def get_optimizer_params(self, weight_decay, lr_scale=1):
 
