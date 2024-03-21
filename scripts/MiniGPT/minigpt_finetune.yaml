@@ -1,11 +1,13 @@
 model:
-  arch: minigpt_v2
-  model_type: pretrain
-  max_txt_len: 2048
-  image_size: 224
-  end_sym: "</s>"
-  llama_model: "/mnt/hdd1/chencheng/llama2_hf/Llama-2-7b-chat-hf/"
-  ckpt: "checkpoints/MiniGPT/checkpoint_stage2.pth"
+  arch: minigpt4
+  model_type: pretrain_vicuna0
+
+  max_txt_len: 160
+  end_sym: "###"
+  prompt_path: "prompts/alignment.txt"
+  prompt_template: '###Human: {} ###Assistant: '
+  ckpt: "checkpoints/MiniGPT/pretrained_minigpt4_7b_stage1.pth"
+
   use_grad_checkpoint: True
   chat_template: True
   lora_r: 64
@@ -48,7 +50,7 @@ run:
   # iters_per_epoch: 1000
 
   seed: 42
-  output_dir: "./checkpoints/Finetune"
+  output_dir: "./checkpoints/MiniGPT"
 
   amp: True
   resume_ckpt_path: null
@@ -62,4 +64,4 @@ run:
   distributed: True
 
   wandb_log: False
-  job_name: minigptv2_finetune
+  job_name: minigpt4_finetune

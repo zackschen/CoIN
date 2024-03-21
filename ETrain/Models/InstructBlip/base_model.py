@@ -7,14 +7,16 @@
 
 import logging
 import os
-
+import contextlib
 import numpy as np
 import torch
 import torch.nn as nn
 from ETrain.utils.LAVIS.common.dist_utils import download_cached_file, is_dist_avail_and_initialized
 from ETrain.utils.LAVIS.common.utils import get_abs_path, is_url
 from omegaconf import OmegaConf
-
+from ETrain.utils.LAVIS.common.dist_utils import (
+    main_process,
+)
 
 class BaseModel(nn.Module):
     """Base class for models."""
@@ -146,7 +148,30 @@ class BaseModel(nn.Module):
             return torch.cuda.amp.autocast(dtype=dtype)
         else:
             return contextlib.nullcontext()
-
+        
+    @main_process
+    def _save_checkpoint(self, output_dir):
+        """
+        Save the checkpoint at the current epoch.
+        """
+        param_grad_dic = {
+            k: v.requires_grad for (k, v) in self.named_parameters()
+        }
+        state_dict = self.state_dict()
+        for k in list(state_dict.keys()):
+            if k in param_grad_dic.keys() and not param_grad_dic[k]:
+                # delete parameters that do not require gradient
+                del state_dict[k]
+        save_obj = {
+            "model": state_dict,
+        }
+        save_to = os.path.join(
+            output_dir,
+            "checkpoint.pth",
+        )
+        logging.info("Saving checkpoint to {}.".format(save_to))
+        torch.save(save_obj, save_to)
+        
 class BaseEncoder(nn.Module):
     """
     Base class for primitive encoders, such as ViT, TimeSformer, etc.

@@ -2,9 +2,8 @@ import logging
 import random
 
 import torch
-from torch.cuda.amp import autocast as autocast
 import torch.nn as nn
-
+from torch.cuda.amp import autocast as autocast
 from ETrain.utils.LAVIS.common.registry import registry
 from ETrain.Models.InstructBlip.base_model import disabled_train
 from ETrain.Models.MiniGPT.minigpt_base import MiniGPTBase
@@ -78,13 +77,14 @@ class MiniGPTv2(MiniGPTBase):
         if len(image.shape) > 4:
             image = image.reshape(-1, *image.shape[-3:])
 
-        image_embeds = self.ln_vision(self.visual_encoder(image))
-        image_embeds = image_embeds[:, 1:, :]
-        bs, pn, hs = image_embeds.shape
-        image_embeds = image_embeds.view(bs, int(pn / 4), int(hs * 4))
+        with self.maybe_autocast():
+            image_embeds = self.ln_vision(self.visual_encoder(image))
+            image_embeds = image_embeds[:, 1:, :]
+            bs, pn, hs = image_embeds.shape
+            image_embeds = image_embeds.view(bs, int(pn / 4), int(hs * 4))
 
-        inputs_llama = self.llama_proj(image_embeds)
-        atts_llama = torch.ones(inputs_llama.size()[:-1], dtype=torch.long)
+            inputs_llama = self.llama_proj(image_embeds)
+            atts_llama = torch.ones(inputs_llama.size()[:-1], dtype=torch.long)
         return inputs_llama, atts_llama
 
     @classmethod

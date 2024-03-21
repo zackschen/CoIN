@@ -14,14 +14,14 @@ import string
 from packaging import version
 
 import torch
-from torch.cuda.amp import autocast as autocast
 import torch.nn as nn
 from typing import Optional, List
 
 import transformers
 
 from ETrain.utils.LAVIS.common.registry import registry
-from ETrain.Models.InstructBlip.blip2 import Blip2Base, disabled_train
+from ETrain.Models.InstructBlip.blip2 import Blip2Base
+from ETrain.Models.InstructBlip.base_model import disabled_train
 from transformers import LlamaTokenizer
 from ETrain.Models.InstructBlip.modeling_llama import LlamaForCausalLM
 from peft import LoraConfig, get_peft_model
@@ -187,6 +187,7 @@ class Blip2VicunaInstruct(Blip2Base):
         image = samples["image"]
         with self.maybe_autocast():
             image_embeds = self.ln_vision(self.visual_encoder(image))
+            image_embeds = image_embeds.type(image.dtype)
         image_atts = torch.ones(image_embeds.size()[:-1], dtype=torch.long).to(image.device)
 
         bs = image.size(0)
@@ -623,7 +624,7 @@ class Blip2VicunaInstruct(Blip2Base):
         # self.llm_tokenizer.padding_side = "right"
         self.llm_tokenizer.truncation_side = 'right'
         n_cands = len(candidates)
-        with self.maybe_autocast(dtype=torch.bfloat16):
+        with self.maybe_autocast():
             all_losses = []
             for n in range(n_segments):
                 seg_len = n_cands // n_segments

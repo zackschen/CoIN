@@ -4,7 +4,6 @@
  SPDX-License-Identifier: BSD-3-Clause
  For full license text, see the LICENSE file in the repo root or https://opensource.org/licenses/BSD-3-Clause
 """
-import contextlib
 import logging
 import os
 import time
@@ -25,8 +24,8 @@ from ETrain.Models.InstructBlip.Qformer import BertConfig, BertLMHeadModel
 from ETrain.Models.InstructBlip.eva_vit import create_eva_vit_g
 from ETrain.Models.InstructBlip.clip_vit import create_clip_vit_L
 from transformers import BertTokenizer
-from transformers.deepspeed import is_deepspeed_zero3_enabled
 from transformers.modeling_utils import _load_state_dict_into_model
+from ETrain.Models.InstructBlip.base_model import LayerNorm
 
 class Blip2Base(BaseModel):
     @classmethod
@@ -34,16 +33,6 @@ class Blip2Base(BaseModel):
         tokenizer = BertTokenizer.from_pretrained("bert-base-uncased", truncation_side=truncation_side)
         tokenizer.add_special_tokens({"bos_token": "[DEC]"})
         return tokenizer
-
-    def maybe_autocast(self, dtype=torch.float16):
-        # if on cpu, don't use autocast
-        # if on gpu, use autocast with dtype if provided, otherwise use torch.float16
-        enable_autocast = self.device != torch.device("cpu")
-
-        if enable_autocast:
-            return torch.cuda.amp.autocast(dtype=dtype)
-        else:
-            return contextlib.nullcontext()
 
     @classmethod
     def init_Qformer(cls, num_query_token, vision_width, cross_attention_freq=2, cfg = None):
@@ -187,21 +176,6 @@ class Blip2Base(BaseModel):
                 exit(1)
 
         return self._lemmatizer
-
-def disabled_train(self, mode=True):
-    """Overwrite model.train with this function to make sure train/eval mode
-    does not change anymore."""
-    return self
-
-
-class LayerNorm(nn.LayerNorm):
-    """Subclass torch's LayerNorm to handle fp16."""
-
-    def forward(self, x: torch.Tensor):
-        orig_type = x.dtype
-        ret = super().forward(x.type(torch.float32))
-        return ret.type(orig_type)
-
 
 def compute_sim_matrix(model, data_loader, **kwargs):
     k_test = kwargs.pop("k_test")

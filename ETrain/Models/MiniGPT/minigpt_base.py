@@ -18,10 +18,6 @@ from ETrain.utils.LAVIS.conversation.conversation import StoppingCriteriaSub
 from ETrain.Models.MiniGPT.modeling_llama import LlamaForCausalLM
 from ETrain.Models.MiniGPT.eva_vit import create_eva_vit_g
 
-from ETrain.utils.LAVIS.common.dist_utils import (
-    main_process,
-)
-
 class MiniGPTBase(BaseModel):
     """
     Base class for MiniGPT-4 and MiniGPT-v2
@@ -385,13 +381,14 @@ class MiniGPTBase(BaseModel):
         for i, target in enumerate(part_targets):
             targets[i, input_lens[i]+1:input_lens[i]+len(target)+1] = target  # plus 1 for bos
 
-        outputs = self.llama_model(
-            inputs_embeds=inputs_embeds,
-            attention_mask=attention_mask,
-            return_dict=True,
-            labels=targets,
-            reduction=reduction
-        )
+        with self.maybe_autocast():
+            outputs = self.llama_model(
+                inputs_embeds=inputs_embeds,
+                attention_mask=attention_mask,
+                return_dict=True,
+                labels=targets,
+                reduction=reduction
+            )
 
         return outputs
 
@@ -497,25 +494,3 @@ class MiniGPTBase(BaseModel):
         output_class_ranks = torch.argsort(all_losses, dim=-1)
         return output_class_ranks.tolist()
     
-    @main_process
-    def _save_checkpoint(self,output_dir):
-        """
-        Save the checkpoint at the current epoch.
-        """
-        param_grad_dic = {
-            k: v.requires_grad for (k, v) in self.named_parameters()
-        }
-        state_dict = self.state_dict()
-        for k in list(state_dict.keys()):
-            if k in param_grad_dic.keys() and not param_grad_dic[k]:
-                # delete parameters that do not require gradient
-                del state_dict[k]
-        save_obj = {
-            "model": state_dict,
-        }
-        save_to = os.path.join(
-            output_dir,
-            "checkpoint.pth",
-        )
-        logging.info("Saving checkpoint to {}.".format(save_to))
-        torch.save(save_obj, save_to)
