@@ -9,12 +9,12 @@ import logging
 import torch
 from omegaconf import OmegaConf
 
-from ETrain.utils.MiniGPT.common.registry import registry
-from ETrain.Models.MiniGPT.base_model import BaseModel
+from ETrain.utils.LAVIS.common.registry import registry
+from ETrain.Models.InstructBlip.base_model import BaseModel
 from ETrain.Models.MiniGPT.minigpt_base import MiniGPTBase
 from ETrain.Models.MiniGPT.minigpt4 import MiniGPT4
 from ETrain.Models.MiniGPT.minigpt_v2 import MiniGPTv2
-from ETrain.utils.MiniGPT.processors.base_processor import BaseProcessor
+from ETrain.utils.LAVIS.processors.base_processor import BaseProcessor
 
 
 __all__ = [
@@ -30,8 +30,8 @@ def create_MiniGPT4_model(cfg):
     model_config = cfg.model_cfg
 
     model_cls = registry.get_model_class(model_config.arch)
-    model, tokenizer =  model_cls.from_config(model_config)
-    return model, tokenizer
+    model =  model_cls.from_config(model_config)
+    return model
 
 
 def load_model(name, model_type, is_eval=False, device="cpu", checkpoint=None):

@@ -16,11 +16,15 @@ from packaging import version
 import torch
 from torch.cuda.amp import autocast as autocast
 import torch.nn as nn
+from typing import Optional, List
 
 import transformers
 
-from ETrain.utils.MiniGPT.common import registry
+from ETrain.utils.LAVIS.common.registry import registry
 from ETrain.Models.InstructBlip.blip2 import Blip2Base, disabled_train
+from transformers import LlamaTokenizer
+from ETrain.Models.InstructBlip.modeling_llama import LlamaForCausalLM
+from peft import LoraConfig, get_peft_model
 
 @registry.register_model("blip2_vicuna_instruct")
 class Blip2VicunaInstruct(Blip2Base):
@@ -35,8 +39,8 @@ class Blip2VicunaInstruct(Blip2Base):
     """
 
     PRETRAINED_MODEL_CONFIG_DICT = {
-        "vicuna7b": "configs/models/blip2/blip2_instruct_vicuna7b.yaml",
-        "vicuna13b": "configs/models/blip2/blip2_instruct_vicuna13b.yaml",
+        "vicuna7b": "configs/LAVIS/models/blip2_instruct_vicuna7b.yaml",
+        "vicuna13b": "configs/LAVIS/models/blip2_instruct_vicuna13b.yaml",
     }
 
     def __init__(
@@ -54,12 +58,11 @@ class Blip2VicunaInstruct(Blip2Base):
         max_output_txt_len=256,
         apply_lemmatizer=False,
         qformer_text_input=True,
+        cfg=None,
     ):
         super().__init__()
         transformers_version = version.parse(transformers.__version__)
         assert transformers_version >= version.parse("4.28"), "BLIP-2 Vicuna requires transformers>=4.28"        
-        from transformers import LlamaTokenizer
-        from lavis.models.blip2_models.modeling_llama import LlamaForCausalLM
         
         self.tokenizer = self.init_tokenizer(truncation_side="left")
 
@@ -74,7 +77,7 @@ class Blip2VicunaInstruct(Blip2Base):
             logging.info("freeze vision encoder")
 
         self.Qformer, self.query_tokens = self.init_Qformer(
-            num_query_token, self.visual_encoder.num_features
+            num_query_token, self.visual_encoder.num_features, cfg = cfg
         )
 
         if not qformer_text_input:
@@ -98,6 +101,7 @@ class Blip2VicunaInstruct(Blip2Base):
         # self.llm_tokenizer.pad_token = self.llm_tokenizer.unk_token
 
         self.llm_model.resize_token_embeddings(len(self.llm_tokenizer))
+        self.config = self.llm_model.config
 
         # self.eos_token_id = self.llm_tokenizer(
         #     self.llm_tokenizer.eos_token, add_special_tokens=False
@@ -105,6 +109,28 @@ class Blip2VicunaInstruct(Blip2Base):
 
         for name, param in self.llm_model.named_parameters():
             param.requires_grad = False
+
+        if cfg.lora_r > 0:
+            target_modules = []
+            if cfg.lora_apply == "attn":
+                target_modules = ['q_proj','v_proj'] 
+            elif cfg.lora_apply == "ffn":
+                target_modules = ['gate_proj', "up_proj", "down_proj"]
+            elif cfg.lora_apply == "all":
+                target_modules = ['q_proj','v_proj', 'gate_proj', "up_proj", "down_proj"] 
+            else: 
+                print("Wrong llm_lora_apply value in yaml!!")
+            print(f"applying llm lora on {cfg.lora_apply}")
+            loraconfig = LoraConfig(
+                r=cfg.lora_r,
+                bias="none",
+                task_type="CAUSAL_LM",
+                target_modules=target_modules,
+            )
+            self.llm_model = get_peft_model(self.llm_model, loraconfig)
+
+            self.llm_model.print_trainable_parameters()
+
 
         self.llm_proj = nn.Linear(
             self.Qformer.config.hidden_size, self.llm_model.config.hidden_size
@@ -119,6 +145,9 @@ class Blip2VicunaInstruct(Blip2Base):
         self._lemmatizer = None
 
         self.qformer_text_input = qformer_text_input
+
+    def gradient_checkpointing_enable(self):
+        self.llm_model.gradient_checkpointing_enable()
 
     def concat_text_input_output(self, input_ids, input_atts, output_ids, output_atts):
         input_part_targets_len = []
@@ -144,12 +173,17 @@ class Blip2VicunaInstruct(Blip2Base):
         llm_tokens['attention_mask'] = torch.stack(llm_tokens['attention_mask'])
         return llm_tokens, input_part_targets_len
 
-    def forward(self, samples):
+    def forward(self, input_ids: torch.LongTensor = None,
+                attention_mask: Optional[torch.Tensor] = None,
+                position_ids: Optional[torch.LongTensor] = None,
+                past_key_values: Optional[List[torch.FloatTensor]] = None,
+                inputs_embeds: Optional[torch.FloatTensor] = None,
+                labels: Optional[torch.LongTensor] = None):
         # print('-----------------')
         # print(samples["text_input"])
         # print(samples["text_output"])
         # print('-----------------')
-
+        samples = input_ids
         image = samples["image"]
         with self.maybe_autocast():
             image_embeds = self.ln_vision(self.visual_encoder(image))
@@ -726,6 +760,7 @@ class Blip2VicunaInstruct(Blip2Base):
             max_output_txt_len=max_output_txt_len,
             apply_lemmatizer=apply_lemmatizer,
             qformer_text_input=qformer_text_input,
+            cfg=cfg,
         )
 
         # if qformer_text_input:

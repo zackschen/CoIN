@@ -5,8 +5,8 @@ import torch
 from torch.cuda.amp import autocast as autocast
 import torch.nn as nn
 
-from ETrain.utils.MiniGPT.common.registry import registry
-from ETrain.Models.MiniGPT.base_model import disabled_train
+from ETrain.utils.LAVIS.common.registry import registry
+from ETrain.Models.InstructBlip.base_model import disabled_train
 from ETrain.Models.MiniGPT.minigpt_base import MiniGPTBase
 from ETrain.Models.MiniGPT.Qformer import BertConfig, BertLMHeadModel
 
@@ -18,7 +18,7 @@ class MiniGPTv2(MiniGPTBase):
     """
 
     PRETRAINED_MODEL_CONFIG_DICT = {
-        "pretrain": "configs/MiniGPT/models/minigpt_v2.yaml",
+        "pretrain": "configs/LAVIS/models/minigpt_v2.yaml",
     }
 
     def __init__(
@@ -135,4 +135,4 @@ class MiniGPTv2(MiniGPTBase):
             ckpt = torch.load(ckpt_path, map_location="cpu")
             msg = model.load_state_dict(ckpt['model'], strict=False)
 
-        return model, model.llama_tokenizer
+        return model

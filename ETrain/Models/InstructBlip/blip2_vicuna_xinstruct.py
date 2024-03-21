@@ -27,16 +27,15 @@ from peft import (
 
 import transformers
 import random
-from lavis.common.registry import registry
-from lavis.models.base_model import BaseModel
-from lavis.models.blip2_models.blip2 import Blip2Base, disabled_train, LayerNorm
-from lavis.models.ulip_models.ULIP_models import ULIP_PointBERT
-from lavis.tasks.multimodal_classification import MultimodalClassificationTask
+from ETrain.utils.LAVIS.common.registry import registry
+from ETrain.Models.InstructBlip.base_model import BaseModel
+from ETrain.Models.InstructBlip.blip2 import Blip2Base, disabled_train, LayerNorm
+from ETrain.Models.InstructBlip.ULIP_models import ULIP_PointBERT
 
-from lavis.common.utils import is_url
-from lavis.models.blip2_models.Qformer import BertConfig, BertLMHeadModel
-from lavis.common.dist_utils import download_cached_file
-from lavis.processors.blip_processors import BlipCaptionProcessor
+from ETrain.utils.LAVIS.common.utils import is_url
+from ETrain.Models.InstructBlip.Qformer import BertConfig, BertLMHeadModel
+from ETrain.utils.LAVIS.common.dist_utils import download_cached_file
+from ETrain.utils.LAVIS.processors.blip_processors import BlipCaptionProcessor
 
 class CastOutputToFloat(nn.Sequential):
     def forward(self, x): return super().forward(x).to(torch.float32)

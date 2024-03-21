@@ -5,13 +5,20 @@ import torch
 from torch.cuda.amp import autocast as autocast
 import torch.nn as nn
 from typing import List, Optional, Tuple, Union
-
-from ETrain.utils.MiniGPT.common.registry import registry
-from ETrain.Models.MiniGPT.base_model import BaseModel
+from transformers import LlamaTokenizer
+from peft import (
+    LoraConfig,
+    get_peft_model,
+    prepare_model_for_int8_training,
+)
+from ETrain.utils.LAVIS.common.registry import registry
+from ETrain.Models.InstructBlip.base_model import BaseModel, LayerNorm, disabled_train
 from transformers import StoppingCriteria, StoppingCriteriaList
-from ETrain.utils.MiniGPT.conversation.conversation import StoppingCriteriaSub
+from ETrain.utils.LAVIS.conversation.conversation import StoppingCriteriaSub
+from ETrain.Models.MiniGPT.modeling_llama import LlamaForCausalLM
+from ETrain.Models.MiniGPT.eva_vit import create_eva_vit_g
 
-from ETrain.utils.MiniGPT.common.dist_utils import (
+from ETrain.utils.LAVIS.common.dist_utils import (
     main_process,
 )
 
@@ -69,6 +76,74 @@ class MiniGPTBase(BaseModel):
         self.ln_vision.float()
         self.visual_encoder.to("cpu")
         self.visual_encoder.float()
+
+    @classmethod
+    def init_vision_encoder(
+        cls, model_name, img_size, drop_path_rate, use_grad_checkpoint, precision, freeze
+    ):
+        logging.info('Loading VIT')
+
+        assert model_name == "eva_clip_g", "vit model must be eva_clip_g for current version of MiniGPT-4"
+        if not freeze:
+            precision = "fp32"  # fp16 is not for training
+
+        visual_encoder = create_eva_vit_g(
+            img_size, drop_path_rate, use_grad_checkpoint, precision
+        )
+
+        ln_vision = LayerNorm(visual_encoder.num_features)
+
+        if freeze:
+            for name, param in visual_encoder.named_parameters():
+                param.requires_grad = False
+            visual_encoder = visual_encoder.eval()
+            visual_encoder.train = disabled_train
+            for name, param in ln_vision.named_parameters():
+                param.requires_grad = False
+            ln_vision = ln_vision.eval()
+            ln_vision.train = disabled_train
+            logging.info("freeze vision encoder")
+
+        logging.info('Loading VIT Done')
+        return visual_encoder, ln_vision
+
+    def init_llm(cls, llama_model_path, low_resource=False, low_res_device=0, lora_r=0,
+                 lora_target_modules=["q_proj","v_proj"], **lora_kargs):
+        logging.info('Loading LLAMA')
+        llama_tokenizer = LlamaTokenizer.from_pretrained(llama_model_path, use_fast=False)
+        llama_tokenizer.pad_token = "$$"
+
+        if low_resource:
+            llama_model = LlamaForCausalLM.from_pretrained(
+                llama_model_path,
+                torch_dtype=torch.float16,
+                load_in_8bit=True,
+                device_map={'': low_res_device}
+            )
+        else:
+            llama_model = LlamaForCausalLM.from_pretrained(
+                llama_model_path,
+                torch_dtype=torch.float16,
+            )
+
+        if lora_r > 0:
+            llama_model = prepare_model_for_int8_training(llama_model)
+            loraconfig = LoraConfig(
+                r=lora_r,
+                bias="none",
+                task_type="CAUSAL_LM",
+                target_modules=lora_target_modules,
+                **lora_kargs
+            )
+            llama_model = get_peft_model(llama_model, loraconfig)
+
+            llama_model.print_trainable_parameters()
+
+        else:
+            for name, param in llama_model.named_parameters():
+                param.requires_grad = False
+        logging.info('Loading LLAMA Done')
+        return llama_model, llama_tokenizer
 
     def gradient_checkpointing_enable(self):
         self.llama_model.gradient_checkpointing_enable()

@@ -15,16 +15,18 @@ import torch.nn as nn
 import torch.distributed as dist
 import torch.nn.functional as F
 
-import lavis.common.dist_utils as dist_utils
-from lavis.common.dist_utils import download_cached_file
-from lavis.common.utils import is_url
-from lavis.common.logger import MetricLogger
-from lavis.models.base_model import BaseModel
-from lavis.models.blip2_models.Qformer import BertConfig, BertLMHeadModel
-from lavis.models.eva_vit import create_eva_vit_g
-from lavis.models.clip_vit import create_clip_vit_L
-from transformers import BertTokenizer
+import ETrain.utils.LAVIS.common.dist_utils as dist_utils
 
+from ETrain.utils.LAVIS.common.dist_utils import download_cached_file
+from ETrain.utils.LAVIS.common.utils import is_url
+from ETrain.utils.LAVIS.common.logger import MetricLogger
+from ETrain.Models.InstructBlip.base_model import BaseModel
+from ETrain.Models.InstructBlip.Qformer import BertConfig, BertLMHeadModel
+from ETrain.Models.InstructBlip.eva_vit import create_eva_vit_g
+from ETrain.Models.InstructBlip.clip_vit import create_clip_vit_L
+from transformers import BertTokenizer
+from transformers.deepspeed import is_deepspeed_zero3_enabled
+from transformers.modeling_utils import _load_state_dict_into_model
 
 class Blip2Base(BaseModel):
     @classmethod
@@ -44,7 +46,7 @@ class Blip2Base(BaseModel):
             return contextlib.nullcontext()
 
     @classmethod
-    def init_Qformer(cls, num_query_token, vision_width, cross_attention_freq=2):
+    def init_Qformer(cls, num_query_token, vision_width, cross_attention_freq=2, cfg = None):
         encoder_config = BertConfig.from_pretrained("bert-base-uncased")
         encoder_config.encoder_width = vision_width
         # insert cross-attention layer every other block
@@ -82,6 +84,7 @@ class Blip2Base(BaseModel):
         self.vit_name = model_name
         return visual_encoder, ln_vision
 
+
     def load_from_pretrained(self, url_or_filename):
         if is_url(url_or_filename):
             cached_file = download_cached_file(
@@ -95,7 +98,8 @@ class Blip2Base(BaseModel):
 
         state_dict = checkpoint["model"]
 
-        msg = self.load_state_dict(state_dict, strict=False)
+        # msg = self.load_state_dict(state_dict, strict=False)
+        msg = _load_state_dict_into_model(self,state_dict,start_prefix = '')
 
         # logging.info("Missing keys {}".format(msg.missing_keys))
         logging.info("load checkpoint from %s" % url_or_filename)
