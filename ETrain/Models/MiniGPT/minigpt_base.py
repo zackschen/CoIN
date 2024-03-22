@@ -15,8 +15,8 @@ from ETrain.utils.LAVIS.common.registry import registry
 from ETrain.Models.InstructBlip.base_model import BaseModel, LayerNorm, disabled_train
 from transformers import StoppingCriteria, StoppingCriteriaList
 from ETrain.utils.LAVIS.conversation.conversation import StoppingCriteriaSub
-from ETrain.Models.MiniGPT.modeling_llama import LlamaForCausalLM
-from ETrain.Models.MiniGPT.eva_vit import create_eva_vit_g
+from ETrain.Models.InstructBlip.modeling_llama import LlamaForCausalLM
+from ETrain.Models.InstructBlip.eva_vit import create_eva_vit_g
 
 class MiniGPTBase(BaseModel):
     """

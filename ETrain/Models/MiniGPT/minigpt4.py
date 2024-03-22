@@ -7,7 +7,7 @@ import torch.nn as nn
 from ETrain.utils.LAVIS.common.registry import registry
 from ETrain.Models.InstructBlip.base_model import disabled_train
 from ETrain.Models.MiniGPT.minigpt_base import MiniGPTBase
-from ETrain.Models.MiniGPT.Qformer import BertConfig, BertLMHeadModel
+from ETrain.Models.InstructBlip.Qformer import BertConfig, BertLMHeadModel
 
 
 @registry.register_model("minigpt4")

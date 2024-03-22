@@ -126,8 +126,8 @@ class ResidualAttentionBlock(nn.Module):
         self.attn_mask = attn_mask
 
         if use_grad_checkpointing:
-            self.attn = checkpoint_wrapper(self.attn)
-            self.mlp = checkpoint_wrapper(self.mlp)
+            self.attn = self.attn.gradient_checkpointing_enable()
+            self.mlp = self.mlp.gradient_checkpointing_enable()
             
     def attention(self, x: torch.Tensor):
         self.attn_mask = self.attn_mask.to(dtype=x.dtype, device=x.device) if self.attn_mask is not None else None

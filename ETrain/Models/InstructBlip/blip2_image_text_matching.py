@@ -7,8 +7,8 @@
 
 import torch
 import torch.nn.functional as F
-from lavis.common.registry import registry
-from lavis.models.blip2_models.blip2_qformer import Blip2Qformer
+from ETrain.utils.LAVIS.common.registry import registry
+from ETrain.Models.InstructBlip.blip2_qformer import Blip2Qformer
 
 
 @registry.register_model("blip2_image_text_matching")

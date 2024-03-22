@@ -99,11 +99,11 @@ def train():
     trainer.train()
     trainer.save_state()
 
-    safe_save_model_for_hf_trainer(trainer=trainer, output_dir=training_args.output_dir, bias=lora_args.lora_bias)
+    safe_save_model_for_hf_trainer(trainer=trainer, output_dir=training_args.output_dir)
 
-    if training_args.lora_enable:
+    if training_args.use_lora:
         state_dict = get_peft_state_maybe_zero_3(
-            model.named_parameters(), training_args.lora_bias
+            model.named_parameters(), lora_args.lora_bias
         )
         non_lora_state_dict = get_peft_state_non_lora_maybe_zero_3(
             model.named_parameters()

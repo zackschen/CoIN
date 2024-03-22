@@ -12,14 +12,14 @@ import torch.nn as nn
 from torch.cuda.amp import autocast as autocast
 from torch.nn import functional as F
 
-from lavis.common.registry import registry
-from lavis.models.base_model import all_gather_with_grad, concat_all_gather
-from lavis.models.blip2_models.blip2 import (
+from ETrain.utils.LAVIS.common.registry import registry
+from ETrain.Models.InstructBlip.base_model import all_gather_with_grad, concat_all_gather
+from ETrain.Models.InstructBlip.blip2 import (
     Blip2Base,
     compute_sim_matrix,
     disabled_train,
 )
-from lavis.models.blip_models.blip_outputs import BlipOutput, BlipOutputFeatures
+from ETrain.Models.InstructBlip.blip_outputs import BlipOutput, BlipOutputFeatures
 
 
 @registry.register_model("blip2")

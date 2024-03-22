@@ -11,9 +11,9 @@ import torch
 from torch.cuda.amp import autocast as autocast
 import torch.nn as nn
 
-from lavis.common.registry import registry
-from lavis.models.blip2_models.blip2 import Blip2Base, disabled_train
-# from lavis.models.blip2_models.modeling_opt import OPTForCausalLM, OPTConfig
+from ETrain.utils.LAVIS.common.registry import registry
+from ETrain.Models.InstructBlip.blip2 import Blip2Base
+from ETrain.Models.InstructBlip.base_model import disabled_train
 from transformers import AutoTokenizer, OPTForCausalLM, OPTConfig
 import transformers
 
