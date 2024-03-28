@@ -1,10 +1,11 @@
 from dataclasses import dataclass, field
 import json
-from typing import Dict
+from typing import Dict, Sequence
 import torch
 from torch.utils.data import Dataset
 import transformers
 from transformers.trainer_pt_utils import LabelSmoother
+from torch.utils.data.dataloader import default_collate
 
 IGNORE_TOKEN_ID = LabelSmoother.ignore_index
 
@@ -40,8 +41,7 @@ def preprocess(
         assert len(input_id) == len(target)
         for j, sentence in enumerate(source):
             role = roles[sentence["from"]]
-            _input_id = tokenizer(role).input_ids + nl_tokens + \
-                tokenizer(sentence["value"]).input_ids + [im_end] + nl_tokens
+            _input_id = tokenizer(role).input_ids + nl_tokens + tokenizer(sentence["value"]).input_ids + [im_end] + nl_tokens
             input_id += _input_id
             if role == '<|im_start|>user':
                 _target = [im_start] + [IGNORE_TOKEN_ID] * (len(_input_id)-3) + [im_end] + nl_tokens
@@ -114,13 +114,23 @@ class LazySupervisedDataset(Dataset):
         ret = preprocess([self.raw_data[i]["conversations"]], self.tokenizer, self.max_len)
         ret = dict(
             input_ids=ret["input_ids"][0],
-            labels=ret["labels"][0],
+            labels=ret["labels"][0].to(torch.int64),
             attention_mask=ret["attention_mask"][0],
         )
         self.cached_data_dict[i] = ret
 
         return ret
 
+
+@dataclass
+class DataCollatorForSupervisedDataset(object):
+    """Collate examples for supervised fine-tuning."""
+
+    tokenizer: transformers.PreTrainedTokenizer
+
+    def __call__(self, batch):
+        batch = default_collate(batch)
+        return batch
 
 def make_supervised_data_module(
     tokenizer: transformers.PreTrainedTokenizer, data_args, max_len, local_rank: int
@@ -140,4 +150,5 @@ def make_supervised_data_module(
     else:
         eval_dataset = None
 
-    return dict(train_dataset=train_dataset, eval_dataset=eval_dataset)
+    data_collator = DataCollatorForSupervisedDataset(tokenizer=tokenizer)
+    return dict(train_dataset=train_dataset, eval_dataset=eval_dataset, data_collator=data_collator)

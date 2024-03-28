@@ -62,7 +62,7 @@ class MiniGPT4(MiniGPTBase):
                 num_query_token, self.visual_encoder.num_features, freeze_qformer
             )
             self.load_from_pretrained(url_or_filename=q_former_model)  # load q-former weights here
-
+            print('Loading Q-Former from_pretrained')
             img_f_dim = self.Qformer.config.hidden_size
             print('Loading Q-Former Done')
         else:
@@ -92,6 +92,7 @@ class MiniGPT4(MiniGPTBase):
         encoder_config.cross_attention_freq = 2
         encoder_config.query_length = num_query_token
         Qformer = BertLMHeadModel(config=encoder_config)
+        print('Qformer created')
         query_tokens = nn.Parameter(
             torch.zeros(1, num_query_token, encoder_config.hidden_size)
         )
@@ -107,8 +108,8 @@ class MiniGPT4(MiniGPTBase):
         if freeze:
             for name, param in Qformer.named_parameters():
                 param.requires_grad = False
-            Qformer = Qformer.eval()
-            Qformer.train = disabled_train
+            # Qformer = Qformer.eval()
+            # Qformer.train = disabled_train
             query_tokens.requires_grad = False
             logging.info("freeze Qformer")
 

@@ -76,15 +76,15 @@ class CLITDataset(Dataset):
         if have_image:
             return {
                 "image": image,
-                "text_input": questions,
-                'text_output': answers,
+                "conv_q": questions,
+                'conv_a': answers,
                 "image_id": idx,
                 "connect_sym": self.connect_sym
             }
         else:
             return {
-                "text_input": questions,
-                'text_output': answers,
+                "conv_q": questions,
+                'conv_a': answers,
                 "image_id": idx,
                 "connect_sym": self.connect_sym
             }

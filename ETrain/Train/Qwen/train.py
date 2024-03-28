@@ -17,8 +17,11 @@ from peft import LoraConfig, get_peft_model, prepare_model_for_kbit_training
 from accelerate.utils import DistributedType
 from peft.utils import WEIGHTS_NAME, set_peft_model_state_dict
 from ETrain.Train.Base_trainer import *
+from ETrain.Train.LLaVA.llava_trainer import QwenTrainer
 from ETrain.Models.Qwen import create_Qwen_model
 from ETrain.Dataset.Qwen import create_Qwen_data_module
+from ETrain.Train.LLaVA.llama_flash_attn_monkey_patch import replace_llama_attn_with_flash_attn
+replace_llama_attn_with_flash_attn()
 
 @dataclass
 class ModelArguments:
@@ -35,7 +38,6 @@ class DataArguments:
     )
     lazy_preprocess: bool = False
 
-
 @dataclass
 class TrainingArguments(transformers.TrainingArguments):
     cache_dir: Optional[str] = field(default=None)
@@ -48,7 +50,11 @@ class TrainingArguments(transformers.TrainingArguments):
     )
     use_lora: bool = False
     fix_vit: bool = True
-
+    bits: int = field(
+        default=16,
+        metadata={"help": "How many bits to use."}
+    )
+    group_by_modality_length: bool = field(default=False)
 
 @dataclass
 class LoraArguments:
@@ -73,15 +79,8 @@ def rank0_print(*args):
 def train():
     global local_rank
     
-    parser = transformers.HfArgumentParser(
-        (ModelArguments, DataArguments, TrainingArguments, LoraArguments)
-    )
-    (
-        model_args,
-        data_args,
-        training_args,
-        lora_args,
-    ) = parser.parse_args_into_dataclasses()
+    parser = transformers.HfArgumentParser((ModelArguments, DataArguments, TrainingArguments, LoraArguments))
+    (model_args,data_args,training_args,lora_args,) = parser.parse_args_into_dataclasses()
 
     if getattr(training_args, 'deepspeed', None) and getattr(lora_args, 'q_lora', False):
         training_args.distributed_state.distributed_type = DistributedType.DEEPSPEED
@@ -92,14 +91,14 @@ def train():
     data_module = create_Qwen_data_module(tokenizer, data_args, training_args.model_max_length, local_rank)
 
     # Start trainner
-    trainer = Trainer(
+    trainer = QwenTrainer(
         model=model, tokenizer=tokenizer, args=training_args, **data_module
     )
 
     trainer.train()
     trainer.save_state()
 
-    safe_save_model_for_hf_trainer(trainer=trainer, output_dir=training_args.output_dir)
+    model.config.use_cache = True
 
     if training_args.use_lora:
         state_dict = get_peft_state_maybe_zero_3(

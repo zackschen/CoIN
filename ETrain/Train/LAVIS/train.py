@@ -16,7 +16,7 @@ import wandb
 import transformers
 
 from ETrain.utils.LAVIS.common.config import Config
-from ETrain.utils.LAVIS.common.dist_utils import get_rank, init_distributed_mode
+from ETrain.utils.LAVIS.common.dist_utils import get_rank, init_distributed_mode, setup_for_distributed
 from ETrain.utils.LAVIS.common.logger import setup_logger
 from ETrain.utils.LAVIS.common.optims import (
     LinearWarmupCosineLRScheduler,
@@ -102,6 +102,7 @@ def main():
     # os.environ["NCCL_BLOCKING_WAIT"] = "1"
 
     # set before init_distributed_mode() to ensure the same job_id shared across all ranks.
+
     parser = transformers.HfArgumentParser((TrainingArguments))
     training_args, remaining_strings = parser.parse_args_into_dataclasses(return_remaining_strings = True)
 
@@ -128,12 +129,9 @@ def main():
                     args=training_args,
                     **data_module)
 
-
+    print('Begin Training')
     trainer.train()
-
     trainer.save_state()
-
-    model.config.use_cache = True
 
     if training_args.lora_enable:
         state_dict = get_peft_state_maybe_zero_3(

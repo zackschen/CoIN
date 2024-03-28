@@ -68,9 +68,6 @@ class MiniGPTv2(MiniGPTBase):
         )
         self.chat_template = chat_template
 
-        if use_grad_checkpoint_llm:
-            self.llama_model.gradient_checkpointing_enable()
-
     def encode_img(self, image):
         device = image.device
 
@@ -131,7 +128,8 @@ class MiniGPTv2(MiniGPTBase):
 
         ckpt_path = cfg.get("ckpt", "")  # load weights of MiniGPT-4
         if ckpt_path:
-            print("Load Minigpt-4-LLM Checkpoint: {}".format(ckpt_path))
+            print("Load Minigpt-4-LLM Checkpoint: {} device: {}".format(ckpt_path, model.device))
+            print()
             ckpt = torch.load(ckpt_path, map_location="cpu")
             msg = model.load_state_dict(ckpt['model'], strict=False)
 

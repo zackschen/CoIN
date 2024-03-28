@@ -93,9 +93,9 @@ class BertEmbeddings(nn.Module):
             ].clone()
 
         if input_ids is not None:
-            embeddings = self.word_embeddings(input_ids)
+            embeddings = self.word_embeddings(input_ids.to(self.word_embeddings.weight.device))
             if self.position_embedding_type == "absolute":
-                position_embeddings = self.position_embeddings(position_ids)
+                position_embeddings = self.position_embeddings(position_ids.to(self.position_embeddings.weight.device))
                 embeddings = embeddings + position_embeddings
 
             if query_embeds is not None:

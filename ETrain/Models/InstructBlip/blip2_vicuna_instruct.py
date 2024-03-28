@@ -264,7 +264,8 @@ class Blip2VicunaInstruct(Blip2Base):
         )
         targets = torch.cat([empty_targets, targets], dim=1)
 
-        inputs_embeds = self.llm_model.get_input_embeddings()(llm_tokens['input_ids'])
+        embedding_tokens = self.llm_model.get_input_embeddings()
+        inputs_embeds = embedding_tokens(llm_tokens['input_ids'])
         inputs_embeds = torch.cat([inputs_llm, inputs_embeds], dim=1)
         attention_mask = torch.cat([atts_llm, llm_tokens['attention_mask']], dim=1)
 

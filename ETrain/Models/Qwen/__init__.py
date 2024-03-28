@@ -45,7 +45,6 @@ def create_Qwen_model(training_args, model_args, data_args, lora_args):
         model_args.model_name_or_path,
         config=config,
         cache_dir=training_args.cache_dir,
-        device_map=device_map,
         trust_remote_code=True,
     )
 
@@ -82,7 +81,11 @@ def create_Qwen_model(training_args, model_args, data_args, lora_args):
             model = prepare_model_for_kbit_training(
                 model, use_gradient_checkpointing=training_args.gradient_checkpointing
             )
-
+        if training_args.bits == 16:
+            if training_args.bf16:
+                model.to(torch.bfloat16)
+            if training_args.fp16:
+                model.to(torch.float16)
         model = get_peft_model(model, lora_config)
 
         if training_args.gradient_checkpointing:
