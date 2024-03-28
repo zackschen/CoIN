@@ -72,8 +72,8 @@ class Blip2VicunaInstruct(Blip2Base):
         if freeze_vit:
             for name, param in self.visual_encoder.named_parameters():
                 param.requires_grad = False
-            self.visual_encoder = self.visual_encoder.eval()
-            self.visual_encoder.train = disabled_train
+            # self.visual_encoder = self.visual_encoder.eval()
+            # self.visual_encoder.train = disabled_train
             logging.info("freeze vision encoder")
 
         self.Qformer, self.query_tokens = self.init_Qformer(
