@@ -14,8 +14,10 @@ import torch.nn.functional as F
 import torch.utils.checkpoint as checkpoint
 from timm.models.layers import drop_path, to_2tuple, trunc_normal_
 from timm.models.registry import register_model
-
+from transformers.deepspeed import is_deepspeed_zero3_enabled
 from ETrain.utils.LAVIS.common.dist_utils import download_cached_file
+from transformers.modeling_utils import _load_state_dict_into_model
+from ETrain.Models.InstructBlip.base_model import LayerNorm
 
 def _cfg(url='', **kwargs):
     return {
@@ -438,18 +440,27 @@ def create_eva_vit_g(img_size=224,drop_path_rate=0.4,use_checkpoint=False,precis
         drop_path_rate=drop_path_rate,
         norm_layer=partial(nn.LayerNorm, eps=1e-6),
         use_checkpoint=use_checkpoint,
-    )  
+    ) 
+    print('create vit g transformer')
     url = "https://storage.googleapis.com/sfr-vision-language-research/LAVIS/models/BLIP2/eva_vit_g.pth"
     cached_file = download_cached_file(
         url, check_hash=False, progress=True
     )
-    state_dict = torch.load(cached_file, map_location="cpu")    
-    interpolate_pos_embed(model,state_dict)
-    
-    incompatible_keys = model.load_state_dict(state_dict, strict=False)
-#     print(incompatible_keys)
+    ln_vision = LayerNorm(model.num_features)
+
+    if torch.distributed.get_rank() == 0:
+        state_dict = torch.load(cached_file, map_location="cpu")    
+        interpolate_pos_embed(model,state_dict)
+
+        if is_deepspeed_zero3_enabled():
+            msg = _load_state_dict_into_model(model, state_dict,start_prefix = '')
+        else:
+            incompatible_keys = model.load_state_dict(state_dict, strict=False)
+
+    print('load vit g weight')
     
     if precision == "fp16":
 #         model.to("cuda") 
         convert_weights_to_fp16(model)
-    return model
+        print('convert fp16 done')
+    return model, ln_vision

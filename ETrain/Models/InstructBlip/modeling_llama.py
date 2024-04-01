@@ -87,6 +87,7 @@ class LlamaRMSNorm(nn.Module):
         # convert into half-precision if necessary
         if self.weight.dtype in [torch.float16, torch.bfloat16]:
             hidden_states = hidden_states.to(self.weight.dtype)
+            hidden_states = hidden_states.to(self.weight.device)
 
         return self.weight * hidden_states
 

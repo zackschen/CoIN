@@ -109,11 +109,12 @@ def main():
     args = parse_args(remaining_strings)
     cfg = Config(args)
 
+    # init_distributed_mode(cfg.run_cfg)
     setup_seeds(cfg)
 
     # set after init_distributed_mode() to only log on master.
     setup_logger()
-    cfg.pretty_print()
+    # cfg.pretty_print()
 
     datasets, Concated_Dataset = build_datasets(cfg)
     
@@ -123,8 +124,7 @@ def main():
         model = create_MiniGPT4_model(cfg)
     data_module = create_MiniGPT_data_module(Concated_Dataset, 0)
 
-    # training_args.deepspeed = "./scripts/zero3_offload.json"
-
+    # training_args.deepspeed = "./scripts/zero3.json"
     trainer = Trainer(model=model,
                     args=training_args,
                     **data_module)

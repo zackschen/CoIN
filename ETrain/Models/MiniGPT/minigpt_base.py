@@ -82,10 +82,15 @@ class MiniGPTBase(BaseModel):
         if not freeze:
             precision = "fp32"  # fp16 is not for training
 
-        visual_encoder = create_eva_vit_g(
+        print('Begin Loading VIT')
+        visual_encoder, ln_vision = create_eva_vit_g(
             img_size, drop_path_rate, use_grad_checkpoint, precision
         )
-        ln_vision = LayerNorm(visual_encoder.num_features)
+        torch.distributed.barrier()
+        print('creat visual_encoder done')
+        
+        # torch.distributed.barrier()
+        # print('creat ln_vision done')
         if freeze:
             for name, param in visual_encoder.named_parameters():
                 param.requires_grad = False
@@ -95,9 +100,10 @@ class MiniGPTBase(BaseModel):
                 param.requires_grad = False
             # ln_vision = ln_vision.eval()
             # ln_vision.train = disabled_train
-            logging.info("freeze vision encoder")
+            # logging.info("freeze vision encoder")
 
-        logging.info('Loading VIT Done')
+        # logging.info('Loading VIT Done')
+        torch.distributed.barrier()
         print('Loading VIT Done')
         return visual_encoder, ln_vision
 
