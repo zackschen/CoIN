@@ -15,6 +15,7 @@ from peft import LoraConfig, get_peft_model, prepare_model_for_kbit_training
 from accelerate.utils import DistributedType
 from peft.utils import WEIGHTS_NAME, set_peft_model_state_dict
 from ETrain.Train.Base_trainer import *
+from ETrain.Models.Qwen.modeling_qwen import QWenLMHeadModel
 
 
 def create_Qwen_model(training_args, model_args, data_args, lora_args):
@@ -41,7 +42,7 @@ def create_Qwen_model(training_args, model_args, data_args, lora_args):
     config.use_cache = False
 
     # Load model and tokenizer
-    model = transformers.AutoModelForCausalLM.from_pretrained(
+    model = QWenLMHeadModel.from_pretrained(
         model_args.model_name_or_path,
         config=config,
         cache_dir=training_args.cache_dir,
