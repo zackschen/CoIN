@@ -118,7 +118,6 @@ class LazySupervisedDataset(Dataset):
             attention_mask=ret["attention_mask"][0],
         )
         self.cached_data_dict[i] = ret
-
         return ret
 
 

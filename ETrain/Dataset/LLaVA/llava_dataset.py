@@ -418,14 +418,6 @@ class LazySupervisedDataset(Dataset):
         super(LazySupervisedDataset, self).__init__()
         list_data_dict = json.load(open(data_path, "r"))
 
-        if data_args.memory_data_path is not None:
-            rank0_print(local_rank,"Adding memory data... {}".format(data_args.memory_data_path))
-            list_memory_data_dict = json.load(open(data_args.memory_data_path, "r"))
-
-            list_data_dict = list_data_dict + list_memory_data_dict
-            
-            random.shuffle(list_data_dict)
-
         rank0_print(local_rank,"Formatting inputs...Skip in lazy mode")
         self.tokenizer = tokenizer
         self.list_data_dict = list_data_dict

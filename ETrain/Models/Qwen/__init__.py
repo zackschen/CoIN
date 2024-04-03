@@ -46,7 +46,6 @@ def create_Qwen_model(training_args, model_args, data_args, lora_args):
         model_args.model_name_or_path,
         config=config,
         cache_dir=training_args.cache_dir,
-        trust_remote_code=True,
     )
 
     if not training_args.use_lora:
@@ -68,7 +67,8 @@ def create_Qwen_model(training_args, model_args, data_args, lora_args):
         if lora_args.q_lora or "chat" in model_args.model_name_or_path.lower():
             modules_to_save = None
         else:
-            modules_to_save = ["wte", "lm_head"]
+            modules_to_save = None
+            # modules_to_save = ["wte", "lm_head"]
         lora_config = LoraConfig(
             r=lora_args.lora_r,
             lora_alpha=lora_args.lora_alpha,
