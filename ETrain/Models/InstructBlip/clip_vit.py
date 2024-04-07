@@ -7,7 +7,6 @@ import torch
 import torch.nn.functional as F
 from torch import nn
 
-from fairscale.nn.checkpoint.checkpoint_activations import checkpoint_wrapper
 
 from ETrain.Models.InstructBlip.eva_vit import convert_weights_to_fp16
 from ETrain.utils.LAVIS.common.dist_utils import download_cached_file

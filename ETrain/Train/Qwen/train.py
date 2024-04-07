@@ -88,12 +88,10 @@ def train():
     local_rank = training_args.local_rank
     model, tokenizer = create_Qwen_model(training_args, model_args, data_args, lora_args)
 
-    data_module = create_Qwen_data_module(tokenizer, data_args, training_args.model_max_length, local_rank)
+    data_module = create_Qwen_data_module(tokenizer, data_args, model, training_args.model_max_length, local_rank)
 
     # Start trainner
-    trainer = QwenTrainer(
-        model=model, tokenizer=tokenizer, args=training_args, **data_module
-    )
+    trainer = QwenTrainer(model=model, tokenizer=tokenizer, args=training_args, **data_module)
 
     trainer.train()
     trainer.save_state()

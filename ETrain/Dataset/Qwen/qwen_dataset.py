@@ -6,6 +6,9 @@ from torch.utils.data import Dataset
 import transformers
 from transformers.trainer_pt_utils import LabelSmoother
 from torch.utils.data.dataloader import default_collate
+from PIL import Image
+from ETrain.Models.Qwen.modeling_qwen import QWenLMHeadModel
+import requests
 
 IGNORE_TOKEN_ID = LabelSmoother.ignore_index
 
@@ -86,7 +89,7 @@ class SupervisedDataset(Dataset):
     def __getitem__(self, i) -> Dict[str, torch.Tensor]:
         return dict(
             input_ids=self.input_ids[i],
-            labels=self.labels[i],
+            labels=self.labels[i].to(torch.int64),
             attention_mask=self.attention_mask[i],
         )
 
@@ -94,7 +97,7 @@ class SupervisedDataset(Dataset):
 class LazySupervisedDataset(Dataset):
     """Dataset for supervised fine-tuning."""
 
-    def __init__(self, raw_data, tokenizer: transformers.PreTrainedTokenizer, max_len: int, local_rank: int):
+    def __init__(self, raw_data, tokenizer: transformers.PreTrainedTokenizer, max_len: int, local_rank: int, model: QWenLMHeadModel):
         super(LazySupervisedDataset, self).__init__()
         self.tokenizer = tokenizer
         self.max_len = max_len
@@ -104,11 +107,15 @@ class LazySupervisedDataset(Dataset):
         self.raw_data = raw_data
         self.cached_data_dict = {}
 
+        self.model = model
+        self.config = model.config
+
     def __len__(self):
         return len(self.raw_data)
 
     def __getitem__(self, i) -> Dict[str, torch.Tensor]:
         if i in self.cached_data_dict:
+            print('Getting cached data: Index:{} : {}'.format(i,self.cached_data_dict[i]))
             return self.cached_data_dict[i]
 
         ret = preprocess([self.raw_data[i]["conversations"]], self.tokenizer, self.max_len)
@@ -118,21 +125,55 @@ class LazySupervisedDataset(Dataset):
             attention_mask=ret["attention_mask"][0],
         )
         self.cached_data_dict[i] = ret
+        # print('Getting data: Index:{} : {}'.format(i,self.raw_data[i]["conversations"]))
         return ret
-
 
 @dataclass
 class DataCollatorForSupervisedDataset(object):
     """Collate examples for supervised fine-tuning."""
 
     tokenizer: transformers.PreTrainedTokenizer
+    model: QWenLMHeadModel
 
-    def __call__(self, batch):
+    def __init__(self, tokenizer: transformers.PreTrainedTokenizer, model: QWenLMHeadModel):
+        self.tokenizer = tokenizer
+        self.model = model
+        self.config = model.config
+
+    def __call__(self, batch: Sequence[Dict]):
         batch = default_collate(batch)
+        
+        images = []
+        if torch.any(batch['input_ids'] == self.config.visual['image_start_id']):
+            bos_pos = torch.where(batch['input_ids'] == self.config.visual['image_start_id'])
+            eos_pos = torch.where(batch['input_ids'] == self.config.visual['image_start_id'] + 1)
+            assert (bos_pos[0] == eos_pos[0]).all()
+            img_pos = torch.stack((bos_pos[0], bos_pos[1], eos_pos[1]), dim=1)
+            image_paths = []
+            for i, a, b in img_pos:
+                image = batch['input_ids'][i][a + 1 : b - 1].tolist()
+                image = image[ : image.index(self.config.visual['image_start_id'] + 2)]
+                image_paths.append(bytes(image).decode('utf-8'))
+            
+            
+            for image_path in image_paths:
+                if image_path.startswith("http://") or image_path.startswith("https://"):
+                    image = Image.open(requests.get(image_path, stream=True).raw)
+                else:
+                    image = Image.open(image_path)
+                image = image.convert("RGB")
+                images.append(self.model.transformer.visual.image_transform(image))
+            images = torch.stack(images, dim=0)
+        else:
+            image=torch.zeros(3,224,224).to(dtype=self.model.transformer.visual.conv1.weight.dtype)
+            images.append(image)
+            images = torch.stack(images, dim=0)
+
+        batch['images'] = images
         return batch
 
 def make_supervised_data_module(
-    tokenizer: transformers.PreTrainedTokenizer, data_args, max_len, local_rank: int
+    tokenizer: transformers.PreTrainedTokenizer, data_args, model, max_len, local_rank: int
 ) -> Dict:
     """Make dataset and collator for supervised fine-tuning."""
     dataset_cls = (
@@ -141,13 +182,12 @@ def make_supervised_data_module(
     rank0_print(local_rank, "Loading data...")
 
     train_json = json.load(open(data_args.data_path, "r"))
-    train_dataset = dataset_cls(train_json, tokenizer=tokenizer, max_len=max_len, local_rank=local_rank)
+    train_dataset = dataset_cls(train_json, tokenizer=tokenizer, max_len=max_len, local_rank=local_rank, model=model)
 
     if data_args.eval_data_path:
         eval_json = json.load(open(data_args.eval_data_path, "r"))
         eval_dataset = dataset_cls(eval_json, tokenizer=tokenizer, max_len=max_len, local_rank=local_rank)
     else:
         eval_dataset = None
-
-    data_collator = DataCollatorForSupervisedDataset(tokenizer=tokenizer)
+    data_collator = DataCollatorForSupervisedDataset(tokenizer=tokenizer,model = model)
     return dict(train_dataset=train_dataset, eval_dataset=eval_dataset, data_collator=data_collator)

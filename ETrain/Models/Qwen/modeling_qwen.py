@@ -103,6 +103,22 @@ def _expand_mask(mask: torch.Tensor, dtype: torch.dtype, tgt_len: Optional[int] 
 
     return inverted_mask.masked_fill(inverted_mask.to(torch.bool), torch.finfo(dtype).min)
 
+class QWen_Middle_Test_Function(torch.autograd.Function):
+    @staticmethod
+    def forward(ctx, x, info):
+        ctx.test_info = info
+        return x
+
+    @staticmethod
+    def backward(ctx, grad_output):
+        info = ctx.test_info
+        print('Device: {} Layer : {} backward'.format(grad_output.device, info))
+        return grad_output, None
+
+class QWen_Middle_Test_Layer(nn.Module):
+
+    def forward(self, x, info):
+        return QWen_Middle_Test_Function.apply(x, info)
 
 class QWenAttention(nn.Module):
     def __init__(self, config):
@@ -353,6 +369,8 @@ class QWenBlock(nn.Module):
 
         self.mlp = QWenMLP(config)
 
+        # self.test_layer = QWen_Middle_Test_Layer()
+
     def forward(
         self,
         hidden_states: Optional[Tuple[torch.FloatTensor]],
@@ -368,6 +386,8 @@ class QWenBlock(nn.Module):
     ):
         layernorm_output = self.ln_1(hidden_states)
 
+        # layernorm_output = self.test_layer(layernorm_output, "Block ln_1")
+
         attn_outputs = self.attn(
             layernorm_output,
             rotary_pos_emb,
@@ -380,6 +400,8 @@ class QWenBlock(nn.Module):
         )
         attn_output = attn_outputs[0]
 
+        # attn_output = self.test_layer(attn_output, "Block attn")
+
         outputs = attn_outputs[1:]
 
         residual = hidden_states
@@ -387,12 +409,20 @@ class QWenBlock(nn.Module):
 
         layernorm_output = self.ln_2(layernorm_input)
 
+        # layernorm_output = self.test_layer(layernorm_output, "Block ln_2")
+
         residual = layernorm_input
         mlp_output = self.mlp(layernorm_output)
+
+        # mlp_output = self.test_layer(mlp_output, "Block mlp")
+        # mlp_output = QWen_Middle_Test_Function.apply(mlp_output, "Block mlp")
+
         hidden_states = residual + mlp_output
 
         if use_cache:
             outputs = (hidden_states,) + outputs
+
+            # outputs = QWen_Middle_Test_Function.apply(outputs, "Block plus")
         else:
             outputs = (hidden_states,) + outputs[1:]
 
@@ -502,6 +532,8 @@ class QWenModel(QWenPreTrainedModel):
 
         self.visual = VisionTransformer(**config.visual)
 
+        # self.test_layer = QWen_Middle_Test_Layer()
+
         self.post_init()
 
     def get_input_embeddings(self):
@@ -550,25 +582,26 @@ class QWenModel(QWenPreTrainedModel):
         output_attentions: Optional[bool] = None,
         output_hidden_states: Optional[bool] = None,
         return_dict: Optional[bool] = None,
+        images: Optional[torch.FloatTensor] = None,
     ):
-        if past_key_values is None and torch.any(input_ids == self.config.visual['image_start_id']):
+        if past_key_values is None and images is not None:
             bos_pos = torch.where(input_ids == self.config.visual['image_start_id'])
             eos_pos = torch.where(input_ids == self.config.visual['image_start_id'] + 1)
             assert (bos_pos[0] == eos_pos[0]).all()
             img_pos = torch.stack((bos_pos[0], bos_pos[1], eos_pos[1]), dim=1)
-            images = []
-            for i, a, b in img_pos:
-                image = input_ids[i][a + 1 : b - 1].tolist()
-                image = image[ : image.index(self.config.visual['image_start_id'] + 2)]
-                images.append(bytes(image).decode('utf-8'))
 
-            images = self.visual.encode(images)
+            images = self.visual(images)
+
             assert images.shape[0] == len(images)
             fake_images = None
+
         elif self.training:
             fake_images=torch.zeros(1,3,224,224).to(
                 dtype=self.visual.conv1.weight.dtype, device=self.visual.conv1.weight.device)
+            # fake_images = self.test_layer(fake_images, "Before_vision")
             images = self.visual(fake_images)
+            # images = self.test_layer(images, "After_vision")
+
         else:
             fake_images = None
             images = None
@@ -675,6 +708,9 @@ class QWenModel(QWenPreTrainedModel):
         presents = () if use_cache else None
         all_self_attentions = () if output_attentions else None
         all_hidden_states = () if output_hidden_states else None
+
+        # hidden_states = self.test_layer(hidden_states, "Before_transformer")
+
         for i, (block, layer_past) in enumerate(zip(self.h, past_key_values)):
 
             if output_hidden_states:
@@ -689,6 +725,8 @@ class QWenModel(QWenPreTrainedModel):
 
                     return custom_forward
 
+                # hidden_states = self.test_layer(hidden_states, "Transformer layer: {}".format(i))
+
                 outputs = torch.utils.checkpoint.checkpoint(
                     create_custom_forward(block),
                     hidden_states,
@@ -700,6 +738,7 @@ class QWenModel(QWenPreTrainedModel):
                     encoder_hidden_states,
                     encoder_attention_mask,
                 )
+                
             else:
                 outputs = block(
                     hidden_states,
@@ -713,15 +752,21 @@ class QWenModel(QWenPreTrainedModel):
                     use_cache=use_cache,
                     output_attentions=output_attentions,
                 )
-
+        
             hidden_states = outputs[0]
+            # hidden_states = self.test_layer(hidden_states, "After Transformer layer: {}".format(i))
             if use_cache is True:
                 presents = presents + (outputs[1],)
 
             if output_attentions:
                 all_self_attentions = all_self_attentions + (outputs[2 if use_cache else 1],)
 
+        # hidden_states = self.test_layer(hidden_states, "Before_RMSNorm")
+
         hidden_states = self.ln_f(hidden_states)
+
+        # hidden_states = self.test_layer(hidden_states, "After_RMSNorm")
+
         hidden_states = hidden_states.view(output_shape)
         # Add last hidden state
         if output_hidden_states:
@@ -847,6 +892,7 @@ class QWenLMHeadModel(QWenPreTrainedModel):
         output_attentions: Optional[bool] = None,
         output_hidden_states: Optional[bool] = None,
         return_dict: Optional[bool] = None,
+        images: Optional[torch.FloatTensor] = None,
     ) -> Union[Tuple, CausalLMOutputWithPast]:
 
         return_dict = (
@@ -867,6 +913,7 @@ class QWenLMHeadModel(QWenPreTrainedModel):
             output_attentions=output_attentions,
             output_hidden_states=output_hidden_states,
             return_dict=return_dict,
+            images=images,
         )
         hidden_states = transformer_outputs[0]
 
