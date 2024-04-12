@@ -11,6 +11,7 @@ from peft import (
     get_peft_model,
     prepare_model_for_kbit_training,
 )
+import transformers
 from ETrain.utils.LAVIS.common.registry import registry
 from ETrain.Models.InstructBlip.base_model import BaseModel, LayerNorm, disabled_train
 from transformers import StoppingCriteria, StoppingCriteriaList
@@ -25,53 +26,82 @@ class MiniGPTBase(BaseModel):
 
     def __init__(
         self,
-        vit_model="eva_clip_g",
-        img_size=224,
-        drop_path_rate=0,
-        use_grad_checkpoint=False,
-        vit_precision="fp16",
-        freeze_vit=True,
-        llama_model="",
-        max_txt_len=32,
-        max_context_len=3800,
-        prompt_template="",
-        end_sym='\n',
-        low_resource=False,  # use 8 bit and put vit in cpu
-        device_8bit=0,  # the device of 8bit model should be set when loading and cannot be changed anymore.
-        lora_r=0,  # lora_r means lora is not used
-        lora_target_modules=["q_proj", "v_proj"],
-        lora_alpha=16,
-        lora_dropout=0.05,
+        config,
     ):
-        super().__init__()
+        
+        super().__init__(config)
 
         self.llama_model, self.llama_tokenizer = self.init_llm(
-            llama_model_path=llama_model,
-            low_resource=low_resource,
-            low_res_device=device_8bit,
-            lora_r=lora_r,
-            lora_target_modules=lora_target_modules,
-            lora_alpha=lora_alpha,
-            lora_dropout=lora_dropout,
+            config,
+            llama_model_path=config.llama_model,
+            low_resource=config.low_resource,
+            low_res_device=config.device_8bit,
+            lora_r=config.lora_r,
+            lora_target_modules=config.lora_target_modules,
+            lora_alpha=config.lora_alpha,
+            lora_dropout=config.lora_dropout,
         )
         self.config = self.llama_model.config
 
         self.visual_encoder, self.ln_vision = self.init_vision_encoder(
-            vit_model, img_size, drop_path_rate, use_grad_checkpoint, vit_precision, freeze_vit
+            config.vit_model, config.img_size, config.drop_path_rate, config.use_grad_checkpoint, config.vit_precision, config.freeze_vit
         )
 
-        self.max_txt_len = max_txt_len
-        self.max_context_len = max_context_len
-        self.end_sym = end_sym
+        self.max_txt_len = config.max_txt_len
+        self.max_context_len = config.max_context_len
+        self.end_sym = config.end_sym
 
-        self.prompt_template = prompt_template
+        self.prompt_template = config.prompt_template
         self.prompt_list = []
 
-    def vit_to_cpu(self):
-        self.ln_vision.to("cpu")
-        self.ln_vision.float()
-        self.visual_encoder.to("cpu")
-        self.visual_encoder.float()
+    # def __init__(
+    #     self,
+    #     vit_model="eva_clip_g",
+    #     img_size=224,
+    #     drop_path_rate=0,
+    #     use_grad_checkpoint=False,
+    #     vit_precision="fp16",
+    #     freeze_vit=True,
+    #     llama_model="",
+    #     max_txt_len=32,
+    #     max_context_len=3800,
+    #     prompt_template="",
+    #     end_sym='\n',
+    #     low_resource=False,  # use 8 bit and put vit in cpu
+    #     device_8bit=0,  # the device of 8bit model should be set when loading and cannot be changed anymore.
+    #     lora_r=0,  # lora_r means lora is not used
+    #     lora_target_modules=["q_proj", "v_proj"],
+    #     lora_alpha=16,
+    #     lora_dropout=0.05,
+    # ):
+        
+    #     config = transformers.AutoConfig.from_pretrained(
+    #         "checkpoints/MiniGPT/Instruction/Only_Pretrain_1.5_Slim_Train/TextVQA/llava-1.5-7b-lora",
+    #         trust_remote_code=True,
+    #         )
+    #     super().__init__(config)
+
+    #     self.llama_model, self.llama_tokenizer = self.init_llm(
+    #         llama_model_path=llama_model,
+    #         low_resource=low_resource,
+    #         low_res_device=device_8bit,
+    #         lora_r=lora_r,
+    #         lora_target_modules=lora_target_modules,
+    #         lora_alpha=lora_alpha,
+    #         lora_dropout=lora_dropout,
+    #     )
+    #     self.config = self.llama_model.config
+
+    #     self.visual_encoder, self.ln_vision = self.init_vision_encoder(
+    #         vit_model, img_size, drop_path_rate, use_grad_checkpoint, vit_precision, freeze_vit
+    #     )
+
+    #     self.max_txt_len = max_txt_len
+    #     self.max_context_len = max_context_len
+    #     self.end_sym = end_sym
+
+    #     self.prompt_template = prompt_template
+    #     self.prompt_list = []
 
     def init_vision_encoder(
         self, model_name, img_size, drop_path_rate, use_grad_checkpoint, precision, freeze
@@ -86,7 +116,7 @@ class MiniGPTBase(BaseModel):
         visual_encoder, ln_vision = create_eva_vit_g(
             img_size, drop_path_rate, use_grad_checkpoint, precision
         )
-        torch.distributed.barrier()
+        # torch.distributed.barrier()
         print('creat visual_encoder done')
         
         # torch.distributed.barrier()
@@ -103,46 +133,47 @@ class MiniGPTBase(BaseModel):
             # logging.info("freeze vision encoder")
 
         # logging.info('Loading VIT Done')
-        torch.distributed.barrier()
+        # torch.distributed.barrier()
         print('Loading VIT Done')
         return visual_encoder, ln_vision
 
-    def init_llm(self, llama_model_path, low_resource=False, low_res_device=0, lora_r=0,
+    def init_llm(self, config, llama_model_path, low_resource=False, low_res_device=0, lora_r=0,
                  lora_target_modules=["q_proj","v_proj"], **lora_kargs):
         logging.info('Loading LLAMA')
         llama_tokenizer = LlamaTokenizer.from_pretrained(llama_model_path, use_fast=False)
         llama_tokenizer.pad_token = "$$"
 
-        if low_resource:
-            llama_model = LlamaForCausalLM.from_pretrained(
-                llama_model_path,
-                torch_dtype=torch.float16,
-                load_in_8bit=True,
-                device_map={'': low_res_device}
-            )
-        else:
-            llama_model = LlamaForCausalLM.from_pretrained(
-                llama_model_path,
-                torch_dtype=torch.float16,
-            )
+        # if low_resource:
+        #     llama_model = LlamaForCausalLM.from_pretrained(
+        #         llama_model_path,
+        #         torch_dtype=torch.float16,
+        #         load_in_8bit=True,
+        #         device_map={'': low_res_device}
+        #     )
+        # else:
+        #     llama_model = LlamaForCausalLM.from_pretrained(
+        #         llama_model_path,
+        #         torch_dtype=torch.float16,
+        #     )
+        llama_model = transformers.LlamaModel(config)
 
-        if lora_r > 0:
-            llama_model = prepare_model_for_kbit_training(llama_model)
-            loraconfig = LoraConfig(
-                r=lora_r,
-                bias="none",
-                task_type="CAUSAL_LM",
-                target_modules=lora_target_modules,
-                **lora_kargs
-            )
-            llama_model = get_peft_model(llama_model, loraconfig)
+        # if lora_r > 0:
+        #     llama_model = prepare_model_for_kbit_training(llama_model)
+        #     loraconfig = LoraConfig(
+        #         r=lora_r,
+        #         bias="none",
+        #         task_type="CAUSAL_LM",
+        #         target_modules=lora_target_modules,
+        #         **lora_kargs
+        #     )
+        #     llama_model = get_peft_model(llama_model, loraconfig)
 
-            llama_model.print_trainable_parameters()
+        #     llama_model.print_trainable_parameters()
 
-        else:
-            for name, param in llama_model.named_parameters():
-                param.requires_grad = False
-        logging.info('Loading LLAMA Done')
+        # else:
+        #     for name, param in llama_model.named_parameters():
+        #         param.requires_grad = False
+        # logging.info('Loading LLAMA Done')
         return llama_model, llama_tokenizer
 
     def gradient_checkpointing_enable(self):

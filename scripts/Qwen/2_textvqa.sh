@@ -2,7 +2,7 @@
 export CUDA_DEVICE_MAX_CONNECTIONS=1
 DIR=`pwd`
 
-GPUS_PER_NODE=6
+GPUS_PER_NODE=7
 NNODES=1
 NODE_RANK=0
 MASTER_ADDR=localhost
@@ -11,7 +11,7 @@ MASTER_PORT=6001
 MODEL="./checkpoints/Qwen/Qwen-VL" # Set the path if you do not want to load from huggingface directly
 # ATTENTION: specify the path to your training data, which should be a json file consisting of a list of conversations.
 # See the section for finetuning in README for more information.
-OUTPUT_MODEL_PATH="./checkpoints/CoIN/TextVQA"
+OUTPUT_MODEL_PATH="./checkpoints/Qwen/CoIN/TextVQA"
 DATA="playground/Instructions_Qwen/TextVQA/train.json"
 DS_CONFIG_PATH="scripts/zero3_offload.json"
 
@@ -23,14 +23,15 @@ DISTRIBUTED_ARGS="
     --master_port $MASTER_PORT
 "
 
-torchrun $DISTRIBUTED_ARGS ETrain/Train/Qwen/train.py \
+CUDA_VISIBLE_DEVICES=0,2,3,4,5,6,7 torchrun $DISTRIBUTED_ARGS ETrain/Train/Qwen/train.py \
     --model_name_or_path $MODEL \
     --data_path $DATA \
     --bf16 True \
     --fix_vit True \
     --output_dir $OUTPUT_MODEL_PATH \
+    --previous_task_model_path ./checkpoints/Qwen/CoIN/ScienceQA \
     --num_train_epochs 1 \
-    --per_device_train_batch_size 2 \
+    --per_device_train_batch_size 6 \
     --per_device_eval_batch_size 1 \
     --gradient_accumulation_steps 8 \
     --evaluation_strategy "no" \

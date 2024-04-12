@@ -19,12 +19,13 @@ from ETrain.utils.LAVIS.common.dist_utils import (
 )
 from transformers.deepspeed import is_deepspeed_zero3_enabled
 from transformers.modeling_utils import _load_state_dict_into_model
+from transformers.modeling_utils import PreTrainedModel
 
-class BaseModel(nn.Module):
+class BaseModel(PreTrainedModel):
     """Base class for models."""
 
-    def __init__(self):
-        super().__init__()
+    def __init__(self, config):
+        super().__init__(config)
 
     @property
     def device(self):
@@ -59,21 +60,21 @@ class BaseModel(nn.Module):
 
         return msg
 
-    @classmethod
-    def from_pretrained(cls, model_type):
-        """
-        Build a pretrained model from default configuration file, specified by model_type.
+    # @classmethod
+    # def from_pretrained(cls, model_type):
+    #     """
+    #     Build a pretrained model from default configuration file, specified by model_type.
 
-        Args:
-            - model_type (str): model type, specifying architecture and checkpoints.
+    #     Args:
+    #         - model_type (str): model type, specifying architecture and checkpoints.
 
-        Returns:
-            - model (nn.Module): pretrained or finetuned model, depending on the configuration.
-        """
-        model_cfg = OmegaConf.load(cls.default_config_path(model_type)).model
-        model = cls.from_config(model_cfg)
+    #     Returns:
+    #         - model (nn.Module): pretrained or finetuned model, depending on the configuration.
+    #     """
+    #     model_cfg = OmegaConf.load(cls.default_config_path(model_type)).model
+    #     model = cls.from_config(model_cfg)
 
-        return model
+    #     return model
 
     @classmethod
     def default_config_path(cls, model_type):

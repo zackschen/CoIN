@@ -28,9 +28,7 @@ __all__ = [
 
 def create_MiniGPT4_model(cfg):
     model_config = cfg.model_cfg
-
-    model_cls = registry.get_model_class(model_config.arch)
-    model =  model_cls.from_config(model_config)
+    model =  MiniGPTv2.from_config(model_config)
     return model
 
 

@@ -64,7 +64,7 @@ class MiniGPT4(MiniGPTBase):
             self.load_from_pretrained(url_or_filename=q_former_model)  # load q-former weights here
             print('Loading Q-Former from_pretrained')
             img_f_dim = self.Qformer.config.hidden_size
-            torch.distributed.barrier()
+            # torch.distributed.barrier()
             print('Loading Q-Former Done')
         else:
             img_f_dim = self.visual_encoder.num_features * 4

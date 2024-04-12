@@ -12,7 +12,8 @@ import torch
 import torch.nn as nn
 import torch.nn.functional as F
 import torch.utils.checkpoint as checkpoint
-from timm.models.layers import drop_path, to_2tuple, trunc_normal_
+from torch.nn.init import normal_
+from timm.models.layers import drop_path, to_2tuple
 from timm.models.registry import register_model
 from transformers.deepspeed import is_deepspeed_zero3_enabled
 from ETrain.utils.LAVIS.common.dist_utils import download_cached_file
@@ -288,8 +289,8 @@ class VisionTransformer(nn.Module):
 #         self.head = nn.Linear(embed_dim, num_classes) if num_classes > 0 else nn.Identity()
 
         if self.pos_embed is not None:
-            trunc_normal_(self.pos_embed, std=.02)
-        trunc_normal_(self.cls_token, std=.02)
+            normal_(self.pos_embed, std=.02)
+        normal_(self.cls_token, std=.02)
         # trunc_normal_(self.mask_token, std=.02)
 #         if isinstance(self.head, nn.Linear):
 #             trunc_normal_(self.head.weight, std=.02)
@@ -309,7 +310,7 @@ class VisionTransformer(nn.Module):
 
     def _init_weights(self, m):
         if isinstance(m, nn.Linear):
-            trunc_normal_(m.weight, std=.02)
+            normal_(m.weight, std=.02)
             if isinstance(m, nn.Linear) and m.bias is not None:
                 nn.init.constant_(m.bias, 0)
         elif isinstance(m, nn.LayerNorm):
@@ -448,14 +449,13 @@ def create_eva_vit_g(img_size=224,drop_path_rate=0.4,use_checkpoint=False,precis
     )
     ln_vision = LayerNorm(model.num_features)
 
-    if torch.distributed.get_rank() == 0:
-        state_dict = torch.load(cached_file, map_location="cpu")    
-        interpolate_pos_embed(model,state_dict)
+    # state_dict = torch.load(cached_file, map_location="cpu")    
+    # interpolate_pos_embed(model,state_dict)
 
-        if is_deepspeed_zero3_enabled():
-            msg = _load_state_dict_into_model(model, state_dict,start_prefix = '')
-        else:
-            incompatible_keys = model.load_state_dict(state_dict, strict=False)
+    # if is_deepspeed_zero3_enabled():
+    #     msg = _load_state_dict_into_model(model, state_dict,start_prefix = '')
+    # else:
+    #     incompatible_keys = model.load_state_dict(state_dict, strict=False)
 
     print('load vit g weight')
     

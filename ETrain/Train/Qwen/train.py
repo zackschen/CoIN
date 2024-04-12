@@ -76,6 +76,32 @@ def rank0_print(*args):
         print(*args)
 
 
+def load_model_from_previous_task(model, previous_task_model_path):
+    rank0_print('Loading additional weights...')
+    if os.path.exists(os.path.join(previous_task_model_path, 'non_lora_trainables.bin')):
+        non_lora_trainables = torch.load(os.path.join(previous_task_model_path, 'non_lora_trainables.bin'), map_location='cpu')
+    else:
+        # this is probably from HF Hub
+        from huggingface_hub import hf_hub_download
+        def load_from_hf(repo_id, filename, subfolder=None):
+            cache_file = hf_hub_download(
+                repo_id=repo_id,
+                filename=filename,
+                subfolder=subfolder)
+            return torch.load(cache_file, map_location='cpu')
+        non_lora_trainables = load_from_hf(previous_task_model_path, 'non_lora_trainables.bin')
+    non_lora_trainables = {(k[11:] if k.startswith('base_model.') else k): v for k, v in non_lora_trainables.items()}
+    if any(k.startswith('model.model.') for k in non_lora_trainables):
+        non_lora_trainables = {(k[6:] if k.startswith('model.') else k): v for k, v in non_lora_trainables.items()}
+    model.load_state_dict(non_lora_trainables, strict=False)
+
+    from peft import PeftModel
+    rank0_print('Loading LoRA weights...')
+    filename = os.path.join(previous_task_model_path, WEIGHTS_NAME)
+    adapters_weights = torch.load(filename, map_location=torch.device("cuda" if torch.cuda.is_available() else "cpu"))
+    load_result = set_peft_model_state_dict(model, adapters_weights, adapter_name="default")
+    rank0_print('Model is loaded...')
+
 def train():
     global local_rank
     
@@ -87,6 +113,11 @@ def train():
     
     local_rank = training_args.local_rank
     model, tokenizer = create_Qwen_model(training_args, model_args, data_args, lora_args)
+
+
+    if model_args.previous_task_model_path is not None:
+        # load model from previous task
+        load_model_from_previous_task(model, model_args.previous_task_model_path)
 
     data_module = create_Qwen_data_module(tokenizer, data_args, model, training_args.model_max_length, local_rank)
 
