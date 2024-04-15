@@ -8,8 +8,8 @@ from llava.eval.m4c_evaluator import TextVQAAccuracyEvaluator
 
 def get_args():
     parser = argparse.ArgumentParser()
-    parser.add_argument('--annotation-file', type=str, default='/home/chencheng/Code/LLaVA/cl_dataset/TextVQA/TextVQA_0.5.1_val.json')
-    parser.add_argument('--result-file', type=str, default='/home/chencheng/Code/LLaVA/results/Instructions/TextVQA/Zero_shot/merge.jsonl')
+    parser.add_argument('--annotation-file', type=str, default='./LLaVA/cl_dataset/TextVQA/TextVQA_0.5.1_val.json')
+    parser.add_argument('--result-file', type=str, default='./LLaVA/results/Instructions/TextVQA/Zero_shot/merge.jsonl')
     parser.add_argument('--output-dir', type=str)
     return parser.parse_args()
 

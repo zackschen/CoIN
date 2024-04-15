@@ -3,7 +3,7 @@
 ## Dataset details
 
 ### Dataset sources
-This dataset is constructed using publicly available and commonly used instruction tuning datasets, including VQAv2, VizWiz, ScienceQA, TextVQA, GQA, and OCR-VQA. Additionally, to enhance diversity, we introduce the classification task and referring expression comprehension task into CLIT with ImageNet, RefCOCO, RefCOCO+, and RefCOCOg.
+This dataset is constructed using publicly available and commonly used instruction tuning datasets, including VQAv2, VizWiz, ScienceQA, TextVQA, GQA, and OCR-VQA. Additionally, to enhance diversity, we introduce the classification task and referring expression comprehension task into CoIN with ImageNet, RefCOCO, RefCOCO+, and RefCOCOg.
 
 Before proceeding with instruction tuning, please download these datasets on your own.
 

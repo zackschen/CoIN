@@ -34,9 +34,9 @@ from llava import conversation as conversation_lib
 from llava.model import *
 from llava.mm_utils import tokenizer_image_token
 
-sys.path.append('/home/chencheng/Code/LLaVA/')
+sys.path.append('./LLaVA/')
 
-from CoIN.peft import PeftModel, TaskType, get_peft_model, CLITMOELoraConfig, WEIGHTS_NAME, set_peft_model_state_dict
+from CoIN.peft import PeftModel, TaskType, get_peft_model, CoINMOELoraConfig, WEIGHTS_NAME, set_peft_model_state_dict
 
 from PIL import Image, ImageFile
 ImageFile.LOAD_TRUNCATED_IMAGES = True
@@ -873,13 +873,13 @@ def train():
             "task_embedding_dim": model_args.task_embedding_dim,
             "expert_num": model_args.expert_num,
             }
-        lora_config = CLITMOELoraConfig(
+        lora_config = CoINMOELoraConfig(
             r=training_args.lora_r,
             lora_alpha=training_args.lora_alpha,
             target_modules=find_all_linear_names(model),
             lora_dropout=training_args.lora_dropout,
             bias=training_args.lora_bias,
-            task_type=TaskType.CAUSAL_LM_CLIT,
+            task_type=TaskType.CAUSAL_LM_CoIN,
             **kwargs
         )
         if training_args.bits == 16:

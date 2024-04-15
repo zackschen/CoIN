@@ -39,18 +39,18 @@ if is_bnb_available():
     import bitsandbytes as bnb
 
 @dataclass
-class CLITMOELoraConfig(LoraConfig):
+class CoINMOELoraConfig(LoraConfig):
     """
-    This is the configuration class to store the configuration of a [`~peft.MOE_LORA_CLIT`]
+    This is the configuration class to store the configuration of a [`~peft.MOE_LORA_CoIN`]
     """
     task_embedding_dim: int = field(default=64)
     expert_num: int = field(default=4)
 
     def __post_init__(self):
-        self.peft_type = PeftType.MOE_LORA_CLIT
+        self.peft_type = PeftType.MOE_LORA_CoIN
 
 
-class CLITMOELoraModel(LoraModel):
+class CoINMOELoraModel(LoraModel):
     """
     Create MMOELoRA (MMOE based LoRA) model from a pretrained transformers model.
     """
@@ -197,7 +197,7 @@ class CLITMOELoraModel(LoraModel):
                     f"Target module {target} is not supported. "
                     f"Currently, only `torch.nn.Linear` and `Conv1D` are supported."
                 )
-            new_module = CLITMOELoraLinear(adapter_name, in_features, out_features, 
+            new_module = CoINMOELoraLinear(adapter_name, in_features, out_features, 
                                                     bias=bias, **kwargs)
 
         return new_module
@@ -260,7 +260,7 @@ class CLITMOELoraModel(LoraModel):
 
         return self.model
 
-class CLITMOELoraLayer(LoraLayer):
+class CoINMOELoraLayer(LoraLayer):
 
     def __init__(self, in_features: int, out_features: int, expert_num: int):
         
@@ -279,8 +279,8 @@ class CLITMOELoraLayer(LoraLayer):
         self.lora_dropout.update(nn.ModuleDict({adapter_name: lora_dropout_layer}))
         # Actual trainable parameters
         if r > 0:
-            self.lora_A.update(nn.ModuleDict({adapter_name: CLITMOELinearA(self.in_features, r, self.expert_num)}))
-            self.lora_B.update(nn.ModuleDict({adapter_name: CLITMOELinearB(r, self.out_features, self.expert_num)}))
+            self.lora_A.update(nn.ModuleDict({adapter_name: CoINMOELinearA(self.in_features, r, self.expert_num)}))
+            self.lora_B.update(nn.ModuleDict({adapter_name: CoINMOELinearB(r, self.out_features, self.expert_num)}))
             self.scaling[adapter_name] = lora_alpha / r
         if init_lora_weights:
             self.reset_lora_parameters(adapter_name)
@@ -293,7 +293,7 @@ class CLITMOELoraLayer(LoraLayer):
                 nn.init.normal_(self.lora_A[adapter_name].loraA[i].mlp.weight, mean=0.0, std=0.01)
                 nn.init.zeros_(self.lora_B[adapter_name].loraB[i].mlp.weight)
 
-class CLITMOELoraLinear(nn.Linear, CLITMOELoraLayer):
+class CoINMOELoraLinear(nn.Linear, CoINMOELoraLayer):
     # Lora implemented in a dense layer
     # nn.Linear is the pretrained weights in LLM, MMOELoraLayer is the designed trainable Lora 
     def __init__(
@@ -312,7 +312,7 @@ class CLITMOELoraLinear(nn.Linear, CLITMOELoraLayer):
         self.te_dim = kwargs.pop("task_embedding_dim", True)
 
         nn.Linear.__init__(self, in_features, out_features, **kwargs)
-        CLITMOELoraLayer.__init__(self, in_features=in_features, 
+        CoINMOELoraLayer.__init__(self, in_features=in_features, 
                                out_features=out_features, 
                                expert_num=self.expert_num)
         
@@ -403,7 +403,7 @@ class CLITMOELoraLinear(nn.Linear, CLITMOELoraLayer):
     
 
 
-class CLITMOELinearA(nn.Module):
+class CoINMOELinearA(nn.Module):
     '''MMOE based LoRA block'''
     def __init__(self, in_features, out_features, expert_num) -> None:
 
@@ -417,7 +417,7 @@ class CLITMOELinearA(nn.Module):
         self.r = self.out_features // self.expert_num
         
         for _ in range(self.expert_num):
-            self.loraA.append(CLITMOEExpert(self.in_features, self.r))
+            self.loraA.append(CoINMOEExpert(self.in_features, self.r))
 
     
     def forward(self, x):
@@ -428,7 +428,7 @@ class CLITMOELinearA(nn.Module):
 
         return outputs
     
-class CLITMOELinearB(nn.Module):
+class CoINMOELinearB(nn.Module):
     '''MMOE based LoRA block'''
     def __init__(self, in_features, out_features, expert_num) -> None:
 
@@ -442,7 +442,7 @@ class CLITMOELinearB(nn.Module):
         self.r = self.in_features // self.expert_num
         
         for _ in range(self.expert_num):
-            self.loraB.append(CLITMOEExpert(self.r, self.out_features))
+            self.loraB.append(CoINMOEExpert(self.r, self.out_features))
 
     
     def forward(self, x):
@@ -455,7 +455,7 @@ class CLITMOELinearB(nn.Module):
 
 
 
-class CLITMOEExpert(nn.Module):
+class CoINMOEExpert(nn.Module):
 
     def __init__(self, in_features, out_features):
         
@@ -474,7 +474,7 @@ class CLITMOEExpert(nn.Module):
 
 
 
-class CLITMOEGate(nn.Module):
+class CoINMOEGate(nn.Module):
 
     def __init__(self, input_size, expert_num):
 
@@ -491,7 +491,7 @@ class CLITMOEGate(nn.Module):
         return y
 
 
-class CLITMOERouter(nn.Module):
+class CoINMOERouter(nn.Module):
     """
     Router using tokens choose top-1 experts assignment.
 
@@ -502,7 +502,7 @@ class CLITMOERouter(nn.Module):
 
     """
 
-    def __init__(self, config: CLITMOELoraConfig):
+    def __init__(self, config: CoINMOELoraConfig):
         super().__init__()
         self.num_experts = config.num_experts
         self.expert_capacity = config.expert_capacity

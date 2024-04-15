@@ -8,9 +8,9 @@ from llava.eval.m4c_evaluator import TextVQAAccuracyEvaluator
 
 def get_args():
     parser = argparse.ArgumentParser()
-    parser.add_argument('--annotation-file', type=str, default='/home/chencheng/Code/LLaVA/playground/Instructions_slim/OCRVQA/test_1.json')
-    parser.add_argument('--result-file', type=str, default='/home/chencheng/Code/LLaVA/results/CLIT_slim_new_0.8/OCRVQA/Finetune/merge.jsonl')
-    parser.add_argument('--output-dir', type=str, default='/home/chencheng/Code/LLaVA/results/CLIT_slim_new_0.8/OCRVQA/Finetune')
+    parser.add_argument('--annotation-file', type=str, default='./LLaVA/playground/Instructions_slim/OCRVQA/test_1.json')
+    parser.add_argument('--result-file', type=str, default='./LLaVA/results/CoIN_slim_new_0.8/OCRVQA/Finetune/merge.jsonl')
+    parser.add_argument('--output-dir', type=str, default='./LLaVA/results/CoIN_slim_new_0.8/OCRVQA/Finetune')
     return parser.parse_args()
 
 

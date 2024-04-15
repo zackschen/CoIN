@@ -9,7 +9,7 @@ from llava.eval.m4c_evaluator import TextVQAAccuracyEvaluator
 def get_args():
     parser = argparse.ArgumentParser()
     parser.add_argument('--annotation-file', type=str, default='./playground/Instructions_slim/VizWiz/val_new.json')
-    parser.add_argument('--result-file', type=str, default='./results/CLIT_slim_new/VizWiz/Zero_shot/merge.jsonl')
+    parser.add_argument('--result-file', type=str, default='./results/CoIN_slim_new/VizWiz/Zero_shot/merge.jsonl')
     parser.add_argument('--output-dir', type=str)
     return parser.parse_args()
 

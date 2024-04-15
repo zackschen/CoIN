@@ -90,6 +90,10 @@ For training with MoeLoRA, you could train scripts in `scripts/CoIN/Train_MOE`.
 ## Evaluation
 We have prepared the scripts to evaluate the trained model in `scripts/CoIN/Eval`.
 
+These scripts will evalute the trained model and create the prompts (`prompt_to_eval.json`) for evaluating the general knowldege.
+
+To evaluate the general knowldege, you could add the result path to `llava/eval/CoIN/to_eval_prompt.txt` and run the `llava/eval/CoIN/evaluate_generalknowledege.py`, this python file will output a score to indicate the general knowledge.
+
 ## Citation
 ```
 @misc{chen2024coin,

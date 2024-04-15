@@ -5,7 +5,7 @@ import argparse
 
 def get_args():
     parser = argparse.ArgumentParser()
-    parser.add_argument('--answers-file', type=str, default='./results/CLIT/ScienceQA/Zero_shot/merge.jsonl')
+    parser.add_argument('--answers-file', type=str, default='./results/CoIN/ScienceQA/Zero_shot/merge.jsonl')
     return parser.parse_args()
 
 if __name__ == "__main__":

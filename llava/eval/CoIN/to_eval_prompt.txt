@@ -1,2 +1,2 @@
 ## For example
-./results/CLIT_moe8train_new_testslim/ScienceQA/Finetune
+./results/CoIN/ScienceQA/Finetune

@@ -39,11 +39,11 @@
         "role": "Assistant",
         "prompt": "Please only answer the question in yes or no. Is the \"Prediction\" correctly predicting the right \"Label\"?"
     },
-    "CLIT": {
+    "CoIN": {
         "role": "Assistant",
         "prompt": "We would like to request your feedback on the performance of an AI assistants in response to the user question displayed above.\nPlease rate the accuracy of its responses according to the ground truth answer displayed above. The assistant receives an overall score on a scale of 0 to 10, where a higher score indicates better overall performance.\nPlease output a single line containing only a values indicating the scores for the Assistant."
     },
-    "CLIT_Grounding": {
+    "CoIN_Grounding": {
         "role": "Assistant",
         "prompt": "We would like to request your feedback on the performance of an AI assistants in response to the user question displayed above. The user asks the question on observing an image. For your reference, the visual content in the image is represented with one descriptive sentence describing the same image and the bounding box coordinates of each object in the scene. These coordinates are in the form of bounding boxes, represented as (x1, y1, x2, y2) with floating numbers ranging from 0 to 1. These values correspond to the top left x, top left y, bottom right x, and bottom right y. \nPlease rate the accuracy of its responses according to the ground truth answer displayed above. The assistant receives an overall score on a scale of 0 to 10, where a higher score indicates better overall performance.\nPlease output a single line containing only a values indicating the scores for the Assistant."
     }

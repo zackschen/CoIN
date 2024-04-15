@@ -10,8 +10,8 @@ from llava.eval.m4c_evaluator import TextVQAAccuracyEvaluator
 def get_args():
     parser = argparse.ArgumentParser()
     parser.add_argument('--test-file', type=str, default='./playground/Instructions_slim/ImageNet/test.json')
-    parser.add_argument('--result-file', type=str, default='./results/CLIT_normaltrain_testslim/ImageNet/OCRVQA/merge.jsonl')
-    parser.add_argument('--output-dir', type=str, default='./results/CLIT_normaltrain_testslim/ImageNet/OCRVQA')
+    parser.add_argument('--result-file', type=str, default='./results/CoIN_normaltrain_testslim/ImageNet/OCRVQA/merge.jsonl')
+    parser.add_argument('--output-dir', type=str, default='./results/CoIN_normaltrain_testslim/ImageNet/OCRVQA')
     return parser.parse_args()
 
 

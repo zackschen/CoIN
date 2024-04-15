@@ -8,9 +8,9 @@ import random
 def get_args():
     parser = argparse.ArgumentParser()
     parser.add_argument('--base-dir', type=str, default = './cl_dataset/ScienceQA')
-    parser.add_argument('--result-file', type=str, default='./results/CLIT_normaltrain_testslim/ScienceQA/OCRVQA/merge.jsonl')
-    parser.add_argument('--output-file', type=str, default= './results/CLIT_normaltrain_testslim/ScienceQA/OCRVQA/output.jsonl')
-    parser.add_argument('--output-result', type=str, default= './results/CLIT_normaltrain_testslim/ScienceQA/OCRVQA/output_result.jsonl')
+    parser.add_argument('--result-file', type=str, default='./results/CoIN_normaltrain_testslim/ScienceQA/OCRVQA/merge.jsonl')
+    parser.add_argument('--output-file', type=str, default= './results/CoIN_normaltrain_testslim/ScienceQA/OCRVQA/output.jsonl')
+    parser.add_argument('--output-result', type=str, default= './results/CoIN_normaltrain_testslim/ScienceQA/OCRVQA/output_result.jsonl')
     parser.add_argument('--split', type=str, default='test')
     parser.add_argument('--options', type=list, default=["A", "B", "C", "D", "E"])
     return parser.parse_args()

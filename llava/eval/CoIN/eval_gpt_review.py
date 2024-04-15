@@ -31,7 +31,7 @@ def get_eval(content: str, max_tokens: int):
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='ChatGPT-based QA evaluation.')
-    parser.add_argument('-p', '--prompt_dir',default='./results/CLIT_normaltrain_testslim/ScienceQA/Finetune')
+    parser.add_argument('-p', '--prompt_dir',default='./results/CoIN_normaltrain_testslim/ScienceQA/Finetune')
     parser.add_argument('--max-tokens', type=int, default=1024, help='maximum number of tokens produced in the output')
     args = parser.parse_args()
 

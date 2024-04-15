@@ -17,7 +17,7 @@ else
     MODELPATH=$2
 fi
 
-RESULT_DIR="./results/CLIT/Grounding"
+RESULT_DIR="./results/CoIN/Grounding"
 
 for IDX in $(seq 0 $((CHUNKS-1))); do
     CUDA_VISIBLE_DEVICES=${GPULIST[$IDX]} python -m llava.eval.CoIN.model_vqa_cc_instruction \
@@ -52,5 +52,5 @@ python -m llava.eval.CoIN.eval_grounding \
 python llava/eval/CoIN/create_prompt.py \
     --rule llava/eval/CoIN/rule.json \
     --questions ./playground/Instructions_slim/Grounding/test.json \
-    --results ./results/CLIT_moe8train_new_testslim/Grounding/Finetune/merge.jsonl \
-    --rule_temp CLIT_Grounding \
+    --results ./results/CoIN_moe8train_new_testslim/Grounding/Finetune/merge.jsonl \
+    --rule_temp CoIN_Grounding \
