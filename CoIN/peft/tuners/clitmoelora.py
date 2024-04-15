@@ -43,7 +43,6 @@ class CLITMOELoraConfig(LoraConfig):
     """
     This is the configuration class to store the configuration of a [`~peft.MOE_LORA_CLIT`]
     """
-    task_num: int = field(default=2, metadata={"help": "The number of tasks."})
     task_embedding_dim: int = field(default=64)
     expert_num: int = field(default=4)
 
@@ -133,7 +132,6 @@ class CLITMOELoraModel(LoraModel):
             "lora_dropout": lora_config.lora_dropout,
             "fan_in_fan_out": lora_config.fan_in_fan_out,
             "init_lora_weights": lora_config.init_lora_weights,
-            "task_num": lora_config.task_num,
             "task_embedding_dim": lora_config.task_embedding_dim,
             "expert_num": lora_config.expert_num,
         }
@@ -311,7 +309,6 @@ class CLITMOELoraLinear(nn.Linear, CLITMOELoraLayer):
     ):
         init_lora_weights = kwargs.pop("init_lora_weights", True)
         self.expert_num = kwargs.pop("expert_num", True)
-        self.task_num = kwargs.pop("task_num", True)
         self.te_dim = kwargs.pop("task_embedding_dim", True)
 
         nn.Linear.__init__(self, in_features, out_features, **kwargs)

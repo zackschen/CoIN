@@ -64,7 +64,6 @@ class ModelArguments:
     mm_use_im_patch_token: bool = field(default=True)
     mm_vision_select_feature: Optional[str] = field(default="patch")
 
-    task_num: Optional[int] = field(default=16)
     task_embedding_dim: Optional[int] = field(default=64)
     expert_num: Optional[int] = field(default=4)
 
@@ -871,7 +870,6 @@ def train():
 
     if training_args.lora_enable:
         kwargs = { 
-            "task_num": model_args.task_num,
             "task_embedding_dim": model_args.task_embedding_dim,
             "expert_num": model_args.expert_num,
             }

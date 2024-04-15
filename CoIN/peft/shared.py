@@ -11,7 +11,6 @@ class Gate(nn.Module):
         super().__init__()
 
         self.expert_num = peft_config.expert_num
-        self.task_num = peft_config.task_num
         self.te_dim = peft_config.task_embedding_dim
 
         #self.lora_task_embedding = nn.Embedding(self.task_num+1, self.te_dim)# 使用embedding来代替线性层
