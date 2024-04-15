@@ -449,13 +449,13 @@ def create_eva_vit_g(img_size=224,drop_path_rate=0.4,use_checkpoint=False,precis
     )
     ln_vision = LayerNorm(model.num_features)
 
-    # state_dict = torch.load(cached_file, map_location="cpu")    
-    # interpolate_pos_embed(model,state_dict)
+    state_dict = torch.load(cached_file, map_location="cpu")    
+    interpolate_pos_embed(model,state_dict)
 
-    # if is_deepspeed_zero3_enabled():
-    #     msg = _load_state_dict_into_model(model, state_dict,start_prefix = '')
-    # else:
-    #     incompatible_keys = model.load_state_dict(state_dict, strict=False)
+    if is_deepspeed_zero3_enabled():
+        msg = _load_state_dict_into_model(model, state_dict,start_prefix = '')
+    else:
+        incompatible_keys = model.load_state_dict(state_dict, strict=False)
 
     print('load vit g weight')
     

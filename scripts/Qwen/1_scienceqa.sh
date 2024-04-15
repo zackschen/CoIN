@@ -35,7 +35,7 @@ CUDA_VISIBLE_DEVICES=4,5,6,7 torchrun $DISTRIBUTED_ARGS ETrain/Train/Qwen/train.
     --evaluation_strategy "no" \
     --save_strategy "steps" \
     --save_steps 10000 \
-    --save_total_limit 10 \
+    --save_total_limit 1 \
     --learning_rate 1e-5 \
     --weight_decay 0.1 \
     --adam_beta2 0.95 \

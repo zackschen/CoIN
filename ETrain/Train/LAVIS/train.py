@@ -110,7 +110,7 @@ def main():
     cfg = Config(args)
 
     # init_distributed_mode(cfg.run_cfg)
-    setup_seeds(cfg)
+    # setup_seeds(cfg)
 
     # set after init_distributed_mode() to only log on master.
     setup_logger()
@@ -122,7 +122,7 @@ def main():
         model = create_InstructBlip_model(cfg)
     else:
         model = create_MiniGPT4_model(cfg)
-    data_module = create_MiniGPT_data_module(Concated_Dataset, 0)
+    data_module = create_MiniGPT_data_module(Concated_Dataset, cfg)
 
     # training_args.deepspeed = "./scripts/zero3.json"
     trainer = Trainer(model=model,

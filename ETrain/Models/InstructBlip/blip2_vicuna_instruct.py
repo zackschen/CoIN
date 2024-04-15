@@ -25,6 +25,9 @@ from ETrain.Models.InstructBlip.base_model import disabled_train
 from transformers import LlamaTokenizer
 from ETrain.Models.InstructBlip.modeling_llama import LlamaForCausalLM
 from peft import LoraConfig, get_peft_model
+from transformers.modeling_utils import load_state_dict
+from transformers.deepspeed import is_deepspeed_zero3_enabled
+from transformers.modeling_utils import _load_state_dict_into_model
 
 @registry.register_model("blip2_vicuna_instruct")
 class Blip2VicunaInstruct(Blip2Base):
@@ -72,8 +75,8 @@ class Blip2VicunaInstruct(Blip2Base):
         if freeze_vit:
             for name, param in self.visual_encoder.named_parameters():
                 param.requires_grad = False
-            # self.visual_encoder = self.visual_encoder.eval()
-            # self.visual_encoder.train = disabled_train
+            self.visual_encoder = self.visual_encoder.eval()
+            self.visual_encoder.train = disabled_train
             logging.info("freeze vision encoder")
 
         self.Qformer, self.query_tokens = self.init_Qformer(
@@ -94,6 +97,7 @@ class Blip2VicunaInstruct(Blip2Base):
         self.llm_model = LlamaForCausalLM.from_pretrained(
             llm_model, torch_dtype=torch.float16
         )
+        
         self.llm_tokenizer.add_special_tokens({'pad_token': '[PAD]'})
         self.llm_tokenizer.add_special_tokens({'bos_token': '</s>'})
         self.llm_tokenizer.add_special_tokens({'eos_token': '</s>'})
@@ -173,7 +177,7 @@ class Blip2VicunaInstruct(Blip2Base):
         llm_tokens['attention_mask'] = torch.stack(llm_tokens['attention_mask'])
         return llm_tokens, input_part_targets_len
 
-    def forward(self, input_ids: torch.LongTensor = None,
+    def forward(self, instances: torch.LongTensor = None,
                 attention_mask: Optional[torch.Tensor] = None,
                 position_ids: Optional[torch.LongTensor] = None,
                 past_key_values: Optional[List[torch.FloatTensor]] = None,
@@ -183,7 +187,7 @@ class Blip2VicunaInstruct(Blip2Base):
         # print(samples["text_input"])
         # print(samples["text_output"])
         # print('-----------------')
-        samples = input_ids
+        samples = instances
         image = samples["image"]
         with self.maybe_autocast():
             image_embeds = self.ln_vision(self.visual_encoder(image))

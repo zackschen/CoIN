@@ -8,7 +8,9 @@ from ETrain.utils.LAVIS.common.registry import registry
 from ETrain.Models.InstructBlip.base_model import disabled_train
 from ETrain.Models.MiniGPT.minigpt_base import MiniGPTBase
 from ETrain.Models.InstructBlip.Qformer import BertConfig, BertLMHeadModel
-
+from transformers.modeling_utils import load_state_dict
+from transformers.deepspeed import is_deepspeed_zero3_enabled
+from transformers.modeling_utils import _load_state_dict_into_model
 
 @registry.register_model("minigpt4")
 class MiniGPT4(MiniGPTBase):
@@ -38,6 +40,10 @@ class MiniGPT4(MiniGPTBase):
             prompt_template="",
             max_txt_len=32,
             end_sym='\n',
+            lora_r=64,
+            lora_target_modules=["q_proj", "v_proj"],
+            lora_alpha=16,
+            lora_dropout=0.05,
             low_resource=False,  # use 8 bit and put vit in cpu
             device_8bit=0,  # the device of 8bit model should be set when loading and cannot be changed anymore.
     ):
@@ -51,8 +57,13 @@ class MiniGPT4(MiniGPTBase):
             llama_model=llama_model,
             max_txt_len=max_txt_len,
             end_sym=end_sym,
+            prompt_template=prompt_template,
             low_resource=low_resource,
             device_8bit=device_8bit,
+            lora_r=lora_r,
+            lora_target_modules=lora_target_modules,
+            lora_alpha=lora_alpha,
+            lora_dropout=lora_dropout,
         )
 
         self.has_qformer = has_qformer
@@ -110,10 +121,10 @@ class MiniGPT4(MiniGPTBase):
         if freeze:
             for name, param in Qformer.named_parameters():
                 param.requires_grad = False
-            # Qformer = Qformer.eval()
-            # Qformer.train = disabled_train
+            Qformer = Qformer.eval()
+            Qformer.train = disabled_train
             query_tokens.requires_grad = False
-            # logging.info("freeze Qformer")
+            logging.info("freeze Qformer")
 
         return Qformer, query_tokens
 
@@ -168,6 +179,9 @@ class MiniGPT4(MiniGPTBase):
         max_txt_len = cfg.get("max_txt_len", 32)
         end_sym = cfg.get("end_sym", '\n')
 
+        lora_r = cfg.get("lora_r", 64)
+        lora_alpha = cfg.get("lora_alpha", 16)
+
         model = cls(
             vit_model=vit_model,
             q_former_model=q_former_model,
@@ -186,6 +200,8 @@ class MiniGPT4(MiniGPTBase):
             end_sym=end_sym,
             low_resource=low_resource,
             device_8bit=device_8bit,
+            lora_r=lora_r,
+            lora_alpha=lora_alpha,
         )
 
         ckpt_path = cfg.get("ckpt", "")  # load weights of MiniGPT-4
@@ -193,5 +209,5 @@ class MiniGPT4(MiniGPTBase):
             print("Load MiniGPT-4 Checkpoint: {}".format(ckpt_path))
             ckpt = torch.load(ckpt_path, map_location="cpu")
             msg = model.load_state_dict(ckpt['model'], strict=False)
-
+            
         return model

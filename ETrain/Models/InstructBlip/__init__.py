@@ -22,7 +22,9 @@ __all__ = [
 def create_InstructBlip_model(cfg):
     model_config = cfg.model_cfg
 
-    model, vis_processors, _ =load_model_and_preprocess(model_config.arch,'vicuna7b')
+    # model, vis_processors, _  =load_model_and_preprocess(model_config.arch,'vicuna7b')
+    model_cls = registry.get_model_class(model_config.arch)
+    model =  model_cls.from_config(model_config)
     return model
 
 

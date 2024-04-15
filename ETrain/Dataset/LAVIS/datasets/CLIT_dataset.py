@@ -3,6 +3,7 @@ import json
 import pickle
 import random
 import time
+import torch
 import numpy as np
 from PIL import Image
 import skimage.io as io
@@ -49,10 +50,11 @@ class CLITDataset(Dataset):
             image_path = os.path.join(self.vis_root, info['image'])
             image = Image.open(image_path).convert("RGB")
             image = self.vis_processor(image)
+        else:
+            image = torch.zeros(3, self.vis_processor.transform.transforms[0].size[0], self.vis_processor.transform.transforms[0].size[0])
 
         first_instruction = info['conversations'][0]['value'].replace('<image>\n', '').strip()
-        if have_image:
-            first_instruction = '<Img><ImageHere></Img> {} '.format(first_instruction)
+        first_instruction = '<Img><ImageHere></Img> {} '.format(first_instruction)
 
         questions = [first_instruction]
         answers = []
@@ -73,21 +75,13 @@ class CLITDataset(Dataset):
         else:
             idx = info['question_id']
 
-        if have_image:
-            return {
-                "image": image,
-                "conv_q": questions,
-                'conv_a': answers,
-                "image_id": idx,
-                "connect_sym": self.connect_sym
-            }
-        else:
-            return {
-                "conv_q": questions,
-                'conv_a': answers,
-                "image_id": idx,
-                "connect_sym": self.connect_sym
-            }
+        return {
+            "image": image,
+            "text_input": questions,
+            'text_output': answers,
+            "image_id": idx,
+            "connect_sym": self.connect_sym
+        }
     
 class CLIT_ScientQADataset(CLITDataset):
     def __getitem__(self, index):

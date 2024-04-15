@@ -2,7 +2,7 @@ model:
   arch: minigpt_v2
   model_type: pretrain
   max_txt_len: 2048
-  image_size: 224
+  image_size: 448
   end_sym: "</s>"
   llama_model: "/mnt/hdd1/chencheng/llama2_hf/Llama-2-7b-chat-hf/"
   ckpt: "checkpoints/MiniGPTv2/checkpoint_stage2.pth"
@@ -12,26 +12,15 @@ model:
   lora_alpha: 256
 
 datasets:
-  clit_textvqa: 
-    batch_size: 10
+  clit_scienceqa: 
+    batch_size: 16
     vis_processor:
       train:
         name: "blip2_image_train"
-        image_size: 224
+        image_size: 448
     text_processor:
       train:
         name: "blip_caption"
-
-  clit_gqa: 
-    batch_size: 10
-    vis_processor:
-      train:
-        name: "blip2_image_train"
-        image_size: 224
-    text_processor:
-      train:
-        name: "blip_caption"
-
 
 run:
   task: image_text_pretrain
@@ -48,7 +37,7 @@ run:
   # iters_per_epoch: 1000
 
   seed: 42
-  output_dir: "./checkpoints/MiniGPTv2/"
+  output_dir: "./checkpoints/MiniGPTv2/CoIN/scienceqa"
 
   amp: True
   resume_ckpt_path: null

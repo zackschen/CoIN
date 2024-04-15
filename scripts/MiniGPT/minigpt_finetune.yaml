@@ -14,7 +14,7 @@ model:
   lora_alpha: 256
 
 datasets:
-  cc_sbu_align:
+  clit_scienceqa:
     batch_size: 12
     vis_processor:
       train:

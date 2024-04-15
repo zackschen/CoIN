@@ -9,6 +9,9 @@ from torch.utils.data.dataloader import default_collate
 class DataCollatorForSupervisedDataset(object):
     """Collate examples for supervised fine-tuning."""
 
+    def __init__(self, cfg):
+        self.cfg = cfg
+
     def __call__(self, instances: Sequence[Dict]) -> Dict[str, torch.Tensor]:
         # have_image = False
         # all_have_image = True
@@ -25,16 +28,21 @@ class DataCollatorForSupervisedDataset(object):
         #             instance['image'] = torch.zeros(3, size[0], size[1])
 
         instances = default_collate(instances)
+
+        if not self.cfg.model_cfg.arch == 'blip2_vicuna_instruct':
+            instances['conv_q'] = instances['text_input']
+            instances['conv_a'] = instances['text_output']
+
         batch = dict(
-            input_ids=instances,
+            instances=instances,
             labels=None,
             attention_mask=None,
         )
         return batch
 
 def create_MiniGPT_data_module(train_dataset,
-                                local_rank) -> Dict:
-    data_collator = DataCollatorForSupervisedDataset()
+                                cfg) -> Dict:
+    data_collator = DataCollatorForSupervisedDataset(cfg)
     return dict(train_dataset=train_dataset,
                 eval_dataset=None,
                 data_collator=data_collator)

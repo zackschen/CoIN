@@ -21,11 +21,11 @@ from transformers.deepspeed import is_deepspeed_zero3_enabled
 from transformers.modeling_utils import _load_state_dict_into_model
 from transformers.modeling_utils import PreTrainedModel
 
-class BaseModel(PreTrainedModel):
+class BaseModel(nn.Module):
     """Base class for models."""
 
-    def __init__(self, config):
-        super().__init__(config)
+    def __init__(self, ):
+        super().__init__()
 
     @property
     def device(self):

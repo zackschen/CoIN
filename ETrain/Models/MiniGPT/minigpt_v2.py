@@ -9,10 +9,10 @@ from ETrain.utils.LAVIS.common.registry import registry
 from ETrain.Models.InstructBlip.base_model import disabled_train
 from ETrain.Models.MiniGPT.minigpt_base import MiniGPTBase
 from ETrain.Models.InstructBlip.Qformer import BertConfig, BertLMHeadModel
-from transformers.modeling_utils import load_state_dict
+from transformers.modeling_utils import load_state_dict, get_checkpoint_shard_files, _load_state_dict_into_model
 from transformers.deepspeed import is_deepspeed_zero3_enabled
-from transformers.modeling_utils import _load_state_dict_into_model
 from transformers import LlamaConfig, AutoConfig, AutoModelForCausalLM
+from ETrain.Models.InstructBlip.modeling_llama import LlamaForCausalLM
 
 class MiniGPTv2Config(LlamaConfig):
     model_type = "minigpt_v2"
@@ -28,68 +28,68 @@ class MiniGPTv2(MiniGPTBase):
     }
     config_class = MiniGPTv2Config
 
-    def __init__(
-            self,
-            config,  # the device of 8bit model should be set when loading and cannot be changed anymore.
-    ):
-        super().__init__(
-            config,
-        )
-
-        img_f_dim = self.visual_encoder.num_features * 4
-        self.llama_proj = nn.Linear(
-            img_f_dim, self.llama_model.config.hidden_size
-        )
-        self.chat_template = config.chat_template
-
-
     # def __init__(
     #         self,
-    #         vit_model="eva_clip_g",
-    #         img_size=448,
-    #         drop_path_rate=0,
-    #         use_grad_checkpoint=False,
-    #         vit_precision="fp16",
-    #         freeze_vit=True,
-    #         llama_model="",
-    #         prompt_template='[INST] {} [/INST]',
-    #         max_txt_len=300,
-    #         end_sym='\n',
-    #         lora_r=64,
-    #         lora_target_modules=["q_proj", "v_proj"],
-    #         lora_alpha=16,
-    #         lora_dropout=0.05,
-    #         chat_template=False,
-    #         use_grad_checkpoint_llm=False,
-    #         max_context_len=3800,
-    #         low_resource=False,  # use 8 bit and put vit in cpu
-    #         device_8bit=0,  # the device of 8bit model should be set when loading and cannot be changed anymore.
+    #         config,  # the device of 8bit model should be set when loading and cannot be changed anymore.
     # ):
     #     super().__init__(
-    #         vit_model=vit_model,
-    #         img_size=img_size,
-    #         drop_path_rate=drop_path_rate,
-    #         use_grad_checkpoint=use_grad_checkpoint,
-    #         vit_precision=vit_precision,
-    #         freeze_vit=freeze_vit,
-    #         llama_model=llama_model,
-    #         max_txt_len=max_txt_len,
-    #         max_context_len=max_context_len,
-    #         end_sym=end_sym,
-    #         prompt_template=prompt_template,
-    #         low_resource=low_resource,
-    #         device_8bit=device_8bit,
-    #         lora_r=lora_r,
-    #         lora_target_modules=lora_target_modules,
-    #         lora_alpha=lora_alpha,
-    #         lora_dropout=lora_dropout,
+    #         config,
     #     )
 
     #     img_f_dim = self.visual_encoder.num_features * 4
     #     self.llama_proj = nn.Linear(
     #         img_f_dim, self.llama_model.config.hidden_size
     #     )
-    #     self.chat_template = chat_template
+    #     self.chat_template = config.chat_template
+
+
+    def __init__(
+            self,
+            vit_model="eva_clip_g",
+            img_size=448,
+            drop_path_rate=0,
+            use_grad_checkpoint=False,
+            vit_precision="fp16",
+            freeze_vit=True,
+            llama_model="",
+            prompt_template='[INST] {} [/INST]',
+            max_txt_len=300,
+            end_sym='\n',
+            lora_r=64,
+            lora_target_modules=["q_proj", "v_proj"],
+            lora_alpha=16,
+            lora_dropout=0.05,
+            chat_template=False,
+            use_grad_checkpoint_llm=False,
+            max_context_len=3800,
+            low_resource=False,  # use 8 bit and put vit in cpu
+            device_8bit=0,  # the device of 8bit model should be set when loading and cannot be changed anymore.
+    ):
+        super().__init__(
+            vit_model=vit_model,
+            img_size=img_size,
+            drop_path_rate=drop_path_rate,
+            use_grad_checkpoint=use_grad_checkpoint,
+            vit_precision=vit_precision,
+            freeze_vit=freeze_vit,
+            llama_model=llama_model,
+            max_txt_len=max_txt_len,
+            max_context_len=max_context_len,
+            end_sym=end_sym,
+            prompt_template=prompt_template,
+            low_resource=low_resource,
+            device_8bit=device_8bit,
+            lora_r=lora_r,
+            lora_target_modules=lora_target_modules,
+            lora_alpha=lora_alpha,
+            lora_dropout=lora_dropout,
+        )
+
+        img_f_dim = self.visual_encoder.num_features * 4
+        self.llama_proj = nn.Linear(
+            img_f_dim, self.llama_model.config.hidden_size
+        )
+        self.chat_template = chat_template
 
     def encode_img(self, image):
         device = image.device
@@ -111,7 +111,7 @@ class MiniGPTv2(MiniGPTBase):
     def from_config(cls, cfg):
         vit_model = cfg.get("vit_model", "eva_clip_g")
         img_size = cfg.get("image_size")
-        llama_model = cfg.get("llama_model")
+        llama_model_path = cfg.get("llama_model")
 
         drop_path_rate = cfg.get("drop_path_rate", 0)
         use_grad_checkpoint = cfg.get("use_grad_checkpoint", False)
@@ -130,41 +130,36 @@ class MiniGPTv2(MiniGPTBase):
         use_grad_checkpoint_llm = cfg.get("use_grad_checkpoint_llm", False)
         max_context_len = cfg.get("max_context_len", 3800)
 
-
-        config = transformers.AutoConfig.from_pretrained(
-                "checkpoints/MiniGPT/Instruction/Only_Pretrain_1.5_Slim_Train/TextVQA/llava-1.5-7b-lora",
-                trust_remote_code=True,
-        )
-        model = MiniGPTv2(config = config)
+        # model = MiniGPTv2(config = config)
         
-        # model = cls(
-        #     vit_model=vit_model,
-        #     img_size=img_size,
-        #     drop_path_rate=drop_path_rate,
-        #     use_grad_checkpoint=use_grad_checkpoint,
-        #     vit_precision=vit_precision,
-        #     freeze_vit=freeze_vit,
-        #     llama_model=llama_model,
-        #     prompt_template=prompt_template,
-        #     max_txt_len=max_txt_len,
-        #     low_resource=low_resource,
-        #     end_sym=end_sym,
-        #     lora_r=lora_r,
-        #     lora_alpha=lora_alpha,
-        #     chat_template=chat_template,
-        #     use_grad_checkpoint_llm=use_grad_checkpoint_llm,
-        #     max_context_len=max_context_len,
-        # )
+        model = cls(
+            vit_model=vit_model,
+            img_size=img_size,
+            drop_path_rate=drop_path_rate,
+            use_grad_checkpoint=use_grad_checkpoint,
+            vit_precision=vit_precision,
+            freeze_vit=freeze_vit,
+            llama_model=llama_model_path,
+            prompt_template=prompt_template,
+            max_txt_len=max_txt_len,
+            low_resource=low_resource,
+            end_sym=end_sym,
+            lora_r=lora_r,
+            lora_alpha=lora_alpha,
+            chat_template=chat_template,
+            use_grad_checkpoint_llm=use_grad_checkpoint_llm,
+            max_context_len=max_context_len,
+        )
 
-        # ckpt_path = cfg.get("ckpt", "")  # load weights of MiniGPT-4
-        # if ckpt_path:
-        #     print("Load Minigpt-4-LLM Checkpoint: {} device: {}".format(ckpt_path, model.device))
-        #     print()
-        #     ckpt = load_state_dict(ckpt_path)
-        #     if is_deepspeed_zero3_enabled():
-        #         msg = _load_state_dict_into_model(model, ckpt['model'],start_prefix = '')
-        #     else:
-        #         msg = model.load_state_dict(ckpt['model'], strict=False)
+        ckpt_path = cfg.get("ckpt", "")  # load weights of MiniGPT-4
+        if ckpt_path:
+            print("Load Minigpt-4-LLM Checkpoint: {} device: {}".format(ckpt_path, model.device))
+            print()
+            ckpt = load_state_dict(ckpt_path)
+            if is_deepspeed_zero3_enabled():
+                msg = _load_state_dict_into_model(model, ckpt['model'],start_prefix = '')
+            else:
+                msg = model.load_state_dict(ckpt['model'], strict=False)
 
         return model
 
