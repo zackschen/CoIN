@@ -48,7 +48,7 @@ python scripts/convert_gqa_for_eval.py --src $output_file --dst $RESULT_DIR/$STA
 
 python llava/eval/CoIN/eval_gqa.py --tier testdev_balanced --path $RESULT_DIR/$STAGE --output-dir $RESULT_DIR/$STAGE 
 
-python playground/create_prompt.py \
-    --rule ./llava/eval/table/rule.json \
+python llava/eval/CoIN/create_prompt.py \
+    --rule llava/eval/CoIN/rule.json \
     --questions ./playground/Instructions/GQA/test.json \
     --results $output_file \

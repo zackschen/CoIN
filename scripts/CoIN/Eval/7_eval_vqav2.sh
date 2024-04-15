@@ -48,7 +48,7 @@ python scripts/convert_vqav2_for_submission.py \
     --dir $RESULT_DIR/$STAGE \
     --test-split ./playground/Instructions/VQAv2/test.json \
 
-# python playground/create_prompt.py \
-#     --rule ./llava/eval/table/rule.json \
-#     --questions ./playground/Instructions/VQAv2/test.json \
-#     --results $output_file \
+python llava/eval/CoIN/create_prompt.py \
+    --rule llava/eval/CoIN/rule.json \
+    --questions ./playground/Instructions/VQAv2/test.json \
+    --results $output_file \

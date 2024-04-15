@@ -48,3 +48,9 @@ python -m llava.eval.CoIN.eval_grounding \
     --test-file ./playground/Instructions/Grounding/test.json \
     --result-file $output_file \
     --output-dir $RESULT_DIR/$STAGE \
+
+python llava/eval/CoIN/create_prompt.py \
+    --rule llava/eval/CoIN/rule.json \
+    --questions ./playground/Instructions_slim/Grounding/test.json \
+    --results ./results/CLIT_moe8train_new_testslim/Grounding/Finetune/merge.jsonl \
+    --rule_temp CLIT_Grounding \

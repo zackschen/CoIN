@@ -50,7 +50,7 @@ python scripts/convert_vizwiz_for_submission.py \
     --result-file $output_file \
     --result-upload-file $RESULT_DIR/$STAGE/upload.json
 
-python playground/create_prompt.py \
-    --rule ./llava/eval/table/rule.json \
+python llava/eval/CoIN/create_prompt.py \
+    --rule llava/eval/CoIN/rule.json \
     --questions ./playground/Instructions/VizWiz/test.json \
     --results $output_file \

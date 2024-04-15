@@ -50,7 +50,7 @@ python llava/eval/CoIN/eval_science_qa.py \
     --output-file $RESULT_DIR/$STAGE/output.jsonl \
     --output-result $RESULT_DIR/$STAGE/output_result.jsonl \
 
-python playground/create_prompt.py \
-    --rule ./llava/eval/table/rule.json \
+python llava/eval/CoIN/create_prompt.py \
+    --rule llava/eval/CoIN/rule.json \
     --questions ./playground/Instructions/ScienceQA/test.json \
     --results $output_file \

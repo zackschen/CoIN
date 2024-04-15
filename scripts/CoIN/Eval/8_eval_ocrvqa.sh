@@ -49,7 +49,7 @@ python -m llava.eval.CoIN.eval_ocrvqa \
     --result-file $output_file \
     --output-dir $RESULT_DIR/$STAGE \
 
-python playground/create_prompt.py \
-    --rule ./llava/eval/table/rule.json \
+python llava/eval/CoIN/create_prompt.py \
+    --rule llava/eval/CoIN/rule.json \
     --questions ./playground/Instructions/OCRVQA/test_1.json \
     --results $output_file \
