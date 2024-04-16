@@ -5,14 +5,14 @@ CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7 HF_ENDPOINT="https://hf-mirror.com" OMP_NUM
     --master_port 29600 \
     ETrain/Train/LAVIS/train.py \
     --deepspeed ./scripts/zero3_offload.json \
-    --lora_enable True --lora_r 64 --lora_alpha 16 \
+    --lora_enable True --lora_r 64 --lora_alpha 256 \
     --cfg-path ./scripts/MiniGPTv2/minigptv2_finetune.yaml \
     --bf16 True \
     --output_dir ./checkpoints/MiniGPTv2/CoIN/scienceqa \
     --num_train_epochs 1 \
-    --per_device_train_batch_size 20 \
+    --per_device_train_batch_size 16 \
     --per_device_eval_batch_size 1 \
-    --gradient_accumulation_steps 1 \
+    --gradient_accumulation_steps 8 \
     --evaluation_strategy "no" \
     --save_strategy "steps" \
     --save_steps 10000 \

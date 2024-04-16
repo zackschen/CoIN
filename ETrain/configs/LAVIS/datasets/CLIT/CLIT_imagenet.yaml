@@ -3,4 +3,4 @@ datasets:
     data_type: images
     build_info:
       image_path: ./cl_dataset
-      ann_path: ./playground/Instructions_slim_0.1_minigpt4_test/ImageNet/train.json
+      ann_path: ./playground/Instructions_Type1/ImageNet/train.json

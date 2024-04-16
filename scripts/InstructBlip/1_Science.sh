@@ -6,11 +6,11 @@ CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7 OMP_NUM_THREADS=1 NCCL_P2P_DISABLE=1 torchr
     ETrain/Train/LAVIS/train.py \
     --deepspeed ./scripts/zero3_offload.json \
     --lora_enable True --lora_r 64 --lora_alpha 256 \
-    --cfg-path ./scripts/MiniGPT/minigpt_finetune.yaml \
+    --cfg-path ./scripts/InstructBlip/instructblip.yaml \
     --bf16 True \
-    --output_dir ./checkpoints/MiniGPT/CoIN/scienceqa \
+    --output_dir ./checkpoints/InstructBlip/CoIN/scienceqa \
     --num_train_epochs 1 \
-    --per_device_train_batch_size 28 \
+    --per_device_train_batch_size 16 \
     --per_device_eval_batch_size 1 \
     --gradient_accumulation_steps 8 \
     --evaluation_strategy "no" \
