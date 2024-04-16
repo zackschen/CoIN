@@ -13,7 +13,7 @@ model:
 
 datasets:
   clit_scienceqa: 
-    batch_size: 16
+    batch_size: 32
     vis_processor:
       train:
         name: "blip2_image_train"

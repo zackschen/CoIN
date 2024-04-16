@@ -2,7 +2,7 @@ model:
   arch: minigpt4
   model_type: pretrain_vicuna0
 
-  max_txt_len: 160
+  max_txt_len: 2048
   end_sym: "###"
   prompt_path: "ETrain/Models/MiniGPT/prompts/alignment.txt"
   prompt_template: '###Human: {} ###Assistant: '

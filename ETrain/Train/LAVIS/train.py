@@ -110,7 +110,7 @@ def main():
     cfg = Config(args)
 
     # init_distributed_mode(cfg.run_cfg)
-    # setup_seeds(cfg)
+    setup_seeds(cfg)
 
     # set after init_distributed_mode() to only log on master.
     setup_logger()
@@ -129,7 +129,6 @@ def main():
                     args=training_args,
                     **data_module)
 
-    print('Begin Training')
     trainer.train()
     trainer.save_state()
 
