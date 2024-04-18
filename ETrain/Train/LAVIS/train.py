@@ -32,6 +32,9 @@ from ETrain.Models import *
 from ETrain.Train.LAVIS import *
 from ETrain.Train.Base_trainer import *
 from transformers import Trainer
+from peft.utils import WEIGHTS_NAME, set_peft_model_state_dict
+from transformers.modeling_utils import load_state_dict, get_checkpoint_shard_files, _load_state_dict_into_model
+from transformers.deepspeed import is_deepspeed_zero3_enabled
 
 def parse_args(remaining_strings):
     parser = argparse.ArgumentParser(description="Training")
@@ -49,6 +52,11 @@ def parse_args(remaining_strings):
 
     return args
 
+local_rank = None
+
+def rank0_print(*args):
+    if local_rank == 0:
+        print(*args)
 
 def setup_seeds(config):
     seed = config.run_cfg.seed + get_rank()
@@ -95,16 +103,50 @@ class TrainingArguments(transformers.TrainingArguments):
     mm_projector_lr: Optional[float] = None
     group_by_modality_length: bool = field(default=False)
     cfg_path: str = field(default="")
+    previous_task_model_path: Optional[str] = field(default=None)
 
+
+def load_model_from_previous_task(model, previous_task_model_path):
+    rank0_print('Loading additional weights...')
+    if os.path.exists(os.path.join(previous_task_model_path, 'non_lora_trainables.bin')):
+        non_lora_trainables = torch.load(os.path.join(previous_task_model_path, 'non_lora_trainables.bin'), map_location='cpu')
+    else:
+        # this is probably from HF Hub
+        from huggingface_hub import hf_hub_download
+        def load_from_hf(repo_id, filename, subfolder=None):
+            cache_file = hf_hub_download(
+                repo_id=repo_id,
+                filename=filename,
+                subfolder=subfolder)
+            return torch.load(cache_file, map_location='cpu')
+        non_lora_trainables = load_from_hf(previous_task_model_path, 'non_lora_trainables.bin')
+    non_lora_trainables = {(k[11:] if k.startswith('base_model.') else k): v for k, v in non_lora_trainables.items()}
+    if any(k.startswith('model.model.') for k in non_lora_trainables):
+        non_lora_trainables = {(k[6:] if k.startswith('model.') else k): v for k, v in non_lora_trainables.items()}
+
+    if is_deepspeed_zero3_enabled():
+        msg = _load_state_dict_into_model(model, non_lora_trainables,start_prefix = '')
+    else:
+        msg = model.load_state_dict(non_lora_trainables, strict=False)
+
+    from peft import PeftModel
+    rank0_print('Loading LoRA weights...')
+    filename = os.path.join(previous_task_model_path, WEIGHTS_NAME)
+    adapters_weights = torch.load(filename, map_location=torch.device("cuda" if torch.cuda.is_available() else "cpu"))
+    adapters_weights = {(k[10:] if (k.startswith('llm_model.') or k.startswith('llama_model.')) else k): v for k, v in adapters_weights.items()}
+    load_result = set_peft_model_state_dict(model.llama_model, adapters_weights, adapter_name="default")
+    rank0_print('Model is loaded...')
 
 def main():
     # allow auto-dl completes on main process without timeout when using NCCL backend.
     # os.environ["NCCL_BLOCKING_WAIT"] = "1"
 
     # set before init_distributed_mode() to ensure the same job_id shared across all ranks.
+    global local_rank
 
     parser = transformers.HfArgumentParser((TrainingArguments))
     training_args, remaining_strings = parser.parse_args_into_dataclasses(return_remaining_strings = True)
+    local_rank = training_args.local_rank
 
     args = parse_args(remaining_strings)
     cfg = Config(args)
@@ -122,6 +164,11 @@ def main():
         model = create_InstructBlip_model(cfg)
     else:
         model = create_MiniGPT4_model(cfg)
+
+    if training_args.previous_task_model_path is not None:
+        # load model from previous task
+        load_model_from_previous_task(model, training_args.previous_task_model_path)
+
     data_module = create_MiniGPT_data_module(Concated_Dataset, cfg)
 
     # training_args.deepspeed = "./scripts/zero3.json"
@@ -141,7 +188,7 @@ def main():
         )
         if training_args.local_rank == 0 or training_args.local_rank == -1:
             model.config.save_pretrained(training_args.output_dir)
-            model._save_checkpoint(training_args.output_dir)
+            model.llama_model.save_pretrained(training_args.output_dir, state_dict=state_dict)
             torch.save(non_lora_state_dict, os.path.join(training_args.output_dir, 'non_lora_trainables.bin'))
     else:
         safe_save_model_for_hf_trainer(trainer=trainer,

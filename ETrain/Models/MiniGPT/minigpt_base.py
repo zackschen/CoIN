@@ -118,6 +118,7 @@ class MiniGPTBase(BaseModel):
         # config = transformers.AutoConfig.from_pretrained(llama_model_path,trust_remote_code=True,)
         
         # llama_model = LlamaForCausalLM(config)
+        
 
         if lora_r > 0:
             llama_model = prepare_model_for_kbit_training(llama_model)

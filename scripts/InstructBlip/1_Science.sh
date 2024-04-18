@@ -6,9 +6,9 @@ CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7 OMP_NUM_THREADS=1 NCCL_P2P_DISABLE=1 torchr
     ETrain/Train/LAVIS/train.py \
     --deepspeed ./scripts/zero3_offload.json \
     --lora_enable True --lora_r 64 --lora_alpha 256 \
-    --cfg-path ./scripts/InstructBlip/instructblip.yaml \
+    --cfg-path ./scripts/InstructBlip/1_Scienceqa.yaml \
     --bf16 True \
-    --output_dir ./checkpoints/InstructBlip/CoIN/scienceqa \
+    --output_dir ./checkpoints/InstructBlip/CoIN/ScienceQA \
     --num_train_epochs 1 \
     --per_device_train_batch_size 16 \
     --per_device_eval_batch_size 1 \
