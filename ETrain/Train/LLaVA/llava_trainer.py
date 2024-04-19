@@ -13,7 +13,8 @@ from transformers.trainer import (
     logger,
 )
 from typing import List, Optional
-
+from peft.utils import WEIGHTS_NAME, set_peft_model_state_dict
+from ETrain.Train.Base_trainer import *
 
 def maybe_zero_3(param, ignore_status=False, name=None):
     from deepspeed import zero
@@ -234,62 +235,45 @@ class LLaVATrainer(Trainer):
             super(LLaVATrainer, self)._save(output_dir, state_dict)
 
 
-class QwenTrainer(LLaVATrainer):
-    def create_optimizer(self):
-        """
-        Setup the optimizer.
+    def save_model(self, training_args):
+        if training_args.lora_enable:
+            state_dict = get_peft_state_maybe_zero_3(
+                self.model.named_parameters(), training_args.lora_bias
+            )
+            non_lora_state_dict = get_peft_state_non_lora_maybe_zero_3(
+                self.model.named_parameters()
+            )
+            if training_args.local_rank == 0 or training_args.local_rank == -1:
+                self.model.config.save_pretrained(training_args.output_dir)
+                self.model.save_pretrained(training_args.output_dir, state_dict=state_dict)
+                torch.save(non_lora_state_dict, os.path.join(training_args.output_dir, 'non_lora_trainables.bin'))
+        else:
+            safe_save_model_for_hf_trainer(trainer=self,
+                                        output_dir=training_args.output_dir)
 
-        We provide a reasonable default that works well. If you want to use something else, you can pass a tuple in the
-        Trainer's init through `optimizers`, or subclass and override this method in a subclass.
-        """
-        if is_sagemaker_mp_enabled():
-            return super().create_optimizer()
-        if self.sharded_ddp == ShardedDDPOption.SIMPLE:
-            return super().create_optimizer()
 
-        opt_model = self.model
+def load_model_from_previous_task(model, previous_task_model_path):
+    print('Loading additional LLaVA weights...')
+    if os.path.exists(os.path.join(previous_task_model_path, 'non_lora_trainables.bin')):
+        non_lora_trainables = torch.load(os.path.join(previous_task_model_path, 'non_lora_trainables.bin'), map_location='cpu')
+    else:
+        # this is probably from HF Hub
+        from huggingface_hub import hf_hub_download
+        def load_from_hf(repo_id, filename, subfolder=None):
+            cache_file = hf_hub_download(
+                repo_id=repo_id,
+                filename=filename,
+                subfolder=subfolder)
+            return torch.load(cache_file, map_location='cpu')
+        non_lora_trainables = load_from_hf(previous_task_model_path, 'non_lora_trainables.bin')
+    non_lora_trainables = {(k[11:] if k.startswith('base_model.') else k): v for k, v in non_lora_trainables.items()}
+    if any(k.startswith('model.model.') for k in non_lora_trainables):
+        non_lora_trainables = {(k[6:] if k.startswith('model.') else k): v for k, v in non_lora_trainables.items()}
+    model.load_state_dict(non_lora_trainables, strict=False)
 
-        if self.optimizer is None:
-            decay_parameters = get_parameter_names(opt_model, ALL_LAYERNORM_LAYERS)
-            decay_parameters = [name for name in decay_parameters if "bias" not in name]
-            
-            optimizer_grouped_parameters = [
-                {
-                    "params": [
-                        p for n, p in opt_model.named_parameters() if (n in decay_parameters and p.requires_grad)
-                    ],
-                    "weight_decay": self.args.weight_decay,
-                },
-                {
-                    "params": [
-                        p for n, p in opt_model.named_parameters() if (n not in decay_parameters and p.requires_grad)
-                    ],
-                    "weight_decay": 0.0,
-                },
-            ]
-
-            optimizer_cls, optimizer_kwargs = Trainer.get_optimizer_cls_and_kwargs(self.args)
-
-            if self.sharded_ddp == ShardedDDPOption.SIMPLE:
-                self.optimizer = OSS(
-                    params=optimizer_grouped_parameters,
-                    optim=optimizer_cls,
-                    **optimizer_kwargs,
-                )
-            else:
-                self.optimizer = optimizer_cls(optimizer_grouped_parameters, **optimizer_kwargs)
-                if optimizer_cls.__name__ == "Adam8bit":
-                    import bitsandbytes
-
-                    manager = bitsandbytes.optim.GlobalOptimManager.get_instance()
-
-                    skipped = 0
-                    for module in opt_model.modules():
-                        if isinstance(module, nn.Embedding):
-                            skipped += sum({p.data_ptr(): p.numel() for p in module.parameters()}.values())
-                            logger.info(f"skipped {module}: {skipped/2**20}M params")
-                            manager.register_module_override(module, "weight", {"optim_bits": 32})
-                            logger.debug(f"bitsandbytes: will optimize {module} in fp32")
-                    logger.info(f"skipped: {skipped/2**20}M params")
-
-        return self.optimizer
+    from peft import PeftModel
+    print('Loading LoRA weights...')
+    filename = os.path.join(previous_task_model_path, WEIGHTS_NAME)
+    adapters_weights = torch.load(filename, map_location=torch.device("cuda" if torch.cuda.is_available() else "cpu"))
+    load_result = set_peft_model_state_dict(model, adapters_weights, adapter_name="default")
+    print('Model is loaded...')
