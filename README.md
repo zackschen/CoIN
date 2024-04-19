@@ -94,6 +94,11 @@ These scripts will evalute the trained model and create the prompts (`prompt_to_
 
 To evaluate the general knowldege, you could add the result path to `llava/eval/CoIN/to_eval_prompt.txt` and run the `llava/eval/CoIN/evaluate_generalknowledege.py`, this python file will output a score to indicate the general knowledge.
 
+## To Do
+1. - [] Evaluating on more MLLM, MiniGPT-4, MiniGPT-V2, InstrctBlip, Qwen-VL;
+2. - [] Evaluating on different size of MLLM;
+3. - [] Evaluating on full finetune.
+
 ## Citation
 ```
 @misc{chen2024coin,
