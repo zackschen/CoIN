@@ -13,7 +13,7 @@ from transformers.trainer import (
     logger,
 )
 from typing import List, Optional
-from ETrain.Models.LLaVA.llava_trainer import LLaVATrainer
+from ETrain.Train.LLaVA.llava_trainer import LLaVATrainer
 from peft.utils import WEIGHTS_NAME, set_peft_model_state_dict
 from ETrain.Train.Base_trainer import *
 

@@ -30,7 +30,7 @@ CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7 torchrun $DISTRIBUTED_ARGS ETrain/Train/Qwe
     --fix_vit True \
     --output_dir $OUTPUT_MODEL_PATH \
     --num_train_epochs 1 \
-    --per_device_train_batch_size 6 \
+    --per_device_train_batch_size 4 \
     --per_device_eval_batch_size 1 \
     --gradient_accumulation_steps 8 \
     --evaluation_strategy "no" \

@@ -35,7 +35,7 @@ from ETrain.Models import *
 from ETrain.Dataset import create_LLaVA_data_module
 from ETrain.Dataset.dataset import DataArguments
 from ETrain.Train.Base_trainer import *
-from ETrain.Models.LLaVA.llava_trainer import load_model_from_previous_task
+from ETrain.Train.LLaVA.llava_trainer import load_model_from_previous_task
 
 from PIL import Image, ImageFile
 ImageFile.LOAD_TRUNCATED_IMAGES = True
