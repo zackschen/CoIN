@@ -106,7 +106,7 @@ class TrainingArguments(transformers.TrainingArguments):
     previous_task_model_path: Optional[str] = field(default=None)
 
 
-def load_model_from_previous_task(model, previous_task_model_path):
+def load_model_from_previous_task(cfg, model, previous_task_model_path):
     rank0_print('Loading additional weights...')
     if os.path.exists(os.path.join(previous_task_model_path, 'non_lora_trainables.bin')):
         non_lora_trainables = torch.load(os.path.join(previous_task_model_path, 'non_lora_trainables.bin'), map_location='cpu')
@@ -134,7 +134,10 @@ def load_model_from_previous_task(model, previous_task_model_path):
     filename = os.path.join(previous_task_model_path, WEIGHTS_NAME)
     adapters_weights = torch.load(filename, map_location=torch.device("cuda" if torch.cuda.is_available() else "cpu"))
     adapters_weights = {(k[10:] if (k.startswith('llm_model.') or k.startswith('llama_model.')) else k): v for k, v in adapters_weights.items()}
-    load_result = set_peft_model_state_dict(model.llama_model, adapters_weights, adapter_name="default")
+    if cfg.model_cfg.arch == 'blip2_vicuna_instruct':
+        load_result = set_peft_model_state_dict(model.llm_model, adapters_weights, adapter_name="default")
+    else:
+        load_result = set_peft_model_state_dict(model.llama_model, adapters_weights, adapter_name="default")
     rank0_print('Model is loaded...')
 
 def main():
@@ -167,7 +170,7 @@ def main():
 
     if training_args.previous_task_model_path is not None:
         # load model from previous task
-        load_model_from_previous_task(model, training_args.previous_task_model_path)
+        load_model_from_previous_task(cfg, model, training_args.previous_task_model_path)
 
     data_module = create_MiniGPT_data_module(Concated_Dataset, cfg)
 
@@ -188,7 +191,10 @@ def main():
         )
         if training_args.local_rank == 0 or training_args.local_rank == -1:
             model.config.save_pretrained(training_args.output_dir)
-            model.llama_model.save_pretrained(training_args.output_dir, state_dict=state_dict)
+            if cfg.model_cfg.arch == 'blip2_vicuna_instruct':
+                model.llm_model.save_pretrained(training_args.output_dir, state_dict=state_dict)
+            else:
+                model.llama_model.save_pretrained(training_args.output_dir, state_dict=state_dict)
             torch.save(non_lora_state_dict, os.path.join(training_args.output_dir, 'non_lora_trainables.bin'))
     else:
         safe_save_model_for_hf_trainer(trainer=trainer,

@@ -35,6 +35,7 @@ from ETrain.Models import *
 from ETrain.Dataset import create_LLaVA_data_module
 from ETrain.Dataset.dataset import DataArguments
 from ETrain.Train.Base_trainer import *
+from ETrain.Models.LLaVA.llava_trainer import load_model_from_previous_task
 
 from PIL import Image, ImageFile
 ImageFile.LOAD_TRUNCATED_IMAGES = True
@@ -127,6 +128,10 @@ def train():
 
     model, tokenizer = create_LLaVA_model(training_args, model_args, data_args, bnb_model_from_pretrained_args, compute_dtype, local_rank)
 
+    if model_args.previous_task_model_path is not None:
+            # load model from previous task
+            load_model_from_previous_task(model, model_args.previous_task_model_path)
+
     data_module = create_LLaVA_data_module(tokenizer, data_args, local_rank)
 
     trainer = LLaVATrainer(model=model,
@@ -139,22 +144,7 @@ def train():
     trainer.train()
     trainer.save_state()
 
-    model.config.use_cache = True
-
-    if training_args.lora_enable:
-        state_dict = get_peft_state_maybe_zero_3(
-            model.named_parameters(), training_args.lora_bias
-        )
-        non_lora_state_dict = get_peft_state_non_lora_maybe_zero_3(
-            model.named_parameters()
-        )
-        if training_args.local_rank == 0 or training_args.local_rank == -1:
-            model.config.save_pretrained(training_args.output_dir)
-            model.save_pretrained(training_args.output_dir, state_dict=state_dict)
-            torch.save(non_lora_state_dict, os.path.join(training_args.output_dir, 'non_lora_trainables.bin'))
-    else:
-        safe_save_model_for_hf_trainer(trainer=trainer,
-                                       output_dir=training_args.output_dir)
+    trainer.save_model(training_args)
 
 
 if __name__ == "__main__":
