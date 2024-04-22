@@ -71,9 +71,9 @@ class CLITDataset(Dataset):
         answers = self.connect_sym.join(answers)
 
         if 'id' in info.keys():
-            idx = info['id']
+            idx = str(info['id'])
         else:
-            idx = info['question_id']
+            idx = str(info['question_id'])
 
         return {
             "image": image,
@@ -114,3 +114,7 @@ class CLIT_VizWizDataset(CLITDataset):
 class CLIT_VQAv2Dataset(CLITDataset):
     def __getitem__(self, index):
         return super(CLIT_VQAv2Dataset,self).__getitem__(index)
+
+class CLIT_MultitaskDataset(CLITDataset):
+    def __getitem__(self, index):
+        return super(CLIT_MultitaskDataset,self).__getitem__(index)

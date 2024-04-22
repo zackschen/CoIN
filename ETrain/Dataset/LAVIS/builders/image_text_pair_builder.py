@@ -613,3 +613,11 @@ class CLITVQAV2Builder(CLITBuilder):
     DATASET_CONFIG_DICT = {
         "default": "configs/LAVIS/datasets/CLIT/CLIT_vqav2.yaml",
     }
+
+
+@registry.register_builder("clit_multitask")
+class CLITMultitaskBuilder(CLITBuilder):
+    train_dataset_cls = CLIT_MultitaskDataset
+    DATASET_CONFIG_DICT = {
+        "default": "configs/LAVIS/datasets/CLIT/CLIT_multitask.yaml",
+    }
