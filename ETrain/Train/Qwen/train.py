@@ -16,10 +16,9 @@ from transformers import Trainer, deepspeed
 from peft import LoraConfig, get_peft_model, prepare_model_for_kbit_training
 from accelerate.utils import DistributedType
 from ETrain.Train.Base_trainer import *
-from ETrain.Train.LLaVA.llava_trainer import QwenTrainer
 from ETrain.Models.Qwen import create_Qwen_model
 from ETrain.Dataset.Qwen import create_Qwen_data_module
-from ETrain.Models.Qwen.qwen_trainer import load_model_from_previous_task
+from ETrain.Train.Qwen.qwen_trainer import QwenTrainer, load_model_from_previous_task
 
 @dataclass
 class ModelArguments:
