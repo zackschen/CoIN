@@ -8,8 +8,8 @@ CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7 HF_ENDPOINT="https://hf-mirror.com" OMP_NUM
     --lora_enable True --lora_r 64 --lora_alpha 256 \
     --cfg-path ./scripts/MiniGPTv2/6_Grounding.yaml \
     --bf16 True \
-    --previous_task_model_path ./checkpoints/MiniGPTv2/CoIN/Finetune/VizWiz \
-    --output_dir ./checkpoints/MiniGPTv2/CoIN/Finetune/Grounding \
+    --previous_task_model_path ./checkpoints/MiniGPTv2/CoIN_New/Finetune/VizWiz \
+    --output_dir ./checkpoints/MiniGPTv2/CoIN_New/Finetune/Grounding \
     --num_train_epochs 1 \
     --per_device_train_batch_size 2 \
     --per_device_eval_batch_size 1 \

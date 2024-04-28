@@ -1,6 +1,6 @@
 #!/bin/bash
 
-sh ./scripts/MiniGPTv2/1_Science.sh
+# sh ./scripts/MiniGPTv2/1_Science.sh
 sh ./scripts/MiniGPTv2/2_TextVQA.sh
 sh ./scripts/MiniGPTv2/3_ImageNet.sh
 sh ./scripts/MiniGPTv2/4_GQA.sh

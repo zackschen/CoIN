@@ -9,7 +9,7 @@ CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7 HF_ENDPOINT="https://hf-mirror.com" OMP_NUM
     --cfg-path ./scripts/MiniGPTv2/2_TextVQA.yaml \
     --bf16 True \
     --previous_task_model_path ./checkpoints/MiniGPTv2/CoIN/Finetune/ScienceQA \
-    --output_dir ./checkpoints/MiniGPTv2/CoIN/Finetune/TextVQA \
+    --output_dir ./checkpoints/MiniGPTv2/CoIN_New/Finetune/TextVQA \
     --num_train_epochs 1 \
     --per_device_train_batch_size 16 \
     --per_device_eval_batch_size 1 \
