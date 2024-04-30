@@ -16,7 +16,12 @@ from accelerate.utils import DistributedType
 from peft.utils import WEIGHTS_NAME, set_peft_model_state_dict
 from ETrain.Train.Base_trainer import *
 from ETrain.Models.Qwen.modeling_qwen import QWenLMHeadModel
+from ETrain.Models.Qwen.tokenization_qwen import *
+from transformers import AutoTokenizer, AutoModelForCausalLM
+from transformers.generation import GenerationConfig
 
+import sys
+sys.path.append('/home/chencheng/Code/Slim_Train')
 from CoIN.peft import PeftModel, TaskType, get_peft_model, CoINMOELoraConfig, WEIGHTS_NAME, set_peft_model_state_dict
 
 def create_Qwen_model(training_args, model_args, data_args, lora_args):
@@ -54,7 +59,7 @@ def create_Qwen_model(training_args, model_args, data_args, lora_args):
             model.transformer.visual.requires_grad_(False)
             if hasattr(model.transformer.visual,'attn_pool'):
                 model.transformer.visual.attn_pool.requires_grad_(True)
-    tokenizer = transformers.AutoTokenizer.from_pretrained(
+    tokenizer = AutoTokenizer.from_pretrained(
         model_args.model_name_or_path,
         cache_dir=training_args.cache_dir,
         model_max_length=training_args.model_max_length,
@@ -92,5 +97,31 @@ def create_Qwen_model(training_args, model_args, data_args, lora_args):
 
         if training_args.gradient_checkpointing:
             model.enable_input_require_grads()
+
+    return model, tokenizer
+
+def load_pretrained_model(model_path, model_base):
+    config = transformers.AutoConfig.from_pretrained(model_path,trust_remote_code=True,)
+    model = QWenLMHeadModel.from_pretrained(model_base, device_map="cuda", trust_remote_code=True).eval()
+    model.generation_config = GenerationConfig.from_pretrained(model_base, trust_remote_code=True)
+    
+    print('Loading additional LLaVA weights...')
+    if os.path.exists(os.path.join(model_path, 'non_lora_trainables.bin')):
+        non_lora_trainables = torch.load(os.path.join(model_path, 'non_lora_trainables.bin'), map_location='cpu')
+    else:
+        assert False, 'non_lora_trainables.bin not found'
+    non_lora_trainables = {(k[11:] if k.startswith('base_model.') else k): v for k, v in non_lora_trainables.items()}
+    if any(k.startswith('model.model.') for k in non_lora_trainables):
+        non_lora_trainables = {(k[6:] if k.startswith('model.') else k): v for k, v in non_lora_trainables.items()}
+    model.load_state_dict(non_lora_trainables, strict=False)
+
+    from peft import PeftModel
+    print('Loading LoRA weights...')
+    model = PeftModel.from_pretrained(model, model_path)
+    print('Merging LoRA weights...')
+    model = model.merge_and_unload()
+    print('Model is loaded...')
+
+    tokenizer = QWenTokenizer.from_pretrained(model_base,trust_remote_code=True)
 
     return model, tokenizer

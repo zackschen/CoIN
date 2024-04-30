@@ -2,7 +2,7 @@ import os
 import argparse
 import json
 
-from ETrain.eval.LLaVA.CoIN.m4c_evaluator import EvalAIAnswerProcessor
+from ETrain.Eval.LLaVA.CoIN.m4c_evaluator import EvalAIAnswerProcessor
 
 
 def parse_args():

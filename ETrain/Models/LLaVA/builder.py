@@ -19,7 +19,7 @@ import shutil
 
 from transformers import AutoTokenizer, AutoModelForCausalLM, AutoConfig, BitsAndBytesConfig
 import torch
-from ETrain.LLaVA import *
+from ETrain.Models.LLaVA import *
 from ETrain.utils.LLaVA.constants import DEFAULT_IMAGE_PATCH_TOKEN, DEFAULT_IM_START_TOKEN, DEFAULT_IM_END_TOKEN
 
 sys.path.append('/home/chencheng/Code/LLaVA/')

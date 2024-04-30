@@ -1,4 +1,4 @@
-CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7 OMP_NUM_THREADS=1 NCCL_P2P_DISABLE=1 torchrun --nproc_per_node 8 \
+CUDA_VISIBLE_DEVICES=1,2,3,4,5,6,7 OMP_NUM_THREADS=1 NCCL_P2P_DISABLE=1 torchrun --nproc_per_node 7 \
     --nnodes 1 \
     --node_rank 0 \
     --master_addr localhost \
@@ -8,7 +8,7 @@ CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7 OMP_NUM_THREADS=1 NCCL_P2P_DISABLE=1 torchr
     --lora_enable True --lora_r 64 --lora_alpha 256 \
     --cfg-path ./scripts/MiniGPTv2/Multitask.yaml \
     --bf16 True \
-    --output_dir ./checkpoints/MiniGPTv2/CoIN/Finetune/Multitask \
+    --output_dir ./checkpoints/MiniGPTv2/CoIN_New/Finetune/Multitask \
     --num_train_epochs 1 \
     --per_device_train_batch_size 2 \
     --per_device_eval_batch_size 1 \

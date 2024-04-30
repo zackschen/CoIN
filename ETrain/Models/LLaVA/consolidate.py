@@ -6,7 +6,7 @@ import argparse
 
 import torch
 from transformers import AutoTokenizer, AutoModelForCausalLM
-from ETrain.LLaVA import *
+from ETrain.Models.LLaVA import *
 from ETrain.Models.LLaVA.utils import auto_upgrade
 
 

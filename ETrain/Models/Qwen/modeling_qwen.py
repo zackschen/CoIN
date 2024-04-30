@@ -584,13 +584,23 @@ class QWenModel(QWenPreTrainedModel):
         return_dict: Optional[bool] = None,
         images: Optional[torch.FloatTensor] = None,
     ):
-        if past_key_values is None and images is not None:
+        if (past_key_values is None and torch.any(input_ids == self.config.visual['image_start_id'])) or \
+            (past_key_values is None and images is not None):
+
             bos_pos = torch.where(input_ids == self.config.visual['image_start_id'])
             eos_pos = torch.where(input_ids == self.config.visual['image_start_id'] + 1)
             assert (bos_pos[0] == eos_pos[0]).all()
             img_pos = torch.stack((bos_pos[0], bos_pos[1], eos_pos[1]), dim=1)
 
-            images = self.visual(images)
+            if images is not None:
+                images = self.visual(images)
+            else:
+                images = []
+                for i, a, b in img_pos:
+                    image = input_ids[i][a + 1 : b - 1].tolist()
+                    image = image[ : image.index(self.config.visual['image_start_id'] + 2)]
+                    images.append(bytes(image).decode('utf-8'))
+                images = self.visual.encode(images)
 
             assert images.shape[0] == len(images)
             fake_images = None
