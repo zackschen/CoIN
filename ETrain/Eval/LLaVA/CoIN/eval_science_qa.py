@@ -8,9 +8,9 @@ import random
 def get_args():
     parser = argparse.ArgumentParser()
     parser.add_argument('--base-dir', type=str, default = './cl_dataset/ScienceQA')
-    parser.add_argument('--result-file', type=str, default='./results/CoIN_normaltrain_testslim/ScienceQA/OCRVQA/merge.jsonl')
-    parser.add_argument('--output-file', type=str, default= './results/CoIN_normaltrain_testslim/ScienceQA/OCRVQA/output.jsonl')
-    parser.add_argument('--output-result', type=str, default= './results/CoIN_normaltrain_testslim/ScienceQA/OCRVQA/output_result.jsonl')
+    parser.add_argument('--result-file', type=str, default='./results/CoIN/Qwen/ScienceQA/Finetune/merge.jsonl')
+    parser.add_argument('--output-file', type=str, default= './results/CoIN/Qwen/ScienceQA/Finetune/output.jsonl')
+    parser.add_argument('--output-result', type=str, default= './results/CoIN/Qwen/ScienceQA/Finetune/output_result.jsonl')
     parser.add_argument('--split', type=str, default='test')
     parser.add_argument('--options', type=list, default=["A", "B", "C", "D", "E"])
     return parser.parse_args()
@@ -98,12 +98,12 @@ if __name__ == "__main__":
     total = len(results['correct']) + len(results['incorrect'])
 
     ###### IMG ######
-    multimodal_correct = len([x for x in results['correct'] if x['is_multimodal']])
-    multimodal_incorrect = len([x for x in results['incorrect'] if x['is_multimodal']])
-    multimodal_total = multimodal_correct + multimodal_incorrect
+    # multimodal_correct = len([x for x in results['correct'] if x['is_multimodal']])
+    # multimodal_incorrect = len([x for x in results['incorrect'] if x['is_multimodal']])
+    # multimodal_total = multimodal_correct + multimodal_incorrect
     ###### IMG ######
 
-    print(f'Total: {total}, Correct: {correct}, Accuracy: {correct / total * 100:.2f}%, IMG-Accuracy: {multimodal_correct / multimodal_total * 100:.2f}%')
+    print(f'Total: {total}, Correct: {correct}, Accuracy: {correct / total * 100:.2f}%')
 
     sqa_results['acc'] = correct / total * 100
     sqa_results['correct'] = correct

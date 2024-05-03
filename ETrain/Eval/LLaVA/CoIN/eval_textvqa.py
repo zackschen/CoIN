@@ -3,7 +3,7 @@ import argparse
 import json
 import re
 
-from ETrain.eval.LLaVA.CoIN.m4c_evaluator import TextVQAAccuracyEvaluator
+from ETrain.Eval.LLaVA.CoIN.m4c_evaluator import TextVQAAccuracyEvaluator
 
 
 def get_args():
