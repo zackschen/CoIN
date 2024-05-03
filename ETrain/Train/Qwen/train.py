@@ -13,7 +13,6 @@ from deepspeed import zero
 from deepspeed.runtime.zero.partition_parameters import ZeroParamStatus
 import transformers
 from transformers import Trainer, deepspeed
-from peft import LoraConfig, get_peft_model, prepare_model_for_kbit_training
 from accelerate.utils import DistributedType
 from ETrain.Train.Base_trainer import *
 from ETrain.Models.Qwen import create_Qwen_model
@@ -24,6 +23,9 @@ from ETrain.Train.Qwen.qwen_trainer import QwenTrainer, load_model_from_previous
 class ModelArguments:
     model_name_or_path: Optional[str] = field(default="Qwen/Qwen-7B")
     previous_task_model_path: Optional[str] = field(default=None)
+
+    task_embedding_dim: Optional[int] = field(default=64)
+    expert_num: Optional[int] = field(default=4)
 
 @dataclass
 class DataArguments:

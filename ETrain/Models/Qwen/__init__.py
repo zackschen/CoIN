@@ -5,6 +5,7 @@ import logging
 import os
 from typing import Dict, Optional, List
 import torch
+import sys
 from torch.utils.data import Dataset
 from deepspeed import zero
 from deepspeed.runtime.zero.partition_parameters import ZeroParamStatus
@@ -17,6 +18,7 @@ from peft.utils import WEIGHTS_NAME, set_peft_model_state_dict
 from ETrain.Train.Base_trainer import *
 from ETrain.Models.Qwen.modeling_qwen import QWenLMHeadModel
 
+sys.path.append('/home/chencheng/Code/Slim_Train')
 from CoIN.peft import PeftModel, TaskType, get_peft_model, CoINMOELoraConfig, WEIGHTS_NAME, set_peft_model_state_dict
 
 def create_Qwen_model(training_args, model_args, data_args, lora_args):
@@ -65,6 +67,10 @@ def create_Qwen_model(training_args, model_args, data_args, lora_args):
     tokenizer.pad_token_id = tokenizer.eod_id
 
     if training_args.use_lora:
+        kwargs = { 
+            "task_embedding_dim": model_args.task_embedding_dim,
+            "expert_num": model_args.expert_num,
+        }
         if lora_args.q_lora or "chat" in model_args.model_name_or_path.lower():
             modules_to_save = None
         else:
@@ -77,7 +83,8 @@ def create_Qwen_model(training_args, model_args, data_args, lora_args):
             lora_dropout=lora_args.lora_dropout,
             bias=lora_args.lora_bias,
             task_type=TaskType.CAUSAL_LM_CoIN,
-            modules_to_save=modules_to_save  # This argument serves for adding new tokens.
+            # modules_to_save=modules_to_save  # This argument serves for adding new tokens.
+            **kwargs
         )
         if lora_args.q_lora:
             model = prepare_model_for_kbit_training(
