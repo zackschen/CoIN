@@ -621,3 +621,60 @@ class CLITMultitaskBuilder(CLITBuilder):
     DATASET_CONFIG_DICT = {
         "default": "configs/LAVIS/datasets/CLIT/CLIT_multitask.yaml",
     }
+
+##### Eval
+
+@registry.register_builder("clit_scienceqa_eval")
+class CLITScienceQA_EvalBuilder(CLITBuilder):
+    train_dataset_cls = CLIT_ScientQA_EvalDataset
+    DATASET_CONFIG_DICT = {
+        "default": "configs/LAVIS/datasets/CLIT/CLIT_scienceqa_eval.yaml",
+    }
+
+@registry.register_builder("clit_gqa_eval")
+class CLITGQA_EvalBuilder(CLITBuilder):
+    train_dataset_cls = CLIT_GQA_EvalDataset
+    DATASET_CONFIG_DICT = {
+        "default": "configs/LAVIS/datasets/CLIT/CLIT_gqa_eval.yaml",
+    }
+
+@registry.register_builder("clit_grounding_eval")
+class CLITGrounding_EvalBuilder(CLITBuilder):
+    train_dataset_cls = CLIT_Grounding_EvalDataset
+    DATASET_CONFIG_DICT = {
+        "default": "configs/LAVIS/datasets/CLIT/CLIT_grounding_eval.yaml",
+    }
+@registry.register_builder("clit_imagenet_eval")
+class CLITImageNet_EvalBuilder(CLITBuilder):
+    train_dataset_cls = CLIT_ImageNet_EvalDataset
+    DATASET_CONFIG_DICT = {
+        "default": "configs/LAVIS/datasets/CLIT/CLIT_imagenet_eval.yaml",
+    }
+
+@registry.register_builder("clit_ocrvqa_eval")
+class CLITOCRVQA_EvalBuilder(CLITBuilder):
+    train_dataset_cls = CLIT_OCRVQA_EvalDataset
+    DATASET_CONFIG_DICT = {
+        "default": "configs/LAVIS/datasets/CLIT/CLIT_ocrvqa_eval.yaml",
+    }
+
+@registry.register_builder("clit_textvqa_eval")
+class CLITTextVQA_EvalBuilder(CLITBuilder):
+    train_dataset_cls = CLIT_TextVQA_EvalDataset
+    DATASET_CONFIG_DICT = {
+        "default": "configs/LAVIS/datasets/CLIT/CLIT_textvqa_eval.yaml",
+    }
+
+@registry.register_builder("clit_vizwiz_eval")
+class CLITVizWiz_EvalBuilder(CLITBuilder):
+    train_dataset_cls = CLIT_VizWiz_EvalDataset
+    DATASET_CONFIG_DICT = {
+        "default": "configs/LAVIS/datasets/CLIT/CLIT_vizwiz_eval.yaml",
+    }
+
+@registry.register_builder("clit_vqav2_eval")
+class CLITVQAV2_EvalBuilder(CLITBuilder):
+    train_dataset_cls = CLIT_VQAv2_EvalDataset
+    DATASET_CONFIG_DICT = {
+        "default": "configs/LAVIS/datasets/CLIT/CLIT_vqav2_eval.yaml",
+    }

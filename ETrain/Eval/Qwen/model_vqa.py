@@ -46,9 +46,9 @@ def eval_model(args):
             if '.jpg.jpg' in image_file:
                 image_file = image_file.replace('.jpg.jpg', '.jpg')
             image_file = os.path.join(args.image_folder, image_file.replace('./',''))
-            prompt = '<img>{}</img>{} Answer:'.format(image_file, qs)
+            prompt = 'System:You are a helpful assistant.\n\n<img>{}</img>{} Assistant:'.format(image_file, qs)
         else:
-            prompt = '{} Answer:'.format(qs)
+            prompt = 'System:You are a helpful assistant.\n\n{} Assistant:'.format(qs)
 
         inputs = tokenizer(prompt, return_tensors='pt')
         inputs = inputs.to(model.device)

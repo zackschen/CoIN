@@ -174,7 +174,6 @@ def main():
 
     data_module = create_MiniGPT_data_module(Concated_Dataset, cfg)
 
-    # training_args.deepspeed = "./scripts/zero3.json"
     trainer = Trainer(model=model,
                     args=training_args,
                     **data_module)
