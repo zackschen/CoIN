@@ -14,8 +14,12 @@ from transformers.trainer import (
 )
 from typing import List, Optional
 from ETrain.Train.LLaVA.llava_trainer import LLaVATrainer
-from peft.utils import WEIGHTS_NAME, set_peft_model_state_dict
 from ETrain.Train.Base_trainer import *
+
+import sys
+sys.path.append('/home/chencheng/Code/Slim_Train')
+from CoIN.peft import PeftModel, TaskType, get_peft_model, CoINMOELoraConfig, WEIGHTS_NAME, set_peft_model_state_dict
+
 
 def load_model_from_previous_task(model, previous_task_model_path):
     if os.path.exists(os.path.join(previous_task_model_path, 'non_lora_trainables.bin')):
@@ -35,7 +39,6 @@ def load_model_from_previous_task(model, previous_task_model_path):
         non_lora_trainables = {(k[6:] if k.startswith('model.') else k): v for k, v in non_lora_trainables.items()}
     model.load_state_dict(non_lora_trainables, strict=False)
 
-    from peft import PeftModel
     filename = os.path.join(previous_task_model_path, WEIGHTS_NAME)
     adapters_weights = torch.load(filename, map_location=torch.device("cuda" if torch.cuda.is_available() else "cpu"))
     load_result = set_peft_model_state_dict(model, adapters_weights, adapter_name="default")
