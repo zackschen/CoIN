@@ -11,8 +11,8 @@ MASTER_PORT=6001
 MODEL="./checkpoints/Qwen/Qwen-VL" # Set the path if you do not want to load from huggingface directly
 # ATTENTION: specify the path to your training data, which should be a json file consisting of a list of conversations.
 # See the section for finetuning in README for more information.
-OUTPUT_MODEL_PATH="./checkpoints/Qwen/CoIN/Multitask"
-DATA="playground/Instructions_Qwen/Multitask/train.json"
+OUTPUT_MODEL_PATH="./checkpoints/Qwen/CoIN/Multitask-new"
+DATA="playground/Instructions_Qwen/Multitask/train_new.json"
 DS_CONFIG_PATH="scripts/zero3_offload.json"
 
 DISTRIBUTED_ARGS="
@@ -21,9 +21,7 @@ DISTRIBUTED_ARGS="
     --node_rank $NODE_RANK \
     --master_addr $MASTER_ADDR \
     --master_port $MASTER_PORT
-"
-
-CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7 torchrun $DISTRIBUTED_ARGS ETrain/Train/Qwen/train.py \
+"DA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7 torchrun $DISTRIBUTED_ARGS ETrain/Train/Qwen/train.py \
     --model_name_or_path $MODEL \
     --data_path $DATA \
     --bf16 True \
