@@ -1,0 +1,85 @@
+{
+    // 使用 IntelliSense 了解相关属性。 
+    // 悬停以查看现有属性的描述。
+    // 欲了解更多信息，请访问: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "python",
+            "type": "python",
+            "request": "launch",
+            "python": "/home/chencheng/data/miniconda3/envs/llava-1/bin/python",
+            "program": "/home/chencheng/data/miniconda3/envs/llava-1/bin/deepspeed",
+            // "program": "llava/eval/Instruction_CC/evaluate_prompt.py",
+            // "program": "llava/eval/eval_gpt_review_visual_cl.py",
+            // "program": "./llava/train/train.py",
+            "console": "integratedTerminal",
+            "justMyCode": false,
+            "cwd": "${workspaceFolder}",
+            "env": {"HF_ENDPOINT": "https://hf-mirror.com","CUDA_VISIBLE_DEVICES": "0,1,2,3"},
+            // "args": [
+            //         // "--annotation-file","./cl_dataset/TextVQA/TextVQA_0.5.1_val.json",
+            //         // "--result-file", "./results/Instructions/CL_Tuning/1.5/TextVQA/Finetune/merge.jsonl",
+            //         // "--output-dir","./results/Instructions/CL_Tuning/1.5/TextVQA/Finetune",
+            //         // "--output","./results/cifar10-review.json",
+            //         "--tier","testdev_balanced",
+            //         "--path","./results/CLIT_slim/GQA/VQAv2",
+            //         "--output-dir","./results/CLIT_slim/GQA/VQAv2",
+            //     ]
+            // "args": [
+            //         "--model-path","./checkpoints/Instruction/Pre_train+Tuning_1.5/LLaVA-v1.5-7b",
+            //         // "--model-base","./checkpoints/Vicuna/vicuna-7b-v1.5",
+            //         "--image-folder","./cl_dataset",
+            //         "--conv-mode","vicuna_v1",
+            //         "--question-file","./results/CLIT_slim_new_0.1/ScienceQA/Finetune/prompt_to_eval.json",
+            //         // "--answers-file","./1.jsonl",
+            //         "--temperature","0",
+            //         "--conv-mode","vicuna_v1"
+            //     ]
+            "args": [
+                "--include", "localhost:0,1,2,3",
+                "--master_port","29500",
+                "./llava/train/train_MOE.py",
+                "--deepspeed","./scripts/zero3_offload.json",
+                "--lora_enable","True",
+                "--lora_r","128",
+                "--lora_alpha","256",
+                "--mm_projector_lr","2e-5",
+                "--previous_task_model_path","./checkpoints/Instruction/Only_Pretrain_1.5_MOE_2/ScienceQA/llava-1.5-7b-lora",
+                // "--pretrain_mm_mlp_adapter","./checkpoints/Instruction/Only_Pretrain_1.5/llava-vicuna-2-7b-chat-pretrain/mm_projector.bin",
+                "--model_name_or_path","./checkpoints/Vicuna/vicuna-7b-v1.5",
+                "--version","v1",
+                "--data_path","./playground/Instructions_slim_0.1/TextVQA/train.json",
+                // "--memory_data_path","./playground/Instructions/Memory/VizWiz_memory_100.json",
+                // "--dataset_json_path","scripts/Instruction_CC/LoRA/Train_CLIT/datasets_setting.json",
+                "--image_folder","./cl_dataset",
+                "--vision_tower","openai/clip-vit-large-patch14-336",
+                "--mm_vision_select_layer","-2",
+                "--mm_use_im_start_end","False",
+                "--mm_use_im_patch_token","False",
+                "--bf16","True",
+                "--output_dir","./heckpoints/Instruction/Only_Pretrain_1.5_Memory_100/VizWiz/llava-1.5-7b-lora",
+                "--num_train_epochs","1",
+                "--per_device_train_batch_size","1",
+                "--per_device_eval_batch_size","1",
+                "--gradient_accumulation_steps","10",
+                "--evaluation_strategy","no",
+                "--save_strategy","epoch",
+                "--learning_rate","2e-5",
+                "--weight_decay","0.",
+                "--warmup_ratio","0.03",
+                "--lr_scheduler_type","cosine",
+                "--logging_steps","1",
+                "--tf32","True",
+                "--model_max_length","2048",
+                "--gradient_checkpointing","True",
+                "--dataloader_num_workers","4",
+                "--lazy_preprocess","True",
+                "--expert_num","2",
+                // "--freeze_backbone",
+                "--report_to","none",
+                // "--tune_mm_mlp_adapter","True",
+            ]
+        }
+    ]
+}
