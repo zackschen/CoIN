@@ -159,7 +159,10 @@ class CLIT_EvalDataset(Dataset):
 
         questions = info['text'].replace('<image>\n', '').strip()
         questions = '<Img><ImageHere></Img> {} '.format(questions)
-        answers = info['answer']
+        if 'answer' in info.keys():
+            answers = info['answer']
+        else:
+            answers = info['answer_bbox']
 
         if 'id' in info.keys():
             idx = str(info['id'])

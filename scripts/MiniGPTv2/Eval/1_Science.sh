@@ -1,7 +1,7 @@
 RESULT_DIR="./results/CoIN/MiniGPTv2/ScienceQA"
 MODELPATH=$2
 
-deepspeed --include localhost:1,2,3,4,5,6,7 \
+deepspeed --include localhost:0,1,2,3,4,5,6,7 \
     ETrain/Eval/MiniGPT/model_vqa.py \
     --cfg-path ./scripts/MiniGPTv2/Eval/1_Science.yaml \
     --image-folder ./cl_dataset \
