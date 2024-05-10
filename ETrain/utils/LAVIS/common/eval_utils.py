@@ -1,16 +1,13 @@
 import argparse
 import numpy as np
-from nltk.translate.bleu_score import sentence_bleu
 
 from ETrain.utils.LAVIS.common.registry import registry
 from ETrain.utils.LAVIS.common.config import Config
 
 # imports modules for registration
-from minigpt4.datasets.builders import *
-from minigpt4.models import *
-from minigpt4.processors import *
-from minigpt4.runners import *
-from minigpt4.tasks import *
+from ETrain.Dataset.LAVIS.builders import *
+from ETrain.Models.MiniGPT import *
+from ETrain.utils.LAVIS.processors import *
 
 
 
