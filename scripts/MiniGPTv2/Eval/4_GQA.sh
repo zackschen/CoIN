@@ -16,5 +16,5 @@ python -m ETrain.Eval.LLaVA.CoIN.eval_gqa --tier testdev_balanced --path $RESULT
 
 python -m ETrain.Eval.LLaVA.CoIN.create_prompt \
     --rule ./ETrain/Eval/LLaVA/CoIN/rule.json \
-    --questions ./playground/Instructions_slim/GQA/test.json \
+    --questions ./playground/Instructions_slim/GQA/test_new.json \
     --results $output_file \

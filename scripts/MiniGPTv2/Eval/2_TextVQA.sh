@@ -17,5 +17,5 @@ python -m ETrain.Eval.LLaVA.CoIN.eval_textvqa \
 
 python -m ETrain.Eval.LLaVA.CoIN.create_prompt \
     --rule ./ETrain/Eval/LLaVA/CoIN/rule.json \
-    --questions ./playground/Instructions_slim/TextVQA/val.json \
+    --questions ./playground/Instructions_slim/TextVQA/val_new.json \
     --results $output_file \
