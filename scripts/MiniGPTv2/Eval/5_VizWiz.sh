@@ -12,10 +12,10 @@ output_file=$RESULT_DIR/$1/merge.jsonl
 
 python -m ETrain.Eval.LLaVA.CoIN.eval_vizwiz \
     --result-file $output_file \
-    --annotation-file ./playground/Instructions_slim/VizWiz/val.json \
+    --annotation-file ./playground/Instructions_slim/VizWiz/val_new.json \
     --output-dir $RESULT_DIR/$1 \
 
 python -m ETrain.Eval.LLaVA.CoIN.create_prompt \
     --rule ./ETrain/Eval/LLaVA/CoIN/rule.json \
-    --questions ./playground/Instructions_slim/VizWiz/val.json \
+    --questions ./playground/Instructions_slim/VizWiz/val_new.json \
     --results $output_file \

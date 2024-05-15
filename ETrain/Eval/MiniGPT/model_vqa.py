@@ -53,7 +53,7 @@ def eval_model(args):
     
     world_size = int(os.getenv('WORLD_SIZE', '4'))
     model = create_MiniGPT4_model(cfg)
-    load_model_from_previous_task(cfg, model, args.model_path)
+    # load_model_from_previous_task(cfg, model, args.model_path)
 
     ds_model = deepspeed.init_inference(
         model=model,      # Transformers模型
