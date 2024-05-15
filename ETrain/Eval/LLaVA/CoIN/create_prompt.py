@@ -3,9 +3,9 @@ import json, os, argparse
 
 def parse_args():
     parser = argparse.ArgumentParser()
-    parser.add_argument('--results', type=str, default="./results/CoIN/Grounding/Finetune/merge.jsonl")
-    parser.add_argument('--questions', type=str, default='./playground/Instructions_Type1/Grounding/test.json')
-    parser.add_argument('--rule', default='./rule.json')
+    parser.add_argument('--results', type=str, default="./results/CoIN/Qwen_New/ScienceQA/GQA/merge.jsonl")
+    parser.add_argument('--questions', type=str, default='./playground/Instructions_slim/ScienceQA/test.json')
+    parser.add_argument('--rule', default='./ETrain/Eval/LLaVA/CoIN/rule.json')
     parser.add_argument('--rule_temp', default='CoIN')
     return parser.parse_args()
 
