@@ -1,30 +1,14 @@
 import argparse
 import os
-import random
 import json
-import numpy as np
 import torch
-import torch.backends.cudnn as cudnn
-import wandb
-import transformers
 import math
 import deepspeed
-from PIL import Image
 from tqdm import tqdm
 import shortuuid
 import torch.distributed as dist
 from torch.utils.data import DataLoader
 from ETrain.utils.LAVIS.common.config import Config
-from ETrain.utils.LAVIS.common.dist_utils import get_rank, init_distributed_mode, setup_for_distributed
-from ETrain.utils.LAVIS.common.logger import setup_logger
-from ETrain.utils.LAVIS.common.optims import (
-    LinearWarmupCosineLRScheduler,
-    LinearWarmupStepLRScheduler,
-)
-from ETrain.utils.LAVIS.common.registry import registry
-from ETrain.utils.LAVIS.common.utils import now
-from ETrain.utils.LAVIS.common.eval_utils import prepare_texts, init_model, eval_parser
-
 # imports modules for registration
 from ETrain.Dataset.LAVIS.builders import *
 from ETrain.Dataset.LAVIS import *
@@ -33,8 +17,6 @@ from ETrain.Train.LAVIS import *
 from ETrain.Train.Base_trainer import *
 from transformers import Trainer
 from peft.utils import WEIGHTS_NAME, set_peft_model_state_dict
-from transformers.modeling_utils import load_state_dict, get_checkpoint_shard_files, _load_state_dict_into_model
-from transformers.deepspeed import is_deepspeed_zero3_enabled
 from ETrain.utils.LAVIS.conversation.conversation import CONV_VISION_minigptv2
 
 def load_model_from_previous_task(cfg, model, previous_task_model_path):

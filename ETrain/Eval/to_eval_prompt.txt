@@ -1,0 +1,1 @@
+./results/CoIN/Qwen_New/ScienceQA/Finetune

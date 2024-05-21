@@ -108,8 +108,7 @@ def create_Qwen_model(training_args, model_args, data_args, lora_args):
 
 def load_pretrained_model(model_path, model_base):
     config = transformers.AutoConfig.from_pretrained(model_path,trust_remote_code=True,)
-    model = QWenLMHeadModel.from_pretrained(model_base, device_map="cuda", trust_remote_code=True).eval()
-    model.generation_config = GenerationConfig.from_pretrained(model_base, trust_remote_code=True)
+    model = AutoModelForCausalLM.from_pretrained(model_base, device_map="cuda", trust_remote_code=True).eval()
     
     print('Loading additional LLaVA weights...')
     if os.path.exists(os.path.join(model_path, 'non_lora_trainables.bin')):
@@ -121,13 +120,15 @@ def load_pretrained_model(model_path, model_base):
         non_lora_trainables = {(k[6:] if k.startswith('model.') else k): v for k, v in non_lora_trainables.items()}
     model.load_state_dict(non_lora_trainables, strict=False)
 
-    from peft import PeftModel
+    # from peft import PeftModel
     print('Loading LoRA weights...')
     model = PeftModel.from_pretrained(model, model_path)
     print('Merging LoRA weights...')
     model = model.merge_and_unload()
     print('Model is loaded...')
 
-    tokenizer = QWenTokenizer.from_pretrained(model_base,trust_remote_code=True)
+    tokenizer = AutoTokenizer.from_pretrained(model_base,trust_remote_code=True)
+    # tokenizer.padding_side = 'left'
+    # tokenizer.pad_token_id = tokenizer.eod_id
 
     return model, tokenizer

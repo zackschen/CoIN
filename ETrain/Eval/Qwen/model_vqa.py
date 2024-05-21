@@ -6,7 +6,6 @@ from tqdm import tqdm
 import shortuuid
 
 from ETrain.Models.Qwen import load_pretrained_model
-from ETrain.utils.LLaVA.utils import disable_torch_init
 
 from PIL import Image
 import math
@@ -25,7 +24,6 @@ def get_chunk(lst, n, k):
 
 def eval_model(args):
     # Model
-    disable_torch_init()
     model_path = os.path.expanduser(args.model_path)
     model_base = os.path.expanduser(args.model_base)
 
@@ -55,9 +53,17 @@ def eval_model(args):
 
         input_ids_size = inputs.data['input_ids'].size(1)
 
-        with torch.inference_mode():
-            pred = model.generate(**inputs)
-            outputs = [tokenizer.decode(_[input_ids_size].cpu(), skip_special_tokens=True).strip() for _ in pred]
+        pred = model.generate(**inputs,
+            do_sample=False,
+            num_beams=1,
+            max_new_tokens=50,
+            min_new_tokens=8,
+            length_penalty=0,
+            num_return_sequences=1,
+            use_cache=True,
+            pad_token_id=tokenizer.eod_id,
+            eos_token_id=tokenizer.eod_id)
+        outputs = [tokenizer.decode(_[input_ids_size:].cpu(),skip_special_tokens=True) for _ in pred]
 
         ans_id = shortuuid.uuid()
         ans_file.write(json.dumps({"question_id": idx,

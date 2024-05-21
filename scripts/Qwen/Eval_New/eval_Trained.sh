@@ -1,4 +1,4 @@
-#!/bin/bash
+# #!/bin/bash
 
 CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7 bash ./scripts/Qwen/Eval_New/1_eval_sqa.sh Finetune ./checkpoints/Qwen/CoIN_new/ScienceQA
 CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7 bash ./scripts/Qwen/Eval_New/2_eval_textqa.sh Finetune ./checkpoints/Qwen/CoIN_new/TextVQA
@@ -39,7 +39,7 @@ CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7 bash ./scripts/Qwen/Eval_New/5_eval_vizwiz.
 CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7 bash ./scripts/Qwen/Eval_New/5_eval_vizwiz.sh VQAv2 ./checkpoints/Qwen/CoIN_new/VQAv2
 CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7 bash ./scripts/Qwen/Eval_New/5_eval_vizwiz.sh OCRVQA ./checkpoints/Qwen/CoIN_new/OCRVQA
 
-CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7 bash ./scripts/Qwen/Eval_New/6_eval_visualgenome.sh VQAv2 ./checkpoints/Qwen/CoIN_new/VQAv2
-CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7 bash ./scripts/Qwen/Eval_New/6_eval_visualgenome.sh OCRVQA ./checkpoints/Qwen/CoIN_new/OCRVQA
+CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7 bash ./scripts/Qwen/Eval_New/6_eval_grounding.sh VQAv2 ./checkpoints/Qwen/CoIN_new/VQAv2
+CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7 bash ./scripts/Qwen/Eval_New/6_eval_grounding.sh OCRVQA ./checkpoints/Qwen/CoIN_new/OCRVQA
 
 CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7 bash ./scripts/Qwen/Eval_New/7_eval_vqav2.sh OCRVQA ./checkpoints/Qwen/CoIN_new/OCRVQA
