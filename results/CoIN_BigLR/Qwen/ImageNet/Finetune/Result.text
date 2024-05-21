@@ -1,0 +1,998 @@
+Samples: 4000
+Accuracy: 96.45%
+[
+    {
+        "question_id": "ILSVRC2012_val_00023386.JPEG",
+        "prompt": "System:You are a helpful assistant.\n\n<img>./cl_dataset/ImageNet_withlabel/val/ILSVRC2012_val_00023386.JPEG</img>What is the object in the image?\nAnswer the question using a single word or phrase. Assistant:",
+        "text": "Sunglass.\n\nSunglass.\n\nSunglass.\n\nSunglass.\n\nSunglass.\n\nSunglass.\n\nSung",
+        "answer_id": "jrGYJTw9fhvqzDDyMAHWh8",
+        "ground_truth": "Espresso maker"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00047458.JPEG",
+        "prompt": "System:You are a helpful assistant.\n\n<img>./cl_dataset/ImageNet_withlabel/val/ILSVRC2012_val_00047458.JPEG</img>What is the object in the image?\nAnswer the question using a single word or phrase. Assistant:",
+        "text": "American black bear.\n\nAmerican black bear.\n\nAmerican black bear.\n\nAmerican black bear.\n\nAmerican black bear.\n\nAmerican black bear.\n\nAmerican black",
+        "answer_id": "66kCNCRnWB678L9nBqneB7",
+        "ground_truth": "Sloth bear"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00016466.JPEG",
+        "prompt": "System:You are a helpful assistant.\n\n<img>./cl_dataset/ImageNet_withlabel/val/ILSVRC2012_val_00016466.JPEG</img>What is the object in the image?\nAnswer the question using a single word or phrase. Assistant:",
+        "text": "Bucket.\n\nBucket.\n\nBucket.\n\nBucket.\n\nBucket.\n\nBucket.\n\nBucket.\n\nBucket.\n\nBucket.",
+        "answer_id": "eWBHM6udzp8f7nzYcXHFKG",
+        "ground_truth": "Eggnog"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00000777.JPEG",
+        "prompt": "System:You are a helpful assistant.\n\n<img>./cl_dataset/ImageNet_withlabel/val/ILSVRC2012_val_00000777.JPEG</img>What is the object in the image?\nAnswer the question using a single word or phrase. Assistant:",
+        "text": "Mouse.\n\nMouse pad.\n\nMouse.\n\nMouse pad.\n\nMouse pad.\n\nMouse pad.\n\nMouse pad.\n\nMouse pad.",
+        "answer_id": "nvNjTwkjDPTxPQ68RiELi7",
+        "ground_truth": "Desk"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00027981.JPEG",
+        "prompt": "System:You are a helpful assistant.\n\n<img>./cl_dataset/ImageNet_withlabel/val/ILSVRC2012_val_00027981.JPEG</img>What is the object in the image?\nAnswer the question using a single word or phrase. Assistant:",
+        "text": "Goblet.\n\nGoblet.\n\nGoblet.\n\nGoblet.\n\nGoblet.\n\nGoblet.\n\nGob",
+        "answer_id": "g2bsTGTDnAFbjjpWzJRp2A",
+        "ground_truth": "Beer glass"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00001745.JPEG",
+        "prompt": "System:You are a helpful assistant.\n\n<img>./cl_dataset/ImageNet_withlabel/val/ILSVRC2012_val_00001745.JPEG</img>What is the object in the image?\nAnswer the question using a single word or phrase. Assistant:",
+        "text": "Red panda.\n\nhaust.\n\nhaust.\n\nhaust.\n\nhaust.\n\nhaust.\n\nhaust.\n\nhaust.\n\nhaust",
+        "answer_id": "F7ce6Aha8zwHmktCJKKr7C",
+        "ground_truth": "Sloth bear"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00026335.JPEG",
+        "prompt": "System:You are a helpful assistant.\n\n<img>./cl_dataset/ImageNet_withlabel/val/ILSVRC2012_val_00026335.JPEG</img>What is the object in the image?\nAnswer the question using a single word or phrase. Assistant:",
+        "text": "Dough.\n\nDough.\n\nDough.\n\nDough.\n\nDough.\n\nDough.\n\nDough.\n\nD",
+        "answer_id": "SBFxUU9KNJJYy3s3E3DGPH",
+        "ground_truth": "Chocolate sauce"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00027563.JPEG",
+        "prompt": "System:You are a helpful assistant.\n\n<img>./cl_dataset/ImageNet_withlabel/val/ILSVRC2012_val_00027563.JPEG</img>What is the object in the image?\nAnswer the question using a single word or phrase. Assistant:",
+        "text": "American black bear.\n\ud80c\udfe7\nAmerican black bear.\n\nAmerican black bear.\n\nAmerican black bear.\n\nAmerican black bear.\n\nAmerican black bear.\n\nAmerican black",
+        "answer_id": "RymDcdgb2AbvgGVHNXKUu8",
+        "ground_truth": "Sloth bear"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00040272.JPEG",
+        "prompt": "System:You are a helpful assistant.\n\n<img>./cl_dataset/ImageNet_withlabel/val/ILSVRC2012_val_00040272.JPEG</img>What is the object in the image?\nAnswer the question using a single word or phrase. Assistant:",
+        "text": "Doormat.\n\nDoormat.\n\nDoormat.\n\nDoormat.\n\nDoormat.\n\nDoormat.\n\nDoorm",
+        "answer_id": "SC6FmUwkc9c5bAu6e83BQX",
+        "ground_truth": "Envelope"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00031125.JPEG",
+        "prompt": "System:You are a helpful assistant.\n\n<img>./cl_dataset/ImageNet_withlabel/val/ILSVRC2012_val_00031125.JPEG</img>What is the object in the image?\nAnswer the question using a single word or phrase. Assistant:",
+        "text": "Microphone.\n\nMicrophone.\n\nMicrophone.\n\nMicrophone.\n\nMicrophone.\n\nMicrophone.\n\nMicrophone.\n\nMicro",
+        "answer_id": "eoveSnLavJ3SfXebxwmgwQ",
+        "ground_truth": "Chime"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00011355.JPEG",
+        "prompt": "System:You are a helpful assistant.\n\n<img>./cl_dataset/ImageNet_withlabel/val/ILSVRC2012_val_00011355.JPEG</img>What is the object in the image?\nAnswer the question using a single word or phrase. Assistant:",
+        "text": "Envelope.\n\nEnvelope.\n\nEnvelope.\n\nEnvelope.\n\nEnvelope.\n\nEnvelope.\n\nEnvelope.\n\nEnvelope.\n\nEnvelope.",
+        "answer_id": "GiL6QaGEpbxLMBhkcWB9V4",
+        "ground_truth": "Mortarboard"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00008274.JPEG",
+        "prompt": "System:You are a helpful assistant.\n\n<img>./cl_dataset/ImageNet_withlabel/val/ILSVRC2012_val_00008274.JPEG</img>What is the object in the image?\nAnswer the question using a single word or phrase. Assistant:",
+        "text": "Bow tie.\n\nBow tie.\n\nBow tie.\n\nBow tie.\n\nBow tie.\n\nBow tie.\n\nBow tie.\n\nBow",
+        "answer_id": "gfqccmTnT7GXcGuC2p564L",
+        "ground_truth": "Hamper"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00048359.JPEG",
+        "prompt": "System:You are a helpful assistant.\n\n<img>./cl_dataset/ImageNet_withlabel/val/ILSVRC2012_val_00048359.JPEG</img>What is the object in the image?\nAnswer the question using a single word or phrase. Assistant:",
+        "text": "Hamper.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n",
+        "answer_id": "JyPT2JMzVuthSNkg9chk9X",
+        "ground_truth": "Shopping basket"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00020050.JPEG",
+        "prompt": "System:You are a helpful assistant.\n\n<img>./cl_dataset/ImageNet_withlabel/val/ILSVRC2012_val_00020050.JPEG</img>What is the object in the image?\nAnswer the question using a single word or phrase. Assistant:",
+        "text": "Sloth bear.\n\nSloth bear.\n\nSloth bear.\n\nSloth bear.\n\nSloth bear.\n\nSloth bear.\n\nSloth",
+        "answer_id": "2YpfUKiPJNVa2yJLLVBfoF",
+        "ground_truth": "American black bear"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00031505.JPEG",
+        "prompt": "System:You are a helpful assistant.\n\n<img>./cl_dataset/ImageNet_withlabel/val/ILSVRC2012_val_00031505.JPEG</img>What is the object in the image?\nAnswer the question using a single word or phrase. Assistant:",
+        "text": "Poncho.\n\nPoncho.\n\nPoncho.\n\nPoncho.\n\nPoncho.\n\nPoncho.\n\nPon",
+        "answer_id": "PWGohBdQcs2LK4W5NfehPF",
+        "ground_truth": "Sunglass"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00046042.JPEG",
+        "prompt": "System:You are a helpful assistant.\n\n<img>./cl_dataset/ImageNet_withlabel/val/ILSVRC2012_val_00046042.JPEG</img>What is the object in the image?\nAnswer the question using a single word or phrase. Assistant:",
+        "text": "Rotisserie.\n\nRotisserie.\n\nRotisserie.\n\nRotisserie.\n\nRotisserie.\n\nRotisserie.\n\nRotis",
+        "answer_id": "DTacnVJ7P95PNf5EFQqXsC",
+        "ground_truth": "Hog"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00022642.JPEG",
+        "prompt": "System:You are a helpful assistant.\n\n<img>./cl_dataset/ImageNet_withlabel/val/ILSVRC2012_val_00022642.JPEG</img>What is the object in the image?\nAnswer the question using a single word or phrase. Assistant:",
+        "text": "Dandie dinmont.\n\nDandie dinmont.\n\nDandie dinmont.\n\nDandie dinmont.\n\nDandie dinmont.\n\n",
+        "answer_id": "baGprBAwDL5rNh5KDHTMYE",
+        "ground_truth": "Sealyham terrier"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00036987.JPEG",
+        "prompt": "System:You are a helpful assistant.\n\n<img>./cl_dataset/ImageNet_withlabel/val/ILSVRC2012_val_00036987.JPEG</img>What is the object in the image?\nAnswer the question using a single word or phrase. Assistant:",
+        "text": "Shopping basket.\n\nShopping basket.\n\nShopping basket.\n\nShopping basket.\n\nShopping basket.\n\nShopping basket.\n\nShopping basket.\n\nShopping",
+        "answer_id": "8ChQ62egBFdaHC2DT8uuJa",
+        "ground_truth": "Lemon"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00039394.JPEG",
+        "prompt": "System:You are a helpful assistant.\n\n<img>./cl_dataset/ImageNet_withlabel/val/ILSVRC2012_val_00039394.JPEG</img>What is the object in the image?\nAnswer the question using a single word or phrase. Assistant:",
+        "text": "Eggnog.\n\nEggnog.\n\nEggnog.\n\nEggnog.\n\nEggnog.\n\nEggnog.",
+        "answer_id": "7L9eRE2xP3riPhkbbDxiWv",
+        "ground_truth": "Dough"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00023922.JPEG",
+        "prompt": "System:You are a helpful assistant.\n\n<img>./cl_dataset/ImageNet_withlabel/val/ILSVRC2012_val_00023922.JPEG</img>What is the object in the image?\nAnswer the question using a single word or phrase. Assistant:",
+        "text": "Envelope.\n\nEnvelope.\n\nEnvelope.\n\nEnvelope.\n\nEnvelope.\n\nEnvelope.\n\nEnvelope.\n\nEnvelope.\n\nEnvelope.",
+        "answer_id": "Q6T5USJWXzn76wDceBBqbY",
+        "ground_truth": "Mortarboard"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00009864.JPEG",
+        "prompt": "System:You are a helpful assistant.\n\n<img>./cl_dataset/ImageNet_withlabel/val/ILSVRC2012_val_00009864.JPEG</img>What is the object in the image?\nAnswer the question using a single word or phrase. Assistant:",
+        "text": "Bucket.\n\nBucket.\n\nBucket.\n\nBucket.\n\nBucket.\n\nBucket.\n\nBucket.\n\nBucket.\n\nBucket.",
+        "answer_id": "RT5msN9fKZfK5kWfpXXCwQ",
+        "ground_truth": "Tub"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00015859.JPEG",
+        "prompt": "System:You are a helpful assistant.\n\n<img>./cl_dataset/ImageNet_withlabel/val/ILSVRC2012_val_00015859.JPEG</img>What is the object in the image?\nAnswer the question using a single word or phrase. Assistant:",
+        "text": "Hamper.\n\nHamper.\n\nHamper.\n\nHamper.\n\nHamper.\n\nHamper.\n\nHamper.\n\nHam",
+        "answer_id": "HeWEyKvpiwsbw6jQUoozXK",
+        "ground_truth": "Shopping basket"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00031126.JPEG",
+        "prompt": "System:You are a helpful assistant.\n\n<img>./cl_dataset/ImageNet_withlabel/val/ILSVRC2012_val_00031126.JPEG</img>What is the object in the image?\nAnswer the question using a single word or phrase. Assistant:",
+        "text": "Sunscreen.\n\nSunscreen.\n\nSunscreen.\n\nSunscreen.\n\nSunscreen.\n\nSunscreen.\n\nSunscreen.\n\nSun",
+        "answer_id": "YUfQbfh2xE8W3RUdBvkzbJ",
+        "ground_truth": "Sunglass"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00026261.JPEG",
+        "prompt": "System:You are a helpful assistant.\n\n<img>./cl_dataset/ImageNet_withlabel/val/ILSVRC2012_val_00026261.JPEG</img>What is the object in the image?\nAnswer the question using a single word or phrase. Assistant:",
+        "text": "American black bear.\n\ud80c\udfe7\nAmerican black bear.\n\nAmerican black bear.\n\nAmerican black bear.\n\nAmerican black bear.\n\nAmerican black bear.\n\nAmerican black",
+        "answer_id": "go57JQBVCAvS4xgdvPctho",
+        "ground_truth": "Sloth bear"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00022698.JPEG",
+        "prompt": "System:You are a helpful assistant.\n\n<img>./cl_dataset/ImageNet_withlabel/val/ILSVRC2012_val_00022698.JPEG</img>What is the object in the image?\nAnswer the question using a single word or phrase. Assistant:",
+        "text": "American black bear.\n\nAmerican black bear.\n\nAmerican black bear.\n\nAmerican black bear.\n\nAmerican black bear.\n\nAmerican black bear.\n\nAmerican black",
+        "answer_id": "kGDRKWKwvZuqCHNAKKn8gM",
+        "ground_truth": "Sloth bear"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00012888.JPEG",
+        "prompt": "System:You are a helpful assistant.\n\n<img>./cl_dataset/ImageNet_withlabel/val/ILSVRC2012_val_00012888.JPEG</img>What is the object in the image?\nAnswer the question using a single word or phrase. Assistant:",
+        "text": "Walker hound.\n\nWalker hound.\n\nWalker hound.\n\nWalker hound.\n\nWalker hound.\n\nWalker hound.\n\nWalker h",
+        "answer_id": "2YD97VMXyEidi3kmQqP6Lt",
+        "ground_truth": "Whippet"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00040733.JPEG",
+        "prompt": "System:You are a helpful assistant.\n\n<img>./cl_dataset/ImageNet_withlabel/val/ILSVRC2012_val_00040733.JPEG</img>What is the object in the image?\nAnswer the question using a single word or phrase. Assistant:",
+        "text": "Malamute.\n\nMalamute.\n\nMalamute.\n\nMalamute.\n\nMalamute.\n\nMalamute.\n\nMalam",
+        "answer_id": "ccmeu5vAxDQNVYgp8MGGf4",
+        "ground_truth": "Doormat"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00049902.JPEG",
+        "prompt": "System:You are a helpful assistant.\n\n<img>./cl_dataset/ImageNet_withlabel/val/ILSVRC2012_val_00049902.JPEG</img>What is the object in the image?\nAnswer the question using a single word or phrase. Assistant:",
+        "text": "Bucket.\n\nBucket.\n\nBucket.\n\nBucket.\n\nBucket.\n\nBucket.\n\nBucket.\n\nBucket.\n\nBucket.",
+        "answer_id": "Cvrmnkd3rifixSsNHWqzDF",
+        "ground_truth": "Chimpanzee"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00015598.JPEG",
+        "prompt": "System:You are a helpful assistant.\n\n<img>./cl_dataset/ImageNet_withlabel/val/ILSVRC2012_val_00015598.JPEG</img>What is the object in the image?\nAnswer the question using a single word or phrase. Assistant:",
+        "text": "Hamper.\n\nHamper.\n\nHamper.\n\nHamper.\n\nHamper.\n\nHamper.\n\nHamper.\n\nHam",
+        "answer_id": "g6waatDVq27VECy6EZNwSu",
+        "ground_truth": "Shopping basket"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00020224.JPEG",
+        "prompt": "System:You are a helpful assistant.\n\n<img>./cl_dataset/ImageNet_withlabel/val/ILSVRC2012_val_00020224.JPEG</img>What is the object in the image?\nAnswer the question using a single word or phrase. Assistant:",
+        "text": "Standard poodle.\n\nStandard poodle.\n\nStandard poodle.\n\nStandard poodle.\n\nStandard poodle.\n\nStandard poodle.\n\nStandard p",
+        "answer_id": "PttFQe3hT4EjWfQj6dCf25",
+        "ground_truth": "Golden retriever"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00015432.JPEG",
+        "prompt": "System:You are a helpful assistant.\n\n<img>./cl_dataset/ImageNet_withlabel/val/ILSVRC2012_val_00015432.JPEG</img>What is the object in the image?\nAnswer the question using a single word or phrase. Assistant:",
+        "text": "Marmoset.\n\nMarmoset.\n\nMarmoset.\n\nMarmoset.\n\nMarmoset.\n\nMarmoset.",
+        "answer_id": "UwLJF9ndVtfTtxaCrkV5kM",
+        "ground_truth": "Chimpanzee"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00013053.JPEG",
+        "prompt": "System:You are a helpful assistant.\n\n<img>./cl_dataset/ImageNet_withlabel/val/ILSVRC2012_val_00013053.JPEG</img>What is the object in the image?\nAnswer the question using a single word or phrase. Assistant:",
+        "text": "Whippet.\n\nWhippet.\n\nWhippet.\n\nWhippet.\n\nWhippet.\n\nWhippet.\n\nWhippet.\n\nWh",
+        "answer_id": "JgAfiHJFaY3RAiUSfeDJ6s",
+        "ground_truth": "German shepherd"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00040118.JPEG",
+        "prompt": "System:You are a helpful assistant.\n\n<img>./cl_dataset/ImageNet_withlabel/val/ILSVRC2012_val_00040118.JPEG</img>What is the object in the image?\nAnswer the question using a single word or phrase. Assistant:",
+        "text": "Teapot.\n\nTeapot.\n\nTeapot.\n\nTeapot.\n\nTeapot.\n\nTeapot.\n\nTeapot.\n\nTe",
+        "answer_id": "8proEhgcvWfxDoxLtL4KrH",
+        "ground_truth": "Toaster"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00043646.JPEG",
+        "prompt": "System:You are a helpful assistant.\n\n<img>./cl_dataset/ImageNet_withlabel/val/ILSVRC2012_val_00043646.JPEG</img>What is the object in the image?\nAnswer the question using a single word or phrase. Assistant:",
+        "text": "Leafhopper.\n\nLeafhopper.\n\nLeafhopper.\n\nLeafhopper.\n\nLeafhopper.\n\nLeafhopper.\n\nLeafh",
+        "answer_id": "YjehuA4JjgNQHg7oYLb9jE",
+        "ground_truth": "Garden spider"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00029653.JPEG",
+        "prompt": "System:You are a helpful assistant.\n\n<img>./cl_dataset/ImageNet_withlabel/val/ILSVRC2012_val_00029653.JPEG</img>What is the object in the image?\nAnswer the question using a single word or phrase. Assistant:",
+        "text": "Piggy bank.\n\nPiggy bank.\n\nPiggy bank.\n\nPiggy bank.\n\nPiggy bank.\n\nPiggy bank.",
+        "answer_id": "RZKFf3GWhHLqFRJkScqW6j",
+        "ground_truth": "Hog"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00006588.JPEG",
+        "prompt": "System:You are a helpful assistant.\n\n<img>./cl_dataset/ImageNet_withlabel/val/ILSVRC2012_val_00006588.JPEG</img>What is the object in the image?\nAnswer the question using a single word or phrase. Assistant:",
+        "text": "Goblet.\n\nGoblet.\n\nGoblet.\n\nGoblet.\n\nGoblet.\n\nGoblet.\n\nGob",
+        "answer_id": "aJpXbCGjf7zHvGFUGTfeFR",
+        "ground_truth": "Eggnog"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00023542.JPEG",
+        "prompt": "System:You are a helpful assistant.\n\n<img>./cl_dataset/ImageNet_withlabel/val/ILSVRC2012_val_00023542.JPEG</img>What is the object in the image?\nAnswer the question using a single word or phrase. Assistant:",
+        "text": "Microphone.\n\nMicrophone.\n\nMicrophone.\n\nMicrophone.\n\nMicrophone.\n\nMicrophone.\n\nMicrophone.\n\nMicro",
+        "answer_id": "ARgVMMENr4N3azSJdwfcs4",
+        "ground_truth": "Envelope"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00018693.JPEG",
+        "prompt": "System:You are a helpful assistant.\n\n<img>./cl_dataset/ImageNet_withlabel/val/ILSVRC2012_val_00018693.JPEG</img>What is the object in the image?\nAnswer the question using a single word or phrase. Assistant:",
+        "text": "Goblet.\n\nGoblet.\n\nGoblet.\n\nGoblet.\n\nGoblet.\n\nGoblet.\n\nGob",
+        "answer_id": "MjdDnCZcNPRMp4LCnHigfn",
+        "ground_truth": "Eggnog"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00037836.JPEG",
+        "prompt": "System:You are a helpful assistant.\n\n<img>./cl_dataset/ImageNet_withlabel/val/ILSVRC2012_val_00037836.JPEG</img>What is the object in the image?\nAnswer the question using a single word or phrase. Assistant:",
+        "text": "American black bear.\n\nacerb.\n\nAmerican black bear.\n\nAmerican black bear.\n\nAmerican black bear.\n\nAmerican black bear.\n\nAmerican black bear.",
+        "answer_id": "eMbivqZP4RY4XvfVhBEVUe",
+        "ground_truth": "Sloth bear"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00046267.JPEG",
+        "prompt": "System:You are a helpful assistant.\n\n<img>./cl_dataset/ImageNet_withlabel/val/ILSVRC2012_val_00046267.JPEG</img>What is the object in the image?\nAnswer the question using a single word or phrase. Assistant:",
+        "text": "Leafhopper.\n\nLeafhopper.\n\nLeafhopper.\n\nLeafhopper.\n\nLeafhopper.\n\nLeafhopper.\n\nLeafh",
+        "answer_id": "dcpdsGCqmCDFxufkQz9L5x",
+        "ground_truth": "Tiger beetle"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00017175.JPEG",
+        "prompt": "System:You are a helpful assistant.\n\n<img>./cl_dataset/ImageNet_withlabel/val/ILSVRC2012_val_00017175.JPEG</img>What is the object in the image?\nAnswer the question using a single word or phrase. Assistant:",
+        "text": "Chime.\n\nChime.\n\nChime.\n\nChime.\n\nChime.\n\nChime.\n\nChime.\n\nCh",
+        "answer_id": "GQE2JtWin7fPuW6tBwVbKh",
+        "ground_truth": "Lampshade"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00031016.JPEG",
+        "prompt": "System:You are a helpful assistant.\n\n<img>./cl_dataset/ImageNet_withlabel/val/ILSVRC2012_val_00031016.JPEG</img>What is the object in the image?\nAnswer the question using a single word or phrase. Assistant:",
+        "text": "Beer glass.\n\nBeer glass.\n\nBeer glass.\n\nBeer glass.\n\nBeer glass.\n\nBeer glass.\n\nBeer glass.\n\nBeer",
+        "answer_id": "ZE4nrjTzAjzUPn4rva3dXQ",
+        "ground_truth": "Goblet"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00002519.JPEG",
+        "prompt": "System:You are a helpful assistant.\n\n<img>./cl_dataset/ImageNet_withlabel/val/ILSVRC2012_val_00002519.JPEG</img>What is the object in the image?\nAnswer the question using a single word or phrase. Assistant:",
+        "text": "Hamper.\n\nHamper.\n\nHamper.\n\nHamper.\n\nHamper.\n\nHamper.\n\nHamper.\n\nHam",
+        "answer_id": "XpQamVZ2vYqFr6NPBBKcrY",
+        "ground_truth": "Shopping basket"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00044030.JPEG",
+        "prompt": "System:You are a helpful assistant.\n\n<img>./cl_dataset/ImageNet_withlabel/val/ILSVRC2012_val_00044030.JPEG</img>What is the object in the image?\nAnswer the question using a single word or phrase. Assistant:",
+        "text": "Spatula.\n\nSpatula.\n\nSpatula.\n\nSpatula.\n\nSpatula.\n\nSpatula.\n\nSpat",
+        "answer_id": "Bf34FDcdbVoJBvRnQcThVH",
+        "ground_truth": "Espresso maker"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00036417.JPEG",
+        "prompt": "System:You are a helpful assistant.\n\n<img>./cl_dataset/ImageNet_withlabel/val/ILSVRC2012_val_00036417.JPEG</img>What is the object in the image?\nAnswer the question using a single word or phrase. Assistant:",
+        "text": "Leafhopper.\n\nLeafhopper.\n\nLeafhopper.\n\nLeafhopper.\n\nLeafhopper.\n\nLeafhopper.\n\nLeafh",
+        "answer_id": "ho2SVHgyAg6hWwpVHHLkwg",
+        "ground_truth": "Tiger beetle"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00043833.JPEG",
+        "prompt": "System:You are a helpful assistant.\n\n<img>./cl_dataset/ImageNet_withlabel/val/ILSVRC2012_val_00043833.JPEG</img>What is the object in the image?\nAnswer the question using a single word or phrase. Assistant:",
+        "text": "Bow tie.\n\nBow tie.\n\nBow tie.\n\nBow tie.\n\nBow tie.\n\nBow tie.\n\nBow tie.\n\nBow",
+        "answer_id": "CHemVY4aLtnhVsyAAnvjpK",
+        "ground_truth": "Sunglass"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00023025.JPEG",
+        "prompt": "System:You are a helpful assistant.\n\n<img>./cl_dataset/ImageNet_withlabel/val/ILSVRC2012_val_00023025.JPEG</img>What is the object in the image?\nAnswer the question using a single word or phrase. Assistant:",
+        "text": "Afghan hound.\n\nAfghan hound.\n\nAfghan hound.\n\nAfghan hound.\n\nAfghan hound.\n\nAfghan hound.",
+        "answer_id": "8LEPsWULx4axcDUE98C2iz",
+        "ground_truth": "Gordon setter"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00031677.JPEG",
+        "prompt": "System:You are a helpful assistant.\n\n<img>./cl_dataset/ImageNet_withlabel/val/ILSVRC2012_val_00031677.JPEG</img>What is the object in the image?\nAnswer the question using a single word or phrase. Assistant:",
+        "text": "Microphone.\n\nMicrophone.\n\nMicrophone.\n\nMicrophone.\n\nMicrophone.\n\nMicrophone.\n\nMicrophone.\n\nMicro",
+        "answer_id": "WpxEuDcuXaxYdefnL8gQxE",
+        "ground_truth": "Gasmask"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00024879.JPEG",
+        "prompt": "System:You are a helpful assistant.\n\n<img>./cl_dataset/ImageNet_withlabel/val/ILSVRC2012_val_00024879.JPEG</img>What is the object in the image?\nAnswer the question using a single word or phrase. Assistant:",
+        "text": "Mouse.\n\nMouse.\n\nMouse.\n\nMouse.\n\nMouse.\n\nMouse.\n\nMouse.\n\nMouse.\n\nMouse.",
+        "answer_id": "NQQUvqKaGwJwiJgcNSXggd",
+        "ground_truth": "Desk"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00035373.JPEG",
+        "prompt": "System:You are a helpful assistant.\n\n<img>./cl_dataset/ImageNet_withlabel/val/ILSVRC2012_val_00035373.JPEG</img>What is the object in the image?\nAnswer the question using a single word or phrase. Assistant:",
+        "text": "Hamper.\n\nHamper.\n\nHamper.\n\nHamper.\n\nHamper.\n\nHamper.\n\nHamper.\n\nHam",
+        "answer_id": "XWuq7rkRKop2f93fpWMjgA",
+        "ground_truth": "Shopping basket"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00049239.JPEG",
+        "prompt": "System:You are a helpful assistant.\n\n<img>./cl_dataset/ImageNet_withlabel/val/ILSVRC2012_val_00049239.JPEG</img>What is the object in the image?\nAnswer the question using a single word or phrase. Assistant:",
+        "text": "Bernese mountain dog.\n\nBernese mountain dog.\n\nBernese mountain dog.\n\nBernese mountain dog.\n\nBernese mountain dog.\n\nBernese mountain dog.",
+        "answer_id": "kzhncTLr3X9KHTK5ADen2X",
+        "ground_truth": "Gordon setter"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00035306.JPEG",
+        "prompt": "System:You are a helpful assistant.\n\n<img>./cl_dataset/ImageNet_withlabel/val/ILSVRC2012_val_00035306.JPEG</img>What is the object in the image?\nAnswer the question using a single word or phrase. Assistant:",
+        "text": "Swing.\n\nSwing.\n\nSwing.\n\nSwing.\n\nSwing.\n\nSwing.\n\nSwing.\n\nSw",
+        "answer_id": "K3CnhffYRLE9ZCL8NsBCxo",
+        "ground_truth": "Chime"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00046443.JPEG",
+        "prompt": "System:You are a helpful assistant.\n\n<img>./cl_dataset/ImageNet_withlabel/val/ILSVRC2012_val_00046443.JPEG</img>What is the object in the image?\nAnswer the question using a single word or phrase. Assistant:",
+        "text": "Dandie dinmont.\n\nDandie dinmont.\n\nDandie dinmont.\n\nDandie dinmont.\n\nDandie dinmont.\n\n",
+        "answer_id": "cGu4ZBHgBGhfeBtT3PzpMN",
+        "ground_truth": "Irish terrier"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00036205.JPEG",
+        "prompt": "System:You are a helpful assistant.\n\n<img>./cl_dataset/ImageNet_withlabel/val/ILSVRC2012_val_00036205.JPEG</img>What is the object in the image?\nAnswer the question using a single word or phrase. Assistant:",
+        "text": "Microphone.\n\nMicrophone.\n\nMicrophone.\n\nMicrophone.\n\nMicrophone.\n\nMicrophone.\n\nMicrophone.\n\nMicro",
+        "answer_id": "AaSfrxZDo2sPANFPsyo5XV",
+        "ground_truth": "Television"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00037431.JPEG",
+        "prompt": "System:You are a helpful assistant.\n\n<img>./cl_dataset/ImageNet_withlabel/val/ILSVRC2012_val_00037431.JPEG</img>What is the object in the image?\nAnswer the question using a single word or phrase. Assistant:",
+        "text": "Cucumber.\n\n\uff23ucumber.\n\n\uff23ucumber.\n\n\uff23ucumber.\n\n\uff23ucumber.\n\n\uff23ucumber.\n\n\uff23ucumber.\n\n\uff23",
+        "answer_id": "VsqhhPueWB2YXaWoeVBMjq",
+        "ground_truth": "Fig"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00032200.JPEG",
+        "prompt": "System:You are a helpful assistant.\n\n<img>./cl_dataset/ImageNet_withlabel/val/ILSVRC2012_val_00032200.JPEG</img>What is the object in the image?\nAnswer the question using a single word or phrase. Assistant:",
+        "text": "Sunscreen.\n\nSunscreen.\n\nSunscreen.\n\nSunscreen.\n\nSunscreen.\n\nSunscreen.\n\nSunscreen.\n\nSun",
+        "answer_id": "cTDoWaTLaojwyPtFxuwpMT",
+        "ground_truth": "Face powder"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00032074.JPEG",
+        "prompt": "System:You are a helpful assistant.\n\n<img>./cl_dataset/ImageNet_withlabel/val/ILSVRC2012_val_00032074.JPEG</img>What is the object in the image?\nAnswer the question using a single word or phrase. Assistant:",
+        "text": "Hamper.\n\nHamper.\n\nHamper.\n\nHamper.\n\nHamper.\n\nHamper.\n\nHamper.\n\nHam",
+        "answer_id": "3EfGmiNkizR9q44ZfhHMkp",
+        "ground_truth": "Shopping basket"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00040828.JPEG",
+        "prompt": "System:You are a helpful assistant.\n\n<img>./cl_dataset/ImageNet_withlabel/val/ILSVRC2012_val_00040828.JPEG</img>What is the object in the image?\nAnswer the question using a single word or phrase. Assistant:",
+        "text": "Desk.\n\nDesk.\n\nDesk.\n\nDesk.\n\nDesk.\n\nDesk.\n\nDesk.\n\nDesk.\n\nDesk.",
+        "answer_id": "PL5gF77dxoDh2tJnGvDuDi",
+        "ground_truth": "Mouse"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00041934.JPEG",
+        "prompt": "System:You are a helpful assistant.\n\n<img>./cl_dataset/ImageNet_withlabel/val/ILSVRC2012_val_00041934.JPEG</img>What is the object in the image?\nAnswer the question using a single word or phrase. Assistant:",
+        "text": "Goblet.\n\nGoblet.\n\nGoblet.\n\nGoblet.\n\nGoblet.\n\nGoblet.\n\nGob",
+        "answer_id": "BjxsSp3fMjMHi66UgJktxP",
+        "ground_truth": "Beer glass"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00024070.JPEG",
+        "prompt": "System:You are a helpful assistant.\n\n<img>./cl_dataset/ImageNet_withlabel/val/ILSVRC2012_val_00024070.JPEG</img>What is the object in the image?\nAnswer the question using a single word or phrase. Assistant:",
+        "text": "Valley.\n\nValley.\n\nValley.\n\nValley.\n\nValley.\n\nValley.\n\nValley.\n\nVal",
+        "answer_id": "PHWr2NePTFxo8YKHaxJbu2",
+        "ground_truth": "Stupa"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00026797.JPEG",
+        "prompt": "System:You are a helpful assistant.\n\n<img>./cl_dataset/ImageNet_withlabel/val/ILSVRC2012_val_00026797.JPEG</img>What is the object in the image?\nAnswer the question using a single word or phrase. Assistant:",
+        "text": "Curly-coated retriever.\n\nCurly-coated retriever.\n\nCurly-coated retriever.\n\nCurly-coated retriever.\n\nCurly-coated retriever",
+        "answer_id": "aSEHsMSkML3kyR4WGfa6uz",
+        "ground_truth": "Gordon setter"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00012937.JPEG",
+        "prompt": "System:You are a helpful assistant.\n\n<img>./cl_dataset/ImageNet_withlabel/val/ILSVRC2012_val_00012937.JPEG</img>What is the object in the image?\nAnswer the question using a single word or phrase. Assistant:",
+        "text": "Stupa.\n\nStupa.\n\nStupa.\n\nStupa.\n\nStupa.\n\nStupa.\n\nStupa.\n\nSt",
+        "answer_id": "5nkQh2cDh2dhFMiDSKfgpL",
+        "ground_truth": "Valley"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00036739.JPEG",
+        "prompt": "System:You are a helpful assistant.\n\n<img>./cl_dataset/ImageNet_withlabel/val/ILSVRC2012_val_00036739.JPEG</img>What is the object in the image?\nAnswer the question using a single word or phrase. Assistant:",
+        "text": "Old english sheepdog.\n\nDandie dinmont.\n\nDandie dinmont.\n\nDandie dinmont.\n\nDandie dinmont.\n\nD",
+        "answer_id": "LgKhungzxspa2ARYmyYBJg",
+        "ground_truth": "Sealyham terrier"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00022575.JPEG",
+        "prompt": "System:You are a helpful assistant.\n\n<img>./cl_dataset/ImageNet_withlabel/val/ILSVRC2012_val_00022575.JPEG</img>What is the object in the image?\nAnswer the question using a single word or phrase. Assistant:",
+        "text": "Hog.\n\nHog.\n\nHog.\n\nHog.\n\nHog.\n\nHog.\n\nHog.\n\nH",
+        "answer_id": "hEcdvFb6QYi5cbNVhcjziZ",
+        "ground_truth": "Piggy bank"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00038961.JPEG",
+        "prompt": "System:You are a helpful assistant.\n\n<img>./cl_dataset/ImageNet_withlabel/val/ILSVRC2012_val_00038961.JPEG</img>What is the object in the image?\nAnswer the question using a single word or phrase. Assistant:",
+        "text": "American black bear.\n\nAmerican black bear.\n\nAmerican black bear.\n\nAmerican black bear.\n\nAmerican black bear.\n\nAmerican black bear.\n\nAmerican black",
+        "answer_id": "ZcSv4YfDCNhB2WGXWMKBFY",
+        "ground_truth": "Sloth bear"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00010092.JPEG",
+        "prompt": "System:You are a helpful assistant.\n\n<img>./cl_dataset/ImageNet_withlabel/val/ILSVRC2012_val_00010092.JPEG</img>What is the object in the image?\nAnswer the question using a single word or phrase. Assistant:",
+        "text": "Desk.\n\nDesk.\n\nDesk.\n\nDesk.\n\nDesk.\n\nDesk.\n\nDesk.\n\nDesk.\n\nDesk.",
+        "answer_id": "iUqjgxaqyeptFfgxZ7d8Dx",
+        "ground_truth": "Television"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00011003.JPEG",
+        "prompt": "System:You are a helpful assistant.\n\n<img>./cl_dataset/ImageNet_withlabel/val/ILSVRC2012_val_00011003.JPEG</img>What is the object in the image?\nAnswer the question using a single word or phrase. Assistant:",
+        "text": "Television.\n\nTelevision.\n\nTelevision.\n\nTelevision.\n\nTelevision.\n\nTelevision.\n\nTelevision.\n\nTe",
+        "answer_id": "JvQxrmM6vM33yHxxqUppCr",
+        "ground_truth": "Desk"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00038803.JPEG",
+        "prompt": "System:You are a helpful assistant.\n\n<img>./cl_dataset/ImageNet_withlabel/val/ILSVRC2012_val_00038803.JPEG</img>What is the object in the image?\nAnswer the question using a single word or phrase. Assistant:",
+        "text": "Eggnog.\n\nEggnog.\n\nEggnog.\n\nEggnog.\n\nEggnog.\n\nEggnog.",
+        "answer_id": "dpviaWFRrkc87ME6BtWpPY",
+        "ground_truth": "Envelope"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00023494.JPEG",
+        "prompt": "System:You are a helpful assistant.\n\n<img>./cl_dataset/ImageNet_withlabel/val/ILSVRC2012_val_00023494.JPEG</img>What is the object in the image?\nAnswer the question using a single word or phrase. Assistant:",
+        "text": "Hamper.\n\nHamper.\n\nHamper.\n\nHamper.\n\nHamper.\n\nHamper.\n\nHamper.\n\nHam",
+        "answer_id": "NfnvC3APkXPU4Zij74DVzJ",
+        "ground_truth": "Shopping basket"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00041813.JPEG",
+        "prompt": "System:You are a helpful assistant.\n\n<img>./cl_dataset/ImageNet_withlabel/val/ILSVRC2012_val_00041813.JPEG</img>What is the object in the image?\nAnswer the question using a single word or phrase. Assistant:",
+        "text": "Sloth bear.\n\nSloth bear.\n\nSloth bear.\n\nSloth bear.\n\nSloth bear.\n\nSloth bear.\n\nSloth",
+        "answer_id": "U8HT5Tf3e4GRxxFpicfdjj",
+        "ground_truth": "American black bear"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00019287.JPEG",
+        "prompt": "System:You are a helpful assistant.\n\n<img>./cl_dataset/ImageNet_withlabel/val/ILSVRC2012_val_00019287.JPEG</img>What is the object in the image?\nAnswer the question using a single word or phrase. Assistant:",
+        "text": "Fig.\n\nFig.\n\nFig.\n\nFig.\n\nFig.\n\nFig.\n\nFig.\n\nFig.\n\nFig.",
+        "answer_id": "FDJF3XqfEmnNkazfgakDs6",
+        "ground_truth": "Head cabbage"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00005569.JPEG",
+        "prompt": "System:You are a helpful assistant.\n\n<img>./cl_dataset/ImageNet_withlabel/val/ILSVRC2012_val_00005569.JPEG</img>What is the object in the image?\nAnswer the question using a single word or phrase. Assistant:",
+        "text": "Lampshade.\n\nLampshade.\n\nLampshade.\n\nLampshade.\n\nLampshade.\n\nLampshade.\n\nLamp",
+        "answer_id": "ebb9RipVjLp2H2WT2pAGY4",
+        "ground_truth": "Bow tie"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00016008.JPEG",
+        "prompt": "System:You are a helpful assistant.\n\n<img>./cl_dataset/ImageNet_withlabel/val/ILSVRC2012_val_00016008.JPEG</img>What is the object in the image?\nAnswer the question using a single word or phrase. Assistant:",
+        "text": "Squeegee.\n\nDoormat.\n\nDoormat.\n\nDoormat.\n\nDoormat.\n\nDoormat.\n\nDoorm",
+        "answer_id": "55uGxsmwxNPTdabb3XjpG2",
+        "ground_truth": "Hand blower"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00038159.JPEG",
+        "prompt": "System:You are a helpful assistant.\n\n<img>./cl_dataset/ImageNet_withlabel/val/ILSVRC2012_val_00038159.JPEG</img>What is the object in the image?\nAnswer the question using a single word or phrase. Assistant:",
+        "text": "Chaffinch.\n\nQuail.\n\nQuail.\n\nQuail.\n\nQuail.\n\nQuail.\n\nQuail.\n\n",
+        "answer_id": "ftBpEBkU4LzcsZjt9rf9Eu",
+        "ground_truth": "Water ouzel"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00030588.JPEG",
+        "prompt": "System:You are a helpful assistant.\n\n<img>./cl_dataset/ImageNet_withlabel/val/ILSVRC2012_val_00030588.JPEG</img>What is the object in the image?\nAnswer the question using a single word or phrase. Assistant:",
+        "text": "Irish terrier.\n\n Dzi\u0119ki.\n\nIrish terrier.\n\nIrish terrier.\n\nIrish terrier.\n\nIrish terrier.\n",
+        "answer_id": "MsbnS3ES2kHjorzwMTWMR9",
+        "ground_truth": "Dandie dinmont"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00016061.JPEG",
+        "prompt": "System:You are a helpful assistant.\n\n<img>./cl_dataset/ImageNet_withlabel/val/ILSVRC2012_val_00016061.JPEG</img>What is the object in the image?\nAnswer the question using a single word or phrase. Assistant:",
+        "text": "Leafhopper.\n\nLeafhopper.\n\nLeafhopper.\n\nLeafhopper.\n\nLeafhopper.\n\nLeafhopper.\n\nLeafh",
+        "answer_id": "TRnBsnVNp6UE6JVJDzLbMX",
+        "ground_truth": "Agaric"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00005170.JPEG",
+        "prompt": "System:You are a helpful assistant.\n\n<img>./cl_dataset/ImageNet_withlabel/val/ILSVRC2012_val_00005170.JPEG</img>What is the object in the image?\nAnswer the question using a single word or phrase. Assistant:",
+        "text": "Irish terrier.\n\nIrish terrier.\n\nIrish terrier.\n\nIrish terrier.\n\nIrish terrier.\n\nIrish terrier.",
+        "answer_id": "FksJ5RTJVVcgewXtyEoJNa",
+        "ground_truth": "Sealyham terrier"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00038888.JPEG",
+        "prompt": "System:You are a helpful assistant.\n\n<img>./cl_dataset/ImageNet_withlabel/val/ILSVRC2012_val_00038888.JPEG</img>What is the object in the image?\nAnswer the question using a single word or phrase. Assistant:",
+        "text": "Shopping basket.\n\nShopping basket.\n\nShopping basket.\n\nShopping basket.\n\nShopping basket.\n\nShopping basket.\n\nShopping basket.\n\nShopping",
+        "answer_id": "KEzZxDGvQFX6e9vx5AUUEJ",
+        "ground_truth": "Hamper"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00041571.JPEG",
+        "prompt": "System:You are a helpful assistant.\n\n<img>./cl_dataset/ImageNet_withlabel/val/ILSVRC2012_val_00041571.JPEG</img>What is the object in the image?\nAnswer the question using a single word or phrase. Assistant:",
+        "text": "Face powder.\n\nFace powder.\n\nFace powder.\n\nFace powder.\n\nFace powder.\n\nFace powder.\n\nFace powder.\n\nFace",
+        "answer_id": "RrsX7rEB6Y8cz9LCqWKU9n",
+        "ground_truth": "Sunscreen"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00039688.JPEG",
+        "prompt": "System:You are a helpful assistant.\n\n<img>./cl_dataset/ImageNet_withlabel/val/ILSVRC2012_val_00039688.JPEG</img>What is the object in the image?\nAnswer the question using a single word or phrase. Assistant:",
+        "text": "Quince.\n\nHamper.\n\nHamper.\n\nHamper.\n\nHamper.\n\nHamper.\n\nHamper.\n\nHam",
+        "answer_id": "gkYwAcBLj7TvU9DZ7vuUBJ",
+        "ground_truth": "Shopping basket"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00032232.JPEG",
+        "prompt": "System:You are a helpful assistant.\n\n<img>./cl_dataset/ImageNet_withlabel/val/ILSVRC2012_val_00032232.JPEG</img>What is the object in the image?\nAnswer the question using a single word or phrase. Assistant:",
+        "text": "Dandie dinmont.\n\nDandie dinmont.\n\nDandie dinmont.\n\nDandie dinmont.\n\nDandie dinmont.\n\n",
+        "answer_id": "hh6o2QHxYaqnXHAsyXaasX",
+        "ground_truth": "Sealyham terrier"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00047280.JPEG",
+        "prompt": "System:You are a helpful assistant.\n\n<img>./cl_dataset/ImageNet_withlabel/val/ILSVRC2012_val_00047280.JPEG</img>What is the object in the image?\nAnswer the question using a single word or phrase. Assistant:",
+        "text": "Goblet.\n\nGoblet.\n\nGoblet.\n\nGoblet.\n\nGoblet.\n\nGoblet.\n\nGob",
+        "answer_id": "Z8dr9KP26s9qgV5FkszSmE",
+        "ground_truth": "Hog"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00017267.JPEG",
+        "prompt": "System:You are a helpful assistant.\n\n<img>./cl_dataset/ImageNet_withlabel/val/ILSVRC2012_val_00017267.JPEG</img>What is the object in the image?\nAnswer the question using a single word or phrase. Assistant:",
+        "text": "Dough.\n\nDough.\n\nDough.\n\nDough.\n\nDough.\n\nDough.\n\nDough.\n\nD",
+        "answer_id": "Bou9BeyMSLUVmNkMBPzoPs",
+        "ground_truth": "Chocolate sauce"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00015375.JPEG",
+        "prompt": "System:You are a helpful assistant.\n\n<img>./cl_dataset/ImageNet_withlabel/val/ILSVRC2012_val_00015375.JPEG</img>What is the object in the image?\nAnswer the question using a single word or phrase. Assistant:",
+        "text": "Desk.\n\nDesk.\n\nDesk.\n\nDesk.\n\nDesk.\n\nDesk.\n\nDesk.\n\nDesk.\n\nDesk.",
+        "answer_id": "hPLkfvAm5F2vY9dqDTCzVa",
+        "ground_truth": "Mouse"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00019454.JPEG",
+        "prompt": "System:You are a helpful assistant.\n\n<img>./cl_dataset/ImageNet_withlabel/val/ILSVRC2012_val_00019454.JPEG</img>What is the object in the image?\nAnswer the question using a single word or phrase. Assistant:",
+        "text": "Carpenter's kit.\n\nCarpenter's kit.\n\nCarpenter's kit.\n\nCarpenter's kit.\n\nCarpenter's kit.\n\n",
+        "answer_id": "7wV32BUuVBmTU3acdv3BgR",
+        "ground_truth": "Hand blower"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00025823.JPEG",
+        "prompt": "System:You are a helpful assistant.\n\n<img>./cl_dataset/ImageNet_withlabel/val/ILSVRC2012_val_00025823.JPEG</img>What is the object in the image?\nAnswer the question using a single word or phrase. Assistant:",
+        "text": "Bucket.\n\nBucket.\n\nBucket.\n\nBucket.\n\nBucket.\n\nBucket.\n\nBucket.\n\nBucket.\n\nBucket.",
+        "answer_id": "CqooWiLJjteqcYoPjSwNHN",
+        "ground_truth": "Tub"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00041113.JPEG",
+        "prompt": "System:You are a helpful assistant.\n\n<img>./cl_dataset/ImageNet_withlabel/val/ILSVRC2012_val_00041113.JPEG</img>What is the object in the image?\nAnswer the question using a single word or phrase. Assistant:",
+        "text": "Bucket.\n\nCarpenter's kit.\n\nCarpenter's kit.\n\nCarpenter's kit.\n\nCarpenter's kit.\n\nCarpenter's",
+        "answer_id": "6eetFQXomnnnzwiuCmBgEQ",
+        "ground_truth": "Spatula"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00010289.JPEG",
+        "prompt": "System:You are a helpful assistant.\n\n<img>./cl_dataset/ImageNet_withlabel/val/ILSVRC2012_val_00010289.JPEG</img>What is the object in the image?\nAnswer the question using a single word or phrase. Assistant:",
+        "text": "Dandie dinmont.\n\nDandie dinmont.\n\nDandie dinmont.\n\nDandie dinmont.\n\nDandie dinmont.\n\n",
+        "answer_id": "canM9GaoDSTjnwy5hHiJeU",
+        "ground_truth": "Sealyham terrier"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00047757.JPEG",
+        "prompt": "System:You are a helpful assistant.\n\n<img>./cl_dataset/ImageNet_withlabel/val/ILSVRC2012_val_00047757.JPEG</img>What is the object in the image?\nAnswer the question using a single word or phrase. Assistant:",
+        "text": "Sealyham terrier.\n\nSealyham terrier.\n\nSealyham terrier.\n\nSealyham terrier.\n\nSealyham terrier.\n\n",
+        "answer_id": "7nFYUK6DapZoBRHMwTumtb",
+        "ground_truth": "Dandie dinmont"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00019326.JPEG",
+        "prompt": "System:You are a helpful assistant.\n\n<img>./cl_dataset/ImageNet_withlabel/val/ILSVRC2012_val_00019326.JPEG</img>What is the object in the image?\nAnswer the question using a single word or phrase. Assistant:",
+        "text": "Shopping basket.\n\nShopping basket.\n\nShopping basket.\n\nShopping basket.\n\nShopping basket.\n\nShopping basket.\n\nShopping basket.\n\nShopping",
+        "answer_id": "PHFXdCNZaMeCFFhHAStwgh",
+        "ground_truth": "Hamper"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00018303.JPEG",
+        "prompt": "System:You are a helpful assistant.\n\n<img>./cl_dataset/ImageNet_withlabel/val/ILSVRC2012_val_00018303.JPEG</img>What is the object in the image?\nAnswer the question using a single word or phrase. Assistant:",
+        "text": "American black bear.\n\ud80c\udfe7\nAmerican black bear.\n\nAmerican black bear.\n\nAmerican black bear.\n\nAmerican black bear.\n\nAmerican black bear.\n\nAmerican black",
+        "answer_id": "7ugNfsVvza6JBtxtxKvB5k",
+        "ground_truth": "Sloth bear"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00004660.JPEG",
+        "prompt": "System:You are a helpful assistant.\n\n<img>./cl_dataset/ImageNet_withlabel/val/ILSVRC2012_val_00004660.JPEG</img>What is the object in the image?\nAnswer the question using a single word or phrase. Assistant:",
+        "text": "Sloth bear.\n\nSloth bear.\n\nSloth bear.\n\nSloth bear.\n\nSloth bear.\n\nSloth bear.\n\nSloth",
+        "answer_id": "Q7DLey85DwqJNgSxci8cyB",
+        "ground_truth": "American black bear"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00034645.JPEG",
+        "prompt": "System:You are a helpful assistant.\n\n<img>./cl_dataset/ImageNet_withlabel/val/ILSVRC2012_val_00034645.JPEG</img>What is the object in the image?\nAnswer the question using a single word or phrase. Assistant:",
+        "text": "Beer glass.\n\nBeer glass.\n\nBeer glass.\n\nBeer glass.\n\nBeer glass.\n\nBeer glass.\n\nBeer glass.\n\nBeer",
+        "answer_id": "HVfzZyb6wA7grdhiMq5FUo",
+        "ground_truth": "Goblet"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00033782.JPEG",
+        "prompt": "System:You are a helpful assistant.\n\n<img>./cl_dataset/ImageNet_withlabel/val/ILSVRC2012_val_00033782.JPEG</img>What is the object in the image?\nAnswer the question using a single word or phrase. Assistant:",
+        "text": "Sloth bear.\n\nSloth bear.\n\nSloth bear.\n\nSloth bear.\n\nSloth bear.\n\nSloth bear.\n\nSloth",
+        "answer_id": "RNGURtAimSxmSrzm4a9Qz7",
+        "ground_truth": "American black bear"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00021473.JPEG",
+        "prompt": "System:You are a helpful assistant.\n\n<img>./cl_dataset/ImageNet_withlabel/val/ILSVRC2012_val_00021473.JPEG</img>What is the object in the image?\nAnswer the question using a single word or phrase. Assistant:",
+        "text": "Rottweiler.\n\nRottweiler.\n\nRottweiler.\n\nRottweiler.\n\nRottweiler.\n\nRottweiler.",
+        "answer_id": "NQaqMFiwZoVwvMfqHxXzbA",
+        "ground_truth": "Gordon setter"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00005168.JPEG",
+        "prompt": "System:You are a helpful assistant.\n\n<img>./cl_dataset/ImageNet_withlabel/val/ILSVRC2012_val_00005168.JPEG</img>What is the object in the image?\nAnswer the question using a single word or phrase. Assistant:",
+        "text": "Rotisserie.\n\nRotisserie.\n\nRotisserie.\n\nRotisserie.\n\nRotisserie.\n\nRotisserie.\n\nRotis",
+        "answer_id": "VhVb5S3pyu2uxDyo6ZmArP",
+        "ground_truth": "Dough"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00033197.JPEG",
+        "prompt": "System:You are a helpful assistant.\n\n<img>./cl_dataset/ImageNet_withlabel/val/ILSVRC2012_val_00033197.JPEG</img>What is the object in the image?\nAnswer the question using a single word or phrase. Assistant:",
+        "text": "Sunscreen.\n\nSunscreen.\n\nSunscreen.\n\nSunscreen.\n\nSunscreen.\n\nSunscreen.\n\nSunscreen.\n\nSun",
+        "answer_id": "n5nHACDnyKvvn7dd24cWDz",
+        "ground_truth": "Tub"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00002124.JPEG",
+        "prompt": "System:You are a helpful assistant.\n\n<img>./cl_dataset/ImageNet_withlabel/val/ILSVRC2012_val_00002124.JPEG</img>What is the object in the image?\nAnswer the question using a single word or phrase. Assistant:",
+        "text": "Lorikeet.\n\nLorikeet.\n\nLorikeet.\n\nLorikeet.\n\nLorikeet.\n\nLorikeet.",
+        "answer_id": "C6wnF5BGbTPU3jswEVf87r",
+        "ground_truth": "Fig"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00031887.JPEG",
+        "prompt": "System:You are a helpful assistant.\n\n<img>./cl_dataset/ImageNet_withlabel/val/ILSVRC2012_val_00031887.JPEG</img>What is the object in the image?\nAnswer the question using a single word or phrase. Assistant:",
+        "text": "Leafhopper.\n\nLeafhopper.\n\nLeafhopper.\n\nLeafhopper.\n\nLeafhopper.\n\nLeafhopper.\n\nLeafh",
+        "answer_id": "4rpyy7EogbBaAwDGy9RCvc",
+        "ground_truth": "Tiger beetle"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00023725.JPEG",
+        "prompt": "System:You are a helpful assistant.\n\n<img>./cl_dataset/ImageNet_withlabel/val/ILSVRC2012_val_00023725.JPEG</img>What is the object in the image?\nAnswer the question using a single word or phrase. Assistant:",
+        "text": "Bucket.\n\nBucket.\n\nBucket.\n\nBucket.\n\nBucket.\n\nBucket.\n\nBucket.\n\nBucket.\n\nBucket.",
+        "answer_id": "Ds5BPkQKFfR3i8PvAJMpcc",
+        "ground_truth": "Goblet"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00032198.JPEG",
+        "prompt": "System:You are a helpful assistant.\n\n<img>./cl_dataset/ImageNet_withlabel/val/ILSVRC2012_val_00032198.JPEG</img>What is the object in the image?\nAnswer the question using a single word or phrase. Assistant:",
+        "text": "Mouse.\n\nMouse.\n\nMouse pad.\n\nMouse pad.\n\nMouse pad.\n\nMouse pad.\n\nMouse pad.\n\nMouse pad.",
+        "answer_id": "6rsws4MAVmeKjQdSuJeEBi",
+        "ground_truth": "Desk"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00014284.JPEG",
+        "prompt": "System:You are a helpful assistant.\n\n<img>./cl_dataset/ImageNet_withlabel/val/ILSVRC2012_val_00014284.JPEG</img>What is the object in the image?\nAnswer the question using a single word or phrase. Assistant:",
+        "text": "Sloth bear.\n\nSloth bear.\n\nSloth bear.\n\nSloth bear.\n\nSloth bear.\n\nSloth bear.\n\nSloth",
+        "answer_id": "GT3wQy7LPwWKddPXc3rw7D",
+        "ground_truth": "Koala"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00018955.JPEG",
+        "prompt": "System:You are a helpful assistant.\n\n<img>./cl_dataset/ImageNet_withlabel/val/ILSVRC2012_val_00018955.JPEG</img>What is the object in the image?\nAnswer the question using a single word or phrase. Assistant:",
+        "text": "Agaric.\n\nAgaric.\n\nAgaric.\n\nAgaric.\n\nAgaric.\n\nAgaric.\n\nAgar",
+        "answer_id": "Lxfjk98XYxHkiR8omHxAVj",
+        "ground_truth": "Earthstar"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00028127.JPEG",
+        "prompt": "System:You are a helpful assistant.\n\n<img>./cl_dataset/ImageNet_withlabel/val/ILSVRC2012_val_00028127.JPEG</img>What is the object in the image?\nAnswer the question using a single word or phrase. Assistant:",
+        "text": "Maillot.\n\nMaillot.\n\nMaillot.\n\nMaillot.\n\nMaillot.\n\nMaillot.\n\nMaill",
+        "answer_id": "DZs6jzaBhyEQckWJXsgVP3",
+        "ground_truth": "Tub"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00012983.JPEG",
+        "prompt": "System:You are a helpful assistant.\n\n<img>./cl_dataset/ImageNet_withlabel/val/ILSVRC2012_val_00012983.JPEG</img>What is the object in the image?\nAnswer the question using a single word or phrase. Assistant:",
+        "text": "Rottweiler.\n\nRottweiler.\n \u00f8ns.\n\nRottweiler.\n\nRottweiler.\n\nRottweiler.\n\nR",
+        "answer_id": "8PuCZHgxgipqwGePBt6Fw8",
+        "ground_truth": "Gordon setter"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00046664.JPEG",
+        "prompt": "System:You are a helpful assistant.\n\n<img>./cl_dataset/ImageNet_withlabel/val/ILSVRC2012_val_00046664.JPEG</img>What is the object in the image?\nAnswer the question using a single word or phrase. Assistant:",
+        "text": "Eggnog.\n\nEggnog.\n\nEggnog.\n\nEggnog.\n\nEggnog.\n\nEggnog.",
+        "answer_id": "UXo95rSS9ZtQYRroBkZujp",
+        "ground_truth": "Chocolate sauce"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00039648.JPEG",
+        "prompt": "System:You are a helpful assistant.\n\n<img>./cl_dataset/ImageNet_withlabel/val/ILSVRC2012_val_00039648.JPEG</img>What is the object in the image?\nAnswer the question using a single word or phrase. Assistant:",
+        "text": "Quail.\n\nQuail.\n\nQuail.\n\nQuail.\n\nQuail.\n\nQuail.\n\nQuail.\n\nQu",
+        "answer_id": "BKZGZvW7MWSNpbzjXSS6jV",
+        "ground_truth": "Water ouzel"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00027694.JPEG",
+        "prompt": "System:You are a helpful assistant.\n\n<img>./cl_dataset/ImageNet_withlabel/val/ILSVRC2012_val_00027694.JPEG</img>What is the object in the image?\nAnswer the question using a single word or phrase. Assistant:",
+        "text": "Gordon setter.\n\nGordon setter.\n\nGordon setter.\n\nGordon setter.\n\nGordon setter.\n\nGordon setter.\n\nGordon",
+        "answer_id": "Km4CmeJSXXfTWdVKXGZhFE",
+        "ground_truth": "Sunglass"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00030637.JPEG",
+        "prompt": "System:You are a helpful assistant.\n\n<img>./cl_dataset/ImageNet_withlabel/val/ILSVRC2012_val_00030637.JPEG</img>What is the object in the image?\nAnswer the question using a single word or phrase. Assistant:",
+        "text": "Rottweiler.\n\nRottweiler.\n\nRottweiler.\n\nRottweiler.\n\nRottweiler.\n\nRottweiler.",
+        "answer_id": "mvVs8pqGCuTmnYpQV3Ta9H",
+        "ground_truth": "Golden retriever"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00020667.JPEG",
+        "prompt": "System:You are a helpful assistant.\n\n<img>./cl_dataset/ImageNet_withlabel/val/ILSVRC2012_val_00020667.JPEG</img>What is the object in the image?\nAnswer the question using a single word or phrase. Assistant:",
+        "text": "Sunscreen.\n\nSunscreen.\n\nSunscreen.\n\nSunscreen.\n\nSunscreen.\n\nSunscreen.\n\nSunscreen.\n\nSun",
+        "answer_id": "WAhqkrS7dGfMBzSnyMpmyZ",
+        "ground_truth": "African crocodile"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00011790.JPEG",
+        "prompt": "System:You are a helpful assistant.\n\n<img>./cl_dataset/ImageNet_withlabel/val/ILSVRC2012_val_00011790.JPEG</img>What is the object in the image?\nAnswer the question using a single word or phrase. Assistant:",
+        "text": "Goblet.\n\nGoblet.\n\nGoblet.\n\nGoblet.\n\nGoblet.\n\nGoblet.\n\nGob",
+        "answer_id": "8n4dswRN3HUyogLaQmTqKn",
+        "ground_truth": "Eggnog"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00034637.JPEG",
+        "prompt": "System:You are a helpful assistant.\n\n<img>./cl_dataset/ImageNet_withlabel/val/ILSVRC2012_val_00034637.JPEG</img>What is the object in the image?\nAnswer the question using a single word or phrase. Assistant:",
+        "text": "Sunglass.\n\ud80c\udfe7\nSunglass.\n\nSunglass.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n",
+        "answer_id": "QS2FVrs2crwknrtwqRiakk",
+        "ground_truth": "Sloth bear"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00003580.JPEG",
+        "prompt": "System:You are a helpful assistant.\n\n<img>./cl_dataset/ImageNet_withlabel/val/ILSVRC2012_val_00003580.JPEG</img>What is the object in the image?\nAnswer the question using a single word or phrase. Assistant:",
+        "text": "Doormat.\n\nDoormat.\n\nDoormat.\n\nDoormat.\n\nDoormat.\n\nDoormat.\n\nDoorm",
+        "answer_id": "VtvAPVVmSZK5efzh2LAh3C",
+        "ground_truth": "Tub"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00025255.JPEG",
+        "prompt": "System:You are a helpful assistant.\n\n<img>./cl_dataset/ImageNet_withlabel/val/ILSVRC2012_val_00025255.JPEG</img>What is the object in the image?\nAnswer the question using a single word or phrase. Assistant:",
+        "text": "Beer glass.\n\nBeer glass.\n\nBeer glass.\n\nBeer glass.\n\nBeer glass.\n\nBeer glass.\n\nBeer glass.\n\nBeer",
+        "answer_id": "fTcJCbqukc9ZRyfcVg89Ur",
+        "ground_truth": "Goblet"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00003714.JPEG",
+        "prompt": "System:You are a helpful assistant.\n\n<img>./cl_dataset/ImageNet_withlabel/val/ILSVRC2012_val_00003714.JPEG</img>What is the object in the image?\nAnswer the question using a single word or phrase. Assistant:",
+        "text": "Bernese mountain dog.\n\nBernese mountain dog.\n\nBernese mountain dog.\n\nBernese mountain dog.\n\nBernese mountain dog.\n\nBernese mountain dog.",
+        "answer_id": "HcVzTb2BStTTYB442ev3eM",
+        "ground_truth": "Gordon setter"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00007935.JPEG",
+        "prompt": "System:You are a helpful assistant.\n\n<img>./cl_dataset/ImageNet_withlabel/val/ILSVRC2012_val_00007935.JPEG</img>What is the object in the image?\nAnswer the question using a single word or phrase. Assistant:",
+        "text": "Beer glass.\n\nBeer glass.\n\nBeer glass.\n\nBeer glass.\n\nBeer glass.\n\nBeer glass.\n\nBeer glass.\n\nBeer",
+        "answer_id": "BoVsxUK4UfoeXNUSpsZWw5",
+        "ground_truth": "Goblet"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00035634.JPEG",
+        "prompt": "System:You are a helpful assistant.\n\n<img>./cl_dataset/ImageNet_withlabel/val/ILSVRC2012_val_00035634.JPEG</img>What is the object in the image?\nAnswer the question using a single word or phrase. Assistant:",
+        "text": "Hamper.\n\nHamper.\n\nHamper.\n\nHamper.\n\nHamper.\n\nHamper.\n\nHamper.\n\nHam",
+        "answer_id": "aZwg3oJKbZcoVKQBbNd3qx",
+        "ground_truth": "Shopping basket"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00037701.JPEG",
+        "prompt": "System:You are a helpful assistant.\n\n<img>./cl_dataset/ImageNet_withlabel/val/ILSVRC2012_val_00037701.JPEG</img>What is the object in the image?\nAnswer the question using a single word or phrase. Assistant:",
+        "text": "Poncho.\n\nPoncho.\n\nPoncho.\n\nPoncho.\n\nPoncho.\n\nPoncho.\n\nPon",
+        "answer_id": "HtJ7kxCuJxgmKNjp8XWfL5",
+        "ground_truth": "Thatch"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00049853.JPEG",
+        "prompt": "System:You are a helpful assistant.\n\n<img>./cl_dataset/ImageNet_withlabel/val/ILSVRC2012_val_00049853.JPEG</img>What is the object in the image?\nAnswer the question using a single word or phrase. Assistant:",
+        "text": "Bucket.\n\nBucket.\n\nBucket.\n\nBucket.\n\nBucket.\n\nBucket.\n\nBucket.\n\nBucket.\n\nBucket.",
+        "answer_id": "RDqRt8gqrctXqQNFJ8VVJf",
+        "ground_truth": "Tub"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00036100.JPEG",
+        "prompt": "System:You are a helpful assistant.\n\n<img>./cl_dataset/ImageNet_withlabel/val/ILSVRC2012_val_00036100.JPEG</img>What is the object in the image?\nAnswer the question using a single word or phrase. Assistant:",
+        "text": "Leafhopper.\n\nLeafhopper.\n\nLeafhopper.\n\nLeafhopper.\n\nLeafhopper.\n\nLeafhopper.\n\nLeafh",
+        "answer_id": "4wWKwAb8cnSEzdpMcLfDvS",
+        "ground_truth": "Tiger beetle"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00043748.JPEG",
+        "prompt": "System:You are a helpful assistant.\n\n<img>./cl_dataset/ImageNet_withlabel/val/ILSVRC2012_val_00043748.JPEG</img>What is the object in the image?\nAnswer the question using a single word or phrase. Assistant:",
+        "text": "Hamper.\n\nHamper.\n\nHamper.\n\nHamper.\n\nHamper.\n\nHamper.\n\nHamper.\n\nHam",
+        "answer_id": "LsNEho89ka6GgvRBTBA5ZG",
+        "ground_truth": "Shopping basket"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00014400.JPEG",
+        "prompt": "System:You are a helpful assistant.\n\n<img>./cl_dataset/ImageNet_withlabel/val/ILSVRC2012_val_00014400.JPEG</img>What is the object in the image?\nAnswer the question using a single word or phrase. Assistant:",
+        "text": "Spatula.\n\nSpatula.\n\nSpatula.\n\nSpatula.\n\nSpatula.\n\nSpatula.\n\nSpat",
+        "answer_id": "hg7jbDuD43ni664WDK9AyM",
+        "ground_truth": "Chocolate sauce"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00003863.JPEG",
+        "prompt": "System:You are a helpful assistant.\n\n<img>./cl_dataset/ImageNet_withlabel/val/ILSVRC2012_val_00003863.JPEG</img>What is the object in the image?\nAnswer the question using a single word or phrase. Assistant:",
+        "text": "Chime.\n\nChime.\n\nChime.\n\nChime.\n\nChime.\n\nChime.\n\nChime.\n\nCh",
+        "answer_id": "45SRR5pJiUw4HEQV8rrtmp",
+        "ground_truth": "Spotted salamander"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00018224.JPEG",
+        "prompt": "System:You are a helpful assistant.\n\n<img>./cl_dataset/ImageNet_withlabel/val/ILSVRC2012_val_00018224.JPEG</img>What is the object in the image?\nAnswer the question using a single word or phrase. Assistant:",
+        "text": "Sealyham terrier.\n\nSealyham terrier.\n\nSealyham terrier.\n\nSealyham terrier.\n\nSealyham terrier.\n\n",
+        "answer_id": "SNpNMHWVXGPTpYnsoFEnUE",
+        "ground_truth": "Irish terrier"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00045708.JPEG",
+        "prompt": "System:You are a helpful assistant.\n\n<img>./cl_dataset/ImageNet_withlabel/val/ILSVRC2012_val_00045708.JPEG</img>What is the object in the image?\nAnswer the question using a single word or phrase. Assistant:",
+        "text": "Walker hound.\n\nWalker hound.\n\nWalker hound.\n\nWalker hound.\n\nWalker hound.\n\nWalker hound.\n\nWalker h",
+        "answer_id": "Ras4uNfuNVChMWsXzW7ChJ",
+        "ground_truth": "Whippet"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00029971.JPEG",
+        "prompt": "System:You are a helpful assistant.\n\n<img>./cl_dataset/ImageNet_withlabel/val/ILSVRC2012_val_00029971.JPEG</img>What is the object in the image?\nAnswer the question using a single word or phrase. Assistant:",
+        "text": "Sunscreen.\n\nSunscreen.\n\nSunscreen.\n\nSunscreen.\n\nSunscreen.\n\nSunscreen.\n\nSunscreen.\n\nSun",
+        "answer_id": "KKeAX55AoMdLG9wd3HpZqu",
+        "ground_truth": "Eggnog"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00017478.JPEG",
+        "prompt": "System:You are a helpful assistant.\n\n<img>./cl_dataset/ImageNet_withlabel/val/ILSVRC2012_val_00017478.JPEG</img>What is the object in the image?\nAnswer the question using a single word or phrase. Assistant:",
+        "text": "Beer glass.\n\ud80c\udfe7\nBeer glass.\n\nBeer glass.\n\nBeer glass.\n\nBeer glass.\n\nBeer glass.\n\nBeer glass.\n\nBeer",
+        "answer_id": "jPasaZPRGuFyaZXQHRMiLf",
+        "ground_truth": "Goblet"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00014766.JPEG",
+        "prompt": "System:You are a helpful assistant.\n\n<img>./cl_dataset/ImageNet_withlabel/val/ILSVRC2012_val_00014766.JPEG</img>What is the object in the image?\nAnswer the question using a single word or phrase. Assistant:",
+        "text": "Hyena.\n\nHyena.\n\nHyena.\n\nHyena.\n\nHyena.\n\nHyena.\n\nHyena.\n\nHy",
+        "answer_id": "EGsHMuj5pLoFS5UNsBzdz2",
+        "ground_truth": "Curly-coated retriever"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00029419.JPEG",
+        "prompt": "System:You are a helpful assistant.\n\n<img>./cl_dataset/ImageNet_withlabel/val/ILSVRC2012_val_00029419.JPEG</img>What is the object in the image?\nAnswer the question using a single word or phrase. Assistant:",
+        "text": "Whippet.\n\nWhippet.\n\nWhippet.\n\nWhippet.\n\nWhippet.\n\nWhippet.\n\nWhippet.\n\nWh",
+        "answer_id": "MKhpNWAF3y657YUUsD5gbJ",
+        "ground_truth": "Irish terrier"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00046108.JPEG",
+        "prompt": "System:You are a helpful assistant.\n\n<img>./cl_dataset/ImageNet_withlabel/val/ILSVRC2012_val_00046108.JPEG</img>What is the object in the image?\nAnswer the question using a single word or phrase. Assistant:",
+        "text": "Teapot.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n",
+        "answer_id": "BnGa3z8VzjuEx5i2yPnzbe",
+        "ground_truth": "Espresso maker"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00029341.JPEG",
+        "prompt": "System:You are a helpful assistant.\n\n<img>./cl_dataset/ImageNet_withlabel/val/ILSVRC2012_val_00029341.JPEG</img>What is the object in the image?\nAnswer the question using a single word or phrase. Assistant:",
+        "text": "Chime.\n\nChime.\n\nChime.\n\nChime.\n\nChime.\n\nChime.\n\nChime.\n\nCh",
+        "answer_id": "BvVpdFuFnwKrtCRPtENA4i",
+        "ground_truth": "Rotisserie"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00038660.JPEG",
+        "prompt": "System:You are a helpful assistant.\n\n<img>./cl_dataset/ImageNet_withlabel/val/ILSVRC2012_val_00038660.JPEG</img>What is the object in the image?\nAnswer the question using a single word or phrase. Assistant:",
+        "text": "Carpenter's kit.\n\nCarpenter's kit.\n\nCarpenter's kit.\n\nCarpenter's kit.\n\nCarpenter's kit.\n\n",
+        "answer_id": "68hk2g8dAHuqZwtHzosoHN",
+        "ground_truth": "Meat loaf"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00041693.JPEG",
+        "prompt": "System:You are a helpful assistant.\n\n<img>./cl_dataset/ImageNet_withlabel/val/ILSVRC2012_val_00041693.JPEG</img>What is the object in the image?\nAnswer the question using a single word or phrase. Assistant:",
+        "text": "Whippet.\n\nWhippet.\n\nWhippet.\n\nWhippet.\n\nWhippet.\n\nWhippet.\n\nWhippet.\n\nWh",
+        "answer_id": "L4K2qoSK7Hi2XrNqLeBEhL",
+        "ground_truth": "Maillot"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00024262.JPEG",
+        "prompt": "System:You are a helpful assistant.\n\n<img>./cl_dataset/ImageNet_withlabel/val/ILSVRC2012_val_00024262.JPEG</img>What is the object in the image?\nAnswer the question using a single word or phrase. Assistant:",
+        "text": "Toaster.\n\nToaster.\n\nToaster.\n\nToaster.\n\nToaster.\n\nToaster.\n\nToaster.\n\nTo",
+        "answer_id": "CMYitR6GTTyuXvvnKMqBpE",
+        "ground_truth": "Spotted salamander"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00012077.JPEG",
+        "prompt": "System:You are a helpful assistant.\n\n<img>./cl_dataset/ImageNet_withlabel/val/ILSVRC2012_val_00012077.JPEG</img>What is the object in the image?\nAnswer the question using a single word or phrase. Assistant:",
+        "text": "Eggs.\n\nEggnog.\n\nEggnog.\n\nEggnog.\n\nEggnog.\n\nEggnog.",
+        "answer_id": "AgJ7pgFfnUq9JUoPY6yXUJ",
+        "ground_truth": "Tub"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00019162.JPEG",
+        "prompt": "System:You are a helpful assistant.\n\n<img>./cl_dataset/ImageNet_withlabel/val/ILSVRC2012_val_00019162.JPEG</img>What is the object in the image?\nAnswer the question using a single word or phrase. Assistant:",
+        "text": "Gordon setter.\n\nGordon setter.\n\nGordon setter.\n\nGordon setter.\n\nGordon setter.\n\nGordon setter.\n\nGordon",
+        "answer_id": "BkWZCXA7dc5YbWGXL2tw35",
+        "ground_truth": "Curly-coated retriever"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00036387.JPEG",
+        "prompt": "System:You are a helpful assistant.\n\n<img>./cl_dataset/ImageNet_withlabel/val/ILSVRC2012_val_00036387.JPEG</img>What is the object in the image?\nAnswer the question using a single word or phrase. Assistant:",
+        "text": "Desk.\n\nDesk.\n\nDesk.\n\nDesk.\n\nDesk.\n\nDesk.\n\nDesk.\n\nDesk.\n\nDesk.",
+        "answer_id": "mQpsWqYgh55kYdJG8evAQC",
+        "ground_truth": "Mouse"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00038117.JPEG",
+        "prompt": "System:You are a helpful assistant.\n\n<img>./cl_dataset/ImageNet_withlabel/val/ILSVRC2012_val_00038117.JPEG</img>What is the object in the image?\nAnswer the question using a single word or phrase. Assistant:",
+        "text": "Hamper.\n\nHamper.\n\nHamper.\n\nHamper.\n\nHamper.\n\nHamper.\n\nHamper.\n\nHam",
+        "answer_id": "LK45242ydWjX5jKUcY4ADt",
+        "ground_truth": "Piggy bank"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00045515.JPEG",
+        "prompt": "System:You are a helpful assistant.\n\n<img>./cl_dataset/ImageNet_withlabel/val/ILSVRC2012_val_00045515.JPEG</img>What is the object in the image?\nAnswer the question using a single word or phrase. Assistant:",
+        "text": "Bowler.\n\nBowler.\n\nBowler.\n\nBowler.\n\nBowler.\n\nBowler.\n\nBowler.\n\nBow",
+        "answer_id": "Kuz6FoaRjvoN4fpBwMaoe8",
+        "ground_truth": "Bow tie"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00010653.JPEG",
+        "prompt": "System:You are a helpful assistant.\n\n<img>./cl_dataset/ImageNet_withlabel/val/ILSVRC2012_val_00010653.JPEG</img>What is the object in the image?\nAnswer the question using a single word or phrase. Assistant:",
+        "text": "Leafhopper.\n\nLeafhopper.\n\nLeafhopper.\n\nLeafhopper.\n\nLeafhopper.\n\nLeafhopper.\n\nLeafh",
+        "answer_id": "Po3NumMwz9fFyUnmvEakap",
+        "ground_truth": "Mantis"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00034248.JPEG",
+        "prompt": "System:You are a helpful assistant.\n\n<img>./cl_dataset/ImageNet_withlabel/val/ILSVRC2012_val_00034248.JPEG</img>What is the object in the image?\nAnswer the question using a single word or phrase. Assistant:",
+        "text": "Goblet.\n\nGoblet.\n\nGoblet.\n\nGoblet.\n\nGoblet.\n\nGoblet.\n\nGob",
+        "answer_id": "8BZCpkUTBZwnspzQSghRcA",
+        "ground_truth": "Hip"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00044867.JPEG",
+        "prompt": "System:You are a helpful assistant.\n\n<img>./cl_dataset/ImageNet_withlabel/val/ILSVRC2012_val_00044867.JPEG</img>What is the object in the image?\nAnswer the question using a single word or phrase. Assistant:",
+        "text": "Leafhopper.\n\nLeafhopper.\n\nLeafhopper.\n\nLeafhopper.\n\nLeafhopper.\n\nLeafhopper.\n\nLeafh",
+        "answer_id": "M2VMp2zBRuoKhxWMR84RqP",
+        "ground_truth": "Doormat"
+    }
+]

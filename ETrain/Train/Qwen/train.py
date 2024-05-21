@@ -86,7 +86,6 @@ def train():
     local_rank = training_args.local_rank
     model, tokenizer = create_Qwen_model(training_args, model_args, data_args, lora_args)
 
-
     if model_args.previous_task_model_path is not None:
         # load model from previous task
         load_model_from_previous_task(model, model_args.previous_task_model_path)
