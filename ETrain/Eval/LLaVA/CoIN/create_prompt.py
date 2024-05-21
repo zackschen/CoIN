@@ -19,7 +19,7 @@ if __name__ == '__main__':
     
     with open(os.path.expanduser(args.questions), "r") as f:
         questions = json.load(f)
-    question_dict = {question['question_id']:question for question in questions}
+    question_dict = {str(question['question_id']):question for question in questions}
 
     promts_answers = []
 

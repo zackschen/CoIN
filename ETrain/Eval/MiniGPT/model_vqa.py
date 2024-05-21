@@ -53,7 +53,7 @@ def eval_model(args):
     
     world_size = int(os.getenv('WORLD_SIZE', '4'))
     model = create_MiniGPT4_model(cfg)
-    # load_model_from_previous_task(cfg, model, args.model_path)
+    load_model_from_previous_task(cfg, model, args.model_path)
 
     ds_model = deepspeed.init_inference(
         model=model,      # Transformers模型
@@ -81,7 +81,7 @@ def eval_model(args):
         [conv.append_message(conv.roles[1], None) for conv in convs]
         question = [conv.get_prompt() for conv in convs]
 
-        answers = ds_model.generate(image, question, max_new_tokens=500, do_sample=False)
+        answers = ds_model.generate(image, question, max_new_tokens=100, do_sample=False)
 
         for idx, (text, answer) in enumerate(zip(question, answers)):
             ans_id = shortuuid.uuid()

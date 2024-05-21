@@ -8,8 +8,8 @@ from ETrain.Eval.LLaVA.CoIN.m4c_evaluator import TextVQAAccuracyEvaluator
 
 def get_args():
     parser = argparse.ArgumentParser()
-    parser.add_argument('--annotation-file', type=str, default='./LLaVA/cl_dataset/TextVQA/TextVQA_0.5.1_val.json')
-    parser.add_argument('--result-file', type=str, default='./LLaVA/results/Instructions/TextVQA/Zero_shot/merge.jsonl')
+    parser.add_argument('--annotation-file', type=str, default='./cl_dataset/TextVQA/TextVQA_0.5.1_val.json')
+    parser.add_argument('--result-file', type=str, default='./results/CoIN/MiniGPTv2/TextVQA/Zero_Shot/merge.jsonl')
     parser.add_argument('--output-dir', type=str)
     return parser.parse_args()
 
@@ -34,7 +34,7 @@ def prompt_processor(prompt):
 def eval_single(annotation_file, result_file):
     experiment_name = os.path.splitext(os.path.basename(result_file))[0]
     annotations = json.load(open(annotation_file))['data']
-    annotations = {annotation['question_id']: annotation for annotation in annotations}
+    annotations = {str(annotation['question_id']): annotation for annotation in annotations}
     results = [json.loads(line) for line in open(result_file)]
 
     pred_list = []

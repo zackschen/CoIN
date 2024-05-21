@@ -130,8 +130,8 @@ def train():
     model, tokenizer = create_LLaVA_model(training_args, model_args, data_args, bnb_model_from_pretrained_args, compute_dtype, local_rank)
 
     if model_args.previous_task_model_path is not None:
-            # load model from previous task
-            load_model_from_previous_task(model, model_args.previous_task_model_path)
+        # load model from previous task
+        load_model_from_previous_task(model, model_args.previous_task_model_path)
 
     data_module = create_LLaVA_data_module(tokenizer, data_args, local_rank)
 
@@ -145,7 +145,7 @@ def train():
     trainer.train()
     trainer.save_state()
 
-    trainer.save_model(training_args)
+    trainer.save_trained_model(training_args)
 
 
 if __name__ == "__main__":
