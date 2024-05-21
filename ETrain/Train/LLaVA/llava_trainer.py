@@ -235,7 +235,7 @@ class LLaVATrainer(Trainer):
             super(LLaVATrainer, self)._save(output_dir, state_dict)
 
 
-    def save_model(self, training_args):
+    def save_trained_model(self, training_args):
         if training_args.lora_enable:
             state_dict = get_peft_state_maybe_zero_3(
                 self.model.named_parameters(), training_args.lora_bias

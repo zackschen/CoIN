@@ -16,7 +16,7 @@ def get_args():
 
 def eval_single(annotation_file, result_file):
     annotations = json.load(open(annotation_file))
-    annotations = {annotation['question_id']: annotation for annotation in annotations}
+    annotations = {str(annotation['question_id']): annotation for annotation in annotations}
     results = [json.loads(line) for line in open(result_file)]
 
     total = len(results)

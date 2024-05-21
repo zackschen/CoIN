@@ -1,4 +1,4 @@
-RESULT_DIR="./results/CoIN/MiniGPTv2/Grounding"
+RESULT_DIR="./results/CoIN_New/MiniGPTv2/Grounding"
 MODELPATH=$2
 
 deepspeed --include localhost:0,1,2,3,4,5,6,7 \
@@ -10,7 +10,7 @@ deepspeed --include localhost:0,1,2,3,4,5,6,7 \
 
 output_file=$RESULT_DIR/$1/merge.jsonl
 
-python -m ETrain.Eval.LLaVA.CoIN.eval_grounding \
+python -m ETrain.Eval.MiniGPT.eval_grounding \
     --test-file ./playground/Instructions_slim/Grounding/test.json \
     --result-file $output_file \
     --output-dir $RESULT_DIR/$1 \

@@ -1,13 +1,13 @@
 #!/bin/bash
 
-bash ./scripts/MiniGPTv2/Eval/1_Science.sh Zero_Shot ./checkpoints/MiniGPTv2/CoIN/Finetune/Multitask
-bash ./scripts/MiniGPTv2/Eval/2_TextVQA.sh Zero_Shot ./checkpoints/MiniGPTv2/CoIN_New/Finetune/Multitask
-bash ./scripts/MiniGPTv2/Eval/3_ImageNet.sh Zero_Shot ./checkpoints/MiniGPTv2/CoIN_New/Finetune/Multitask
-bash ./scripts/MiniGPTv2/Eval/4_GQA.sh Zero_Shot ./checkpoints/MiniGPTv2/CoIN_New/Finetune/Multitask
-bash ./scripts/MiniGPTv2/Eval/5_VizWiz.sh Zero_Shot ./checkpoints/MiniGPTv2/CoIN_New/Finetune/Multitask
-bash ./scripts/MiniGPTv2/Eval/6_Grounding.sh Zero_Shot ./checkpoints/MiniGPTv2/CoIN_New/Finetune/Multitask
-bash ./scripts/MiniGPTv2/Eval/7_VQAv2.sh Zero_Shot ./checkpoints/MiniGPTv2/CoIN_New/Finetune/Multitask
-bash ./scripts/MiniGPTv2/Eval/8_OCRVQA.sh Zero_Shot ./checkpoints/MiniGPTv2/CoIN_New/Finetune/Multitask
+bash ./scripts/MiniGPTv2/Eval/1_Science.sh Multitask ./checkpoints/MiniGPTv2/CoIN/Finetune/Multitask
+bash ./scripts/MiniGPTv2/Eval/2_TextVQA.sh Multitask ./checkpoints/MiniGPTv2/CoIN_New/Finetune/Multitask
+bash ./scripts/MiniGPTv2/Eval/3_ImageNet.sh Multitask ./checkpoints/MiniGPTv2/CoIN_New/Finetune/Multitask
+bash ./scripts/MiniGPTv2/Eval/4_GQA.sh Multitask ./checkpoints/MiniGPTv2/CoIN_New/Finetune/Multitask
+bash ./scripts/MiniGPTv2/Eval/5_VizWiz.sh Multitask ./checkpoints/MiniGPTv2/CoIN_New/Finetune/Multitask
+bash ./scripts/MiniGPTv2/Eval/6_Grounding.sh Multitask ./checkpoints/MiniGPTv2/CoIN_New/Finetune/Multitask
+bash ./scripts/MiniGPTv2/Eval/7_VQAv2.sh Multitask ./checkpoints/MiniGPTv2/CoIN_New/Finetune/Multitask
+bash ./scripts/MiniGPTv2/Eval/8_OCRVQA.sh Multitask ./checkpoints/MiniGPTv2/CoIN_New/Finetune/Multitask
 
 # bash ./scripts/MiniGPTv2/Eval/1_Science.sh TextVQA ./checkpoints/MiniGPTv2/CoIN_New/Finetune/TextVQA
 # bash ./scripts/MiniGPTv2/Eval/1_Science.sh ImageNet ./checkpoints/MiniGPTv2/CoIN_New/Finetune/ImageNet

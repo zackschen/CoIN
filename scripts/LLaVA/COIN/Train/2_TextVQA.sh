@@ -9,15 +9,15 @@ MODEL_VERSION="vicuna-7b-v1.5"
 # MODEL_VERSION="Llama-2-7b-chat-hf"
 ################## LLaMA-2 ##################
 
-deepspeed --include localhost:0,1,2,3,4,5,6 --master_port 29600 llava/train/train_mem.py \
+deepspeed --include localhost:0,1,2,3,4,5,6,7 --master_port 29600 ETrain/Train/LLaVA/train_mem.py \
     --deepspeed ./scripts/zero3_offload.json \
     --lora_enable True --lora_r 128 --lora_alpha 256 --mm_projector_lr 2e-5 \
-    --model_name_or_path checkpoints/Vicuna/vicuna-7b-v1.5 \
-    --previous_task_model_path ./checkpoints/Instruction/Only_Pretrain_1.5/ScienceQA/llava-1.5-7b-lora \
+    --model_name_or_path ./checkpoints/LLaVA/Vicuna/vicuna-13b-v1.5 \
+    --previous_task_model_path ./checkpoints/LLaVA/Instruction/CoIN-13b/ScienceQA \
     --version $PROMPT_VERSION \
-    --data_path ./playground/Instructions/TextVQA/train.json \
+    --data_path ./playground/Instructions_Type1/TextVQA/train.json \
     --image_folder ./cl_dataset \
-    --vision_tower openai/clip-vit-large-patch14-336 \
+    --vision_tower ./checkpoints/LLaVA/clip-vit-large-patch14-336 \
     --mm_projector_type mlp2x_gelu \
     --mm_vision_select_layer -2 \
     --mm_use_im_start_end False \
@@ -25,11 +25,11 @@ deepspeed --include localhost:0,1,2,3,4,5,6 --master_port 29600 llava/train/trai
     --image_aspect_ratio pad \
     --group_by_modality_length True \
     --bf16 True \
-    --output_dir ./checkpoints/Instruction/Only_Pretrain_1.5/TextVQA/llava-1.5-7b-lora \
+    --output_dir ./checkpoints/LLaVA/Instruction/CoIN-13b/TextVQA \
     --num_train_epochs 1 \
-    --per_device_train_batch_size 16 \
+    --per_device_train_batch_size 14 \
     --per_device_eval_batch_size 16 \
-    --gradient_accumulation_steps 1 \
+    --gradient_accumulation_steps 8 \
     --evaluation_strategy "no" \
     --save_strategy "epoch" \
     --learning_rate 2e-4 \

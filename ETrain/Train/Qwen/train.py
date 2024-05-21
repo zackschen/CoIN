@@ -102,7 +102,7 @@ def train():
 
     model.config.use_cache = True
 
-    trainer.save_model(training_args, lora_args)
+    trainer.save_trained_model(training_args, lora_args)
 
 
 if __name__ == "__main__":
