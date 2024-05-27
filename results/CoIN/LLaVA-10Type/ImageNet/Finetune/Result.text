@@ -1,0 +1,1696 @@
+Samples: 4000
+Accuracy: 95.30%
+[
+    {
+        "question_id": "ILSVRC2012_val_00008250.JPEG",
+        "prompt": "What is the object in the image?\nExpress your answer with one word or a short, descriptive phrase.",
+        "text": "Chocolate sauce.",
+        "answer_id": "9y4UihT7SNx4syjCmqrxbp",
+        "model_id": "ImageNet_llava_lora",
+        "metadata": {},
+        "ground_truth": "Dough"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00001162.JPEG",
+        "prompt": "What is the object in the image?\nIdentify the type of content in the image using one word or a concise phrase.",
+        "text": "Quail.",
+        "answer_id": "iqhNYFboGbdok6TdzFhspt",
+        "model_id": "ImageNet_llava_lora",
+        "metadata": {},
+        "ground_truth": "Red-backed sandpiper"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00040535.JPEG",
+        "prompt": "What is the object in the image?\nDescribe the content of the image using one word or a concise phrase.",
+        "text": "German shepherd.",
+        "answer_id": "6ubvztKM3KJDSkCNRGegQV",
+        "model_id": "ImageNet_llava_lora",
+        "metadata": {},
+        "ground_truth": "Malamute"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00019901.JPEG",
+        "prompt": "What is the object in the image?\nClassify the image content using only one word or a brief phrase.",
+        "text": "Chimpanzee.",
+        "answer_id": "XChu65ugAqawKSCWykaWQM",
+        "model_id": "ImageNet_llava_lora",
+        "metadata": {},
+        "ground_truth": "Sloth bear"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00029341.JPEG",
+        "prompt": "What is the object in the image?\nGive your answer in the form of a single word or a concise phrase.",
+        "text": "Chime.",
+        "answer_id": "JqyvaCy3nVbbBerwyLdBgA",
+        "model_id": "ImageNet_llava_lora",
+        "metadata": {},
+        "ground_truth": "Rotisserie"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00048590.JPEG",
+        "prompt": "What is the object in the image?\nSummarize your response in a single word or a brief phrase.",
+        "text": "Hamper.",
+        "answer_id": "hmisgMaC9BXw6m7hw3f2zb",
+        "model_id": "ImageNet_llava_lora",
+        "metadata": {},
+        "ground_truth": "Shopping basket"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00001317.JPEG",
+        "prompt": "What is the object in the image?\nExpress your answer in a single word or a short, descriptive phrase.",
+        "text": "Organ.",
+        "answer_id": "j8p2ch7KFRrGSVyHSAVkek",
+        "model_id": "ImageNet_llava_lora",
+        "metadata": {},
+        "ground_truth": "Accordion"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00023485.JPEG",
+        "prompt": "What is the object in the image?\nUse a single word or a short phrase to categorize the image content.",
+        "text": "Face powder.",
+        "answer_id": "RR3dJBneRkWeq9GT5ttTa5",
+        "model_id": "ImageNet_llava_lora",
+        "metadata": {},
+        "ground_truth": "Sunscreen"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00021473.JPEG",
+        "prompt": "What is the object in the image?\nIdentify the type of content in the image using one word or a concise phrase.",
+        "text": "Walker hound.",
+        "answer_id": "8JeLgsZkYHXS6WAPSTkMgg",
+        "model_id": "ImageNet_llava_lora",
+        "metadata": {},
+        "ground_truth": "Gordon setter"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00005168.JPEG",
+        "prompt": "What is the object in the image?\nUse one word or a short phrase to classify the content of the image.",
+        "text": "Toaster.",
+        "answer_id": "e5mNnHfckVKqTAMuFmH3pZ",
+        "model_id": "ImageNet_llava_lora",
+        "metadata": {},
+        "ground_truth": "Dough"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00030087.JPEG",
+        "prompt": "What is the object in the image?\nUse one word or a short phrase to classify the content of the image.",
+        "text": "Afghan hound.",
+        "answer_id": "Q2Jots4KjWvvXojMPbwQaM",
+        "model_id": "ImageNet_llava_lora",
+        "metadata": {},
+        "ground_truth": "Gordon setter"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00022753.JPEG",
+        "prompt": "What is the object in the image?\nProvide your answer using a single word or a brief phrase.",
+        "text": "Afghan hound.",
+        "answer_id": "9uNh7aK8q7LsR9ycrdCkWt",
+        "model_id": "ImageNet_llava_lora",
+        "metadata": {},
+        "ground_truth": "Whippet"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00011790.JPEG",
+        "prompt": "What is the object in the image?\nClassify the image content using only one word or a brief phrase.",
+        "text": "Goblet.",
+        "answer_id": "N4P2NnzfiNiwi6qXVHgxHu",
+        "model_id": "ImageNet_llava_lora",
+        "metadata": {},
+        "ground_truth": "Eggnog"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00003514.JPEG",
+        "prompt": "What is the object in the image?\nClassify the image content using only one word or a brief phrase.",
+        "text": "Lemon.",
+        "answer_id": "o2n3EDEB3nQywEG82EgaH6",
+        "model_id": "ImageNet_llava_lora",
+        "metadata": {},
+        "ground_truth": "Envelope"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00038159.JPEG",
+        "prompt": "What is the object in the image?\nSummarize your response in a single word or a brief phrase.",
+        "text": "Quail.",
+        "answer_id": "MwTiYB9qx3VYF73MVqTLxB",
+        "model_id": "ImageNet_llava_lora",
+        "metadata": {},
+        "ground_truth": "Water ouzel"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00041001.JPEG",
+        "prompt": "What is the object in the image?\nSummarize your response in a single word or a brief phrase.",
+        "text": "Lemon.",
+        "answer_id": "3H74YHqooTVArsLUssnVru",
+        "model_id": "ImageNet_llava_lora",
+        "metadata": {},
+        "ground_truth": "Fig"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00016300.JPEG",
+        "prompt": "What is the object in the image?\nDescribe the content of the image using one word or a concise phrase.",
+        "text": "Face powder.",
+        "answer_id": "EouYdMS5cjSiVHosE3VG3W",
+        "model_id": "ImageNet_llava_lora",
+        "metadata": {},
+        "ground_truth": "Bucket"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00004236.JPEG",
+        "prompt": "What is the object in the image?\nSummarize your response in a single word or a brief phrase.",
+        "text": "Carpenter's kit.",
+        "answer_id": "2vjzYn2BMcoQ8bmnZchbor",
+        "model_id": "ImageNet_llava_lora",
+        "metadata": {},
+        "ground_truth": "Bucket"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00008748.JPEG",
+        "prompt": "What is the object in the image?\nExpress your answer in a single word or a short, descriptive phrase.",
+        "text": "Spatula.",
+        "answer_id": "gpjWN4JkYtb5NxrVofZALu",
+        "model_id": "ImageNet_llava_lora",
+        "metadata": {},
+        "ground_truth": "Goblet"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00032151.JPEG",
+        "prompt": "What is the object in the image?\nDescribe the content of the image using one word or a concise phrase.",
+        "text": "Cock.",
+        "answer_id": "YTG6TcSmncLqijAMnmDrWV",
+        "model_id": "ImageNet_llava_lora",
+        "metadata": {},
+        "ground_truth": "Lemon"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00010971.JPEG",
+        "prompt": "What is the object in the image?\nSummarize your response in a single word or a brief phrase.",
+        "text": "Kimono.",
+        "answer_id": "CzfcrKg5VwdDqM5JXM3Bp5",
+        "model_id": "ImageNet_llava_lora",
+        "metadata": {},
+        "ground_truth": "Lampshade"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00012983.JPEG",
+        "prompt": "What is the object in the image?\nClassify the image content using only one word or a brief phrase.",
+        "text": "Rottweiler.",
+        "answer_id": "Hw9B44a3ahCjp4XmKHYVxH",
+        "model_id": "ImageNet_llava_lora",
+        "metadata": {},
+        "ground_truth": "Gordon setter"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00037836.JPEG",
+        "prompt": "What is the object in the image?\nUse one word or a short phrase to classify the content of the image.",
+        "text": "American black bear.",
+        "answer_id": "WUEwfGH7oi8zEEWPgnrwuT",
+        "model_id": "ImageNet_llava_lora",
+        "metadata": {},
+        "ground_truth": "Sloth bear"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00022554.JPEG",
+        "prompt": "What is the object in the image?\nExpress your answer with one word or a short, descriptive phrase.",
+        "text": "Web site.",
+        "answer_id": "BCycmDruTwLa4hJ4GTiMJY",
+        "model_id": "ImageNet_llava_lora",
+        "metadata": {},
+        "ground_truth": "Envelope"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00013376.JPEG",
+        "prompt": "What is the object in the image?\nClassify the image content using only one word or a brief phrase.",
+        "text": "Afghan hound.",
+        "answer_id": "2yFkB2qZjx6yYRAuHsxD5Q",
+        "model_id": "ImageNet_llava_lora",
+        "metadata": {},
+        "ground_truth": "Sunglass"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00024070.JPEG",
+        "prompt": "What is the object in the image?\nUse one word or a short phrase to classify the content of the image.",
+        "text": "Valley.",
+        "answer_id": "3BESqBqJk2Q3PCC2kJjZ3P",
+        "model_id": "ImageNet_llava_lora",
+        "metadata": {},
+        "ground_truth": "Stupa"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00014749.JPEG",
+        "prompt": "What is the object in the image?\nDescribe the content of the image using one word or a concise phrase.",
+        "text": "Dandie dinmont.",
+        "answer_id": "cHRxpnVeSFwwjCSH5iuyP8",
+        "model_id": "ImageNet_llava_lora",
+        "metadata": {},
+        "ground_truth": "Irish terrier"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00027775.JPEG",
+        "prompt": "What is the object in the image?\nGive your answer in the form of a single word or a concise phrase.",
+        "text": "Bow tie.",
+        "answer_id": "bNDCqx6ba5XwQUWg7p6jUk",
+        "model_id": "ImageNet_llava_lora",
+        "metadata": {},
+        "ground_truth": "Sunglass"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00009663.JPEG",
+        "prompt": "What is the object in the image?\nProvide your answer using a single word or a brief phrase.",
+        "text": "Quail.",
+        "answer_id": "kqWQ5tWtDAsmmnVexJLhF3",
+        "model_id": "ImageNet_llava_lora",
+        "metadata": {},
+        "ground_truth": "Cock"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00007179.JPEG",
+        "prompt": "What is the object in the image?\nUse one word or a short phrase to classify the content of the image.",
+        "text": "Dandie dinmont.",
+        "answer_id": "bZJNqz83UZqbVMGbkkXL79",
+        "model_id": "ImageNet_llava_lora",
+        "metadata": {},
+        "ground_truth": "Sunglass"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00035547.JPEG",
+        "prompt": "What is the object in the image?\nRespond to the question with a single word or a short, descriptive phrase.",
+        "text": "Shopping basket.",
+        "answer_id": "aUMUMNkmRLcb7nuaMKnkgL",
+        "model_id": "ImageNet_llava_lora",
+        "metadata": {},
+        "ground_truth": "Hamper"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00035550.JPEG",
+        "prompt": "What is the object in the image?\nDescribe the content of the image using one word or a concise phrase.",
+        "text": "Poncho.",
+        "answer_id": "JvM6WzLgA6WwrvXoeLBam9",
+        "model_id": "ImageNet_llava_lora",
+        "metadata": {},
+        "ground_truth": "Doormat"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00046168.JPEG",
+        "prompt": "What is the object in the image?\nUse one word or a short phrase to classify the content of the image.",
+        "text": "Chocolate sauce.",
+        "answer_id": "TeJnpBZVNqyLEm6evAHr2D",
+        "model_id": "ImageNet_llava_lora",
+        "metadata": {},
+        "ground_truth": "Dough"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00037687.JPEG",
+        "prompt": "What is the object in the image?\nClassify the image content using only one word or a brief phrase.",
+        "text": "Pickup.",
+        "answer_id": "KqH5Ss4dyTMW9r8CsYDcE4",
+        "model_id": "ImageNet_llava_lora",
+        "metadata": {},
+        "ground_truth": "Web site"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00043833.JPEG",
+        "prompt": "What is the object in the image?\nIdentify the type of content in the image using one word or a concise phrase.",
+        "text": "Bow tie.",
+        "answer_id": "UsStuMowe2nzvWeqrQgKLX",
+        "model_id": "ImageNet_llava_lora",
+        "metadata": {},
+        "ground_truth": "Sunglass"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00022560.JPEG",
+        "prompt": "What is the object in the image?\nDescribe the content of the image using one word or a concise phrase.",
+        "text": "Beer glass.",
+        "answer_id": "CFZezDVaGCNPVqPAbVrRVx",
+        "model_id": "ImageNet_llava_lora",
+        "metadata": {},
+        "ground_truth": "Goblet"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00023542.JPEG",
+        "prompt": "What is the object in the image?\nUse a single word or a short phrase to categorize the image content.",
+        "text": "Hand blower.",
+        "answer_id": "ZD44PYKn948bZTY5RLANci",
+        "model_id": "ImageNet_llava_lora",
+        "metadata": {},
+        "ground_truth": "Envelope"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00009864.JPEG",
+        "prompt": "What is the object in the image?\nSummarize your response in a single word or a brief phrase.",
+        "text": "Shopping basket.",
+        "answer_id": "QtFLs5YtAREFi9UhjDC5Br",
+        "model_id": "ImageNet_llava_lora",
+        "metadata": {},
+        "ground_truth": "Tub"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00039703.JPEG",
+        "prompt": "What is the object in the image?\nUse a single word or a short phrase to categorize the image content.",
+        "text": "Maillot.",
+        "answer_id": "CJiUkkKcyMuEfMEyzsCT2f",
+        "model_id": "ImageNet_llava_lora",
+        "metadata": {},
+        "ground_truth": "Paddle"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00029653.JPEG",
+        "prompt": "What is the object in the image?\nExpress your answer with one word or a short, descriptive phrase.",
+        "text": "Piggy bank.",
+        "answer_id": "GdotzsbFzCBrtF8yu3KGA3",
+        "model_id": "ImageNet_llava_lora",
+        "metadata": {},
+        "ground_truth": "Hog"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00032393.JPEG",
+        "prompt": "What is the object in the image?\nExpress your answer with one word or a short, descriptive phrase.",
+        "text": "Maillot.",
+        "answer_id": "gKacWzcCvcpyXCmCdrjcKr",
+        "model_id": "ImageNet_llava_lora",
+        "metadata": {},
+        "ground_truth": "Sunglass"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00047900.JPEG",
+        "prompt": "What is the object in the image?\nUse a single word or a short phrase to categorize the image content.",
+        "text": "Spatula.",
+        "answer_id": "BU3b8A5686Q3jeXx5gPQBr",
+        "model_id": "ImageNet_llava_lora",
+        "metadata": {},
+        "ground_truth": "Paddle"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00040102.JPEG",
+        "prompt": "What is the object in the image?\nExpress your answer with one word or a short, descriptive phrase.",
+        "text": "Mouse.",
+        "answer_id": "U8hBu5BQoPKopJbGVovdBp",
+        "model_id": "ImageNet_llava_lora",
+        "metadata": {},
+        "ground_truth": "Desk"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00014821.JPEG",
+        "prompt": "What is the object in the image?\nClassify the image content using only one word or a brief phrase.",
+        "text": "Mouse.",
+        "answer_id": "dcqaS75Qb4DQ3SYAySWfbd",
+        "model_id": "ImageNet_llava_lora",
+        "metadata": {},
+        "ground_truth": "Desk"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00042478.JPEG",
+        "prompt": "What is the object in the image?\nDescribe the content of the image using one word or a concise phrase.",
+        "text": "Earthstar.",
+        "answer_id": "REQQ3P3h9cDR4bQWbuv7f2",
+        "model_id": "ImageNet_llava_lora",
+        "metadata": {},
+        "ground_truth": "Agaric"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00030828.JPEG",
+        "prompt": "What is the object in the image?\nSummarize your response in a single word or a brief phrase.",
+        "text": "Golden retriever.",
+        "answer_id": "bvE7wENRbKi3DoeNavBAVp",
+        "model_id": "ImageNet_llava_lora",
+        "metadata": {},
+        "ground_truth": "German shepherd"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00031681.JPEG",
+        "prompt": "What is the object in the image?\nGive your answer in the form of a single word or a concise phrase.",
+        "text": "Sunglass.",
+        "answer_id": "Qc7AcqStj6BFYMMXhsMo2v",
+        "model_id": "ImageNet_llava_lora",
+        "metadata": {},
+        "ground_truth": "Bow tie"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00018303.JPEG",
+        "prompt": "What is the object in the image?\nUse one word or a short phrase to classify the content of the image.",
+        "text": "American black bear.",
+        "answer_id": "DFXfAdvfvanNBTDfMc2CBP",
+        "model_id": "ImageNet_llava_lora",
+        "metadata": {},
+        "ground_truth": "Sloth bear"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00047458.JPEG",
+        "prompt": "What is the object in the image?\nRespond to the question with a single word or a short, descriptive phrase.",
+        "text": "American black bear.",
+        "answer_id": "CEAAX7UkLP7pkb4Za3FB2b",
+        "model_id": "ImageNet_llava_lora",
+        "metadata": {},
+        "ground_truth": "Sloth bear"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00038117.JPEG",
+        "prompt": "What is the object in the image?\nRespond to the question with a single word or a short, descriptive phrase.",
+        "text": "Poncho.",
+        "answer_id": "eu9fAnuZ5cyzeEKUfeZJ98",
+        "model_id": "ImageNet_llava_lora",
+        "metadata": {},
+        "ground_truth": "Piggy bank"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00025816.JPEG",
+        "prompt": "What is the object in the image?\nSummarize your response in a single word or a brief phrase.",
+        "text": "Cucumber.",
+        "answer_id": "dMNq34DrUPgeGVHG6oaE3h",
+        "model_id": "ImageNet_llava_lora",
+        "metadata": {},
+        "ground_truth": "Spatula"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00018224.JPEG",
+        "prompt": "What is the object in the image?\nClassify the image content using only one word or a brief phrase.",
+        "text": "Sealyham terrier.",
+        "answer_id": "8zyPQHiv797AcXMnm4TRRN",
+        "model_id": "ImageNet_llava_lora",
+        "metadata": {},
+        "ground_truth": "Irish terrier"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00012937.JPEG",
+        "prompt": "What is the object in the image?\nExpress your answer in a single word or a short, descriptive phrase.",
+        "text": "Stupa.",
+        "answer_id": "JSonPxJT5kwCXWb8RgzuyW",
+        "model_id": "ImageNet_llava_lora",
+        "metadata": {},
+        "ground_truth": "Valley"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00047580.JPEG",
+        "prompt": "What is the object in the image?\nUse one word or a short phrase to classify the content of the image.",
+        "text": "Maillot.",
+        "answer_id": "AYd5mg9BoV2UQVMZGcAimh",
+        "model_id": "ImageNet_llava_lora",
+        "metadata": {},
+        "ground_truth": "Sunglass"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00023565.JPEG",
+        "prompt": "What is the object in the image?\nDescribe the content of the image using one word or a concise phrase.",
+        "text": "Cucumber.",
+        "answer_id": "LPGW7GevshLiiY6RvTGQ52",
+        "model_id": "ImageNet_llava_lora",
+        "metadata": {},
+        "ground_truth": "Web site"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00005377.JPEG",
+        "prompt": "What is the object in the image?\nExpress your answer with one word or a short, descriptive phrase.",
+        "text": "Meat loaf.",
+        "answer_id": "a83CUY33oCLyPB8aAJktkv",
+        "model_id": "ImageNet_llava_lora",
+        "metadata": {},
+        "ground_truth": "Spatula"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00031177.JPEG",
+        "prompt": "What is the object in the image?\nUse a single word or a short phrase to categorize the image content.",
+        "text": "Cucumber.",
+        "answer_id": "nTSFpu4iwTe5kyir5qX9yQ",
+        "model_id": "ImageNet_llava_lora",
+        "metadata": {},
+        "ground_truth": "Head cabbage"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00021801.JPEG",
+        "prompt": "What is the object in the image?\nUse a single word or a short phrase to categorize the image content.",
+        "text": "Afghan hound.",
+        "answer_id": "kvVba42GULww8QsdxQLLjN",
+        "model_id": "ImageNet_llava_lora",
+        "metadata": {},
+        "ground_truth": "Standard poodle"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00022642.JPEG",
+        "prompt": "What is the object in the image?\nExpress your answer with one word or a short, descriptive phrase.",
+        "text": "Dandie dinmont.",
+        "answer_id": "bjqPcgFNPaZYcWLtonmRUT",
+        "model_id": "ImageNet_llava_lora",
+        "metadata": {},
+        "ground_truth": "Sealyham terrier"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00040219.JPEG",
+        "prompt": "What is the object in the image?\nUse a single word or a short phrase to categorize the image content.",
+        "text": "Maillot.",
+        "answer_id": "HX447AunfhAtfBkhcjDhhe",
+        "model_id": "ImageNet_llava_lora",
+        "metadata": {},
+        "ground_truth": "Sunglass"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00040272.JPEG",
+        "prompt": "What is the object in the image?\nDescribe the content of the image using one word or a concise phrase.",
+        "text": "Web site.",
+        "answer_id": "68P9k3uHMFGn7fEUN7GBrA",
+        "model_id": "ImageNet_llava_lora",
+        "metadata": {},
+        "ground_truth": "Envelope"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00015001.JPEG",
+        "prompt": "What is the object in the image?\nUse a single word or a short phrase to categorize the image content.",
+        "text": "Toaster.",
+        "answer_id": "DjquzAc2V3FgfbcSvar7hx",
+        "model_id": "ImageNet_llava_lora",
+        "metadata": {},
+        "ground_truth": "Espresso maker"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00000777.JPEG",
+        "prompt": "What is the object in the image?\nExpress your answer in a single word or a short, descriptive phrase.",
+        "text": "Mouse.",
+        "answer_id": "eDzK4HUojGewf4Av8aF9wN",
+        "model_id": "ImageNet_llava_lora",
+        "metadata": {},
+        "ground_truth": "Desk"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00006948.JPEG",
+        "prompt": "What is the object in the image?\nDescribe the content of the image using one word or a concise phrase.",
+        "text": "Bucket.",
+        "answer_id": "CNwrtbLCiLLArDjGJg6rFB",
+        "model_id": "ImageNet_llava_lora",
+        "metadata": {},
+        "ground_truth": "Eggnog"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00025450.JPEG",
+        "prompt": "What is the object in the image?\nUse one word or a short phrase to classify the content of the image.",
+        "text": "Bow tie.",
+        "answer_id": "h845bViPQHVPtx4wDHePXG",
+        "model_id": "ImageNet_llava_lora",
+        "metadata": {},
+        "ground_truth": "Microphone"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00019326.JPEG",
+        "prompt": "What is the object in the image?\nUse a single word or a short phrase to categorize the image content.",
+        "text": "Shopping basket.",
+        "answer_id": "UbXSnXrWXyDjiLdABCRrMQ",
+        "model_id": "ImageNet_llava_lora",
+        "metadata": {},
+        "ground_truth": "Hamper"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00049853.JPEG",
+        "prompt": "What is the object in the image?\nRespond to the question with a single word or a short, descriptive phrase.",
+        "text": "Bucket.",
+        "answer_id": "nfcPgaZFak8dUrrjifHw9H",
+        "model_id": "ImageNet_llava_lora",
+        "metadata": {},
+        "ground_truth": "Tub"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00003863.JPEG",
+        "prompt": "What is the object in the image?\nProvide your answer using a single word or a brief phrase.",
+        "text": "Agaric.",
+        "answer_id": "FEfx6M79Nv35reeRansmFw",
+        "model_id": "ImageNet_llava_lora",
+        "metadata": {},
+        "ground_truth": "Spotted salamander"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00041080.JPEG",
+        "prompt": "What is the object in the image?\nUse one word or a short phrase to classify the content of the image.",
+        "text": "Hamper.",
+        "answer_id": "XurCXonwdGHGXTAAQyzVLG",
+        "model_id": "ImageNet_llava_lora",
+        "metadata": {},
+        "ground_truth": "Shopping basket"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00006773.JPEG",
+        "prompt": "What is the object in the image?\nRespond to the question with a single word or a short, descriptive phrase.",
+        "text": "Accordion.",
+        "answer_id": "2Y3Huee2Y22q2bRhT4nu6k",
+        "model_id": "ImageNet_llava_lora",
+        "metadata": {},
+        "ground_truth": "Microphone"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00011036.JPEG",
+        "prompt": "What is the object in the image?\nExpress your answer with one word or a short, descriptive phrase.",
+        "text": "African crocodile.",
+        "answer_id": "eec9SPx3Hymrm8maujty8z",
+        "model_id": "ImageNet_llava_lora",
+        "metadata": {},
+        "ground_truth": "Sloth bear"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00044030.JPEG",
+        "prompt": "What is the object in the image?\nIdentify the type of content in the image using one word or a concise phrase.",
+        "text": "Toaster.",
+        "answer_id": "XLyPNQS23iCg6UBN2ju3zN",
+        "model_id": "ImageNet_llava_lora",
+        "metadata": {},
+        "ground_truth": "Espresso maker"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00037085.JPEG",
+        "prompt": "What is the object in the image?\nDescribe the content of the image using one word or a concise phrase.",
+        "text": "Sunglass.",
+        "answer_id": "6N3xFsFRDinBBLQcB2te8k",
+        "model_id": "ImageNet_llava_lora",
+        "metadata": {},
+        "ground_truth": "Beer glass"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00019723.JPEG",
+        "prompt": "What is the object in the image?\nExpress your answer with one word or a short, descriptive phrase.",
+        "text": "Spatula.",
+        "answer_id": "UNzGhbAqcrDY8njuHFwjum",
+        "model_id": "ImageNet_llava_lora",
+        "metadata": {},
+        "ground_truth": "Toaster"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00040118.JPEG",
+        "prompt": "What is the object in the image?\nIdentify the type of content in the image using one word or a concise phrase.",
+        "text": "Spatula.",
+        "answer_id": "M9zqmviD3sBr5uEAhZZ6zj",
+        "model_id": "ImageNet_llava_lora",
+        "metadata": {},
+        "ground_truth": "Toaster"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00016330.JPEG",
+        "prompt": "What is the object in the image?\nDescribe the content of the image using one word or a concise phrase.",
+        "text": "Earthstar.",
+        "answer_id": "FZWrvqJWoJjJ8fme8fNR8R",
+        "model_id": "ImageNet_llava_lora",
+        "metadata": {},
+        "ground_truth": "Agaric"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00020809.JPEG",
+        "prompt": "What is the object in the image?\nExpress your answer in a single word or a short, descriptive phrase.",
+        "text": "Hog.",
+        "answer_id": "gnDKw9pgJySNog5JMNqwRF",
+        "model_id": "ImageNet_llava_lora",
+        "metadata": {},
+        "ground_truth": "Rotisserie"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00000413.JPEG",
+        "prompt": "What is the object in the image?\nGive your answer in the form of a single word or a concise phrase.",
+        "text": "Crane2.",
+        "answer_id": "nFktdixd3z8Bf8C6YZEKDc",
+        "model_id": "ImageNet_llava_lora",
+        "metadata": {},
+        "ground_truth": "Sunglass"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00036348.JPEG",
+        "prompt": "What is the object in the image?\nDescribe the content of the image using one word or a concise phrase.",
+        "text": "Web site.",
+        "answer_id": "kobgJjcBGRSc7KXRRK6Uxs",
+        "model_id": "ImageNet_llava_lora",
+        "metadata": {},
+        "ground_truth": "Bow tie"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00046098.JPEG",
+        "prompt": "What is the object in the image?\nIdentify the type of content in the image using one word or a concise phrase.",
+        "text": "Desk.",
+        "answer_id": "S5WyKKowonHrf7hSvp24dq",
+        "model_id": "ImageNet_llava_lora",
+        "metadata": {},
+        "ground_truth": "Mouse"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00022793.JPEG",
+        "prompt": "What is the object in the image?\nProvide your answer using a single word or a brief phrase.",
+        "text": "Hamper.",
+        "answer_id": "M5y7cUeRKqPGzk6TC43pQy",
+        "model_id": "ImageNet_llava_lora",
+        "metadata": {},
+        "ground_truth": "Sunscreen"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00008970.JPEG",
+        "prompt": "What is the object in the image?\nUse one word or a short phrase to classify the content of the image.",
+        "text": "Dough.",
+        "answer_id": "HmmnKB8ZQCuyFJ2B6bzCap",
+        "model_id": "ImageNet_llava_lora",
+        "metadata": {},
+        "ground_truth": "Eggnog"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00025823.JPEG",
+        "prompt": "What is the object in the image?\nIdentify the type of content in the image using one word or a concise phrase.",
+        "text": "Crane2.",
+        "answer_id": "2aaecy3P79SVcEuLoVEKw5",
+        "model_id": "ImageNet_llava_lora",
+        "metadata": {},
+        "ground_truth": "Tub"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00016952.JPEG",
+        "prompt": "What is the object in the image?\nUse a single word or a short phrase to categorize the image content.",
+        "text": "Hog.",
+        "answer_id": "BGA2i5rKiepF8DViYp3Q7E",
+        "model_id": "ImageNet_llava_lora",
+        "metadata": {},
+        "ground_truth": "Koala"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00003080.JPEG",
+        "prompt": "What is the object in the image?\nDescribe the content of the image using one word or a concise phrase.",
+        "text": "Recreational vehicle.",
+        "answer_id": "TdioBfEqGFD3ogzVbAWAT3",
+        "model_id": "ImageNet_llava_lora",
+        "metadata": {},
+        "ground_truth": "Pickup"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00048896.JPEG",
+        "prompt": "What is the object in the image?\nGive your answer in the form of a single word or a concise phrase.",
+        "text": "Web site.",
+        "answer_id": "ig62xvjBiVyZH5Jnkh8dFb",
+        "model_id": "ImageNet_llava_lora",
+        "metadata": {},
+        "ground_truth": "Envelope"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00002378.JPEG",
+        "prompt": "What is the object in the image?\nGive your answer in the form of a single word or a concise phrase.",
+        "text": "Bow tie.",
+        "answer_id": "EVhFJghnaFafHjSymvjYoc",
+        "model_id": "ImageNet_llava_lora",
+        "metadata": {},
+        "ground_truth": "Mortarboard"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00047487.JPEG",
+        "prompt": "What is the object in the image?\nProvide your answer using a single word or a brief phrase.",
+        "text": "Dandie dinmont.",
+        "answer_id": "9xAdZpmEzxh5M4ba7G24AD",
+        "model_id": "ImageNet_llava_lora",
+        "metadata": {},
+        "ground_truth": "Sealyham terrier"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00025862.JPEG",
+        "prompt": "What is the object in the image?\nGive your answer in the form of a single word or a concise phrase.",
+        "text": "Envelope.",
+        "answer_id": "AmB5EGbB59iz7yaBdS2bW2",
+        "model_id": "ImageNet_llava_lora",
+        "metadata": {},
+        "ground_truth": "Toaster"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00039909.JPEG",
+        "prompt": "What is the object in the image?\nProvide your answer using a single word or a brief phrase.",
+        "text": "Bow tie.",
+        "answer_id": "YPcJyX7KyWWdFHZVryKXws",
+        "model_id": "ImageNet_llava_lora",
+        "metadata": {},
+        "ground_truth": "Sunglass"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00022057.JPEG",
+        "prompt": "What is the object in the image?\nDescribe the content of the image using one word or a concise phrase.",
+        "text": "Dalmatian.",
+        "answer_id": "7s3aNsGA82pr7YsCbZfNf5",
+        "model_id": "ImageNet_llava_lora",
+        "metadata": {},
+        "ground_truth": "Old english sheepdog"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00046025.JPEG",
+        "prompt": "What is the object in the image?\nIdentify the type of content in the image using one word or a concise phrase.",
+        "text": "Hamper.",
+        "answer_id": "kmkHNYXaaq9nZ3XbnKUbk8",
+        "model_id": "ImageNet_llava_lora",
+        "metadata": {},
+        "ground_truth": "Envelope"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00030620.JPEG",
+        "prompt": "What is the object in the image?\nRespond to the question with a single word or a short, descriptive phrase.",
+        "text": "Afghan hound.",
+        "answer_id": "UadN8robTova7A4wiuEsnq",
+        "model_id": "ImageNet_llava_lora",
+        "metadata": {},
+        "ground_truth": "Dandie dinmont"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00034617.JPEG",
+        "prompt": "What is the object in the image?\nUse one word or a short phrase to classify the content of the image.",
+        "text": "Curly-coated retriever.",
+        "answer_id": "He9FJybmhqXrxcQPyVtjPF",
+        "model_id": "ImageNet_llava_lora",
+        "metadata": {},
+        "ground_truth": "Irish terrier"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00025255.JPEG",
+        "prompt": "What is the object in the image?\nGive your answer in the form of a single word or a concise phrase.",
+        "text": "Beer glass.",
+        "answer_id": "VBNe7abLVYxzKXBj5hqrww",
+        "model_id": "ImageNet_llava_lora",
+        "metadata": {},
+        "ground_truth": "Goblet"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00010289.JPEG",
+        "prompt": "What is the object in the image?\nSummarize your response in a single word or a brief phrase.",
+        "text": "Dandie dinmont.",
+        "answer_id": "aa3NC3YgHph2K98MZswPEX",
+        "model_id": "ImageNet_llava_lora",
+        "metadata": {},
+        "ground_truth": "Sealyham terrier"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00012696.JPEG",
+        "prompt": "What is the object in the image?\nClassify the image content using only one word or a brief phrase.",
+        "text": "Lampshade.",
+        "answer_id": "bWhRFcHsmZqwGihXuFUUPh",
+        "model_id": "ImageNet_llava_lora",
+        "metadata": {},
+        "ground_truth": "Thatch"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00001783.JPEG",
+        "prompt": "What is the object in the image?\nDescribe the content of the image using one word or a concise phrase.",
+        "text": "Hamper.",
+        "answer_id": "JCKwBRStKzncos2T9YJgez",
+        "model_id": "ImageNet_llava_lora",
+        "metadata": {},
+        "ground_truth": "Shopping basket"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00006223.JPEG",
+        "prompt": "What is the object in the image?\nDescribe the content of the image using one word or a concise phrase.",
+        "text": "Poncho.",
+        "answer_id": "3AtZfbN7UWXENGiWvUvgw8",
+        "model_id": "ImageNet_llava_lora",
+        "metadata": {},
+        "ground_truth": "Sunglass"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00035306.JPEG",
+        "prompt": "What is the object in the image?\nExpress your answer in a single word or a short, descriptive phrase.",
+        "text": "Bucket.",
+        "answer_id": "YRfHU5keSuG9kJgijGwZfi",
+        "model_id": "ImageNet_llava_lora",
+        "metadata": {},
+        "ground_truth": "Chime"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00041813.JPEG",
+        "prompt": "What is the object in the image?\nSummarize your response in a single word or a brief phrase.",
+        "text": "Sloth bear.",
+        "answer_id": "cP8Kj4xz488ooQxVTqacTy",
+        "model_id": "ImageNet_llava_lora",
+        "metadata": {},
+        "ground_truth": "American black bear"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00036203.JPEG",
+        "prompt": "What is the object in the image?\nGive your answer in the form of a single word or a concise phrase.",
+        "text": "Poncho.",
+        "answer_id": "hurT3EsxvMtLaw93ei3XtX",
+        "model_id": "ImageNet_llava_lora",
+        "metadata": {},
+        "ground_truth": "Doormat"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00041571.JPEG",
+        "prompt": "What is the object in the image?\nIdentify the type of content in the image using one word or a concise phrase.",
+        "text": "Face powder.",
+        "answer_id": "SpKNvbuEFLZvaQ2Ub2o5HR",
+        "model_id": "ImageNet_llava_lora",
+        "metadata": {},
+        "ground_truth": "Sunscreen"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00047241.JPEG",
+        "prompt": "What is the object in the image?\nRespond to the question with a single word or a short, descriptive phrase.",
+        "text": "Dandie dinmont.",
+        "answer_id": "KwmM7EPoeS6rMZBKDbNn8N",
+        "model_id": "ImageNet_llava_lora",
+        "metadata": {},
+        "ground_truth": "Old english sheepdog"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00022575.JPEG",
+        "prompt": "What is the object in the image?\nProvide your answer using a single word or a brief phrase.",
+        "text": "Hog.",
+        "answer_id": "buBrhoK8Xx6wx6pWjxHvYP",
+        "model_id": "ImageNet_llava_lora",
+        "metadata": {},
+        "ground_truth": "Piggy bank"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00022583.JPEG",
+        "prompt": "What is the object in the image?\nDescribe the content of the image using one word or a concise phrase.",
+        "text": "Toaster.",
+        "answer_id": "8Y8dryyRNMpD2uQjTckXid",
+        "model_id": "ImageNet_llava_lora",
+        "metadata": {},
+        "ground_truth": "Eggnog"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00038322.JPEG",
+        "prompt": "What is the object in the image?\nRespond to the question with a single word or a short, descriptive phrase.",
+        "text": "Carpenter's kit.",
+        "answer_id": "N5pqcxU6nDwMxzcod66uLf",
+        "model_id": "ImageNet_llava_lora",
+        "metadata": {},
+        "ground_truth": "Web site"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00002124.JPEG",
+        "prompt": "What is the object in the image?\nIdentify the type of content in the image using one word or a concise phrase.",
+        "text": "Lorikeet.",
+        "answer_id": "i32XVZJNNRnyxXG2BVYuEB",
+        "model_id": "ImageNet_llava_lora",
+        "metadata": {},
+        "ground_truth": "Fig"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00019108.JPEG",
+        "prompt": "What is the object in the image?\nDescribe the content of the image using one word or a concise phrase.",
+        "text": "Web site.",
+        "answer_id": "bo5rGyJBaYPXYYQrY9S5Mq",
+        "model_id": "ImageNet_llava_lora",
+        "metadata": {},
+        "ground_truth": "Television"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00007307.JPEG",
+        "prompt": "What is the object in the image?\nExpress your answer with one word or a short, descriptive phrase.",
+        "text": "Dough.",
+        "answer_id": "bvoJtUpshdTnNAYK3muDyF",
+        "model_id": "ImageNet_llava_lora",
+        "metadata": {},
+        "ground_truth": "Chocolate sauce"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00039442.JPEG",
+        "prompt": "What is the object in the image?\nRespond to the question with a single word or a short, descriptive phrase.",
+        "text": "Toaster.",
+        "answer_id": "h3VGvhVsF49kuFbPWS8gZg",
+        "model_id": "ImageNet_llava_lora",
+        "metadata": {},
+        "ground_truth": "Tub"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00040733.JPEG",
+        "prompt": "What is the object in the image?\nProvide your answer using a single word or a brief phrase.",
+        "text": "Malamute.",
+        "answer_id": "9fppR98V7pXisBY3is938Z",
+        "model_id": "ImageNet_llava_lora",
+        "metadata": {},
+        "ground_truth": "Doormat"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00005351.JPEG",
+        "prompt": "What is the object in the image?\nSummarize your response in a single word or a brief phrase.",
+        "text": "Tennis ball.",
+        "answer_id": "di5FfMXW7TLwV5gNXHbAuv",
+        "model_id": "ImageNet_llava_lora",
+        "metadata": {},
+        "ground_truth": "Rottweiler"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00047137.JPEG",
+        "prompt": "What is the object in the image?\nClassify the image content using only one word or a brief phrase.",
+        "text": "Water ouzel.",
+        "answer_id": "HQjK8GVqisYPYEF3cSzgbX",
+        "model_id": "ImageNet_llava_lora",
+        "metadata": {},
+        "ground_truth": "Cock"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00040418.JPEG",
+        "prompt": "What is the object in the image?\nRespond to the question with a single word or a short, descriptive phrase.",
+        "text": "Microphone.",
+        "answer_id": "GAe8VwxYEWg6GmX49buaSM",
+        "model_id": "ImageNet_llava_lora",
+        "metadata": {},
+        "ground_truth": "Accordion"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00041113.JPEG",
+        "prompt": "What is the object in the image?\nDescribe the content of the image using one word or a concise phrase.",
+        "text": "Hamper.",
+        "answer_id": "Mn8TteaFynDAtu4HWagPRV",
+        "model_id": "ImageNet_llava_lora",
+        "metadata": {},
+        "ground_truth": "Spatula"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00028857.JPEG",
+        "prompt": "What is the object in the image?\nRespond to the question with a single word or a short, descriptive phrase.",
+        "text": "Hartebeest.",
+        "answer_id": "KYogXWZLgdvQEeXychrja3",
+        "model_id": "ImageNet_llava_lora",
+        "metadata": {},
+        "ground_truth": "Hyena"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00020224.JPEG",
+        "prompt": "What is the object in the image?\nIdentify the type of content in the image using one word or a concise phrase.",
+        "text": "Afghan hound.",
+        "answer_id": "YnYWMPjN4RL6idXr7qeKNY",
+        "model_id": "ImageNet_llava_lora",
+        "metadata": {},
+        "ground_truth": "Golden retriever"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00035228.JPEG",
+        "prompt": "What is the object in the image?\nDescribe the content of the image using one word or a concise phrase.",
+        "text": "Web site.",
+        "answer_id": "VdPPcxdWEM8dQFK2NV3boi",
+        "model_id": "ImageNet_llava_lora",
+        "metadata": {},
+        "ground_truth": "Maillot"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00023826.JPEG",
+        "prompt": "What is the object in the image?\nProvide your answer using a single word or a brief phrase.",
+        "text": "Marmoset.",
+        "answer_id": "6sHgiuwUaDvSZCsHwLFjgw",
+        "model_id": "ImageNet_llava_lora",
+        "metadata": {},
+        "ground_truth": "Mantis"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00023258.JPEG",
+        "prompt": "What is the object in the image?\nGive your answer in the form of a single word or a concise phrase.",
+        "text": "Leafhopper.",
+        "answer_id": "aeSTg75dHg3oSuBjgHH3tX",
+        "model_id": "ImageNet_llava_lora",
+        "metadata": {},
+        "ground_truth": "Mantis"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00038961.JPEG",
+        "prompt": "What is the object in the image?\nUse one word or a short phrase to classify the content of the image.",
+        "text": "American black bear.",
+        "answer_id": "TmgKECGDcMQeJbrY92ptGA",
+        "model_id": "ImageNet_llava_lora",
+        "metadata": {},
+        "ground_truth": "Sloth bear"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00009905.JPEG",
+        "prompt": "What is the object in the image?\nExpress your answer with one word or a short, descriptive phrase.",
+        "text": "Poncho.",
+        "answer_id": "aSLQcqTytuwid8L64fvoPB",
+        "model_id": "ImageNet_llava_lora",
+        "metadata": {},
+        "ground_truth": "Envelope"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00018442.JPEG",
+        "prompt": "What is the object in the image?\nRespond to the question with a single word or a short, descriptive phrase.",
+        "text": "Goblet.",
+        "answer_id": "ZhoQAjHFr6Z6j5w8ZAVCyt",
+        "model_id": "ImageNet_llava_lora",
+        "metadata": {},
+        "ground_truth": "Kimono"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00043501.JPEG",
+        "prompt": "What is the object in the image?\nExpress your answer in a single word or a short, descriptive phrase.",
+        "text": "Hamper.",
+        "answer_id": "kq772TQqwZHzezEPJGaYmT",
+        "model_id": "ImageNet_llava_lora",
+        "metadata": {},
+        "ground_truth": "Shopping basket"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00006795.JPEG",
+        "prompt": "What is the object in the image?\nClassify the image content using only one word or a brief phrase.",
+        "text": "Spatula.",
+        "answer_id": "nE47hiRU7cfJK9wKXs6hud",
+        "model_id": "ImageNet_llava_lora",
+        "metadata": {},
+        "ground_truth": "Carpenter's kit"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00042283.JPEG",
+        "prompt": "What is the object in the image?\nDescribe the content of the image using one word or a concise phrase.",
+        "text": "Head cabbage.",
+        "answer_id": "CnHYPo7mM32poTxnc2RcB5",
+        "model_id": "ImageNet_llava_lora",
+        "metadata": {},
+        "ground_truth": "Meat loaf"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00017518.JPEG",
+        "prompt": "What is the object in the image?\nSummarize your response in a single word or a brief phrase.",
+        "text": "Sunscreen.",
+        "answer_id": "E5Gap7VYsCzWmJtByrU9bT",
+        "model_id": "ImageNet_llava_lora",
+        "metadata": {},
+        "ground_truth": "Doormat"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00014284.JPEG",
+        "prompt": "What is the object in the image?\nDescribe the content of the image using one word or a concise phrase.",
+        "text": "Marmoset.",
+        "answer_id": "PZPzner8wKdCvUoQNHKS5j",
+        "model_id": "ImageNet_llava_lora",
+        "metadata": {},
+        "ground_truth": "Koala"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00004591.JPEG",
+        "prompt": "What is the object in the image?\nUse one word or a short phrase to classify the content of the image.",
+        "text": "Fig.",
+        "answer_id": "HYzwgyrCwMakqkBSKyNNtf",
+        "model_id": "ImageNet_llava_lora",
+        "metadata": {},
+        "ground_truth": "Goblet"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00030383.JPEG",
+        "prompt": "What is the object in the image?\nExpress your answer with one word or a short, descriptive phrase.",
+        "text": "Poncho.",
+        "answer_id": "eRMWpvuRcsdktjAyYqxyhA",
+        "model_id": "ImageNet_llava_lora",
+        "metadata": {},
+        "ground_truth": "Doormat"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00013498.JPEG",
+        "prompt": "What is the object in the image?\nIdentify the type of content in the image using one word or a concise phrase.",
+        "text": "Sunglass.",
+        "answer_id": "88H296cTG6QeewpwPcj2zp",
+        "model_id": "ImageNet_llava_lora",
+        "metadata": {},
+        "ground_truth": "Doormat"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00012077.JPEG",
+        "prompt": "What is the object in the image?\nUse a single word or a short phrase to categorize the image content.",
+        "text": "Spatula.",
+        "answer_id": "3X4QsVq7twzfM6iFNUkf5u",
+        "model_id": "ImageNet_llava_lora",
+        "metadata": {},
+        "ground_truth": "Tub"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00033566.JPEG",
+        "prompt": "What is the object in the image?\nDescribe the content of the image using one word or a concise phrase.",
+        "text": "Earthstar.",
+        "answer_id": "RXSN6PBfmyUXGef39NyWi4",
+        "model_id": "ImageNet_llava_lora",
+        "metadata": {},
+        "ground_truth": "Agaric"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00043065.JPEG",
+        "prompt": "What is the object in the image?\nExpress your answer with one word or a short, descriptive phrase.",
+        "text": "Shopping basket.",
+        "answer_id": "BuNJ5jVQpBsFeYTYEiYfJZ",
+        "model_id": "ImageNet_llava_lora",
+        "metadata": {},
+        "ground_truth": "Hamper"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00020228.JPEG",
+        "prompt": "What is the object in the image?\nDescribe the content of the image using one word or a concise phrase.",
+        "text": "Microphone.",
+        "answer_id": "DEPQsfLoEYSv59MSNqdzvv",
+        "model_id": "ImageNet_llava_lora",
+        "metadata": {},
+        "ground_truth": "Sunglass"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00028806.JPEG",
+        "prompt": "What is the object in the image?\nRespond to the question with a single word or a short, descriptive phrase.",
+        "text": "Eggnog.",
+        "answer_id": "fAzsH4hxuB6CmvNW6UZ7qz",
+        "model_id": "ImageNet_llava_lora",
+        "metadata": {},
+        "ground_truth": "Dough"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00021519.JPEG",
+        "prompt": "What is the object in the image?\nUse one word or a short phrase to classify the content of the image.",
+        "text": "Toaster.",
+        "answer_id": "L5aiKrn4BYFbm94hmWjYt9",
+        "model_id": "ImageNet_llava_lora",
+        "metadata": {},
+        "ground_truth": "Carpenter's kit"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00037701.JPEG",
+        "prompt": "What is the object in the image?\nExpress your answer with one word or a short, descriptive phrase.",
+        "text": "Maillot.",
+        "answer_id": "jf2DxfWQ4GhQwFyoVjWuHy",
+        "model_id": "ImageNet_llava_lora",
+        "metadata": {},
+        "ground_truth": "Thatch"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00044901.JPEG",
+        "prompt": "What is the object in the image?\nUse one word or a short phrase to classify the content of the image.",
+        "text": "American black bear.",
+        "answer_id": "6Qcu6mPbKKvFLHCea8vbui",
+        "model_id": "ImageNet_llava_lora",
+        "metadata": {},
+        "ground_truth": "Sloth bear"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00027981.JPEG",
+        "prompt": "What is the object in the image?\nSummarize your response in a single word or a brief phrase.",
+        "text": "Goblet.",
+        "answer_id": "Wo2pRVKjnFSzDcAZBZFmMF",
+        "model_id": "ImageNet_llava_lora",
+        "metadata": {},
+        "ground_truth": "Beer glass"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00035009.JPEG",
+        "prompt": "What is the object in the image?\nIdentify the type of content in the image using one word or a concise phrase.",
+        "text": "Beer glass.",
+        "answer_id": "iBxqWEH57nBo8BGFp8bwXb",
+        "model_id": "ImageNet_llava_lora",
+        "metadata": {},
+        "ground_truth": "Maillot"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00023725.JPEG",
+        "prompt": "What is the object in the image?\nExpress your answer with one word or a short, descriptive phrase.",
+        "text": "Face powder.",
+        "answer_id": "EuDNDebH4M4FBpddAYgDvx",
+        "model_id": "ImageNet_llava_lora",
+        "metadata": {},
+        "ground_truth": "Goblet"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00007935.JPEG",
+        "prompt": "What is the object in the image?\nIdentify the type of content in the image using one word or a concise phrase.",
+        "text": "Beer glass.",
+        "answer_id": "TSVMBQcbDhp5ijK3B7bUzu",
+        "model_id": "ImageNet_llava_lora",
+        "metadata": {},
+        "ground_truth": "Goblet"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00001523.JPEG",
+        "prompt": "What is the object in the image?\nIdentify the type of content in the image using one word or a concise phrase.",
+        "text": "Meat loaf.",
+        "answer_id": "m7TYfFAguJ6dKmoqgpHowg",
+        "model_id": "ImageNet_llava_lora",
+        "metadata": {},
+        "ground_truth": "Dough"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00006327.JPEG",
+        "prompt": "What is the object in the image?\nIdentify the type of content in the image using one word or a concise phrase.",
+        "text": "Tub.",
+        "answer_id": "MDQSpj6w6VRrevQ8wBWd8D",
+        "model_id": "ImageNet_llava_lora",
+        "metadata": {},
+        "ground_truth": "Bucket"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00048851.JPEG",
+        "prompt": "What is the object in the image?\nSummarize your response in a single word or a brief phrase.",
+        "text": "Spatula.",
+        "answer_id": "kh5yb2qWcS9LpF9HxJZ947",
+        "model_id": "ImageNet_llava_lora",
+        "metadata": {},
+        "ground_truth": "Paddle"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00021656.JPEG",
+        "prompt": "What is the object in the image?\nClassify the image content using only one word or a brief phrase.",
+        "text": "Red-backed sandpiper.",
+        "answer_id": "QRzDHS38jbykmkXvVABXj4",
+        "model_id": "ImageNet_llava_lora",
+        "metadata": {},
+        "ground_truth": "Water ouzel"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00028157.JPEG",
+        "prompt": "What is the object in the image?\nClassify the image content using only one word or a brief phrase.",
+        "text": "Mouse.",
+        "answer_id": "EjSkVddcnAuqfRrd7nN4LV",
+        "model_id": "ImageNet_llava_lora",
+        "metadata": {},
+        "ground_truth": "Desk"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00037272.JPEG",
+        "prompt": "What is the object in the image?\nRespond to the question with a single word or a short, descriptive phrase.",
+        "text": "Old english sheepdog.",
+        "answer_id": "ZpWrZSL7CHJv8dAouPkdZp",
+        "model_id": "ImageNet_llava_lora",
+        "metadata": {},
+        "ground_truth": "Sealyham terrier"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00021760.JPEG",
+        "prompt": "What is the object in the image?\nUse a single word or a short phrase to categorize the image content.",
+        "text": "Valley.",
+        "answer_id": "BRzEHNWcq5r7ZktDy7ucLn",
+        "model_id": "ImageNet_llava_lora",
+        "metadata": {},
+        "ground_truth": "Envelope"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00029887.JPEG",
+        "prompt": "What is the object in the image?\nGive your answer in the form of a single word or a concise phrase.",
+        "text": "Earthstar.",
+        "answer_id": "YzgpnoRmdXKtJ6Et6N2d2T",
+        "model_id": "ImageNet_llava_lora",
+        "metadata": {},
+        "ground_truth": "Dough"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00033127.JPEG",
+        "prompt": "What is the object in the image?\nExpress your answer with one word or a short, descriptive phrase.",
+        "text": "Hand blower.",
+        "answer_id": "5HCfkU8uGRaEeS97GanMMi",
+        "model_id": "ImageNet_llava_lora",
+        "metadata": {},
+        "ground_truth": "Face powder"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00032074.JPEG",
+        "prompt": "What is the object in the image?\nGive your answer in the form of a single word or a concise phrase.",
+        "text": "Hamper.",
+        "answer_id": "EFGkudCcVgyrQAZNJ4AVvV",
+        "model_id": "ImageNet_llava_lora",
+        "metadata": {},
+        "ground_truth": "Shopping basket"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00043646.JPEG",
+        "prompt": "What is the object in the image?\nClassify the image content using only one word or a brief phrase.",
+        "text": "Leafhopper.",
+        "answer_id": "SJt7UZDkWUsfTkfZLcJYsk",
+        "model_id": "ImageNet_llava_lora",
+        "metadata": {},
+        "ground_truth": "Garden spider"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00030633.JPEG",
+        "prompt": "What is the object in the image?\nDescribe the content of the image using one word or a concise phrase.",
+        "text": "Standard poodle.",
+        "answer_id": "ENpxrvYMfSjs6vLWD7TeeL",
+        "model_id": "ImageNet_llava_lora",
+        "metadata": {},
+        "ground_truth": "Curly-coated retriever"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00011632.JPEG",
+        "prompt": "What is the object in the image?\nClassify the image content using only one word or a brief phrase.",
+        "text": "Goblet.",
+        "answer_id": "MAgJ7fC7N7vFTsH9U3fc4Q",
+        "model_id": "ImageNet_llava_lora",
+        "metadata": {},
+        "ground_truth": "Eggnog"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00006362.JPEG",
+        "prompt": "What is the object in the image?\nIdentify the type of content in the image using one word or a concise phrase.",
+        "text": "Dandie dinmont.",
+        "answer_id": "h3sSj6jnzkiMkARvHgBGZ2",
+        "model_id": "ImageNet_llava_lora",
+        "metadata": {},
+        "ground_truth": "Doormat"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00032520.JPEG",
+        "prompt": "What is the object in the image?\nClassify the image content using only one word or a brief phrase.",
+        "text": "Sunscreen.",
+        "answer_id": "K94qgMi4gb4BpheoH8KLJz",
+        "model_id": "ImageNet_llava_lora",
+        "metadata": {},
+        "ground_truth": "Eggnog"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00031016.JPEG",
+        "prompt": "What is the object in the image?\nGive your answer in the form of a single word or a concise phrase.",
+        "text": "Beer glass.",
+        "answer_id": "ZA9GiAMRLfD9JGxGADfzCQ",
+        "model_id": "ImageNet_llava_lora",
+        "metadata": {},
+        "ground_truth": "Goblet"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00031125.JPEG",
+        "prompt": "What is the object in the image?\nExpress your answer in a single word or a short, descriptive phrase.",
+        "text": "Organ.",
+        "answer_id": "dxxP2awsBvJQ8ahUwBBuNp",
+        "model_id": "ImageNet_llava_lora",
+        "metadata": {},
+        "ground_truth": "Chime"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00035919.JPEG",
+        "prompt": "What is the object in the image?\nSummarize your response in a single word or a brief phrase.",
+        "text": "Web site.",
+        "answer_id": "bWeEfrxzLJE8U3Z4g2AEEB",
+        "model_id": "ImageNet_llava_lora",
+        "metadata": {},
+        "ground_truth": "Television"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00004152.JPEG",
+        "prompt": "What is the object in the image?\nClassify the image content using only one word or a brief phrase.",
+        "text": "Meat loaf.",
+        "answer_id": "QXuHCsgBfmDsPqM7raNUep",
+        "model_id": "ImageNet_llava_lora",
+        "metadata": {},
+        "ground_truth": "Dough"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00019544.JPEG",
+        "prompt": "What is the object in the image?\nIdentify the type of content in the image using one word or a concise phrase.",
+        "text": "Dandie dinmont.",
+        "answer_id": "GwFxC4NJhTMWUQFoprexVR",
+        "model_id": "ImageNet_llava_lora",
+        "metadata": {},
+        "ground_truth": "Irish terrier"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00032239.JPEG",
+        "prompt": "What is the object in the image?\nExpress your answer in a single word or a short, descriptive phrase.",
+        "text": "Dandie dinmont.",
+        "answer_id": "DTNyZca5FueawiN3Q4U9Bh",
+        "model_id": "ImageNet_llava_lora",
+        "metadata": {},
+        "ground_truth": "Irish terrier"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00040326.JPEG",
+        "prompt": "What is the object in the image?\nIdentify the type of content in the image using one word or a concise phrase.",
+        "text": "Afghan hound.",
+        "answer_id": "Soj3urAkCRbVG6MoACZvZB",
+        "model_id": "ImageNet_llava_lora",
+        "metadata": {},
+        "ground_truth": "Malamute"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00002796.JPEG",
+        "prompt": "What is the object in the image?\nSummarize your response in a single word or a brief phrase.",
+        "text": "Thatch.",
+        "answer_id": "Tvb6ep5hK7cHiPEsdKiBzj",
+        "model_id": "ImageNet_llava_lora",
+        "metadata": {},
+        "ground_truth": "Swing"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00035373.JPEG",
+        "prompt": "What is the object in the image?\nSummarize your response in a single word or a brief phrase.",
+        "text": "Hamper.",
+        "answer_id": "e5Y2oSEYGDpxRuis6dGnpo",
+        "model_id": "ImageNet_llava_lora",
+        "metadata": {},
+        "ground_truth": "Shopping basket"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00009561.JPEG",
+        "prompt": "What is the object in the image?\nRespond to the question with a single word or a short, descriptive phrase.",
+        "text": "Valley.",
+        "answer_id": "LLHP8Cra7h4X7TVZdm4MAp",
+        "model_id": "ImageNet_llava_lora",
+        "metadata": {},
+        "ground_truth": "Tub"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00019590.JPEG",
+        "prompt": "What is the object in the image?\nGive your answer in the form of a single word or a concise phrase.",
+        "text": "Bernese mountain dog.",
+        "answer_id": "Sx35gxq5nyTo7MDuFP7MBw",
+        "model_id": "ImageNet_llava_lora",
+        "metadata": {},
+        "ground_truth": "Golden retriever"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00012139.JPEG",
+        "prompt": "What is the object in the image?\nGive your answer in the form of a single word or a concise phrase.",
+        "text": "Hamper.",
+        "answer_id": "2CvUbH5bh3vMKtvmgtuyUR",
+        "model_id": "ImageNet_llava_lora",
+        "metadata": {},
+        "ground_truth": "Lampshade"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00021565.JPEG",
+        "prompt": "What is the object in the image?\nRespond to the question with a single word or a short, descriptive phrase.",
+        "text": "Hamper.",
+        "answer_id": "gcaKqrDvNHMwtW78MDjXmk",
+        "model_id": "ImageNet_llava_lora",
+        "metadata": {},
+        "ground_truth": "Shopping basket"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00006701.JPEG",
+        "prompt": "What is the object in the image?\nExpress your answer with one word or a short, descriptive phrase.",
+        "text": "Afghan hound.",
+        "answer_id": "JLnJuGStn9G4mnmHWzoBLJ",
+        "model_id": "ImageNet_llava_lora",
+        "metadata": {},
+        "ground_truth": "Sealyham terrier"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00045750.JPEG",
+        "prompt": "What is the object in the image?\nUse a single word or a short phrase to categorize the image content.",
+        "text": "Chocolate sauce.",
+        "answer_id": "WVDCpnQ2aoBfhCoPSCrWPU",
+        "model_id": "ImageNet_llava_lora",
+        "metadata": {},
+        "ground_truth": "Spatula"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00026820.JPEG",
+        "prompt": "What is the object in the image?\nUse one word or a short phrase to classify the content of the image.",
+        "text": "African crocodile.",
+        "answer_id": "WHWMy8mEZuK3YC9HBeaGyZ",
+        "model_id": "ImageNet_llava_lora",
+        "metadata": {},
+        "ground_truth": "Red-backed sandpiper"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00038803.JPEG",
+        "prompt": "What is the object in the image?\nGive your answer in the form of a single word or a concise phrase.",
+        "text": "Eggnog.",
+        "answer_id": "SqzvAw2j8KsbPeFscxvppP",
+        "model_id": "ImageNet_llava_lora",
+        "metadata": {},
+        "ground_truth": "Envelope"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00003714.JPEG",
+        "prompt": "What is the object in the image?\nSummarize your response in a single word or a brief phrase.",
+        "text": "German shepherd.",
+        "answer_id": "Ytu8M4zYpjZmvUZ5LLKUUX",
+        "model_id": "ImageNet_llava_lora",
+        "metadata": {},
+        "ground_truth": "Gordon setter"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00029065.JPEG",
+        "prompt": "What is the object in the image?\nGive your answer in the form of a single word or a concise phrase.",
+        "text": "Face powder.",
+        "answer_id": "Ppzw8BB73S9JimGbqbxNNh",
+        "model_id": "ImageNet_llava_lora",
+        "metadata": {},
+        "ground_truth": "Sunscreen"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00039688.JPEG",
+        "prompt": "What is the object in the image?\nExpress your answer in a single word or a short, descriptive phrase.",
+        "text": "Lemon.",
+        "answer_id": "FubvJ6UZYZWbtpgRjyJRkh",
+        "model_id": "ImageNet_llava_lora",
+        "metadata": {},
+        "ground_truth": "Shopping basket"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00038857.JPEG",
+        "prompt": "What is the object in the image?\nUse one word or a short phrase to classify the content of the image.",
+        "text": "Lemon.",
+        "answer_id": "8p2HjZbTQiLZjHGeNQkjYU",
+        "model_id": "ImageNet_llava_lora",
+        "metadata": {},
+        "ground_truth": "Fig"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00034248.JPEG",
+        "prompt": "What is the object in the image?\nRespond to the question with a single word or a short, descriptive phrase.",
+        "text": "Chocolate sauce.",
+        "answer_id": "BK93CGAVp9bcCZoAVPDwAR",
+        "model_id": "ImageNet_llava_lora",
+        "metadata": {},
+        "ground_truth": "Hip"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00024879.JPEG",
+        "prompt": "What is the object in the image?\nUse a single word or a short phrase to categorize the image content.",
+        "text": "Mouse.",
+        "answer_id": "HN9LJ2xAQxrmoMBEBCEfGz",
+        "model_id": "ImageNet_llava_lora",
+        "metadata": {},
+        "ground_truth": "Desk"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00047899.JPEG",
+        "prompt": "What is the object in the image?\nExpress your answer with one word or a short, descriptive phrase.",
+        "text": "Marmoset.",
+        "answer_id": "DpQibsFD6Sb4K6KQNJ4r2g",
+        "model_id": "ImageNet_llava_lora",
+        "metadata": {},
+        "ground_truth": "Koala"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00039738.JPEG",
+        "prompt": "What is the object in the image?\nRespond to the question with a single word or a short, descriptive phrase.",
+        "text": "Face powder.",
+        "answer_id": "UZaYTNfi8HKvqLNskuvKXD",
+        "model_id": "ImageNet_llava_lora",
+        "metadata": {},
+        "ground_truth": "Sunscreen"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00011252.JPEG",
+        "prompt": "What is the object in the image?\nExpress your answer with one word or a short, descriptive phrase.",
+        "text": "Hamper.",
+        "answer_id": "3YeN3hGehM99LPVHruT6GJ",
+        "model_id": "ImageNet_llava_lora",
+        "metadata": {},
+        "ground_truth": "Shopping basket"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00021902.JPEG",
+        "prompt": "What is the object in the image?\nClassify the image content using only one word or a brief phrase.",
+        "text": "Web site.",
+        "answer_id": "QVScF73FuU9HtVaD6vExKX",
+        "model_id": "ImageNet_llava_lora",
+        "metadata": {},
+        "ground_truth": "Hard disc"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00001949.JPEG",
+        "prompt": "What is the object in the image?\nProvide your answer using a single word or a brief phrase.",
+        "text": "Meat loaf.",
+        "answer_id": "HvFnGZ66Ft9SajPqCqTa2C",
+        "model_id": "ImageNet_llava_lora",
+        "metadata": {},
+        "ground_truth": "Dough"
+    },
+    {
+        "question_id": "ILSVRC2012_val_00024526.JPEG",
+        "prompt": "What is the object in the image?\nExpress your answer in a single word or a short, descriptive phrase.",
+        "text": "Goblet.",
+        "answer_id": "MwftRoQUZckStp59WQdmyS",
+        "model_id": "ImageNet_llava_lora",
+        "metadata": {},
+        "ground_truth": "Chocolate sauce"
+    }
+]
