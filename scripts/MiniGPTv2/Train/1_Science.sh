@@ -12,11 +12,10 @@ CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7 HF_ENDPOINT="https://hf-mirror.com" OMP_NUM
     --num_train_epochs 1 \
     --per_device_train_batch_size 16 \
     --per_device_eval_batch_size 1 \
-    --gradient_accumulation_steps 8 \
+    --gradient_accumulation_steps 1 \
     --evaluation_strategy "no" \
     --save_strategy "steps" \
     --save_steps 10000 \
-    --save_total_limit 1 \
     --learning_rate 1e-5 \
     --weight_decay 0.05 \
     --warmup_ratio 0.03 \
