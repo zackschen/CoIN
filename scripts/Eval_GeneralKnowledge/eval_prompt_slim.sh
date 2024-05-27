@@ -24,8 +24,8 @@
 
 ################################################################################################
 
-bash ./scripts/Eval_GeneralKnowledge/eval_prompt.sh \
-    ./results/CoIN/Qwen_Chat/TextVQA/Finetune \
+# bash ./scripts/Eval_GeneralKnowledge/eval_prompt.sh \
+#     ./results/CoIN/Qwen_Chat/TextVQA/Finetune \
 
 # bash ./scripts/Eval_GeneralKnowledge/eval_prompt.sh \
 #     ./results/CoIN/Qwen_Chat/TextVQA/GQA \
@@ -120,3 +120,54 @@ bash ./scripts/Eval_GeneralKnowledge/eval_prompt.sh \
 # bash ./scripts/Eval_GeneralKnowledge/eval_prompt.sh \
 #     ./results/CoIN/Qwen_Chat/OCRVQA/Finetune \
 
+bash ./scripts/Eval_GeneralKnowledge/eval_prompt.sh \
+    ./results/CoIN/Qwen_Chat/ScienceQA/Multitask \
+
+bash ./scripts/Eval_GeneralKnowledge/eval_prompt.sh \
+    ./results/CoIN/Qwen_Chat/ScienceQA/Zero_Shot \
+
+bash ./scripts/Eval_GeneralKnowledge/eval_prompt.sh \
+    ./results/CoIN/Qwen_Chat/TextVQA/Multitask \
+
+bash ./scripts/Eval_GeneralKnowledge/eval_prompt.sh \
+    ./results/CoIN/Qwen_Chat/TextVQA/Zero_Shot \
+
+
+bash ./scripts/Eval_GeneralKnowledge/eval_prompt.sh \
+    ./results/CoIN/Qwen_Chat/ImageNet/Multitask \
+
+bash ./scripts/Eval_GeneralKnowledge/eval_prompt.sh \
+    ./results/CoIN/Qwen_Chat/ImageNet/Zero_Shot \
+
+
+bash ./scripts/Eval_GeneralKnowledge/eval_prompt.sh \
+    ./results/CoIN/Qwen_Chat/GQA/Multitask \
+
+bash ./scripts/Eval_GeneralKnowledge/eval_prompt.sh \
+    ./results/CoIN/Qwen_Chat/GQA/Zero_Shot \
+
+
+bash ./scripts/Eval_GeneralKnowledge/eval_prompt.sh \
+    ./results/CoIN/Qwen_Chat/VizWiz/Multitask \
+
+bash ./scripts/Eval_GeneralKnowledge/eval_prompt.sh \
+    ./results/CoIN/Qwen_Chat/VizWiz/Zero_Shot \
+
+
+bash ./scripts/Eval_GeneralKnowledge/eval_prompt.sh \
+    ./results/CoIN/Qwen_Chat/Grounding/Multitask \
+
+bash ./scripts/Eval_GeneralKnowledge/eval_prompt.sh \
+    ./results/CoIN/Qwen_Chat/Grounding/Zero_Shot \
+
+bash ./scripts/Eval_GeneralKnowledge/eval_prompt.sh \
+    ./results/CoIN/Qwen_Chat/VQAv2/Multitask \
+
+bash ./scripts/Eval_GeneralKnowledge/eval_prompt.sh \
+    ./results/CoIN/Qwen_Chat/VQAv2/Zero_Shot \
+
+bash ./scripts/Eval_GeneralKnowledge/eval_prompt.sh \
+    ./results/CoIN/Qwen_Chat/OCRVQA/Multitask \
+
+bash ./scripts/Eval_GeneralKnowledge/eval_prompt.sh \
+    ./results/CoIN/Qwen_Chat/OCRVQA/Zero_Shot \

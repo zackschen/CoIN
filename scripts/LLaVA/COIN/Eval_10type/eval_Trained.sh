@@ -44,4 +44,3 @@ CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7 bash ./scripts/LLaVA/COIN/Eval_10type/4_eva
 
 # CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7 bash ./scripts/LLaVA/COIN/Eval_10type/7_eval_vqav2.sh OCRVQA ./checkpoints/LLaVA/Instruction/CoIN-10type/OCRVQA_llava_lora
 
-bash ./scripts/LLaVA/COIN/Train_10type/Train_all.sh
