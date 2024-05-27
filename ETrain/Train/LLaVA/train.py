@@ -31,7 +31,7 @@ from peft.utils import WEIGHTS_NAME, set_peft_model_state_dict
 from torch.utils.data import Dataset
 from ETrain.Train.LLaVA.llava_trainer import LLaVATrainer
 
-from ETrain.Models import *
+from ETrain.Models.LLaVA import *
 from ETrain.Dataset import create_LLaVA_data_module
 from ETrain.Dataset.dataset import DataArguments
 from ETrain.Train.Base_trainer import *

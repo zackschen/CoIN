@@ -17,13 +17,13 @@ else
     MODELPATH=$2
 fi
 
-RESULT_DIR="./results/CLIT/VizWiz"
+RESULT_DIR="./results/CoIN/LLaVA-13B/VizWiz"
 
 for IDX in $(seq 0 $((CHUNKS-1))); do
-    CUDA_VISIBLE_DEVICES=${GPULIST[$IDX]} python -m llava.eval.Instruction_CC.model_vizwiz \
+    CUDA_VISIBLE_DEVICES=${GPULIST[$IDX]} python -m ETrain.Eval.LLaVA.CoIN.model_vizwiz \
         --model-path $MODELPATH \
-        --model-base ./checkpoints/Vicuna/vicuna-7b-v1.5 \
-        --question-file ./playground/Instructions/VizWiz/test.json \
+        --model-base ./checkpoints/LLaVA/Vicuna/vicuna-13b-v1.5 \
+        --question-file ./playground/Instructions_slim/VizWiz/val.json \
         --image-folder ./cl_dataset \
         --answers-file $RESULT_DIR/$STAGE/${CHUNKS}_${IDX}.jsonl \
         --num-chunks $CHUNKS \
@@ -45,12 +45,12 @@ for IDX in $(seq 0 $((CHUNKS-1))); do
     cat $RESULT_DIR/$STAGE/${CHUNKS}_${IDX}.jsonl >> "$output_file"
 done
 
-python scripts/convert_vizwiz_for_submission.py \
-    --annotation-file ./playground/Instructions/VizWiz/test.json \
+python -m ETrain.Eval.LLaVA.CoIN.eval_vizwiz \
     --result-file $output_file \
-    --result-upload-file $RESULT_DIR/$STAGE/upload.json
+    --annotation-file ./playground/Instructions_slim/VizWiz/val.json \
+    --output-dir $RESULT_DIR/$STAGE \
 
-python playground/create_prompt.py \
-    --rule ./llava/eval/table/rule.json \
-    --questions ./playground/Instructions/VizWiz/test.json \
+python -m ETrain.Eval.LLaVA.CoIN.create_prompt \
+    --rule ./ETrain/Eval/LLaVA/CoIN/rule.json \
+    --questions ./playground/Instructions_slim/VizWiz/val.json \
     --results $output_file \
