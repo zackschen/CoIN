@@ -26,7 +26,7 @@ if __name__ == '__main__':
     for i, ans_js in enumerate(answers):
         ans = json.loads(ans_js)
         question_id = ans['question_id']
-        question = question_dict[question_id]
+        question = question_dict[str(question_id)]
 
         
         if args.rule_temp == 'CoIN':

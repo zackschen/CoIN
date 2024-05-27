@@ -54,21 +54,18 @@ def eval_model(args):
         input_ids_size = inputs.data['input_ids'].size(1)
 
         pred = model.generate(**inputs,
-            do_sample=False,
-            num_beams=1,
-            max_new_tokens=50,
-            min_new_tokens=8,
-            length_penalty=0,
-            num_return_sequences=1,
-            use_cache=True,
-            pad_token_id=tokenizer.eod_id,
-            eos_token_id=tokenizer.eod_id)
+                              do_sample=False,
+                              num_beams=1,
+                              max_new_tokens=30,
+                              use_cache=True,
+                              pad_token_id=tokenizer.eod_id,
+                              eos_token_id=tokenizer.eod_id,)
         outputs = [tokenizer.decode(_[input_ids_size:].cpu(),skip_special_tokens=True) for _ in pred]
-
+        # print(outputs)
         ans_id = shortuuid.uuid()
         ans_file.write(json.dumps({"question_id": idx,
                                    "prompt": prompt,
-                                   "text": outputs[0],
+                                   "text": outputs[0][1:],
                                    "answer_id": ans_id}) + "\n")
         ans_file.flush()
     ans_file.close()

@@ -1,8 +1,8 @@
 
-python ./ETrain/Eval/LLaVA/CoIN/create_prompt.py \
-    --rule ./ETrain/Eval/LLaVA/CoIN/rule.json \
-    --questions ./playground/Instructions_slim/ScienceQA/test.json \
-    --results ./results/CoIN/Qwen_New/ScienceQA/GQA/merge.jsonl \
+# python ./ETrain/Eval/LLaVA/CoIN/create_prompt.py \
+#     --rule ./ETrain/Eval/LLaVA/CoIN/rule.json \
+#     --questions ./playground/Instructions_slim/ScienceQA/test.json \
+#     --results ./results/CoIN/Qwen_New/ScienceQA/GQA/merge.jsonl \
 
 # python playground/create_prompt.py \
 #     --rule ./llava/eval/table/rule.json \

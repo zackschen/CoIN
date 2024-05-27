@@ -12,12 +12,12 @@ else
 fi
 
 if [ ! -n "$2" ] ;then
-    MODELPATH='./checkpoints/Qwen/Qwen-VL'
+    MODELPATH='./checkpoints/Qwen/Qwen-VL-Chat'
 else
     MODELPATH=$2
 fi
 
-RESULT_DIR="./results/CoIN_BigLR/Qwen/VizWiz"
+RESULT_DIR="./results/CoIN_Chat/Qwen/VizWiz"
 
 for IDX in $(seq 0 $((CHUNKS-1))); do
     CUDA_VISIBLE_DEVICES=${GPULIST[$IDX]} python -m ETrain.Eval.Qwen.model_vqa \

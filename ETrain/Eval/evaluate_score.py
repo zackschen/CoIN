@@ -2,7 +2,7 @@ import json, os, argparse, re
 
 def parse_args():
     parser = argparse.ArgumentParser()
-    parser.add_argument('--dir', type=str, default="./results/CoIN/Qwen_New/ScienceQA/Finetune")
+    parser.add_argument('--dir', type=str, default="./results/CoIN/Qwen_Chat/ScienceQA/Finetune")
     return parser.parse_args()
 
 def is_last_layer_folder(path):
@@ -38,7 +38,12 @@ if __name__ == '__main__':
                 if score.isnumeric() and float(score) <= 10.0:
                     scores += float(score)
             else:
-                print(score)
+                pattern = re.compile(r'[1-9]')
+                res = pattern.findall(score)
+                if len(res) > 0:
+                    scores += float(res[0])
+                else:
+                    print(score)
         
     
     final_score = scores / total

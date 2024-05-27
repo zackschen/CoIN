@@ -99,8 +99,6 @@ def train():
     trainer.train()
     trainer.save_state()
 
-    model.config.use_cache = True
-
     trainer.save_trained_model(training_args, lora_args)
 
 

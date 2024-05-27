@@ -6,9 +6,6 @@ import numpy as np
 import torch.distributed
 from tqdm import tqdm
 import shortuuid
-import deepspeed
-from ETrain.utils.LLaVA.conversation import conv_templates, SeparatorStyle
-from torch.utils.data import Dataset, DataLoader
 from transformers import AutoModelForCausalLM, AutoTokenizer
 device = "cuda" # the device to load the model onto
 
@@ -64,7 +61,7 @@ def eval_model(args):
             )
             prompts.append(text)
 
-        sampling_params = SamplingParams(temperature=0.7, top_p=0.8, repetition_penalty=1.05, max_tokens=128)
+        sampling_params = SamplingParams(temperature=0.7, top_p=0.8, repetition_penalty=1.05, max_tokens=20)
 
         outputs  = model.generate(prompts, sampling_params)
 
@@ -82,8 +79,8 @@ def eval_model(args):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
-    parser.add_argument("--model-path", type=str, default="./checkpoints/Qwen/Qwen1.5-32B-Chat-AWQ")
-    parser.add_argument("--question-file", type=str, default="./results/CoIN/Qwen_New/ScienceQA/Finetune/prompt_to_eval.json")
+    parser.add_argument("--model-path", type=str, default="./checkpoints/Qwen/Qwen1.5-32B-Chat")
+    parser.add_argument("--question-file", type=str, default="./results/CoIN/Qwen_Chat/ScienceQA/Finetune/prompt_to_eval.json")
     parser.add_argument("--local_rank", type=int, default=1)
     parser.add_argument("--batch_size", type=int, default=32)
     args = parser.parse_args()

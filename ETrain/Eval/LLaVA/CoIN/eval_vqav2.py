@@ -22,7 +22,7 @@ def eval_single(annotation_file, result_file):
     total = len(results)
     right = 0
     for result in results:
-        annotation = annotations[result['question_id']]
+        annotation = annotations[str(result['question_id'])]
         pred = result['text']
         ground_truth = annotation['answer']
         if pred.upper() == ground_truth.upper():

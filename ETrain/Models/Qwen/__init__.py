@@ -78,8 +78,8 @@ def create_Qwen_model(training_args, model_args, data_args, lora_args):
         if lora_args.q_lora or "chat" in model_args.model_name_or_path.lower():
             modules_to_save = None
         else:
-            modules_to_save = None
-            # modules_to_save = ["wte", "lm_head"]
+            # modules_to_save = None
+            modules_to_save = ["wte", "lm_head"]
         # lora_config = CoINMOELoraConfig(
         #     r=lora_args.lora_r,
         #     lora_alpha=lora_args.lora_alpha,
@@ -116,10 +116,9 @@ def create_Qwen_model(training_args, model_args, data_args, lora_args):
     return model, tokenizer
 
 def load_pretrained_model(model_path, model_base):
-    config = transformers.AutoConfig.from_pretrained(model_path,trust_remote_code=True,)
     model = AutoModelForCausalLM.from_pretrained(model_base, device_map="cuda", trust_remote_code=True).eval()
     
-    print('Loading additional LLaVA weights...')
+    print('Loading additional weights...')
     if os.path.exists(os.path.join(model_path, 'non_lora_trainables.bin')):
         non_lora_trainables = torch.load(os.path.join(model_path, 'non_lora_trainables.bin'), map_location='cpu')
     else:
@@ -137,7 +136,7 @@ def load_pretrained_model(model_path, model_base):
     print('Model is loaded...')
 
     tokenizer = AutoTokenizer.from_pretrained(model_base,trust_remote_code=True)
-    # tokenizer.padding_side = 'left'
-    # tokenizer.pad_token_id = tokenizer.eod_id
+    tokenizer.padding_side = 'left'
+    tokenizer.pad_token_id = tokenizer.eod_id
 
     return model, tokenizer

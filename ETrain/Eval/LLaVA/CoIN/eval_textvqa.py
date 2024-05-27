@@ -39,7 +39,7 @@ def eval_single(annotation_file, result_file):
 
     pred_list = []
     for result in results:
-        annotation = annotations[result['question_id']]
+        annotation = annotations[str(result['question_id'])]
         pred_list.append({
             "pred_answer": result['text'],
             "gt_answers": annotation['answers'],
