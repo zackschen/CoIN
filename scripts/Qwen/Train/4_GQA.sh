@@ -11,8 +11,9 @@ MASTER_PORT=6001
 MODEL="./checkpoints/Qwen/Qwen-VL" # Set the path if you do not want to load from huggingface directly
 # ATTENTION: specify the path to your training data, which should be a json file consisting of a list of conversations.
 # See the section for finetuning in README for more information.
-OUTPUT_MODEL_PATH="./checkpoints/Qwen/CoIN_MoE/GQA"
-DATA="playground/Instructions_Qwen/GQA/train_new.json"
+OUTPUT_MODEL_PATH="./checkpoints/Qwen/CoIN_BigLR/GQA"
+PREVIOUS_MODEL_PATH="./checkpoints/Qwen/CoIN_BigLR/ImageNet"
+DATA="playground/Instructions_Qwen/GQA/train.json"
 DS_CONFIG_PATH="scripts/zero3_offload.json"
 
 DISTRIBUTED_ARGS="
@@ -29,16 +30,16 @@ CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7 torchrun $DISTRIBUTED_ARGS ETrain/Train/Qwe
     --bf16 True \
     --fix_vit True \
     --output_dir $OUTPUT_MODEL_PATH \
-    --previous_task_model_path ./checkpoints/Qwen/CoIN_MoE/ImageNet \
+    --previous_task_model_path $PREVIOUS_MODEL_PATH \
     --num_train_epochs 1 \
-    --per_device_train_batch_size 4 \
+    --per_device_train_batch_size 5 \
     --per_device_eval_batch_size 1 \
     --gradient_accumulation_steps 8 \
     --evaluation_strategy "no" \
     --save_strategy "steps" \
     --save_steps 10000 \
-    --save_total_limit 10 \
-    --learning_rate 1e-5 \
+    --save_total_limit 1 \
+    --learning_rate 1e-4 \
     --weight_decay 0.1 \
     --adam_beta2 0.95 \
     --warmup_ratio 0.01 \
@@ -48,6 +49,5 @@ CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7 torchrun $DISTRIBUTED_ARGS ETrain/Train/Qwe
     --model_max_length 2048 \
     --lazy_preprocess True \
     --use_lora \
-    --expert_num 8 \
     --gradient_checkpointing \
     --deepspeed ${DS_CONFIG_PATH}

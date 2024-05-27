@@ -17,13 +17,13 @@ else
     MODELPATH=$2
 fi
 
-RESULT_DIR="./results/CoIN/Qwen_New/TextVQA"
+RESULT_DIR="./results/CoIN_New/Qwen/TextVQA"
 
 for IDX in $(seq 0 $((CHUNKS-1))); do
     CUDA_VISIBLE_DEVICES=${GPULIST[$IDX]} python -m ETrain.Eval.Qwen.model_vqa \
         --model-path $MODELPATH \
         --model-base ./checkpoints/Qwen/Qwen-VL \
-        --question-file ./playground/Instructions_slim/TextVQA/val.json \
+        --question-file ./playground/Instructions_slim/TextVQA/val_new.json \
         --image-folder ./cl_dataset \
         --answers-file $RESULT_DIR/$STAGE/${CHUNKS}_${IDX}.jsonl \
         --num-chunks $CHUNKS \
@@ -49,5 +49,5 @@ python -m ETrain.Eval.LLaVA.CoIN.eval_textvqa \
 
 python -m ETrain.Eval.LLaVA.CoIN.create_prompt \
     --rule ./ETrain/Eval/LLaVA/CoIN/rule.json \
-    --questions ./playground/Instructions_slim/TextVQA/val.json \
+    --questions ./playground/Instructions_slim/TextVQA/val_new.json \
     --results $output_file \

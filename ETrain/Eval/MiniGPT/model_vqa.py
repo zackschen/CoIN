@@ -58,7 +58,6 @@ def eval_model(args):
     ds_model = deepspeed.init_inference(
         model=model,      # Transformers模型
         mp_size=world_size,        # GPU数量
-        dtype=torch.float16, # 权重类型(fp16)
         replace_method="auto", # 让DS自动替换层
         replace_with_kernel_inject=True, # 使用kernel注入
     )
