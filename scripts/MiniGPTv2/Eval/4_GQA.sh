@@ -1,4 +1,4 @@
-RESULT_DIR="./results/CoIN_New/MiniGPTv2/GQA"
+RESULT_DIR="./results/CoINv2/MiniGPTv2/GQA"
 MODELPATH=$2
 
 deepspeed --include localhost:0,1,2,3,4,5,6,7 \
@@ -16,5 +16,5 @@ python -m ETrain.Eval.LLaVA.CoIN.eval_gqa --tier testdev_balanced --path $RESULT
 
 python -m ETrain.Eval.LLaVA.CoIN.create_prompt \
     --rule ./ETrain/Eval/LLaVA/CoIN/rule.json \
-    --questions ./playground/Instructions_slim/GQA/test_new.json \
+    --questions ./playground/Instructions_slim/GQA/test.json \
     --results $output_file \

@@ -1,4 +1,4 @@
-RESULT_DIR="./results/CoIN_New/MiniGPTv2/VizWiz"
+RESULT_DIR="./results/CoINv2/MiniGPTv2/VizWiz"
 MODELPATH=$2
 
 deepspeed --include localhost:0,1,2,3,4,5,6,7 \
@@ -12,10 +12,10 @@ output_file=$RESULT_DIR/$1/merge.jsonl
 
 python -m ETrain.Eval.LLaVA.CoIN.eval_vizwiz \
     --result-file $output_file \
-    --annotation-file ./playground/Instructions_slim/VizWiz/val_new.json \
+    --annotation-file ./playground/Instructions_slim/VizWiz/val.json \
     --output-dir $RESULT_DIR/$1 \
 
 python -m ETrain.Eval.LLaVA.CoIN.create_prompt \
     --rule ./ETrain/Eval/LLaVA/CoIN/rule.json \
-    --questions ./playground/Instructions_slim/VizWiz/val_new.json \
+    --questions ./playground/Instructions_slim/VizWiz/val.json \
     --results $output_file \

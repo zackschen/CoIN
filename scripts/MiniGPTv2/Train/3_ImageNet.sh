@@ -6,10 +6,10 @@ CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7 HF_ENDPOINT="https://hf-mirror.com" OMP_NUM
     ETrain/Train/LAVIS/train.py \
     --deepspeed ./scripts/zero3_offload.json \
     --lora_enable True --lora_r 64 --lora_alpha 256 \
-    --cfg-path ./scripts/MiniGPTv2/3_ImageNet.yaml \
+    --cfg-path ./scripts/MiniGPTv2/Train/3_ImageNet.yaml \
     --bf16 True \
-    --previous_task_model_path ./checkpoints/MiniGPTv2/CoIN_New/Finetune/TextVQA \
-    --output_dir ./checkpoints/MiniGPTv2/CoIN_New/Finetune/ImageNet \
+    --previous_task_model_path ./checkpoints/MiniGPTv2/CoINv2/TextVQA \
+    --output_dir ./checkpoints/MiniGPTv2/CoINv2/ImageNet \
     --num_train_epochs 1 \
     --per_device_train_batch_size 16 \
     --per_device_eval_batch_size 1 \

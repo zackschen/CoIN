@@ -1,4 +1,4 @@
-RESULT_DIR="./results/CoIN_New/MiniGPTv2/TextVQA"
+RESULT_DIR="./results/CoINv2/MiniGPTv2/TextVQA"
 MODELPATH=$2
 
 deepspeed --include localhost:0,1,2,3,4,5,6,7 \
@@ -17,5 +17,5 @@ python -m ETrain.Eval.LLaVA.CoIN.eval_textvqa \
 
 python -m ETrain.Eval.LLaVA.CoIN.create_prompt \
     --rule ./ETrain/Eval/LLaVA/CoIN/rule.json \
-    --questions ./playground/Instructions_slim/TextVQA/val_new.json \
+    --questions ./playground/Instructions_slim/TextVQA/val.json \
     --results $output_file \

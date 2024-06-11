@@ -32,9 +32,13 @@ from ETrain.Models import *
 from ETrain.Train.LAVIS import *
 from ETrain.Train.Base_trainer import *
 from transformers import Trainer
-from peft.utils import WEIGHTS_NAME, set_peft_model_state_dict
+# from peft.utils import WEIGHTS_NAME, set_peft_model_state_dict
 from transformers.modeling_utils import load_state_dict, get_checkpoint_shard_files, _load_state_dict_into_model
 from transformers.deepspeed import is_deepspeed_zero3_enabled
+
+import sys
+sys.path.append('/home/chencheng/Code/Slim_Train')
+from CoIN.peft import PeftModel, TaskType, get_peft_model, CoINMOELoraConfig, WEIGHTS_NAME, set_peft_model_state_dict
 
 def parse_args(remaining_strings):
     parser = argparse.ArgumentParser(description="Training")
@@ -129,7 +133,6 @@ def load_model_from_previous_task(cfg, model, previous_task_model_path):
     else:
         msg = model.load_state_dict(non_lora_trainables, strict=False)
 
-    from peft import PeftModel
     rank0_print('Loading LoRA weights...')
     filename = os.path.join(previous_task_model_path, WEIGHTS_NAME)
     adapters_weights = torch.load(filename, map_location=torch.device("cuda" if torch.cuda.is_available() else "cpu"))
