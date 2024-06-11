@@ -11,8 +11,8 @@ MASTER_PORT=6001
 MODEL="./checkpoints/Qwen/Qwen-VL-Chat" # Set the path if you do not want to load from huggingface directly
 # ATTENTION: specify the path to your training data, which should be a json file consisting of a list of conversations.
 # See the section for finetuning in README for more information.
-OUTPUT_MODEL_PATH="./checkpoints/Qwen/CoIN_Chat/ImageNet"
-PREVIOUS_MODEL_PATH="./checkpoints/Qwen/CoIN_Chat/TextVQA "
+OUTPUT_MODEL_PATH="./checkpoints/Qwen/CoIN_Chatv2/ImageNet"
+PREVIOUS_MODEL_PATH="./checkpoints/Qwen/CoIN_Chatv2/TextVQA "
 DATA="playground/Instructions_Qwen/ImageNet/train.json"
 DS_CONFIG_PATH="scripts/zero3_offload.json"
 
@@ -34,11 +34,10 @@ CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7 torchrun $DISTRIBUTED_ARGS ETrain/Train/Qwe
     --num_train_epochs 1 \
     --per_device_train_batch_size 5 \
     --per_device_eval_batch_size 1 \
-    --gradient_accumulation_steps 8 \
+    --gradient_accumulation_steps 1 \
     --evaluation_strategy "no" \
     --save_strategy "steps" \
     --save_steps 10000 \
-    --save_total_limit 1 \
     --learning_rate 1e-5 \
     --weight_decay 0.1 \
     --adam_beta2 0.95 \
