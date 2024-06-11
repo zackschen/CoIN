@@ -1,173 +1,360 @@
-# bash ./scripts/Eval_GeneralKnowledge/eval_prompt.sh \
-#     ./results/CoIN/Qwen_Chat/ScienceQA/Finetune \
+bash ./scripts/Eval_GeneralKnowledge/eval_prompt.sh \
+    ./results/CoIN_Chatv2/Qwen/ScienceQA/Finetune \
 
-# bash ./scripts/Eval_GeneralKnowledge/eval_prompt.sh \
-#     ./results/CoIN/Qwen_Chat/ScienceQA/GQA \
+bash ./scripts/Eval_GeneralKnowledge/eval_prompt.sh \
+    ./results/CoIN_Chatv2/Qwen/ScienceQA/GQA \
 
-# bash ./scripts/Eval_GeneralKnowledge/eval_prompt.sh \
-#     ./results/CoIN/Qwen_Chat/ScienceQA/Grounding \
+bash ./scripts/Eval_GeneralKnowledge/eval_prompt.sh \
+    ./results/CoIN_Chatv2/Qwen/ScienceQA/Grounding \
 
-# bash ./scripts/Eval_GeneralKnowledge/eval_prompt.sh \
-#     ./results/CoIN/Qwen_Chat/ScienceQA/ImageNet \
+bash ./scripts/Eval_GeneralKnowledge/eval_prompt.sh \
+    ./results/CoIN_Chatv2/Qwen/ScienceQA/ImageNet \
 
-# bash ./scripts/Eval_GeneralKnowledge/eval_prompt.sh \
-#     ./results/CoIN/Qwen_Chat/ScienceQA/OCRVQA \
+bash ./scripts/Eval_GeneralKnowledge/eval_prompt.sh \
+    ./results/CoIN_Chatv2/Qwen/ScienceQA/OCRVQA \
 
-# bash ./scripts/Eval_GeneralKnowledge/eval_prompt.sh \
-#     ./results/CoIN/Qwen_Chat/ScienceQA/TextVQA \
+bash ./scripts/Eval_GeneralKnowledge/eval_prompt.sh \
+    ./results/CoIN_Chatv2/Qwen/ScienceQA/TextVQA \
 
-# bash ./scripts/Eval_GeneralKnowledge/eval_prompt.sh \
-#     ./results/CoIN/Qwen_Chat/ScienceQA/VQAv2 \
+bash ./scripts/Eval_GeneralKnowledge/eval_prompt.sh \
+    ./results/CoIN_Chatv2/Qwen/ScienceQA/VQAv2 \
 
-# bash ./scripts/Eval_GeneralKnowledge/eval_prompt.sh \
-#     ./results/CoIN/Qwen_Chat/ScienceQA/VizWiz \
+bash ./scripts/Eval_GeneralKnowledge/eval_prompt.sh \
+    ./results/CoIN_Chatv2/Qwen/ScienceQA/VizWiz \
+
+###############################################################################################
+
+bash ./scripts/Eval_GeneralKnowledge/eval_prompt.sh \
+    ./results/CoIN_Chatv2/Qwen/TextVQA/Finetune \
+
+bash ./scripts/Eval_GeneralKnowledge/eval_prompt.sh \
+    ./results/CoIN_Chatv2/Qwen/TextVQA/GQA \
+
+bash ./scripts/Eval_GeneralKnowledge/eval_prompt.sh \
+    ./results/CoIN_Chatv2/Qwen/TextVQA/Grounding \
+
+bash ./scripts/Eval_GeneralKnowledge/eval_prompt.sh \
+    ./results/CoIN_Chatv2/Qwen/TextVQA/ImageNet \
+
+bash ./scripts/Eval_GeneralKnowledge/eval_prompt.sh \
+    ./results/CoIN_Chatv2/Qwen/TextVQA/OCRVQA \
+
+bash ./scripts/Eval_GeneralKnowledge/eval_prompt.sh \
+    ./results/CoIN_Chatv2/Qwen/TextVQA/VizWiz \
+
+bash ./scripts/Eval_GeneralKnowledge/eval_prompt.sh \
+    ./results/CoIN_Chatv2/Qwen/TextVQA/VQAv2 \
+
+###############################################################################################
+
+bash ./scripts/Eval_GeneralKnowledge/eval_prompt.sh \
+    ./results/CoIN_Chatv2/Qwen/ImageNet/Finetune \
+
+bash ./scripts/Eval_GeneralKnowledge/eval_prompt.sh \
+    ./results/CoIN_Chatv2/Qwen/ImageNet/GQA \
+
+bash ./scripts/Eval_GeneralKnowledge/eval_prompt.sh \
+    ./results/CoIN_Chatv2/Qwen/ImageNet/Grounding \
+
+bash ./scripts/Eval_GeneralKnowledge/eval_prompt.sh \
+    ./results/CoIN_Chatv2/Qwen/ImageNet/OCRVQA \
+
+bash ./scripts/Eval_GeneralKnowledge/eval_prompt.sh \
+    ./results/CoIN_Chatv2/Qwen/ImageNet/VizWiz \
+
+bash ./scripts/Eval_GeneralKnowledge/eval_prompt.sh \
+    ./results/CoIN_Chatv2/Qwen/ImageNet/VQAv2 \
 
 ################################################################################################
 
-# bash ./scripts/Eval_GeneralKnowledge/eval_prompt.sh \
-#     ./results/CoIN/Qwen_Chat/TextVQA/Finetune \
+bash ./scripts/Eval_GeneralKnowledge/eval_prompt.sh \
+    ./results/CoIN_Chatv2/Qwen/GQA/Finetune \
 
-# bash ./scripts/Eval_GeneralKnowledge/eval_prompt.sh \
-#     ./results/CoIN/Qwen_Chat/TextVQA/GQA \
+bash ./scripts/Eval_GeneralKnowledge/eval_prompt.sh \
+    ./results/CoIN_Chatv2/Qwen/GQA/Grounding \
 
-# bash ./scripts/Eval_GeneralKnowledge/eval_prompt.sh \
-#     ./results/CoIN/Qwen_Chat/TextVQA/Grounding \
+bash ./scripts/Eval_GeneralKnowledge/eval_prompt.sh \
+    ./results/CoIN_Chatv2/Qwen/GQA/OCRVQA \
 
-# bash ./scripts/Eval_GeneralKnowledge/eval_prompt.sh \
-#     ./results/CoIN/Qwen_Chat/TextVQA/ImageNet \
+bash ./scripts/Eval_GeneralKnowledge/eval_prompt.sh \
+    ./results/CoIN_Chatv2/Qwen/GQA/VizWiz \
 
-# bash ./scripts/Eval_GeneralKnowledge/eval_prompt.sh \
-#     ./results/CoIN/Qwen_Chat/TextVQA/OCRVQA \
-
-# bash ./scripts/Eval_GeneralKnowledge/eval_prompt.sh \
-#     ./results/CoIN/Qwen_Chat/TextVQA/VizWiz \
-
-# bash ./scripts/Eval_GeneralKnowledge/eval_prompt.sh \
-#     ./results/CoIN/Qwen_Chat/TextVQA/VQAv2 \
+bash ./scripts/Eval_GeneralKnowledge/eval_prompt.sh \
+    ./results/CoIN_Chatv2/Qwen/GQA/VQAv2 \
 
 ################################################################################################
 
-# bash ./scripts/Eval_GeneralKnowledge/eval_prompt.sh \
-#     ./results/CoIN/Qwen_Chat/ImageNet/Finetune \
-
-# bash ./scripts/Eval_GeneralKnowledge/eval_prompt.sh \
-#     ./results/CoIN/Qwen_Chat/ImageNet/GQA \
-
-# bash ./scripts/Eval_GeneralKnowledge/eval_prompt.sh \
-#     ./results/CoIN/Qwen_Chat/ImageNet/Grounding \
-
-# bash ./scripts/Eval_GeneralKnowledge/eval_prompt.sh \
-#     ./results/CoIN/Qwen_Chat/ImageNet/OCRVQA \
-
-# bash ./scripts/Eval_GeneralKnowledge/eval_prompt.sh \
-#     ./results/CoIN/Qwen_Chat/ImageNet/VizWiz \
-
-# bash ./scripts/Eval_GeneralKnowledge/eval_prompt.sh \
-#     ./results/CoIN/Qwen_Chat/ImageNet/VQAv2 \
-
-# ################################################################################################
-
-# bash ./scripts/Eval_GeneralKnowledge/eval_prompt.sh \
-#     ./results/CoIN/Qwen_Chat/GQA/Finetune \
-
-# bash ./scripts/Eval_GeneralKnowledge/eval_prompt.sh \
-#     ./results/CoIN/Qwen_Chat/GQA/Grounding \
-
-# bash ./scripts/Eval_GeneralKnowledge/eval_prompt.sh \
-#     ./results/CoIN/Qwen_Chat/GQA/OCRVQA \
-
-# bash ./scripts/Eval_GeneralKnowledge/eval_prompt.sh \
-#     ./results/CoIN/Qwen_Chat/GQA/VizWiz \
-
-# bash ./scripts/Eval_GeneralKnowledge/eval_prompt.sh \
-#     ./results/CoIN/Qwen_Chat/GQA/VQAv2 \
-
-# ################################################################################################
-
-# bash ./scripts/Eval_GeneralKnowledge/eval_prompt.sh \
-#     ./results/CoIN/Qwen_Chat/VizWiz/Finetune \
-
-# bash ./scripts/Eval_GeneralKnowledge/eval_prompt.sh \
-#     ./results/CoIN/Qwen_Chat/VizWiz/Grounding \
-
-# bash ./scripts/Eval_GeneralKnowledge/eval_prompt.sh \
-#     ./results/CoIN/Qwen_Chat/VizWiz/OCRVQA \
-
-# bash ./scripts/Eval_GeneralKnowledge/eval_prompt.sh \
-#     ./results/CoIN/Qwen_Chat/VizWiz/VQAv2 \
-
-# ################################################################################################
-
-# bash ./scripts/Eval_GeneralKnowledge/eval_prompt.sh \
-#     ./results/CoIN/Qwen_Chat/Grounding/Finetune \
-
-# bash ./scripts/Eval_GeneralKnowledge/eval_prompt.sh \
-#     ./results/CoIN/Qwen_Chat/Grounding/OCRVQA \
-
-# bash ./scripts/Eval_GeneralKnowledge/eval_prompt.sh \
-#     ./results/CoIN/Qwen_Chat/Grounding/VQAv2 \
-
-# ################################################################################################
-
-# bash ./scripts/Eval_GeneralKnowledge/eval_prompt.sh \
-#     ./results/CoIN/Qwen_Chat/VQAv2/Finetune \
-
-# bash ./scripts/Eval_GeneralKnowledge/eval_prompt.sh \
-#     ./results/CoIN/Qwen_Chat/VQAv2/OCRVQA \
-
-# ################################################################################################
-
-# bash ./scripts/Eval_GeneralKnowledge/eval_prompt.sh \
-#     ./results/CoIN/Qwen_Chat/OCRVQA/Finetune \
+bash ./scripts/Eval_GeneralKnowledge/eval_prompt.sh \
+    ./results/CoIN_Chatv2/Qwen/VizWiz/Finetune \
 
 bash ./scripts/Eval_GeneralKnowledge/eval_prompt.sh \
-    ./results/CoIN/Qwen_Chat/ScienceQA/Multitask \
+    ./results/CoIN_Chatv2/Qwen/VizWiz/Grounding \
 
 bash ./scripts/Eval_GeneralKnowledge/eval_prompt.sh \
-    ./results/CoIN/Qwen_Chat/ScienceQA/Zero_Shot \
+    ./results/CoIN_Chatv2/Qwen/VizWiz/OCRVQA \
 
 bash ./scripts/Eval_GeneralKnowledge/eval_prompt.sh \
-    ./results/CoIN/Qwen_Chat/TextVQA/Multitask \
+    ./results/CoIN_Chatv2/Qwen/VizWiz/VQAv2 \
+
+################################################################################################
 
 bash ./scripts/Eval_GeneralKnowledge/eval_prompt.sh \
-    ./results/CoIN/Qwen_Chat/TextVQA/Zero_Shot \
+    ./results/CoIN_Chatv2/Qwen/Grounding/Finetune \
+
+bash ./scripts/Eval_GeneralKnowledge/eval_prompt.sh \
+    ./results/CoIN_Chatv2/Qwen/Grounding/OCRVQA \
+
+bash ./scripts/Eval_GeneralKnowledge/eval_prompt.sh \
+    ./results/CoIN_Chatv2/Qwen/Grounding/VQAv2 \
+
+################################################################################################
+
+bash ./scripts/Eval_GeneralKnowledge/eval_prompt.sh \
+    ./results/CoIN_Chatv2/Qwen/VQAv2/Finetune \
+
+bash ./scripts/Eval_GeneralKnowledge/eval_prompt.sh \
+    ./results/CoIN_Chatv2/Qwen/VQAv2/OCRVQA \
+
+################################################################################################
+
+bash ./scripts/Eval_GeneralKnowledge/eval_prompt.sh \
+    ./results/CoIN_Chatv2/Qwen/OCRVQA/Finetune \
+
+################################################################################################
+
+bash ./scripts/Eval_GeneralKnowledge/eval_prompt.sh \
+    ./results/CoIN_Chatv2/Qwen/ScienceQA/Multitask \
+
+bash ./scripts/Eval_GeneralKnowledge/eval_prompt.sh \
+    ./results/CoIN_Chatv2/Qwen/ScienceQA/Zero_Shot \
+
+bash ./scripts/Eval_GeneralKnowledge/eval_prompt.sh \
+    ./results/CoIN_Chatv2/Qwen/TextVQA/Multitask \
+
+bash ./scripts/Eval_GeneralKnowledge/eval_prompt.sh \
+    ./results/CoIN_Chatv2/Qwen/TextVQA/Zero_Shot \
 
 
 bash ./scripts/Eval_GeneralKnowledge/eval_prompt.sh \
-    ./results/CoIN/Qwen_Chat/ImageNet/Multitask \
+    ./results/CoIN_Chatv2/Qwen/ImageNet/Multitask \
 
 bash ./scripts/Eval_GeneralKnowledge/eval_prompt.sh \
-    ./results/CoIN/Qwen_Chat/ImageNet/Zero_Shot \
-
-
-bash ./scripts/Eval_GeneralKnowledge/eval_prompt.sh \
-    ./results/CoIN/Qwen_Chat/GQA/Multitask \
-
-bash ./scripts/Eval_GeneralKnowledge/eval_prompt.sh \
-    ./results/CoIN/Qwen_Chat/GQA/Zero_Shot \
+    ./results/CoIN_Chatv2/Qwen/ImageNet/Zero_Shot \
 
 
 bash ./scripts/Eval_GeneralKnowledge/eval_prompt.sh \
-    ./results/CoIN/Qwen_Chat/VizWiz/Multitask \
+    ./results/CoIN_Chatv2/Qwen/GQA/Multitask \
 
 bash ./scripts/Eval_GeneralKnowledge/eval_prompt.sh \
-    ./results/CoIN/Qwen_Chat/VizWiz/Zero_Shot \
+    ./results/CoIN_Chatv2/Qwen/GQA/Zero_Shot \
 
 
 bash ./scripts/Eval_GeneralKnowledge/eval_prompt.sh \
-    ./results/CoIN/Qwen_Chat/Grounding/Multitask \
+    ./results/CoIN_Chatv2/Qwen/VizWiz/Multitask \
 
 bash ./scripts/Eval_GeneralKnowledge/eval_prompt.sh \
-    ./results/CoIN/Qwen_Chat/Grounding/Zero_Shot \
+    ./results/CoIN_Chatv2/Qwen/VizWiz/Zero_Shot \
+
 
 bash ./scripts/Eval_GeneralKnowledge/eval_prompt.sh \
-    ./results/CoIN/Qwen_Chat/VQAv2/Multitask \
+    ./results/CoIN_Chatv2/Qwen/Grounding/Multitask \
 
 bash ./scripts/Eval_GeneralKnowledge/eval_prompt.sh \
-    ./results/CoIN/Qwen_Chat/VQAv2/Zero_Shot \
+    ./results/CoIN_Chatv2/Qwen/Grounding/Zero_Shot \
 
 bash ./scripts/Eval_GeneralKnowledge/eval_prompt.sh \
-    ./results/CoIN/Qwen_Chat/OCRVQA/Multitask \
+    ./results/CoIN_Chatv2/Qwen/VQAv2/Multitask \
 
 bash ./scripts/Eval_GeneralKnowledge/eval_prompt.sh \
-    ./results/CoIN/Qwen_Chat/OCRVQA/Zero_Shot \
+    ./results/CoIN_Chatv2/Qwen/VQAv2/Zero_Shot \
+
+bash ./scripts/Eval_GeneralKnowledge/eval_prompt.sh \
+    ./results/CoIN_Chatv2/Qwen/OCRVQA/Multitask \
+
+bash ./scripts/Eval_GeneralKnowledge/eval_prompt.sh \
+    ./results/CoIN_Chatv2/Qwen/OCRVQA/Zero_Shot \
+
+
+################################################################################################
+################################################################################################
+################################################################################################
+
+
+bash ./scripts/Eval_GeneralKnowledge/eval_prompt.sh \
+    ./results/CoIN_Chatv2/Qwen/ScienceQA/Finetune \
+
+bash ./scripts/Eval_GeneralKnowledge/eval_prompt.sh \
+    ./results/CoIN_Chatv2/Qwen/ScienceQA/GQA \
+
+bash ./scripts/Eval_GeneralKnowledge/eval_prompt.sh \
+    ./results/CoIN_Chatv2/Qwen/ScienceQA/Grounding \
+
+bash ./scripts/Eval_GeneralKnowledge/eval_prompt.sh \
+    ./results/CoIN_Chatv2/Qwen/ScienceQA/ImageNet \
+
+bash ./scripts/Eval_GeneralKnowledge/eval_prompt.sh \
+    ./results/CoIN_Chatv2/Qwen/ScienceQA/OCRVQA \
+
+bash ./scripts/Eval_GeneralKnowledge/eval_prompt.sh \
+    ./results/CoIN_Chatv2/Qwen/ScienceQA/TextVQA \
+
+bash ./scripts/Eval_GeneralKnowledge/eval_prompt.sh \
+    ./results/CoIN_Chatv2/Qwen/ScienceQA/VQAv2 \
+
+bash ./scripts/Eval_GeneralKnowledge/eval_prompt.sh \
+    ./results/CoIN_Chatv2/Qwen/ScienceQA/VizWiz \
+
+###############################################################################################
+
+bash ./scripts/Eval_GeneralKnowledge/eval_prompt.sh \
+    ./results/CoIN_Chatv2/Qwen/TextVQA/Finetune \
+
+bash ./scripts/Eval_GeneralKnowledge/eval_prompt.sh \
+    ./results/CoIN_Chatv2/Qwen/TextVQA/GQA \
+
+bash ./scripts/Eval_GeneralKnowledge/eval_prompt.sh \
+    ./results/CoIN_Chatv2/Qwen/TextVQA/Grounding \
+
+bash ./scripts/Eval_GeneralKnowledge/eval_prompt.sh \
+    ./results/CoIN_Chatv2/Qwen/TextVQA/ImageNet \
+
+bash ./scripts/Eval_GeneralKnowledge/eval_prompt.sh \
+    ./results/CoIN_Chatv2/Qwen/TextVQA/OCRVQA \
+
+bash ./scripts/Eval_GeneralKnowledge/eval_prompt.sh \
+    ./results/CoIN_Chatv2/Qwen/TextVQA/VizWiz \
+
+bash ./scripts/Eval_GeneralKnowledge/eval_prompt.sh \
+    ./results/CoIN_Chatv2/Qwen/TextVQA/VQAv2 \
+
+###############################################################################################
+
+bash ./scripts/Eval_GeneralKnowledge/eval_prompt.sh \
+    ./results/CoIN_Chatv2/Qwen/ImageNet/Finetune \
+
+bash ./scripts/Eval_GeneralKnowledge/eval_prompt.sh \
+    ./results/CoIN_Chatv2/Qwen/ImageNet/GQA \
+
+bash ./scripts/Eval_GeneralKnowledge/eval_prompt.sh \
+    ./results/CoIN_Chatv2/Qwen/ImageNet/Grounding \
+
+bash ./scripts/Eval_GeneralKnowledge/eval_prompt.sh \
+    ./results/CoIN_Chatv2/Qwen/ImageNet/OCRVQA \
+
+bash ./scripts/Eval_GeneralKnowledge/eval_prompt.sh \
+    ./results/CoIN_Chatv2/Qwen/ImageNet/VizWiz \
+
+bash ./scripts/Eval_GeneralKnowledge/eval_prompt.sh \
+    ./results/CoIN_Chatv2/Qwen/ImageNet/VQAv2 \
+
+################################################################################################
+
+bash ./scripts/Eval_GeneralKnowledge/eval_prompt.sh \
+    ./results/CoIN_Chatv2/Qwen/GQA/Finetune \
+
+bash ./scripts/Eval_GeneralKnowledge/eval_prompt.sh \
+    ./results/CoIN_Chatv2/Qwen/GQA/Grounding \
+
+bash ./scripts/Eval_GeneralKnowledge/eval_prompt.sh \
+    ./results/CoIN_Chatv2/Qwen/GQA/OCRVQA \
+
+bash ./scripts/Eval_GeneralKnowledge/eval_prompt.sh \
+    ./results/CoIN_Chatv2/Qwen/GQA/VizWiz \
+
+bash ./scripts/Eval_GeneralKnowledge/eval_prompt.sh \
+    ./results/CoIN_Chatv2/Qwen/GQA/VQAv2 \
+
+################################################################################################
+
+bash ./scripts/Eval_GeneralKnowledge/eval_prompt.sh \
+    ./results/CoIN_Chatv2/Qwen/VizWiz/Finetune \
+
+bash ./scripts/Eval_GeneralKnowledge/eval_prompt.sh \
+    ./results/CoIN_Chatv2/Qwen/VizWiz/Grounding \
+
+bash ./scripts/Eval_GeneralKnowledge/eval_prompt.sh \
+    ./results/CoIN_Chatv2/Qwen/VizWiz/OCRVQA \
+
+bash ./scripts/Eval_GeneralKnowledge/eval_prompt.sh \
+    ./results/CoIN_Chatv2/Qwen/VizWiz/VQAv2 \
+
+################################################################################################
+
+bash ./scripts/Eval_GeneralKnowledge/eval_prompt.sh \
+    ./results/CoIN_Chatv2/Qwen/Grounding/Finetune \
+
+bash ./scripts/Eval_GeneralKnowledge/eval_prompt.sh \
+    ./results/CoIN_Chatv2/Qwen/Grounding/OCRVQA \
+
+bash ./scripts/Eval_GeneralKnowledge/eval_prompt.sh \
+    ./results/CoIN_Chatv2/Qwen/Grounding/VQAv2 \
+
+################################################################################################
+
+bash ./scripts/Eval_GeneralKnowledge/eval_prompt.sh \
+    ./results/CoIN_Chatv2/Qwen/VQAv2/Finetune \
+
+bash ./scripts/Eval_GeneralKnowledge/eval_prompt.sh \
+    ./results/CoIN_Chatv2/Qwen/VQAv2/OCRVQA \
+
+################################################################################################
+
+bash ./scripts/Eval_GeneralKnowledge/eval_prompt.sh \
+    ./results/CoIN_Chatv2/Qwen/OCRVQA/Finetune \
+
+################################################################################################
+
+bash ./scripts/Eval_GeneralKnowledge/eval_prompt.sh \
+    ./results/CoIN_Chatv2/Qwen/ScienceQA/Multitask \
+
+bash ./scripts/Eval_GeneralKnowledge/eval_prompt.sh \
+    ./results/CoIN_Chatv2/Qwen/ScienceQA/Zero_Shot \
+
+bash ./scripts/Eval_GeneralKnowledge/eval_prompt.sh \
+    ./results/CoIN_Chatv2/Qwen/TextVQA/Multitask \
+
+bash ./scripts/Eval_GeneralKnowledge/eval_prompt.sh \
+    ./results/CoIN_Chatv2/Qwen/TextVQA/Zero_Shot \
+
+
+bash ./scripts/Eval_GeneralKnowledge/eval_prompt.sh \
+    ./results/CoIN_Chatv2/Qwen/ImageNet/Multitask \
+
+bash ./scripts/Eval_GeneralKnowledge/eval_prompt.sh \
+    ./results/CoIN_Chatv2/Qwen/ImageNet/Zero_Shot \
+
+
+bash ./scripts/Eval_GeneralKnowledge/eval_prompt.sh \
+    ./results/CoIN_Chatv2/Qwen/GQA/Multitask \
+
+bash ./scripts/Eval_GeneralKnowledge/eval_prompt.sh \
+    ./results/CoIN_Chatv2/Qwen/GQA/Zero_Shot \
+
+
+bash ./scripts/Eval_GeneralKnowledge/eval_prompt.sh \
+    ./results/CoIN_Chatv2/Qwen/VizWiz/Multitask \
+
+bash ./scripts/Eval_GeneralKnowledge/eval_prompt.sh \
+    ./results/CoIN_Chatv2/Qwen/VizWiz/Zero_Shot \
+
+
+bash ./scripts/Eval_GeneralKnowledge/eval_prompt.sh \
+    ./results/CoIN_Chatv2/Qwen/Grounding/Multitask \
+
+bash ./scripts/Eval_GeneralKnowledge/eval_prompt.sh \
+    ./results/CoIN_Chatv2/Qwen/Grounding/Zero_Shot \
+
+bash ./scripts/Eval_GeneralKnowledge/eval_prompt.sh \
+    ./results/CoIN_Chatv2/Qwen/VQAv2/Multitask \
+
+bash ./scripts/Eval_GeneralKnowledge/eval_prompt.sh \
+    ./results/CoIN_Chatv2/Qwen/VQAv2/Zero_Shot \
+
+bash ./scripts/Eval_GeneralKnowledge/eval_prompt.sh \
+    ./results/CoIN_Chatv2/Qwen/OCRVQA/Multitask \
+
+bash ./scripts/Eval_GeneralKnowledge/eval_prompt.sh \
+    ./results/CoIN_Chatv2/Qwen/OCRVQA/Zero_Shot \
+
+bash ./scripts/Eval_GeneralKnowledge/eval_prompt_slim_llava.sh
+bash ./scripts/Eval_GeneralKnowledge/eval_prompt_slim_minigpt.sh

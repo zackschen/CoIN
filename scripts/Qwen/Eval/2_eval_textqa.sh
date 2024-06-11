@@ -17,7 +17,7 @@ else
     MODELPATH=$2
 fi
 
-RESULT_DIR="./results/CoIN_Chat/Qwen/TextVQA"
+RESULT_DIR="./results/CoIN_Chatv2/Qwen/TextVQA"
 
 for IDX in $(seq 0 $((CHUNKS-1))); do
     CUDA_VISIBLE_DEVICES=${GPULIST[$IDX]} python -m ETrain.Eval.Qwen.model_vqa \

@@ -14,7 +14,8 @@ from transformers import Trainer, deepspeed
 from transformers.trainer_pt_utils import LabelSmoother
 from peft import prepare_model_for_kbit_training
 from accelerate.utils import DistributedType
-from peft import LoraConfig, get_peft_model, prepare_model_for_kbit_training
+from peft import LoraConfig, prepare_model_for_kbit_training
+# from peft import get_peft_model
 from ETrain.Train.Base_trainer import *
 from ETrain.Models.Qwen.modeling_qwen import QWenLMHeadModel
 from ETrain.Models.Qwen.tokenization_qwen import *
@@ -22,8 +23,8 @@ from transformers import AutoTokenizer, AutoModelForCausalLM
 from transformers.generation import GenerationConfig
 
 import sys
-# sys.path.append('/home/chencheng/Code/Slim_Train')
-# from CoIN.peft import PeftModel, TaskType, get_peft_model, CoINMOELoraConfig, WEIGHTS_NAME, set_peft_model_state_dict
+sys.path.append('/home/chencheng/Code/Slim_Train')
+from CoIN.peft import PeftModel, TaskType, get_peft_model, CoINMOELoraConfig, WEIGHTS_NAME, set_peft_model_state_dict
 
 def create_Qwen_model(training_args, model_args, data_args, lora_args):
     bnb_model_from_pretrained_args = {}
@@ -80,25 +81,25 @@ def create_Qwen_model(training_args, model_args, data_args, lora_args):
         else:
             # modules_to_save = None
             modules_to_save = ["wte", "lm_head"]
-        # lora_config = CoINMOELoraConfig(
-        #     r=lora_args.lora_r,
-        #     lora_alpha=lora_args.lora_alpha,
-        #     target_modules=lora_args.lora_target_modules,
-        #     lora_dropout=lora_args.lora_dropout,
-        #     bias=lora_args.lora_bias,
-        #     task_type=TaskType.CAUSAL_LM_CoIN,
-        #     # modules_to_save=modules_to_save  # This argument serves for adding new tokens.
-        #     **kwargs
-        # )
-        lora_config = LoraConfig(
+        lora_config = CoINMOELoraConfig(
             r=lora_args.lora_r,
             lora_alpha=lora_args.lora_alpha,
             target_modules=lora_args.lora_target_modules,
             lora_dropout=lora_args.lora_dropout,
             bias=lora_args.lora_bias,
-            task_type="CAUSAL_LM",
-            modules_to_save=modules_to_save  # This argument serves for adding new tokens.
+            task_type=TaskType.CAUSAL_LM_CoIN,
+            # modules_to_save=modules_to_save  # This argument serves for adding new tokens.
+            **kwargs
         )
+        # lora_config = LoraConfig(
+        #     r=lora_args.lora_r,
+        #     lora_alpha=lora_args.lora_alpha,
+        #     target_modules=lora_args.lora_target_modules,
+        #     lora_dropout=lora_args.lora_dropout,
+        #     bias=lora_args.lora_bias,
+        #     task_type="CAUSAL_LM",
+        #     modules_to_save=modules_to_save  # This argument serves for adding new tokens.
+        # )
         if lora_args.q_lora:
             model = prepare_model_for_kbit_training(
                 model, use_gradient_checkpointing=training_args.gradient_checkpointing
