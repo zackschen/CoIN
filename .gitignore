@@ -24,6 +24,7 @@ wandb
 output
 images_to_show
 playground
+FigurePlot
 
 results
 checkpoints
