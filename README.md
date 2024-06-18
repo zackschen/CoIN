@@ -80,19 +80,16 @@ First, downloading the pretrained projectors in [LLaVA Model_Zoo](https://github
 Setting `pretrain_mm_mlp_adapter` to the projector path.
 You could modify the `deepspeed config` to change the deepspeed config.
 
-We provide the scripts of our train order in `scripts/CoIN/Train`.
+We provide the scripts of our train order in `scripts/*/Train`.
 Note, the `output_dir` of the previous script is the `previous_task_model_path` of the next training process.
 Then, you could tune these datasets in your order.
 
-### MoELoRA
-For training with MoeLoRA, you could train scripts in `scripts/CoIN/Train_MOE`.
-
 ## Evaluation
-We have prepared the scripts to evaluate the trained model in `scripts/CoIN/Eval`.
+We have prepared the scripts to evaluate the trained model in `scripts/*/Eval`.
 
 These scripts will evalute the trained model and create the prompts (`prompt_to_eval.json`) for evaluating the general knowldege.
 
-To evaluate the general knowldege, you could add the result path to `llava/eval/CoIN/to_eval_prompt.txt` and run the `llava/eval/CoIN/evaluate_generalknowledege.py`, this python file will output a score to indicate the general knowledge.
+To evaluate the general knowldege, you could add the result path to `scripts/Eval_GeneralKnowledge/eval_prompt_slim.sh` and run it, this script file will output a score to indicate the general knowledge.
 
 ## To Do
 1. - [x] Evaluating on more MLLM, MiniGPT-4, ~~MiniGPT-V2~~, InstrctBlip, ~~Qwen-VL~~; MiniGPT-V2, Qwen-VL have been merged. In addition, since MiniGPT-4 and InstrctBlip are based on LAVIS resp, you can modify the config to train with these model.
