@@ -5,7 +5,7 @@ Cheng Chen, Junchen Zhu, Xu Luo, Hengtao Shen, LianLi Gao, Jingkuan Song.
 <img src="./assets/architecture.png">
 
 ## Abstract
-Instruction tuning represents a prevalent strategy employed by Multimodal Large Language Models (MLLMs) to align with human instructions and adapt to new tasks. Nevertheless, MLLMs encounter the challenge of adapting to users' evolving knowledge and demands. Therefore, how to retain existing skills while acquiring new knowledge needs to be investigated. In this paper, we present a comprehensive benchmark, namely ContinuaL Instruction tuNing (CoIN), to assess existing MLLMs in sequential instruction tuning paradigm. CoIN comprises 10 commonly used datasets spanning 8 task categories, ensuring a diverse range of instructions and tasks. Besides, the trained model is evaluated from two aspects: Instruction Following and General Knowledge, which assess the alignment with human intention and knowledge preserved for reasoning, respectively. Experiments on CoIN demonstrate that current powerful MLLMs still suffer catastrophic forgetting, and the failure in intention alignment assumes the main responsibility, instead of the knowledge forgetting. To this end, we introduce MoELoRA to MLLMs which is effective to retain the previous instruction alignment. Experimental results consistently illustrate the forgetting decreased from this method on CoIN.
+Instruction tuning demonstrates impressive performance in adapting Multimodal Large Language Models (MLLMs) to follow task instructions and improve generalization ability. By extending tuning across diverse tasks, MLLMs can further enhance their understanding of world knowledge and instruction intent. However, continual instruction tuning has been largely overlooked and there are no public benchmarks available. In this paper, we present CoIN, a comprehensive benchmark tailored for assessing the behavior of existing MLLMs under continual instruction tunning. CoIN comprises 10 meticulously crafted datasets spanning 8 tasks, ensuring diversity and serving as a robust evaluation framework to assess crucial aspects of continual instruction tuning, such as task order, instruction diversity and volume. Additionally, apart from traditional evaluation, we design another LLM-based metric to assess the knowledge preserved within MLLMs for reasoning. Following an in-depth evaluation of several MLLMs, we demonstrate that they still suffer catastrophic forgetting, and the failure in instruction alignment assumes the main responsibility, instead of reasoning knowledge forgetting. To this end, we introduce MoELoRA which is effective in retaining the previous instruction alignment.
 
 ## Install
 1. Clone this repository and navigate to CoIN folder
@@ -61,7 +61,7 @@ After downloading all of them, organize the data as follows:
 Then, please download the instructions from our datasets path: [CoIN_Dataset](https://huggingface.co/datasets/Zacks-Chen/CoIN/tree/main)
 then, organize the instructions as follows:
 ```
-├── Instruction_Type1
+├── Instruction_Original
 │   └── GQA
 │       └── train.json
 │       └── test.json
@@ -95,8 +95,8 @@ These scripts will evalute the trained model and create the prompts (`prompt_to_
 To evaluate the general knowldege, you could add the result path to `llava/eval/CoIN/to_eval_prompt.txt` and run the `llava/eval/CoIN/evaluate_generalknowledege.py`, this python file will output a score to indicate the general knowledge.
 
 ## To Do
-1. - [] Evaluating on more MLLM, MiniGPT-4, MiniGPT-V2, InstrctBlip, Qwen-VL;
-2. - [] Evaluating on different size of MLLM;
+1. - [x] Evaluating on more MLLM, MiniGPT-4, ~~MiniGPT-V2~~, InstrctBlip, ~~Qwen-VL~~; MiniGPT-V2, Qwen-VL have been merged. In addition, since MiniGPT-4 and InstrctBlip are based on LAVIS resp, you can modify the config to train with these model.
+2. - [] Evaluating on different size of MLLM; We are conducting experiments with larger model, 13b llava.
 3. - [] Evaluating on full finetune.
 
 ## Citation
@@ -114,3 +114,6 @@ To evaluate the general knowldege, you could add the result path to `llava/eval/
 ## Acknowledgement
 [LLaVA](https://github.com/haotian-liu/LLaVA): the codebase we built upon, and our base model LLaVA-1.5-7b that has the amazing vision-language capabilities!
 
+[LAVIS](https://github.com/salesforce/LAVIS): the codebase MiniGPT and InstructBlip are built upon.
+
+[MiniGPT](https://github.com/Vision-CAIR/MiniGPT-4.git): the codebase of MinigGPT and MinitGPT-v2.
