@@ -17,13 +17,13 @@ else
     MODELPATH=$2
 fi
 
-RESULT_DIR="./results/CoIN_Chatv2/Qwen/Grounding"
+RESULT_DIR="./results/Qwen/Grounding"
 
 for IDX in $(seq 0 $((CHUNKS-1))); do
     CUDA_VISIBLE_DEVICES=${GPULIST[$IDX]} python -m ETrain.Eval.Qwen.model_vqa \
         --model-path $MODELPATH \
         --model-base ./checkpoints/Qwen/Qwen-VL \
-        --question-file ./playground/Instructions_slim/Grounding/test.json  \
+        --question-file ./playground/Instructions_Original/Grounding/test.json  \
         --image-folder ./cl_dataset \
         --answers-file $RESULT_DIR/$STAGE/${CHUNKS}_${IDX}.jsonl \
         --num-chunks $CHUNKS \
@@ -43,12 +43,12 @@ for IDX in $(seq 0 $((CHUNKS-1))); do
 done
 
 python -m ETrain.Eval.LLaVA.CoIN.eval_grounding \
-    --test-file ./playground/Instructions_slim/Grounding/test.json \
+    --test-file ./playground/Instructions_Original/Grounding/test.json \
     --result-file $output_file \
     --output-dir $RESULT_DIR/$STAGE \
 
 python -m ETrain.Eval.LLaVA.CoIN.create_prompt \
     --rule ./ETrain/Eval/LLaVA/CoIN/rule.json \
-    --questions ./playground/Instructions_slim/Grounding/test.json \
+    --questions ./playground/Instructions_Original/Grounding/test.json \
     --results $output_file \
     --rule_temp CoIN_Grounding \

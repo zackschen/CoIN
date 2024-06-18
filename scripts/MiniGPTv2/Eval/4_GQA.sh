@@ -1,4 +1,4 @@
-RESULT_DIR="./results/CoINv2/MiniGPTv2/GQA"
+RESULT_DIR="./results/MiniGPTv2/GQA"
 MODELPATH=$2
 
 deepspeed --include localhost:0,1,2,3,4,5,6,7 \

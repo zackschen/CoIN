@@ -18,7 +18,7 @@ from ETrain.Dataset.LAVIS.datasets.aok_vqa_datasets import AOKVQADataset
 from ETrain.Dataset.LAVIS.datasets.coco_vqa_datasets import COCOVQADataset
 from ETrain.Dataset.LAVIS.datasets.ocrvqa_dataset import OCRVQADataset
 from ETrain.Dataset.LAVIS.datasets.coco_caption import COCOCapDataset
-from ETrain.Dataset.LAVIS.datasets.CLIT_dataset import *
+from ETrain.Dataset.LAVIS.datasets.CoIN_dataset import *
 
 @registry.register_builder("multitask_conversation")
 class MultitaskConversationBuilder(BaseDatasetBuilder):
@@ -534,11 +534,11 @@ class CCSBUAlignBuilder(BaseDatasetBuilder):
 
         return datasets
 
-@registry.register_builder("clit_dataset")
-class CLITBuilder(BaseDatasetBuilder):
-    train_dataset_cls = CLITDataset
+@registry.register_builder("coin_dataset")
+class CoINBuilder(BaseDatasetBuilder):
+    train_dataset_cls = CoINDataset
     DATASET_CONFIG_DICT = {
-        "default": "configs/LAVIS/datasets/CLIT/CLIT_scienceqa.yaml",
+        "default": "configs/LAVIS/datasets/CoIN/CoIN_scienceqa.yaml",
     }
 
     def build_datasets(self):
@@ -559,122 +559,122 @@ class CLITBuilder(BaseDatasetBuilder):
 
         return datasets
 
-@registry.register_builder("clit_scienceqa")
-class CLITScienceQABuilder(CLITBuilder):
-    train_dataset_cls = CLIT_ScientQADataset
+@registry.register_builder("coin_scienceqa")
+class CoINScienceQABuilder(CoINBuilder):
+    train_dataset_cls = CoIN_ScientQADataset
     DATASET_CONFIG_DICT = {
-        "default": "configs/LAVIS/datasets/CLIT/CLIT_scienceqa.yaml",
+        "default": "configs/LAVIS/datasets/CoIN/CoIN_scienceqa.yaml",
     }
 
-@registry.register_builder("clit_gqa")
-class CLITGQABuilder(CLITBuilder):
-    train_dataset_cls = CLIT_GQADataset
+@registry.register_builder("coin_gqa")
+class CoINGQABuilder(CoINBuilder):
+    train_dataset_cls = CoIN_GQADataset
     DATASET_CONFIG_DICT = {
-        "default": "configs/LAVIS/datasets/CLIT/CLIT_gqa.yaml",
+        "default": "configs/LAVIS/datasets/CoIN/CoIN_gqa.yaml",
     }
 
-@registry.register_builder("clit_grounding")
-class CLITGroundingBuilder(CLITBuilder):
-    train_dataset_cls = CLIT_GroundingDataset
+@registry.register_builder("coin_grounding")
+class CoINGroundingBuilder(CoINBuilder):
+    train_dataset_cls = CoIN_GroundingDataset
     DATASET_CONFIG_DICT = {
-        "default": "configs/LAVIS/datasets/CLIT/CLIT_grounding.yaml",
+        "default": "configs/LAVIS/datasets/CoIN/CoIN_grounding.yaml",
     }
-@registry.register_builder("clit_imagenet")
-class CLITImageNetBuilder(CLITBuilder):
-    train_dataset_cls = CLIT_ImageNetDataset
+@registry.register_builder("coin_imagenet")
+class CoINImageNetBuilder(CoINBuilder):
+    train_dataset_cls = CoIN_ImageNetDataset
     DATASET_CONFIG_DICT = {
-        "default": "configs/LAVIS/datasets/CLIT/CLIT_imagenet.yaml",
-    }
-
-@registry.register_builder("clit_ocrvqa")
-class CLITOCRVQABuilder(CLITBuilder):
-    train_dataset_cls = CLIT_OCRVQADataset
-    DATASET_CONFIG_DICT = {
-        "default": "configs/LAVIS/datasets/CLIT/CLIT_ocrvqa.yaml",
+        "default": "configs/LAVIS/datasets/CoIN/CoIN_imagenet.yaml",
     }
 
-@registry.register_builder("clit_textvqa")
-class CLITTextVQABuilder(CLITBuilder):
-    train_dataset_cls = CLIT_TextVQADataset
+@registry.register_builder("coin_ocrvqa")
+class CoINOCRVQABuilder(CoINBuilder):
+    train_dataset_cls = CoIN_OCRVQADataset
     DATASET_CONFIG_DICT = {
-        "default": "configs/LAVIS/datasets/CLIT/CLIT_textvqa.yaml",
+        "default": "configs/LAVIS/datasets/CoIN/CoIN_ocrvqa.yaml",
     }
 
-@registry.register_builder("clit_vizwiz")
-class CLITVizWizBuilder(CLITBuilder):
-    train_dataset_cls = CLIT_VizWizDataset
+@registry.register_builder("coin_textvqa")
+class CoINTextVQABuilder(CoINBuilder):
+    train_dataset_cls = CoIN_TextVQADataset
     DATASET_CONFIG_DICT = {
-        "default": "configs/LAVIS/datasets/CLIT/CLIT_vizwiz.yaml",
+        "default": "configs/LAVIS/datasets/CoIN/CoIN_textvqa.yaml",
     }
 
-@registry.register_builder("clit_vqav2")
-class CLITVQAV2Builder(CLITBuilder):
-    train_dataset_cls = CLIT_VQAv2Dataset
+@registry.register_builder("coin_vizwiz")
+class CoINVizWizBuilder(CoINBuilder):
+    train_dataset_cls = CoIN_VizWizDataset
     DATASET_CONFIG_DICT = {
-        "default": "configs/LAVIS/datasets/CLIT/CLIT_vqav2.yaml",
+        "default": "configs/LAVIS/datasets/CoIN/CoIN_vizwiz.yaml",
+    }
+
+@registry.register_builder("coin_vqav2")
+class CoINVQAV2Builder(CoINBuilder):
+    train_dataset_cls = CoIN_VQAv2Dataset
+    DATASET_CONFIG_DICT = {
+        "default": "configs/LAVIS/datasets/CoIN/CoIN_vqav2.yaml",
     }
 
 
-@registry.register_builder("clit_multitask")
-class CLITMultitaskBuilder(CLITBuilder):
-    train_dataset_cls = CLIT_MultitaskDataset
+@registry.register_builder("coin_multitask")
+class CoINMultitaskBuilder(CoINBuilder):
+    train_dataset_cls = CoIN_MultitaskDataset
     DATASET_CONFIG_DICT = {
-        "default": "configs/LAVIS/datasets/CLIT/CLIT_multitask.yaml",
+        "default": "configs/LAVIS/datasets/CoIN/CoIN_multitask.yaml",
     }
 
 ##### Eval
 
-@registry.register_builder("clit_scienceqa_eval")
-class CLITScienceQA_EvalBuilder(CLITBuilder):
-    train_dataset_cls = CLIT_ScientQA_EvalDataset
+@registry.register_builder("coin_scienceqa_eval")
+class CoINScienceQA_EvalBuilder(CoINBuilder):
+    train_dataset_cls = CoIN_ScientQA_EvalDataset
     DATASET_CONFIG_DICT = {
-        "default": "configs/LAVIS/datasets/CLIT/CLIT_scienceqa_eval.yaml",
+        "default": "configs/LAVIS/datasets/CoIN/CoIN_scienceqa_eval.yaml",
     }
 
-@registry.register_builder("clit_gqa_eval")
-class CLITGQA_EvalBuilder(CLITBuilder):
-    train_dataset_cls = CLIT_GQA_EvalDataset
+@registry.register_builder("coin_gqa_eval")
+class CoINGQA_EvalBuilder(CoINBuilder):
+    train_dataset_cls = CoIN_GQA_EvalDataset
     DATASET_CONFIG_DICT = {
-        "default": "configs/LAVIS/datasets/CLIT/CLIT_gqa_eval.yaml",
+        "default": "configs/LAVIS/datasets/CoIN/CoIN_gqa_eval.yaml",
     }
 
-@registry.register_builder("clit_grounding_eval")
-class CLITGrounding_EvalBuilder(CLITBuilder):
-    train_dataset_cls = CLIT_Grounding_EvalDataset
+@registry.register_builder("coin_grounding_eval")
+class CoINGrounding_EvalBuilder(CoINBuilder):
+    train_dataset_cls = CoIN_Grounding_EvalDataset
     DATASET_CONFIG_DICT = {
-        "default": "configs/LAVIS/datasets/CLIT/CLIT_grounding_eval.yaml",
+        "default": "configs/LAVIS/datasets/CoIN/CoIN_grounding_eval.yaml",
     }
-@registry.register_builder("clit_imagenet_eval")
-class CLITImageNet_EvalBuilder(CLITBuilder):
-    train_dataset_cls = CLIT_ImageNet_EvalDataset
+@registry.register_builder("coin_imagenet_eval")
+class CoINImageNet_EvalBuilder(CoINBuilder):
+    train_dataset_cls = CoIN_ImageNet_EvalDataset
     DATASET_CONFIG_DICT = {
-        "default": "configs/LAVIS/datasets/CLIT/CLIT_imagenet_eval.yaml",
-    }
-
-@registry.register_builder("clit_ocrvqa_eval")
-class CLITOCRVQA_EvalBuilder(CLITBuilder):
-    train_dataset_cls = CLIT_OCRVQA_EvalDataset
-    DATASET_CONFIG_DICT = {
-        "default": "configs/LAVIS/datasets/CLIT/CLIT_ocrvqa_eval.yaml",
+        "default": "configs/LAVIS/datasets/CoIN/CoIN_imagenet_eval.yaml",
     }
 
-@registry.register_builder("clit_textvqa_eval")
-class CLITTextVQA_EvalBuilder(CLITBuilder):
-    train_dataset_cls = CLIT_TextVQA_EvalDataset
+@registry.register_builder("coin_ocrvqa_eval")
+class CoINOCRVQA_EvalBuilder(CoINBuilder):
+    train_dataset_cls = CoIN_OCRVQA_EvalDataset
     DATASET_CONFIG_DICT = {
-        "default": "configs/LAVIS/datasets/CLIT/CLIT_textvqa_eval.yaml",
+        "default": "configs/LAVIS/datasets/CoIN/CoIN_ocrvqa_eval.yaml",
     }
 
-@registry.register_builder("clit_vizwiz_eval")
-class CLITVizWiz_EvalBuilder(CLITBuilder):
-    train_dataset_cls = CLIT_VizWiz_EvalDataset
+@registry.register_builder("coin_textvqa_eval")
+class CoINTextVQA_EvalBuilder(CoINBuilder):
+    train_dataset_cls = CoIN_TextVQA_EvalDataset
     DATASET_CONFIG_DICT = {
-        "default": "configs/LAVIS/datasets/CLIT/CLIT_vizwiz_eval.yaml",
+        "default": "configs/LAVIS/datasets/CoIN/CoIN_textvqa_eval.yaml",
     }
 
-@registry.register_builder("clit_vqav2_eval")
-class CLITVQAV2_EvalBuilder(CLITBuilder):
-    train_dataset_cls = CLIT_VQAv2_EvalDataset
+@registry.register_builder("coin_vizwiz_eval")
+class CoINVizWiz_EvalBuilder(CoINBuilder):
+    train_dataset_cls = CoIN_VizWiz_EvalDataset
     DATASET_CONFIG_DICT = {
-        "default": "configs/LAVIS/datasets/CLIT/CLIT_vqav2_eval.yaml",
+        "default": "configs/LAVIS/datasets/CoIN/CoIN_vizwiz_eval.yaml",
+    }
+
+@registry.register_builder("coin_vqav2_eval")
+class CoINVQAV2_EvalBuilder(CoINBuilder):
+    train_dataset_cls = CoIN_VQAv2_EvalDataset
+    DATASET_CONFIG_DICT = {
+        "default": "configs/LAVIS/datasets/CoIN/CoIN_vqav2_eval.yaml",
     }

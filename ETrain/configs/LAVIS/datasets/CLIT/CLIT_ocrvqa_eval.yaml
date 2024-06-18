@@ -1,6 +1,0 @@
-datasets:
-  clit_ocrvqa_eval:
-    data_type: images
-    build_info:
-      image_path: ./cl_dataset
-      ann_path: ./playground/Instructions_slim/OCRVQA/test_1.json

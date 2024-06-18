@@ -17,13 +17,13 @@ else
     MODELPATH=$2
 fi
 
-RESULT_DIR="./results/CoIN/LLaVA-13B/GQA"
+RESULT_DIR="./results/CoIN/LLaVA/GQA"
 
 for IDX in $(seq 0 $((CHUNKS-1))); do
     CUDA_VISIBLE_DEVICES=${GPULIST[$IDX]} python -m ETrain.Eval.LLaVA.CoIN.model_gqa \
         --model-path $MODELPATH \
-        --model-base ./checkpoints/LLaVA/Vicuna/vicuna-13b-v1.5 \
-        --question-file ./playground/Instructions_slim/GQA/test.json \
+        --model-base ./checkpoints/LLaVA/Vicuna/vicuna-7b-v1.5 \
+        --question-file ./playground/Instructions_Original/GQA/test.json \
         --image-folder ./cl_dataset \
         --answers-file $RESULT_DIR/$STAGE/${CHUNKS}_${IDX}.jsonl \
         --num-chunks $CHUNKS \
@@ -50,5 +50,5 @@ python -m ETrain.Eval.LLaVA.CoIN.eval_gqa --tier testdev_balanced --path $RESULT
 
 python -m ETrain.Eval.LLaVA.CoIN.create_prompt \
     --rule ./ETrain/Eval/LLaVA/CoIN/rule.json \
-    --questions ./playground/Instructions_slim/GQA/test.json \
+    --questions ./playground/Instructions_Original/GQA/test.json \
     --results $output_file \

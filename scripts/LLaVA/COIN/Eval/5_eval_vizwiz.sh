@@ -17,13 +17,13 @@ else
     MODELPATH=$2
 fi
 
-RESULT_DIR="./results/CoIN/LLaVA-13B/VizWiz"
+RESULT_DIR="./results/CoIN/LLaVA/VizWiz"
 
 for IDX in $(seq 0 $((CHUNKS-1))); do
     CUDA_VISIBLE_DEVICES=${GPULIST[$IDX]} python -m ETrain.Eval.LLaVA.CoIN.model_vizwiz \
         --model-path $MODELPATH \
-        --model-base ./checkpoints/LLaVA/Vicuna/vicuna-13b-v1.5 \
-        --question-file ./playground/Instructions_slim/VizWiz/val.json \
+        --model-base ./checkpoints/LLaVA/Vicuna/vicuna-7b-v1.5 \
+        --question-file ./playground/Instructions_Original/VizWiz/val.json \
         --image-folder ./cl_dataset \
         --answers-file $RESULT_DIR/$STAGE/${CHUNKS}_${IDX}.jsonl \
         --num-chunks $CHUNKS \
@@ -47,10 +47,10 @@ done
 
 python -m ETrain.Eval.LLaVA.CoIN.eval_vizwiz \
     --result-file $output_file \
-    --annotation-file ./playground/Instructions_slim/VizWiz/val.json \
+    --annotation-file ./playground/Instructions_Original/VizWiz/val.json \
     --output-dir $RESULT_DIR/$STAGE \
 
 python -m ETrain.Eval.LLaVA.CoIN.create_prompt \
     --rule ./ETrain/Eval/LLaVA/CoIN/rule.json \
-    --questions ./playground/Instructions_slim/VizWiz/val.json \
+    --questions ./playground/Instructions_Original/VizWiz/val.json \
     --results $output_file \

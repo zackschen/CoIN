@@ -6,11 +6,11 @@ from torch.cuda.amp import autocast as autocast
 import torch.nn as nn
 from typing import List, Optional, Tuple, Union
 from transformers import LlamaTokenizer
-# from peft import (
-#     LoraConfig,
-#     get_peft_model,
-#     prepare_model_for_kbit_training,
-# )
+from peft import (
+    LoraConfig,
+    get_peft_model,
+    prepare_model_for_kbit_training,
+)
 import transformers
 from ETrain.utils.LAVIS.common.registry import registry
 from ETrain.Models.InstructBlip.base_model import BaseModel, LayerNorm, disabled_train
@@ -18,9 +18,6 @@ from transformers import StoppingCriteria, StoppingCriteriaList
 from ETrain.utils.LAVIS.conversation.conversation import StoppingCriteriaSub
 from ETrain.Models.InstructBlip.modeling_llama import LlamaForCausalLM
 from ETrain.Models.InstructBlip.eva_vit import create_eva_vit_g
-import sys
-sys.path.append('/home/chencheng/Code/Slim_Train')
-from CoIN.peft import PeftModel, TaskType, get_peft_model, CoINMOELoraConfig, WEIGHTS_NAME, set_peft_model_state_dict, prepare_model_for_kbit_training
 
 class MiniGPTBase(BaseModel):
     """
@@ -125,27 +122,14 @@ class MiniGPTBase(BaseModel):
 
         if lora_r > 0:
             llama_model = prepare_model_for_kbit_training(llama_model)
-            # loraconfig = LoraConfig(
-            #     r=lora_r,
-            #     bias="none",
-            #     task_type="CAUSAL_LM",
-            #     target_modules=lora_target_modules,
-            #     **lora_kargs
-            # )
-            kwargs = { 
-                "task_embedding_dim": 64,
-                "expert_num": 8,
-            }
-            loraconfig = CoINMOELoraConfig(
+            loraconfig = LoraConfig(
                 r=lora_r,
-                target_modules=lora_target_modules,
-                lora_alpha=lora_kargs["lora_alpha"],
-                lora_dropout=lora_kargs["lora_dropout"],
                 bias="none",
-                task_type=TaskType.CAUSAL_LM_CoIN,
-                **kwargs
+                task_type="CAUSAL_LM",
+                target_modules=lora_target_modules,
+                **lora_kargs
             )
-
+            
             llama_model = get_peft_model(llama_model, loraconfig)
 
             llama_model.print_trainable_parameters()

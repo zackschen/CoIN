@@ -12,7 +12,7 @@ model:
   lora_alpha: 256
 
 datasets:
-  clit_imagenet: 
+  coin_imagenet: 
     batch_size: 32
     vis_processor:
       train:

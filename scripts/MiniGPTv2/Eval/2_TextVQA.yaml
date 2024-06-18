@@ -10,7 +10,7 @@ model:
   chat_template: True
 
 datasets:
-  clit_textvqa_eval: 
+  coin_textvqa_eval: 
     batch_size: 32
     vis_processor:
       train:

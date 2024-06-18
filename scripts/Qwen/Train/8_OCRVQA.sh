@@ -11,8 +11,8 @@ MASTER_PORT=6001
 MODEL="./checkpoints/Qwen/Qwen-VL-Chat" # Set the path if you do not want to load from huggingface directly
 # ATTENTION: specify the path to your training data, which should be a json file consisting of a list of conversations.
 # See the section for finetuning in README for more information.
-OUTPUT_MODEL_PATH="./checkpoints/Qwen/CoIN_Chatv2/OCRVQA"
-PREVIOUS_MODEL_PATH="./checkpoints/Qwen/CoIN_Chatv2/VQAv2"
+OUTPUT_MODEL_PATH="./checkpoints/Qwen/OCRVQA"
+PREVIOUS_MODEL_PATH="./checkpoints/Qwen/VQAv2"
 DATA="playground/Instructions_Qwen/OCRVQA/train.json"
 DS_CONFIG_PATH="scripts/zero3_offload.json"
 
