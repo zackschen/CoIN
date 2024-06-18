@@ -1,0 +1,28 @@
+model:
+  arch: minigpt_v2
+  model_type: pretrain
+  max_txt_len: 2048
+  image_size: 448
+  end_sym: "</s>"
+  llama_model: "/mnt/hdd1/chencheng/llama2_hf/Llama-2-7b-chat-hf/"
+  ckpt: "checkpoints/MiniGPTv2/checkpoint_stage2.pth"
+  use_grad_checkpoint: False
+  chat_template: True
+
+datasets:
+  clit_scienceqa_eval: 
+    batch_size: 32
+    vis_processor:
+      train:
+        name: "blip2_image_train"
+        image_size: 448
+    text_processor:
+      train:
+        name: "blip_caption"
+
+run:
+  task: image_text_pretrain
+  device: "cuda"
+  world_size: 4
+  dist_url: "env://"
+  distributed: True

@@ -1,0 +1,6 @@
+datasets:
+  clit_vqav2:
+    data_type: images
+    build_info:
+      image_path: ./cl_dataset
+      ann_path: ./playground/Instructions_Type1/VQAv2/train.json

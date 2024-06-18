@@ -1,0 +1,34 @@
+
+deepspeed --include localhost:0,1,2,3,4,5 --master_port=29500 llava/train/train_mem.py \
+    --deepspeed ./scripts/zero2.json \
+    --model_name_or_path ./checkpoints/LLaVA-v1.5-7b \
+    --version llava_llama_2 \
+    --data_path ./playground/Instructions/Grounding/train_refcoco.json \
+    --image_folder '' \
+    --vision_tower openai/clip-vit-large-patch14-336 \
+    --pretrain_mm_mlp_adapter ./checkpoints/LLaVA-v1.5-7b/mm_projector.bin \
+    --mm_vision_select_layer -2 \
+    --mm_use_im_start_end False \
+    --mm_use_im_patch_token False \
+    --bf16 True \
+    --output_dir ./checkpoints/Instruction/Grounding/ \
+    --num_train_epochs 4 \
+    --per_device_train_batch_size 2 \
+    --per_device_eval_batch_size 2 \
+    --gradient_accumulation_steps 1 \
+    --evaluation_strategy "no" \
+    --save_strategy "epoch" \
+    --learning_rate 2e-5 \
+    --weight_decay 0. \
+    --warmup_ratio 0.03 \
+    --lr_scheduler_type "cosine" \
+    --logging_steps 1 \
+    --tf32 True \
+    --model_max_length 2048 \
+    --gradient_checkpointing False \
+    --dataloader_num_workers 4 \
+    --lazy_preprocess True \
+    --freeze_backbone \
+    --tune_mm_mlp_adapter True \
+    --mm_projector_lr 2e-5 \
+    --report_to none \

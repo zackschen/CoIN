@@ -1,0 +1,51 @@
+model:
+  arch: blip2_vicuna_instruct
+  model_type: vicuna7b
+  load_pretrained: True #pretrain from scratch
+  freeze_vit: True
+  max_txt_len: 2048
+  image_size: 224
+  use_grad_checkpoint: True
+  chat_template: True
+
+datasets:
+  clit_ocrvqa: 
+    batch_size: 10
+    vis_processor:
+      train:
+        name: "blip2_image_train"
+        image_size: 224
+    text_processor:
+      train:
+        name: "blip_caption"
+
+run:
+  task: image_text_pretrain
+  # optimizer
+  lr_sched: "linear_warmup_cosine_lr"
+  init_lr: 1e-5
+  min_lr: 1e-6
+  warmup_lr: 1e-6
+
+  weight_decay: 0.05
+  max_epoch: 1
+  num_workers: 6
+  warmup_steps: 0.03
+  # iters_per_epoch: 1000
+
+  seed: 42
+  output_dir: "./checkpoints/InstructBlip"
+
+  amp: True
+  resume_ckpt_path: null
+
+  evaluate: False 
+  train_splits: ["train"]
+
+  device: "cuda"
+  world_size: 1
+  dist_url: "env://"
+  distributed: True
+
+  wandb_log: False
+  job_name: instructblip_finetune
