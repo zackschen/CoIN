@@ -19,6 +19,7 @@ from ETrain.Models.Qwen import create_Qwen_model
 from ETrain.Dataset.Qwen import create_Qwen_data_module
 from ETrain.Train.Qwen.qwen_trainer import QwenTrainer, load_model_from_previous_task
 
+
 @dataclass
 class ModelArguments:
     model_name_or_path: Optional[str] = field(default="Qwen/Qwen-7B")
