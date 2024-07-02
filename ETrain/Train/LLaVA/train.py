@@ -61,6 +61,8 @@ class ModelArguments:
     mm_use_im_patch_token: bool = field(default=True)
     mm_vision_select_feature: Optional[str] = field(default="patch")
 
+    task_embedding_dim: Optional[int] = field(default=64)
+    expert_num: Optional[int] = field(default=None)
 
 @dataclass
 class TrainingArguments(transformers.TrainingArguments):

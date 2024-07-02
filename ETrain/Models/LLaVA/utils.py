@@ -124,15 +124,32 @@ def create_LLaVA_model(training_args, model_args, data_args, bnb_model_from_pret
             model.get_input_embeddings().register_forward_hook(make_inputs_require_grad)
 
     if training_args.lora_enable:
-        from peft import LoraConfig, get_peft_model
-        lora_config = LoraConfig(
-            r=training_args.lora_r,
-            lora_alpha=training_args.lora_alpha,
-            target_modules=find_all_linear_names(model),
-            lora_dropout=training_args.lora_dropout,
-            bias=training_args.lora_bias,
-            task_type="CAUSAL_LM",
-        )
+        if model_args.expert_num == None:
+            from peft import LoraConfig, get_peft_model
+            lora_config = LoraConfig(
+                r=training_args.lora_r,
+                lora_alpha=training_args.lora_alpha,
+                target_modules=find_all_linear_names(model),
+                lora_dropout=training_args.lora_dropout,
+                bias=training_args.lora_bias,
+                task_type="CAUSAL_LM",
+            )
+        else:
+            sys.path.append('/home/chencheng/Code/Slim_Train')
+            from CoIN.peft import PeftModel, TaskType, get_peft_model, CoINMOELoraConfig, WEIGHTS_NAME, set_peft_model_state_dict
+            kwargs = { 
+                "task_embedding_dim": model_args.task_embedding_dim,
+                "expert_num": model_args.expert_num,
+            }
+            lora_config = CoINMOELoraConfig(
+                r=training_args.lora_r,
+                lora_alpha=training_args.lora_alpha,
+                target_modules=find_all_linear_names(model),
+                lora_dropout=training_args.lora_dropout,
+                bias=training_args.lora_bias,
+                task_type=TaskType.CAUSAL_LM_CoIN,
+                **kwargs
+            )
         if training_args.bits == 16:
             if training_args.bf16:
                 model.to(torch.bfloat16)

@@ -84,6 +84,8 @@ We provide the scripts of our train order in `scripts/*/Train`.
 Note, the `output_dir` of the previous script is the `previous_task_model_path` of the next training process.
 Then, you could tune these datasets in your order.
 
+We provide scripts for training MOELoRA with LLaVA in `scripts/LLaVA/Train_MOE`. Additionally, you can modify the code to train MiniGPT-V2 and Qwen-VL, following the example in lines 138-152 of `ETrain/Models/LLaVA/utils.py`.
+
 ## Evaluation
 We have prepared the scripts to evaluate the trained model in `scripts/*/Eval`.
 
