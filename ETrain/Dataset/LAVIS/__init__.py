@@ -36,7 +36,7 @@ def build_datasets(cfg):
         for name in datasets:
             dataset = datasets[name]
             concat_datasets.append(dataset['train'])
-        
+
         Concated_Dataset = ConcatDataset(concat_datasets)
 
         return datasets, Concated_Dataset

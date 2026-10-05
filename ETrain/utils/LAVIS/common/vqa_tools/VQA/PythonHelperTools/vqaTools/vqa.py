@@ -3,7 +3,7 @@ __version__ = '0.9'
 
 # Interface for accessing the VQA dataset.
 
-# This code is based on the code written by Tsung-Yi Lin for MSCOCO Python API available at the following link: 
+# This code is based on the code written by Tsung-Yi Lin for MSCOCO Python API available at the following link:
 # (https://github.com/pdollar/coco/blob/master/PythonAPI/pycocotools/coco.py).
 
 # The following functions are defined:

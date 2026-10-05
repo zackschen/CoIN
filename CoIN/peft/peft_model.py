@@ -1727,16 +1727,16 @@ class PeftModelForCausalLMLORAMOE(PeftModelForCausalLM):
         self.expert_num = peft_config.expert_num
         self.active_adapter = adapter_name
 
-    def forward(self, 
-                input_ids=None, 
-                attention_mask=None, 
-                inputs_embeds=None, 
-                labels=None, 
-                output_attentions=None, 
-                output_hidden_states=None, 
-                return_dict=None, 
+    def forward(self,
+                input_ids=None,
+                attention_mask=None,
+                inputs_embeds=None,
+                labels=None,
+                output_attentions=None,
+                output_hidden_states=None,
+                return_dict=None,
                 **kwargs):
-        
+
         peft_config = self.active_peft_config
 
         if not isinstance(peft_config, PromptLearningConfig):

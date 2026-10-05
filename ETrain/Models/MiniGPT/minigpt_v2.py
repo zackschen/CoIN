@@ -129,7 +129,7 @@ class MiniGPTv2(MiniGPTBase):
 
         use_grad_checkpoint_llm = cfg.get("use_grad_checkpoint_llm", False)
         max_context_len = cfg.get("max_context_len", 3800)
-        
+
         model = cls(
             vit_model=vit_model,
             img_size=img_size,

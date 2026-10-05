@@ -541,7 +541,7 @@ class QWenModel(QWenPreTrainedModel):
 
     def set_input_embeddings(self, new_embeddings):
         self.wte = new_embeddings
-    
+
     # Copied from transformers.models.bart.modeling_bart.BartDecoder._prepare_decoder_attention_mask
     def _prepare_decoder_attention_mask(self, attention_mask, input_shape, inputs_embeds, past_key_values_length):
         # create causal mask
@@ -748,7 +748,7 @@ class QWenModel(QWenPreTrainedModel):
                     encoder_hidden_states,
                     encoder_attention_mask,
                 )
-                
+
             else:
                 outputs = block(
                     hidden_states,
@@ -762,7 +762,7 @@ class QWenModel(QWenPreTrainedModel):
                     use_cache=use_cache,
                     output_attentions=output_attentions,
                 )
-        
+
             hidden_states = outputs[0]
             # hidden_states = self.test_layer(hidden_states, "After Transformer layer: {}".format(i))
             if use_cache is True:
@@ -1161,7 +1161,7 @@ class RotaryEmbedding(torch.nn.Module):
             self._ntk_alpha_cached = ntk_alpha
             seq = torch.arange(self._seq_len_cached, device=self.inv_freq.device)
             freqs = torch.outer(seq.type_as(self.inv_freq), self.inv_freq)
-            
+
             emb = torch.cat((freqs, freqs), dim=-1)
             from einops import rearrange
 

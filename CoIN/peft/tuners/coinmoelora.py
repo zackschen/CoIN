@@ -197,7 +197,7 @@ class CoINMOELoraModel(LoraModel):
                     f"Target module {target} is not supported. "
                     f"Currently, only `torch.nn.Linear` and `Conv1D` are supported."
                 )
-            new_module = CoINMOELoraLinear(adapter_name, in_features, out_features, 
+            new_module = CoINMOELoraLinear(adapter_name, in_features, out_features,
                                                     bias=bias, **kwargs)
 
         return new_module
@@ -263,11 +263,11 @@ class CoINMOELoraModel(LoraModel):
 class CoINMOELoraLayer(LoraLayer):
 
     def __init__(self, in_features: int, out_features: int, expert_num: int):
-        
+
         super().__init__(in_features, out_features)
         self.expert_num = expert_num
 
-    
+
     def update_layer(self, adapter_name, r, lora_alpha, lora_dropout, init_lora_weights):
         self.r[adapter_name] = r
         self.lora_alpha[adapter_name] = lora_alpha
@@ -285,7 +285,7 @@ class CoINMOELoraLayer(LoraLayer):
         if init_lora_weights:
             self.reset_lora_parameters(adapter_name)
         self.to(self.weight.device)
-    
+
     def reset_lora_parameters(self, adapter_name):
         if adapter_name in self.lora_A.keys():
             # initialize A the same way as the default for nn.Linear and B to zero
@@ -295,7 +295,7 @@ class CoINMOELoraLayer(LoraLayer):
 
 class CoINMOELoraLinear(nn.Linear, CoINMOELoraLayer):
     # Lora implemented in a dense layer
-    # nn.Linear is the pretrained weights in LLM, MMOELoraLayer is the designed trainable Lora 
+    # nn.Linear is the pretrained weights in LLM, MMOELoraLayer is the designed trainable Lora
     def __init__(
         self,
         adapter_name: str,
@@ -312,10 +312,10 @@ class CoINMOELoraLinear(nn.Linear, CoINMOELoraLayer):
         self.te_dim = kwargs.pop("task_embedding_dim", True)
 
         nn.Linear.__init__(self, in_features, out_features, **kwargs)
-        CoINMOELoraLayer.__init__(self, in_features=in_features, 
-                               out_features=out_features, 
+        CoINMOELoraLayer.__init__(self, in_features=in_features,
+                               out_features=out_features,
                                expert_num=self.expert_num)
-        
+
         # init the Gate network
         self.lora_router = nn.ModuleDict({})
         self.lora_router.update(nn.ModuleDict({adapter_name: nn.Linear(self.in_features, self.expert_num, bias=False)}))
@@ -400,7 +400,7 @@ class CoINMOELoraLinear(nn.Linear, CoINMOELoraLayer):
         result = result.to(previous_dtype)
 
         return result
-    
+
 
 
 class CoINMOELinearA(nn.Module):
@@ -415,11 +415,11 @@ class CoINMOELinearA(nn.Module):
 
         assert self.out_features % self.expert_num == 0  # lora rank should be divided by expert number
         self.r = self.out_features // self.expert_num
-        
+
         for _ in range(self.expert_num):
             self.loraA.append(CoINMOEExpert(self.in_features, self.r))
 
-    
+
     def forward(self, x):
         '''input x is a vector, return output is a list'''
         outputs = []
@@ -427,7 +427,7 @@ class CoINMOELinearA(nn.Module):
             outputs.append(self.loraA[i](x))
 
         return outputs
-    
+
 class CoINMOELinearB(nn.Module):
     '''MMOE based LoRA block'''
     def __init__(self, in_features, out_features, expert_num) -> None:
@@ -440,11 +440,11 @@ class CoINMOELinearB(nn.Module):
 
         assert self.in_features % self.expert_num == 0
         self.r = self.in_features // self.expert_num
-        
+
         for _ in range(self.expert_num):
             self.loraB.append(CoINMOEExpert(self.r, self.out_features))
 
-    
+
     def forward(self, x):
         '''input x is a list, return output is also a list'''
         outputs = []
@@ -458,13 +458,13 @@ class CoINMOELinearB(nn.Module):
 class CoINMOEExpert(nn.Module):
 
     def __init__(self, in_features, out_features):
-        
+
         super().__init__()
 
         self.in_features, self.out_features = in_features, out_features
         self.mlp = nn.Linear(self.in_features, self.out_features, bias=False)
         self.weight = self.mlp.weight
-    
+
 
     def forward(self, x):
         # LoRA A or B block
@@ -482,7 +482,7 @@ class CoINMOEGate(nn.Module):
         # 使用embedding来代替线性层
         self.GateL = nn.Linear(input_size, expert_num, bias=False)
         self.act = nn.Softmax(dim=1)    # 第0维为batch size
-    
+
     def forward(self, x):
 
         y = self.GateL(x)

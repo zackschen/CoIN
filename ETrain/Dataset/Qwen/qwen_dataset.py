@@ -142,7 +142,7 @@ class DataCollatorForSupervisedDataset(object):
 
     def __call__(self, batch: Sequence[Dict]):
         batch = default_collate(batch)
-        
+
         images = []
         if torch.any(batch['input_ids'] == self.config.visual['image_start_id']):
             bos_pos = torch.where(batch['input_ids'] == self.config.visual['image_start_id'])
@@ -154,7 +154,7 @@ class DataCollatorForSupervisedDataset(object):
                 image = batch['input_ids'][i][a + 1 : b - 1].tolist()
                 image = image[ : image.index(self.config.visual['image_start_id'] + 2)]
                 image_paths.append(bytes(image).decode('utf-8'))
-            
+
             for image_path in image_paths:
                 if image_path.startswith("http://") or image_path.startswith("https://"):
                     image = Image.open(requests.get(image_path, stream=True).raw)

@@ -74,7 +74,7 @@ class COCOCaptionDataset(BaseDataset, __DisplMixin):
         n = 0
 
         self.filter_anntation = []
-        
+
         for ann in self.annotation:
             if "train" in ann["image"]:
                 self.filter_anntation.append(ann)

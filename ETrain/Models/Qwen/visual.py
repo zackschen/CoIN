@@ -124,7 +124,7 @@ class Resampler(nn.Module):
         self.attn = nn.MultiheadAttention(embed_dim, num_heads)
         self.ln_q = norm_layer(embed_dim)
         self.ln_kv = norm_layer(embed_dim)
-        
+
         # self.apply(self._init_weights)
 
     def _init_weights(self, m):

@@ -88,7 +88,7 @@ def eval_single(test_file, result_file):
         # pil_img = Image.open(os.path.join('./cl_dataset/COCO2014/train2014/',os.path.split(grounding_gt['image'])[-1])).convert('RGB')
         # image = expand2square(pil_img, tuple(int(x*255) for x in [0,0,0,0]))
         # draw = ImageDraw.Draw(image)
-        
+
         # draw.rectangle([bbox_pred[0], bbox_pred[1], (bbox_pred[2]), (bbox_pred[3])],outline='red',width=2)
         # draw.rectangle([bbox_groundtruth[0], bbox_groundtruth[1], (bbox_groundtruth[2]), (bbox_groundtruth[3])],outline='green',width=2)
         # # save image

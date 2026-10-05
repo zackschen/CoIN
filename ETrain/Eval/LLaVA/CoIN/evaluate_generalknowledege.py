@@ -130,7 +130,7 @@ def eval_model(args):
                             scores += float(score)
                     else:
                         print(score)
-            
+
             final_score = scores / total
 
             output_file = os.path.join(answer_path,'Prompt_Result.text')

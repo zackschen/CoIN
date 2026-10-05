@@ -209,5 +209,5 @@ class MiniGPT4(MiniGPTBase):
             print("Load MiniGPT-4 Checkpoint: {}".format(ckpt_path))
             ckpt = torch.load(ckpt_path, map_location="cpu")
             msg = model.load_state_dict(ckpt['model'], strict=False)
-            
+
         return model

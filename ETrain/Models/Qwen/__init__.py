@@ -29,7 +29,7 @@ import sys
 def create_Qwen_model(training_args, model_args, data_args, lora_args):
     bnb_model_from_pretrained_args = {}
     compute_dtype = (torch.float16 if training_args.fp16 else (torch.bfloat16 if training_args.bf16 else torch.float32))
-    
+
     local_rank = training_args.local_rank
     device_map = None
     world_size = int(os.environ.get("WORLD_SIZE", 1))
@@ -114,7 +114,7 @@ def create_Qwen_model(training_args, model_args, data_args, lora_args):
 
 def load_pretrained_model(model_path, model_base):
     model = AutoModelForCausalLM.from_pretrained(model_base, device_map="cuda", trust_remote_code=True).eval()
-    
+
     if not model_base == model_path:
         print('Loading additional weights...')
         if os.path.exists(os.path.join(model_path, 'non_lora_trainables.bin')):

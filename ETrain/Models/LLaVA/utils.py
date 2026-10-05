@@ -137,7 +137,7 @@ def create_LLaVA_model(training_args, model_args, data_args, bnb_model_from_pret
         else:
             sys.path.append('/home/chencheng/Code/Slim_Train')
             from CoIN.peft import PeftModel, TaskType, get_peft_model, CoINMOELoraConfig, WEIGHTS_NAME, set_peft_model_state_dict
-            kwargs = { 
+            kwargs = {
                 "task_embedding_dim": model_args.task_embedding_dim,
                 "expert_num": model_args.expert_num,
             }
@@ -195,7 +195,7 @@ def create_LLaVA_model(training_args, model_args, data_args, bnb_model_from_pret
             model_args=model_args,
             fsdp=training_args.fsdp
         )
-        
+
         vision_tower = model.get_vision_tower()
         vision_tower.to(dtype=torch.bfloat16 if training_args.bf16 else torch.float16, device=training_args.device)
 
@@ -238,5 +238,5 @@ def create_LLaVA_model(training_args, model_args, data_args, bnb_model_from_pret
                 if hasattr(module, 'weight'):
                     if training_args.bf16 and module.weight.dtype == torch.float32:
                         module = module.to(torch.bfloat16)
-    
+
     return model, tokenizer

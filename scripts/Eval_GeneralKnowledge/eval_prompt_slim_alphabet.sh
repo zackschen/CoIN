@@ -1,25 +1,25 @@
 
 bash ./scripts/Eval_GeneralKnowledge/eval_prompt.sh \
     ./results/CoIN/LLaVA-alphabet/GQA/Finetune \
-    
+
 bash ./scripts/Eval_GeneralKnowledge/eval_prompt.sh \
     ./results/CoIN/LLaVA-alphabet/GQA/TextVQA \
-    
+
 bash ./scripts/Eval_GeneralKnowledge/eval_prompt.sh \
     ./results/CoIN/LLaVA-alphabet/GQA/ImageNet \
-    
+
 bash ./scripts/Eval_GeneralKnowledge/eval_prompt.sh \
     ./results/CoIN/LLaVA-alphabet/GQA/ScienceQA \
-    
+
 bash ./scripts/Eval_GeneralKnowledge/eval_prompt.sh \
     ./results/CoIN/LLaVA-alphabet/GQA/VizWiz \
-    
+
 bash ./scripts/Eval_GeneralKnowledge/eval_prompt.sh \
     ./results/CoIN/LLaVA-alphabet/GQA/Grounding \
-    
+
 bash ./scripts/Eval_GeneralKnowledge/eval_prompt.sh \
     ./results/CoIN/LLaVA-alphabet/GQA/VQAv2 \
-    
+
 bash ./scripts/Eval_GeneralKnowledge/eval_prompt.sh \
     ./results/CoIN/LLaVA-alphabet/GQA/OCRVQA \
 
@@ -39,13 +39,13 @@ bash ./scripts/Eval_GeneralKnowledge/eval_prompt.sh \
 
 bash ./scripts/Eval_GeneralKnowledge/eval_prompt.sh \
     ./results/CoIN/LLaVA-alphabet/Grounding/TextVQA \
-    
+
 bash ./scripts/Eval_GeneralKnowledge/eval_prompt.sh \
     ./results/CoIN/LLaVA-alphabet/Grounding/VizWiz \
-    
+
 bash ./scripts/Eval_GeneralKnowledge/eval_prompt.sh \
     ./results/CoIN/LLaVA-alphabet/Grounding/VQAv2 \
-    
+
 
 ###############################################################################################
 bash ./scripts/Eval_GeneralKnowledge/eval_prompt.sh \
@@ -79,10 +79,10 @@ bash ./scripts/Eval_GeneralKnowledge/eval_prompt.sh \
 
 bash ./scripts/Eval_GeneralKnowledge/eval_prompt.sh \
     ./results/CoIN/LLaVA-alphabet/OCRVQA/VizWiz \
-    
+
 bash ./scripts/Eval_GeneralKnowledge/eval_prompt.sh \
     ./results/CoIN/LLaVA-alphabet/OCRVQA/VQAv2 \
-    
+
 ###############################################################################################
 
 bash ./scripts/Eval_GeneralKnowledge/eval_prompt.sh \
@@ -90,10 +90,10 @@ bash ./scripts/Eval_GeneralKnowledge/eval_prompt.sh \
 
 bash ./scripts/Eval_GeneralKnowledge/eval_prompt.sh \
     ./results/CoIN/LLaVA-alphabet/ScienceQA/VizWiz \
-    
+
 bash ./scripts/Eval_GeneralKnowledge/eval_prompt.sh \
     ./results/CoIN/LLaVA-alphabet/ScienceQA/TextVQA \
-    
+
 bash ./scripts/Eval_GeneralKnowledge/eval_prompt.sh \
     ./results/CoIN/LLaVA-alphabet/ScienceQA/VQAv2 \
 
@@ -104,7 +104,7 @@ bash ./scripts/Eval_GeneralKnowledge/eval_prompt.sh \
 
 bash ./scripts/Eval_GeneralKnowledge/eval_prompt.sh \
     ./results/CoIN/LLaVA-alphabet/TextVQA/VizWiz \
-    
+
 bash ./scripts/Eval_GeneralKnowledge/eval_prompt.sh \
     ./results/CoIN/LLaVA-alphabet/TextVQA/VQAv2 \
 
@@ -115,7 +115,7 @@ bash ./scripts/Eval_GeneralKnowledge/eval_prompt.sh \
 
 bash ./scripts/Eval_GeneralKnowledge/eval_prompt.sh \
     ./results/CoIN/LLaVA-alphabet/VizWiz/VQAv2 \
-    
+
 ###############################################################################################
 
 bash ./scripts/Eval_GeneralKnowledge/eval_prompt.sh \

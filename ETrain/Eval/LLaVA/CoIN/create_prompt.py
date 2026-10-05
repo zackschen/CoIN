@@ -16,7 +16,7 @@ if __name__ == '__main__':
     rule_dict = json.load(open(os.path.expanduser(args.rule), 'r'))
 
     answers = open(os.path.expanduser(args.results))
-    
+
     with open(os.path.expanduser(args.questions), "r") as f:
         questions = json.load(f)
     question_dict = {str(question['question_id']):question for question in questions}
@@ -28,7 +28,7 @@ if __name__ == '__main__':
         question_id = ans['question_id']
         question = question_dict[question_id if isinstance(question_id,str) else str(question_id)]
 
-        
+
         if args.rule_temp == 'CoIN':
             groundtruth = question['answer']
             question_label = question['text'].split('\n')[:-1]
@@ -41,7 +41,7 @@ if __name__ == '__main__':
 
         system_dict = {"role": "system",
                     "content": "You are a helpful and precise assistant for checking the quality of the answer.",}
-        
+
         rule = rule_dict[args.rule_temp]
         prompt = rule['prompt']
 
@@ -50,7 +50,7 @@ if __name__ == '__main__':
                    f'[Ground truth answer]\n{groundtruth}\n\n[End of ground truth answer]\n\n'
                    f'[{rule["role"]}]\n{answer}\n\n[End of {rule["role"]}]\n\n'
                    f'[System]\n{prompt}\n\n')
-        
+
         user_dict = { "role": "user", "content": content}
         message = [system_dict, user_dict]
         promts_answers.append(message)

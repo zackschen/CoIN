@@ -83,7 +83,7 @@ class RefCOCOEvalData(torch.utils.data.Dataset):
 
     def __len__(self):
         return len(self.loaded_data)
-    
+
     def __getitem__(self, idx):
         data = self.loaded_data[idx]
         img_id = data['img_id']
@@ -107,14 +107,14 @@ class EvalCaptionData(torch.utils.data.Dataset):
 
     def __len__(self):
         return len(self.ann)
-    
+
     def __getitem__(self, idx):
         data = self.ann[idx]
         image_id = data['image_id']
         img_file = data['image'].split('/')[-1]
         image_path = os.path.join(self.root_path, img_file)
         image = Image.open(image_path).convert('RGB')
-            
+
         image = self.vis_processor(image)
         question = f"[caption] please describe this image?"
         return image, question, image_id

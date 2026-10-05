@@ -62,7 +62,7 @@ class QwenTrainer(LLaVATrainer):
         if self.optimizer is None:
             decay_parameters = get_parameter_names(opt_model, ALL_LAYERNORM_LAYERS)
             decay_parameters = [name for name in decay_parameters if "bias" not in name]
-            
+
             optimizer_grouped_parameters = [
                 {
                     "params": [
@@ -103,7 +103,7 @@ class QwenTrainer(LLaVATrainer):
                     logger.info(f"skipped: {skipped/2**20}M params")
 
         return self.optimizer
-    
+
     def save_trained_model(self, training_args, lora_args):
         if training_args.use_lora:
             state_dict = get_peft_state_maybe_zero_3(

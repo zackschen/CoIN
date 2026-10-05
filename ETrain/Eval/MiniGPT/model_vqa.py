@@ -50,7 +50,7 @@ def eval_model(args):
 
     _, Concated_Dataset = build_datasets(cfg)
     eval_dataloader = DataLoader(Concated_Dataset, batch_size=args.batch_size, shuffle=False)
-    
+
     world_size = int(os.getenv('WORLD_SIZE', '4'))
     model = create_MiniGPT4_model(cfg)
     load_model_from_previous_task(cfg, model, args.model_path)

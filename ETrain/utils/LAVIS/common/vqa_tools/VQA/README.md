@@ -2,7 +2,7 @@ Python API and Evaluation Code for v2.0 and v1.0 releases of the VQA dataset.
 ===================
 ## VQA v2.0 release ##
 This release consists of
-- Real 
+- Real
 	- 82,783 MS COCO training images, 40,504 MS COCO validation images and 81,434 MS COCO testing images (images are obtained from [MS COCO website] (http://mscoco.org/dataset/#download))
 	- 443,757 questions for training, 214,354 questions for validation and 447,793 questions for testing
 	- 4,437,570 answers for training and 2,143,540 answers for validation (10 per question)
@@ -12,7 +12,7 @@ There is only one type of task
 
 ## VQA v1.0 release ##
 This release consists of
-- Real 
+- Real
 	- 82,783 MS COCO training images, 40,504 MS COCO validation images and 81,434 MS COCO testing images (images are obtained from [MS COCO website] (http://mscoco.org/dataset/#download))
 	- 248,349 questions for training, 121,512 questions for validation and 244,302 questions for testing (3 per image)
 	- 2,483,490 answers for training and 1,215,120 answers for validation (10 per question)

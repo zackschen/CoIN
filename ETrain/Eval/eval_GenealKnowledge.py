@@ -28,7 +28,7 @@ def eval_model(args):
     model_path = os.path.expanduser(args.model_path)
 
     tokenizer = AutoTokenizer.from_pretrained(model_path)
-    
+
     world_size = torch.cuda.device_count()
     model = LLM(model=model_path, tensor_parallel_size=world_size)
 
@@ -43,7 +43,7 @@ def eval_model(args):
 
     for i, lines in enumerate(tqdm(questions)):
         idx = i
-        
+
         prompts = []
         for line in lines:
             question = line[-1]['content']

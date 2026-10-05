@@ -95,7 +95,7 @@ class LlavaDetailBuilder(BaseDatasetBuilder):
         )
 
         return datasets
-    
+
 
 
 @registry.register_builder("llava_reason")
@@ -179,7 +179,7 @@ class AllRefCOCOBuilder(BaseDatasetBuilder):
         )
 
         return datasets
-    
+
 
 @registry.register_builder("refcoco")
 class RefCOCOBuilder(AllRefCOCOBuilder):
@@ -284,7 +284,7 @@ class TextcapCaptionBuilder(BaseDatasetBuilder):
         )
 
         return datasets
-    
+
 @registry.register_builder("coco_vqa")
 class COCOVQABuilder(BaseDatasetBuilder):
     train_dataset_cls = COCOVQADataset
@@ -419,7 +419,7 @@ class DocumentVQABuilder(BaseDatasetBuilder):
         )
 
         return datasets
-    
+
 
 @registry.register_builder("ocrvqa")
 class OCRVQABuilder(DocumentVQABuilder):

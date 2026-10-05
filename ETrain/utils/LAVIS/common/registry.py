@@ -62,7 +62,7 @@ class Registry:
         """
 
         def wrap(model_cls):
-            
+
             from ETrain.Models.InstructBlip import BaseModel
 
             assert issubclass(

@@ -34,7 +34,7 @@ class BaseDataset(Dataset):
                 # self.annotation.extend(json.load(open(ann_path, "r")))
             else:
                 self.annotation.extend(json.load(open(ann_path, "r")))
-    
+
         self.vis_processor = vis_processor
         self.text_processor = text_processor
 

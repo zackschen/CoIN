@@ -115,7 +115,7 @@ def train():
     training_args._frozen = False
     local_rank = training_args.local_rank
     compute_dtype = (torch.float16 if training_args.fp16 else (torch.bfloat16 if training_args.bf16 else torch.float32))
-    
+
     bnb_model_from_pretrained_args = {}
     if training_args.bits in [4, 8]:
         from transformers import BitsAndBytesConfig
@@ -136,7 +136,7 @@ def train():
         ))
 
     model, tokenizer = create_LLaVA_model(training_args, model_args, data_args, bnb_model_from_pretrained_args, compute_dtype, local_rank)
-    
+
     if model_args.EWC:
         training_args.EWC = model_args.EWC
         model.base_model.model.EWC = model_args.EWC
@@ -189,16 +189,16 @@ def train():
                         tokenizer=tokenizer,
                         args=training_args,
                         **data_module)
-        
+
     trainer.train()
 
     trainer.save_state()
 
     trainer.save_trained_model(training_args)
-    
+
     if model_args.EWC:
-        trainer.after_train()   
-    
+        trainer.after_train()
+
 
 
 

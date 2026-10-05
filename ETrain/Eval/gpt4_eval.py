@@ -50,12 +50,12 @@ if __name__ == '__main__':
     answers_file = os.path.expanduser(os.path.join(answer_path, f"prompt_eval_merge.jsonl"))
     os.makedirs(os.path.dirname(answers_file), exist_ok=True)
     ans_file = open(answers_file, "w")
-    
+
     for index, sample in enumerate(tqdm(eval_samples)):
         output = get_eval(sample, args.max_tokens)
         results = {"question_id": index,"prompt": sample,"text": output}
 
         ans_file.write(json.dumps(results) + "\n")
         ans_file.flush()
-        
+
     ans_file.close()

@@ -44,8 +44,8 @@ if __name__ == '__main__':
                     scores += float(res[0])
                 else:
                     print(score)
-        
-    
+
+
     final_score = scores / total
 
     output_file = os.path.join(args.dir, 'Prompt_Result.text')

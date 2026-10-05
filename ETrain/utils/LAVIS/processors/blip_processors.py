@@ -151,7 +151,7 @@ class InstructBlipQuestionProcessor(BaseProcessor):
     def from_config(cls, cfg=None):
         if cfg is None:
             cfg = OmegaConf.create()
-            
+
         # (max words of scienceQA is 391, 590 with lecture)
         max_words = cfg.get("max_words", 1000)
 
@@ -165,7 +165,7 @@ class InstructBlipQuestionProcessor(BaseProcessor):
         )
         question = question.rstrip(" ")
 
-        # truncate question 
+        # truncate question
         question_words = question.split(" ")
         if len(question_words) > self.max_words:
             question = " ".join(question_words[: self.max_words])

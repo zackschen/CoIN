@@ -28,7 +28,7 @@ def eval_model(args):
     tokenizer, model, image_processor, context_len = load_pretrained_model(model_path, args.model_base, model_name, device="cpu")
 
     world_size = int(os.getenv('WORLD_SIZE', '4'))
-    
+
     model = deepspeed.init_inference(
         model=model,      # Transformers模型
         mp_size=world_size,        # GPU数量
@@ -88,7 +88,7 @@ def eval_model(args):
                 # no_repeat_ngram_size=3,
                 max_new_tokens=1024,
                 use_cache=True)
-            
+
         for output_ids in output_ids_array:
             input_token_len = input_ids.shape[1]
             n_diff_input_output = (input_ids != output_ids[:, :input_token_len]).sum().item()
@@ -99,7 +99,7 @@ def eval_model(args):
             if outputs.endswith(stop_str):
                 outputs = outputs[:-len(stop_str)]
             outputs = outputs.strip()
-        
+
             ans_id = shortuuid.uuid()
             ans_file.write(json.dumps({"question_id": idx,
                                     "prompt": cur_prompt,
@@ -124,7 +124,7 @@ if __name__ == "__main__":
     parser.add_argument("--top_p", type=float, default=None)
     parser.add_argument("--num_beams", type=int, default=1)
     parser.add_argument("--local_rank", type=int, default=0)
-    
+
     args = parser.parse_args()
 
     eval_model(args)

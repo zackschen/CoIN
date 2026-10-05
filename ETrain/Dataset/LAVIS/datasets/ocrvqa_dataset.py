@@ -74,4 +74,4 @@ class OCRVQADataset(Dataset):
             "answer": answer,
             "image_id": sample['image_id']
         }
-    
+

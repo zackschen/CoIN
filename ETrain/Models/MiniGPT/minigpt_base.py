@@ -24,7 +24,7 @@ class MiniGPTBase(BaseModel):
     Base class for MiniGPT-4 and MiniGPT-v2
     """
 
-   
+
     def __init__(
         self,
         vit_model="eva_clip_g",
@@ -81,7 +81,7 @@ class MiniGPTBase(BaseModel):
         visual_encoder, ln_vision = create_eva_vit_g(
             img_size, drop_path_rate, use_grad_checkpoint, precision
         )
-        
+
         if freeze:
             for name, param in visual_encoder.named_parameters():
                 param.requires_grad = False
@@ -116,9 +116,9 @@ class MiniGPTBase(BaseModel):
             )
 
         # config = transformers.AutoConfig.from_pretrained(llama_model_path,trust_remote_code=True,)
-        
+
         # llama_model = LlamaForCausalLM(config)
-        
+
 
         if lora_r > 0:
             llama_model = prepare_model_for_kbit_training(llama_model)
@@ -129,7 +129,7 @@ class MiniGPTBase(BaseModel):
                 target_modules=lora_target_modules,
                 **lora_kargs
             )
-            
+
             llama_model = get_peft_model(llama_model, loraconfig)
 
             llama_model.print_trainable_parameters()
@@ -204,7 +204,7 @@ class MiniGPTBase(BaseModel):
             max_length = max(emb_lens) if max(emb_lens) < self.max_context_len else self.max_context_len
             wrapped_embs = pad_emb.expand(len(emb_lens), max_length, -1).clone()
             wrapped_atts = torch.zeros([len(emb_lens), max_length], dtype=torch.int, device=img_embeds.device)
-            
+
             for i, emb in enumerate(emb_lists):
                 length = emb_lens[i] if emb_lens[i] < self.max_context_len else self.max_context_len
                 wrapped_embs[i, :length] = emb[:, :length]
@@ -347,7 +347,7 @@ class MiniGPTBase(BaseModel):
 
         return cond_embeds, cond_atts, regress_embeds, regress_atts, part_targets
 
-    def forward(self, 
+    def forward(self,
                 instances: torch.LongTensor = None,
                 attention_mask: Optional[torch.Tensor] = None,
                 position_ids: Optional[torch.LongTensor] = None,
@@ -491,4 +491,3 @@ class MiniGPTBase(BaseModel):
                 all_losses[i, num_cand[i]:] = 9999
         output_class_ranks = torch.argsort(all_losses, dim=-1)
         return output_class_ranks.tolist()
-    

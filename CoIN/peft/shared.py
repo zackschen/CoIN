@@ -16,7 +16,7 @@ class Gate(nn.Module):
         #self.lora_task_embedding = nn.Embedding(self.task_num+1, self.te_dim)# 使用embedding来代替线性层
         self.GateL = nn.Linear(self.te_dim, self.expert_num, bias=False)
         self.act = nn.Softmax(dim=0)    # 第0维为batch size
-    
+
     def forward(self, task_em):
 
         #task_em = self.lora_task_embedding(x)

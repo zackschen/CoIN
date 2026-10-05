@@ -1,32 +1,32 @@
-# Evaluation code for GQA. 
+# Evaluation code for GQA.
 # Computes a suite of metrics such as accuracy, consistency, plausibility and scores per question type and length.
 # Visit https://gqadataset.org/ for all information about the dataset, including examples, visualizations, paper and slides.
 #
 #
 # Metrics:
-# - Accuracy: Standard accuracy, computed over the balanced version of the dataset, which is more robust against 
-#             cheating by making educated guesses. For each question-answer pair (q,a), we give 1 point if the 
-#             predicted answer p matches a and 0 otherwise, and average over all questions in the dataset. 
+# - Accuracy: Standard accuracy, computed over the balanced version of the dataset, which is more robust against
+#             cheating by making educated guesses. For each question-answer pair (q,a), we give 1 point if the
+#             predicted answer p matches a and 0 otherwise, and average over all questions in the dataset.
 #
-# - Consistency: A metric for the level of model's consistency across different questions. For each question-answer 
-#                pair (q,a), we define a set Eq={q1, q2, ..., qn} of entailed questions, the answers to which can 
-#                be unambiguously inferred given (q,a). 
-#                Denote Q the set of all questions the model answered correctly. For each question q in Q, we 
-#                measure the model's accuracy over the entailed questions Eq to get the score sq and finally 
-#                average these results across all questions in Q. 
+# - Consistency: A metric for the level of model's consistency across different questions. For each question-answer
+#                pair (q,a), we define a set Eq={q1, q2, ..., qn} of entailed questions, the answers to which can
+#                be unambiguously inferred given (q,a).
+#                Denote Q the set of all questions the model answered correctly. For each question q in Q, we
+#                measure the model's accuracy over the entailed questions Eq to get the score sq and finally
+#                average these results across all questions in Q.
 #
 # - Validity: Measures whether the model gives a "valid" answer - one that can theoretically be an answer
 #             to the question (e.g. a color to a color question, yes/no to a binary question etc.).
 #             We provide a set of valid answers to each questions over the final answer vocabulary, in
 #             the choices file, and use it to compute average validity across the dataset.
-# 
+#
 # - Plausibility: Measures whether the model answers are plausible, e.g. one that make sense in the real world,
 #                 e.g. not answering "purple" to a question about apple color (unless it's really purple).
 #                 We provide a set of all plausible answers to each questions, computed by looking at all
-#                 attributes and relations hold for various objects throughout the whole dataset scene graphs, 
+#                 attributes and relations hold for various objects throughout the whole dataset scene graphs,
 #                 and use it to compute average model plausibility across the data.
 #
-# - Grounding: Only for attention models. Measures whether the model looks at the relevant regions in the 
+# - Grounding: Only for attention models. Measures whether the model looks at the relevant regions in the
 #              image when answering a question. Each question in the dataset is annotated with the visual regions
 #              they refer to, which are then used to compute the level to which the model has a correct visual attention,
 #              which will allow to identify whether it really answers based on the image of by language-based guesses.
@@ -36,7 +36,7 @@
 #                 vs the overall distribution predicted by the model through its answers for all the data.
 #                 We use chi-square statistic to measure the degree of similarity between the distributions,
 #                 giving indication to the level of overall world-knowledge of the model
-# 
+#
 # - Accuracy per type: accuracy per question structural types (logic, compare, choose), and semantic type
 #                      (questions about attributes, relations, categories, objects or the whole scene).
 #
@@ -48,9 +48,9 @@
 #
 # Files format:
 # - predictions file format: JSON array: [{"questionId": str, "prediction": str}]
-# - attentions file format: JSON array: 
+# - attentions file format: JSON array:
 #   Spatial attention: [{"questionId": str, "attention": [mapSize x mapSize: float] }].
-#   Object-based attention:[{"questionId": str, "attention": [[x0, y0, x1, y1, float] x #regions] }]. 0 < x,y < 1. 
+#   Object-based attention:[{"questionId": str, "attention": [[x0, y0, x1, y1, float] x #regions] }]. 0 < x,y < 1.
 # - questions and choices files are provided as part of the dataset.
 #   see https://gqadataset.org/download.html for information about their format.
 #
@@ -86,7 +86,7 @@ parser.add_argument('--mapSize',    default = 7,    type = int, help = "Optional
 parser.add_argument('--output-dir', type=str)
 args = parser.parse_args()
 
-print("Please make sure to use our provided visual features as gqadataset.org for better comparability. We provide both spatial and object-based features trained on GQA train set.") 
+print("Please make sure to use our provided visual features as gqadataset.org for better comparability. We provide both spatial and object-based features trained on GQA train set.")
 print("In particular please avoid using features from https://github.com/peteanderson80/bottom-up-attention since they were trained on images contained in the GQA validation set and thus may give false scores improvement.\n")
 
 if not args.consistency:
@@ -106,12 +106,12 @@ def loadFile(name):
     if os.path.isfile(name):
         with open(name) as file:
             data = json.load(file)
-    # load file chunks if too big 
+    # load file chunks if too big
     elif os.path.isdir(name.split(".")[0]):
         data = {}
         chunks = glob.glob('{dir}/{dir}_*.{ext}'.format(dir = name.split(".")[0], ext = name.split(".")[1]))
         for chunk in chunks:
-            with open(chunk) as file: 
+            with open(chunk) as file:
                 data.update(json.load(file))
     else:
         raise Exception("Can't find {}".format(name))
@@ -165,14 +165,14 @@ def wavg(l, w):
         return None
     return float(sum(l[i] * w[i] for i in range(len(l)))) / sum(w)
 
-# Initialize data structure to track all metrics: e.g. accuracy, validity and plausibility, as well as 
+# Initialize data structure to track all metrics: e.g. accuracy, validity and plausibility, as well as
 # accuracy per question type, length and number of reasoning steps.
 scores = {
     "accuracy": [], # list of accuracies per question (1 if correct else 0). Will be averaged ultimately.
     "binary": [], # list of accuracies per a binary question (1 if correct else 0). Will be averaged ultimately.
     "open": [], # list of accuracies per an open question (1 if correct else 0). Will be averaged ultimately.
     "validity": [], # list of validity per question (1 if valid else 0).
-    "plausibility": [], # list of plausibility per question (1 if plausible else 0). 
+    "plausibility": [], # list of plausibility per question (1 if plausible else 0).
     "consistency": [], # list of consistency scores for entailed questions.
     "accuracyPerStructuralType": defaultdict(list), # list of question accuracies for each structural type (e.g. compare, logic questions).
     "accuracyPerSemanticType": defaultdict(list), # list of question accuracies for each semantic type (e.g. questions about an object, an attribute, a relation).
@@ -197,7 +197,7 @@ def getWordsNum(question):
 
 # Compute number of reasoning steps (excluding the final "querying" step which doesn't increase effective reasoning length)
 def getStepsNum(question):
-    return len([c for c in question["semantic"] if not (any([o in "{}: {}".format(c["operation"], c["argument"]) 
+    return len([c for c in question["semantic"] if not (any([o in "{}: {}".format(c["operation"], c["argument"])
         for o in ["exist", "query: name", "choose name"]]))])
 
 
@@ -233,21 +233,21 @@ def belongs(element, group, question):
 def updateConsistency(questionId, question, questions):
     inferredQuestions = [eid for eid in question["entailed"] if eid != questionId]
 
-    if correct and len(inferredQuestions) > 0:        
-        
+    if correct and len(inferredQuestions) > 0:
+
         cosnsitencyScores = []
         for eid in inferredQuestions:
             gold = questions[eid]["answer"]
             predicted = predictions[eid]
             score = toScore(predicted == gold)
             cosnsitencyScores.append(score)
-        
+
         scores["consistency"].append(avg(cosnsitencyScores))
 
 ##### Functions for grounding score (optional, only for attention models)
 ##########################################################################################
 
-# Utility functions for working with bounding boxes. 
+# Utility functions for working with bounding boxes.
 # c = (x0, y0, x1, y1), r = (r0, r1)
 
 def yrange(c):
@@ -258,7 +258,7 @@ def xrange(c):
 
 def length(r):
     if r is None:
-        return 0    
+        return 0
     return float(r[1] - r[0])
 
 def size(c):
@@ -302,13 +302,13 @@ def computeGroundingScore(question, sceneGraph, attentionMap):
     # add all the image if the question refers to the whole scene
     if any(("scene" in c) for c in question["semantic"]):
         regions.append((0, 0, 1, 1))
-    
+
     # prepare attention map
     if args.objectFeatures:
         cells = [((x0, y0, x1, y1), attention) for x0, y0, x1, y1, attention in cells]
     else:
         cells = [(getCell(i, j), attentionMap[i][j]) for i in range(args.mapSize) for j in range(args.mapSize)]
-    
+
     # compare attention map to gold regions
     scores = []
     for region in regions:
@@ -323,16 +323,16 @@ def computeGroundingScore(question, sceneGraph, attentionMap):
 # averaged over all question groups
 def chiSquare(goldDist, predictedDist):
     sumScore, sumOverall = 0, 0
-    
+
     for group in goldDist:
         score, overall = 0, 0
-        
+
         for ans in goldDist[group]:
             e = goldDist[group][ans]
             o = predictedDist[group].get(ans, 0)
             score += ((float(o - e) ** 2) / e)
             overall += goldDist[group][ans]
-        
+
         sumScore += score * overall
         sumOverall += overall
 
@@ -341,7 +341,7 @@ def chiSquare(goldDist, predictedDist):
     return avgScore
 
 
-##### Main score computation 
+##### Main score computation
 ##########################################################################################
 
 # Loop over the questions and compute mterics
@@ -354,7 +354,7 @@ for qid, predicted in tqdm(predictions.items()):
 
     wordsNum = getWordsNum(question)
     stepsNum = getStepsNum(question)
-    
+
     # Compute scores over the balanced dataset (more robust against cheating by making educated guesses)
     if question["isBalanced"]:
         # Update accuracy
@@ -379,7 +379,7 @@ for qid, predicted in tqdm(predictions.items()):
         #     groundingScore = computeGroundingScore(question, scenes[question["imageId"]], attentions[qid])
         #     if groundingScore is not None:
         #         scores["grounding"].append(groundingScore)
-        
+
         # Update histograms for gold and predicted answers
         globalGroup = question["groups"]["global"]
         if globalGroup is not None:
@@ -406,10 +406,10 @@ metrics = [
 ]
 
 detailedMetrics = [
-    ("accuracyPerStructuralType", "Accuracy / structural type"), 
-    ("accuracyPerSemanticType", "Accuracy / semantic type"), 
+    ("accuracyPerStructuralType", "Accuracy / structural type"),
+    ("accuracyPerSemanticType", "Accuracy / semantic type"),
     ("accuracyPerSteps", "Accuracy / steps number"),
-    ("accuracyPerLength", "Accuracy / words number") 
+    ("accuracyPerLength", "Accuracy / words number")
 ]
 
 subMetrics = {
@@ -417,7 +417,7 @@ subMetrics = {
     "cat": "category",
     "global": "scene",
     "obj": "object",
-    "rel": "relation" 
+    "rel": "relation"
 }
 # average
 for k in metrics:
@@ -438,21 +438,21 @@ for m in metrics:
         continue
 
     # print score
-    print("{title}: {score:.2f}{suffix}".format(title = m.capitalize(), score = scores[m], 
+    print("{title}: {score:.2f}{suffix}".format(title = m.capitalize(), score = scores[m],
         suffix = " (lower is better)" if m == "distribution" else "%"))
-    
+
     #将结果写入文件
     if args.output_dir is not None:
         output_file = os.path.join(args.output_dir, 'Result.text')
         with open(output_file, 'a') as f:
-            f.write("{title}: {score:.2f}{suffix}".format(title = m.capitalize(), score = scores[m], 
+            f.write("{title}: {score:.2f}{suffix}".format(title = m.capitalize(), score = scores[m],
         suffix = " (lower is better)" if m == "distribution" else "%"))
 
 for m, mPrintName in detailedMetrics:
     print("")
     # print metric title
     print("{}:".format(mPrintName))
-    
+
     for t in sorted(list(scores[m].keys())):
         # set sub-metric title
         tName = t
@@ -460,11 +460,11 @@ for m, mPrintName in detailedMetrics:
             tName = subMetrics.get(t, t).capitalize()
 
         # print score
-        print("  {title}: {score:.2f}{suffix} ({amount} questions)".format(title = tName, 
-            score = scores[m][t][0], suffix = "%", amount = scores[m][t][1]))    
+        print("  {title}: {score:.2f}{suffix} ({amount} questions)".format(title = tName,
+            score = scores[m][t][0], suffix = "%", amount = scores[m][t][1]))
         #将结果写入文件
         if args.output_dir is not None:
             output_file = os.path.join(args.output_dir, 'Result.text')
             with open(output_file, 'a') as f:
-                f.write("  {title}: {score:.2f}{suffix} ({amount} questions)".format(title = tName, 
+                f.write("  {title}: {score:.2f}{suffix} ({amount} questions)".format(title = tName,
             score = scores[m][t][0], suffix = "%", amount = scores[m][t][1]))

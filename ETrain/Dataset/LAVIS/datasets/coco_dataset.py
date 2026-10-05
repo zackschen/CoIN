@@ -113,7 +113,7 @@ class InvReferCOCODataset(ReferCOCODataset):
         instruction = random.choice(self.instruction_pool).format(data['bbox'])
 
         instruction = "<Img><ImageHere></Img> {} ".format(instruction)
-        
+
         return {
             "image": data['image'],
             "instruction_input": instruction,

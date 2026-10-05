@@ -12,7 +12,7 @@ model:
   lora_alpha: 256
 
 datasets:
-  coin_vizwiz: 
+  coin_vizwiz:
     batch_size: 32
     vis_processor:
       train:
@@ -42,7 +42,7 @@ run:
   amp: True
   resume_ckpt_path: null
 
-  evaluate: False 
+  evaluate: False
   train_splits: ["train"]
 
   device: "cuda"

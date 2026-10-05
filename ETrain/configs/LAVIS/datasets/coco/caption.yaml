@@ -18,4 +18,4 @@ datasets:
           storage: /path/to/coco_caption/coco_karpathy_train.json
       images:
         storage: /path/to/coco/images
-        
+

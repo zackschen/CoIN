@@ -73,7 +73,7 @@ if __name__ == "__main__":
                 answer = res[0].upper()  # 'A', 'B', ...
             else:
                 answer = "FAILED"
-            
+
 
         pred_idx = get_pred_idx(answer, prob['choices'], args.options)
 

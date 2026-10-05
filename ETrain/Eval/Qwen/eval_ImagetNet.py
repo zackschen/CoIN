@@ -31,7 +31,7 @@ def eval_single(test_file, result_file):
         else:
             results[index]['ground_truth'] = text
             false_answers.append(results[index])
-        
+
     print('Samples: {}\nAccuracy: {:.2f}%\n'.format(total, 100. * right / total))
     #将结果写入文件
     if args.output_dir is not None:

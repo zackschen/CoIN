@@ -359,7 +359,7 @@ class QWenTokenizer(PreTrainedTokenizer):
 
         if skip_special_tokens:
             if kwargs.get('keep_image_special', False):
-                token_ids = [i for i in token_ids if i < self.eod_id 
+                token_ids = [i for i in token_ids if i < self.eod_id
                     or i in self.image_special_tokens]
             else:
                 token_ids = [i for i in token_ids if i < self.eod_id]
@@ -572,7 +572,7 @@ class Visualizer:
         return self.output
 
     def draw_box(self, box_coord, alpha=0.5, edge_color="g", line_style="-"):
-        
+
         x0, y0, x1, y1 = box_coord
         width = x1 - x0
         height = y1 - y0
@@ -594,5 +594,5 @@ class Visualizer:
         return self.output
 
     def get_output(self):
-        
+
         return self.output

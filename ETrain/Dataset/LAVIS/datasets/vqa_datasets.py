@@ -30,7 +30,7 @@ class OKVQAEvalData(torch.utils.data.Dataset):
 
     def __len__(self):
         return len(self.loaded_data)
-    
+
     def __getitem__(self, idx):
         data = self.loaded_data[idx]
         img_id = data['image_id']
@@ -51,7 +51,7 @@ class VizWizEvalData(torch.utils.data.Dataset):
 
     def __len__(self):
         return len(self.loaded_data)
-    
+
     def __getitem__(self, idx):
         data = self.loaded_data[idx]
         img_id = data['image']
@@ -72,7 +72,7 @@ class IconQAEvalData(torch.utils.data.Dataset):
 
     def __len__(self):
         return len(self.loaded_data)
-    
+
     def __getitem__(self, idx):
         data = self.loaded_data[idx]
         image_id = data['image_id']
@@ -93,7 +93,7 @@ class GQAEvalData(torch.utils.data.Dataset):
 
     def __len__(self):
         return len(self.loaded_data)
-    
+
     def __getitem__(self, idx):
         ann = self.loaded_data[idx]
         image_id = ann["image"]
@@ -114,7 +114,7 @@ class HMEvalData(torch.utils.data.Dataset):
 
     def __len__(self):
         return len(self.loaded_data)
-    
+
     def __getitem__(self, idx):
         ann = self.loaded_data[idx]
         image_id = ann["img"]
@@ -135,7 +135,7 @@ class VSREvalData(torch.utils.data.Dataset):
 
     def __len__(self):
         return len(self.loaded_data)
-    
+
     def __getitem__(self, idx):
         ann = self.loaded_data[idx]
         image_path = os.path.join(self.root_path, ann["image"])

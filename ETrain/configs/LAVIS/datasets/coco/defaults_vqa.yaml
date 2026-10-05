@@ -21,4 +21,3 @@ datasets:
       images:
           storage: /path/to/coco/images
 
-  

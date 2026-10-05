@@ -12,7 +12,7 @@ output_file=$RESULT_DIR/$1/merge.jsonl
 
 python -m ETrain.Eval.LLaVA.CoIN.convert_gqa_for_eval --src $output_file --dst $RESULT_DIR/$1/testdev_balanced_predictions.json
 
-python -m ETrain.Eval.LLaVA.CoIN.eval_gqa --tier testdev_balanced --path $RESULT_DIR/$1 --output-dir $RESULT_DIR/$1 
+python -m ETrain.Eval.LLaVA.CoIN.eval_gqa --tier testdev_balanced --path $RESULT_DIR/$1 --output-dir $RESULT_DIR/$1
 
 python -m ETrain.Eval.LLaVA.CoIN.create_prompt \
     --rule ./ETrain/Eval/LLaVA/CoIN/rule.json \

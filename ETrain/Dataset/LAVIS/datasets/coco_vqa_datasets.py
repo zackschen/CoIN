@@ -97,7 +97,7 @@ class COCOVQAEvalDataset(VQAEvalDataset, __DisplMixin):
         vis_root (string): Root directory of images (e.g. coco/images/)
         ann_root (string): directory to store the annotation file
         """
-        
+
         self.instruction_pool = [
             'Question: {} Short answer:',
         ]
@@ -131,10 +131,10 @@ class COCOVQAEvalDataset(VQAEvalDataset, __DisplMixin):
 
         image = self.vis_processor(image)
         question = self.text_processor(ann["question"])
-        
+
         instruction = random.choice(self.instruction_pool).format(question)
         instruction = "<Img><ImageHere></Img> {} ".format(instruction)
-        
+
         return {
             "image": image,
             'image_path': image_path,

@@ -77,13 +77,13 @@ def rank0_print(*args):
 
 def train():
     global local_rank
-    
+
     parser = transformers.HfArgumentParser((ModelArguments, DataArguments, TrainingArguments, LoraArguments))
     (model_args,data_args,training_args,lora_args,) = parser.parse_args_into_dataclasses()
 
     if getattr(training_args, 'deepspeed', None) and getattr(lora_args, 'q_lora', False):
         training_args.distributed_state.distributed_type = DistributedType.DEEPSPEED
-    
+
     local_rank = training_args.local_rank
     model, tokenizer = create_Qwen_model(training_args, model_args, data_args, lora_args)
 

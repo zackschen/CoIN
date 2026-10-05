@@ -286,7 +286,7 @@ def load_model_from_previous_task(model, model_args):
     else:
         sys.path.append('/home/chencheng/Code/Slim_Train')
         from CoIN.peft import PeftModel, TaskType, get_peft_model, CoINMOELoraConfig, WEIGHTS_NAME, set_peft_model_state_dict
-            
+
     filename = os.path.join(previous_task_model_path, WEIGHTS_NAME)
     adapters_weights = torch.load(filename, map_location=torch.device("cuda" if torch.cuda.is_available() else "cpu"))
     load_result = set_peft_model_state_dict(model, adapters_weights, adapter_name="default")
@@ -361,7 +361,7 @@ class LLaVATrainer(Trainer):
         if self.optimizer is None:
             decay_parameters = get_parameter_names(opt_model, ALL_LAYERNORM_LAYERS)
             decay_parameters = [name for name in decay_parameters if "bias" not in name]
-            
+
             optimizer_grouped_parameters = [
                 {
                     "params": [
@@ -446,12 +446,12 @@ class LLaVATrainer(Trainer):
         else:
             safe_save_model_for_hf_trainer(trainer=self,
                                         output_dir=training_args.output_dir)
-            
+
     ### LWF
     def before_train(self):
         train_dataloader = self.get_train_dataloader()
         limit = 100
-        
+
         train_dataset = train_dataloader.dataset
         rand_dom = random.sample(range(len(train_dataset)), limit)
         list_data_dict_new = []
@@ -807,7 +807,7 @@ class LLaVATrainer(Trainer):
 
                     # with self.compute_loss_context_manager():
                     #     outputs = model(**inputs)
-                        
+
                     # for idx, question_id in enumerate(inputs['question_ids']):
                     #     for index, logit in enumerate(logits):
                     #         if question_id in logit.keys():
@@ -957,7 +957,7 @@ class LLaVATrainer(Trainer):
     def after_train(self):
         train_dataloader = self.get_train_dataloader()
         limit = 1000
-        
+
         train_dataset = train_dataloader.dataset
         train_dataset.list_data_dict = train_dataset.list_data_dict[:limit]
         data_collator = self.data_collator
@@ -1250,7 +1250,7 @@ class LLaVATrainer(Trainer):
                 model.zero_grad()
                 with self.accelerator.accumulate(model):
                     tr_loss_step = self.training_step(model, inputs)
-                    
+
                     ### compute fisher
                     for n, p in model.module.base_model.model.named_parameters():
                         if p.requires_grad:

@@ -29,7 +29,7 @@ class CoINDataset(Dataset):
 
         self.ann=[]
 
-    
+
         with open(ann_path, 'r') as f:
             self.ann = json.load(f)
 
@@ -44,7 +44,7 @@ class CoINDataset(Dataset):
         have_image = True
         if 'image' not in info.keys():
             have_image = False
-        
+
         image = None
         if have_image:
             image_path = os.path.join(self.vis_root, info['image'])
@@ -82,31 +82,31 @@ class CoINDataset(Dataset):
             "image_id": idx,
             "connect_sym": self.connect_sym
         }
-    
+
 class CoIN_ScientQADataset(CoINDataset):
     def __getitem__(self, index):
         return super(CoIN_ScientQADataset,self).__getitem__(index)
-    
+
 class CoIN_GQADataset(CoINDataset):
     def __getitem__(self, index):
         return super(CoIN_GQADataset,self).__getitem__(index)
-    
+
 class CoIN_GroundingDataset(CoINDataset):
     def __getitem__(self, index):
         return super(CoIN_GroundingDataset,self).__getitem__(index)
-    
+
 class CoIN_ImageNetDataset(CoINDataset):
     def __getitem__(self, index):
         return super(CoIN_ImageNetDataset,self).__getitem__(index)
-    
+
 class CoIN_OCRVQADataset(CoINDataset):
     def __getitem__(self, index):
         return super(CoIN_OCRVQADataset,self).__getitem__(index)
-    
+
 class CoIN_TextVQADataset(CoINDataset):
     def __getitem__(self, index):
         return super(CoIN_TextVQADataset,self).__getitem__(index)
-    
+
 class CoIN_VizWizDataset(CoINDataset):
     def __getitem__(self, index):
         return super(CoIN_VizWizDataset,self).__getitem__(index)
@@ -118,7 +118,7 @@ class CoIN_VQAv2Dataset(CoINDataset):
 class CoIN_MultitaskDataset(CoINDataset):
     def __getitem__(self, index):
         return super(CoIN_MultitaskDataset,self).__getitem__(index)
-    
+
 
 ############ Eval
 class CoIN_EvalDataset(Dataset):
@@ -133,7 +133,7 @@ class CoIN_EvalDataset(Dataset):
         self.text_processor = text_processor
 
         self.ann=[]
-    
+
         with open(ann_path, 'r') as f:
             self.ann = json.load(f)
 
@@ -148,7 +148,7 @@ class CoIN_EvalDataset(Dataset):
         have_image = True
         if 'image' not in info.keys():
             have_image = False
-        
+
         image = None
         if have_image:
             image_path = os.path.join(self.vis_root, info['image'])
@@ -181,27 +181,27 @@ class CoIN_EvalDataset(Dataset):
 class CoIN_ScientQA_EvalDataset(CoIN_EvalDataset):
     def __getitem__(self, index):
         return super(CoIN_ScientQA_EvalDataset,self).__getitem__(index)
-    
+
 class CoIN_GQA_EvalDataset(CoIN_EvalDataset):
     def __getitem__(self, index):
         return super(CoIN_GQA_EvalDataset,self).__getitem__(index)
-    
+
 class CoIN_Grounding_EvalDataset(CoIN_EvalDataset):
     def __getitem__(self, index):
         return super(CoIN_Grounding_EvalDataset,self).__getitem__(index)
-    
+
 class CoIN_ImageNet_EvalDataset(CoIN_EvalDataset):
     def __getitem__(self, index):
         return super(CoIN_ImageNet_EvalDataset,self).__getitem__(index)
-    
+
 class CoIN_OCRVQA_EvalDataset(CoIN_EvalDataset):
     def __getitem__(self, index):
         return super(CoIN_OCRVQA_EvalDataset,self).__getitem__(index)
-    
+
 class CoIN_TextVQA_EvalDataset(CoIN_EvalDataset):
     def __getitem__(self, index):
         return super(CoIN_TextVQA_EvalDataset,self).__getitem__(index)
-    
+
 class CoIN_VizWiz_EvalDataset(CoIN_EvalDataset):
     def __getitem__(self, index):
         return super(CoIN_VizWiz_EvalDataset,self).__getitem__(index)

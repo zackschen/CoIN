@@ -42,7 +42,7 @@ class LlavaDetailDataset(Dataset):
 
         answer = info['conversations'][1]['value']
         instruction = info['conversations'][0]['value'].replace('<image>', '').replace('\n', '').strip()
-        
+
         instruction = '<Img><ImageHere></Img> {} '.format(self.text_processor(instruction))
 
         return {
@@ -105,7 +105,7 @@ class LlavaConversationDataset(Dataset):
 
         self.ann=[]
 
-    
+
         with open(ann_path, 'r') as f:
             self.ann = json.load(f)
 

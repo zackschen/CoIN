@@ -44,7 +44,7 @@ def parse_args(remaining_strings):
     parser = argparse.ArgumentParser(description="Training")
 
     parser.add_argument("--cfg-path", required=True, help="path to configuration file.")
-    parser.add_argument("--local_rank") 
+    parser.add_argument("--local_rank")
     parser.add_argument(
         "--options",
         nargs="+",
@@ -165,7 +165,7 @@ def main():
     # cfg.pretty_print()
 
     datasets, Concated_Dataset = build_datasets(cfg)
-    
+
     if cfg.model_cfg.arch == 'blip2_vicuna_instruct':
         model = create_InstructBlip_model(cfg)
     else:

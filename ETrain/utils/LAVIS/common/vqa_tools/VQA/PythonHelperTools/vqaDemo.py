@@ -22,7 +22,7 @@ vqa=VQA(annFile, quesFile)
 """
 All possible quesTypes for abstract and mscoco has been provided in respective text files in ../QuestionTypes/ folder.
 """
-annIds = vqa.getQuesIds(quesTypes='how many');   
+annIds = vqa.getQuesIds(quesTypes='how many');
 anns = vqa.loadQA(annIds)
 randomAnn = random.choice(anns)
 vqa.showQA([randomAnn])
@@ -41,7 +41,7 @@ yes/no
 number
 other
 """
-annIds = vqa.getQuesIds(ansTypes='yes/no');   
+annIds = vqa.getQuesIds(ansTypes='yes/no');
 anns = vqa.loadQA(annIds)
 randomAnn = random.choice(anns)
 vqa.showQA([randomAnn])
@@ -59,10 +59,10 @@ Usage: vqa.getImgIds(quesIds=[], quesTypes=[], ansTypes=[])
 Above method can be used to retrieve imageIds for given question Ids or given question types or given answer types.
 """
 ids = vqa.getImgIds()
-annIds = vqa.getQuesIds(imgIds=random.sample(ids,5));  
+annIds = vqa.getQuesIds(imgIds=random.sample(ids,5));
 anns = vqa.loadQA(annIds)
 randomAnn = random.choice(anns)
-vqa.showQA([randomAnn])  
+vqa.showQA([randomAnn])
 imgId = randomAnn['image_id']
 imgFilename = 'COCO_' + dataSubType + '_'+ str(imgId).zfill(12) + '.jpg'
 if os.path.isfile(imgDir + imgFilename):

@@ -49,7 +49,7 @@ class TextCapDataset(Dataset):
             'Using language, provide a short account of the image.',
             'Use a few words to illustrate what is happening in the picture.',
         ]
-        
+
         with open(ann_path, 'r') as f:
             self.ann = json.load(f)
 
