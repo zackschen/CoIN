@@ -27,3 +27,4 @@
 
 # Jupyter notebook
 *.ipynb  text eol=lf
+# See .editorconfig for whitespace and newline conventions

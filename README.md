@@ -9,9 +9,9 @@ Instruction tuning demonstrates impressive performance in adapting Multimodal La
 
 ## Install
 1. Clone this repository and navigate to CoIN folder
-``` 
+```
 git clone https://github.com/zackschen/CoIN.git
-cd CoIN 
+cd CoIN
 ```
 2. Install Package
 ```
@@ -27,7 +27,7 @@ pip install -e ".[train]"
 pip install flash-attn --no-build-isolation
 ```
 
-This repo is based on [LLaVA](https://github.com/haotian-liu/LLaVA). 
+This repo is based on [LLaVA](https://github.com/haotian-liu/LLaVA).
 If you meet a problem, maybe you could find some solutions in issuses.
 
 ## Dataset
@@ -35,15 +35,15 @@ Please download the images from the constituting dataset: ScienceQA, VQAv2, VizW
 |  Image Source   | Download Path  |
 |  :----:  | :----:  |
 | COCO | [train2014](http://images.cocodataset.org/zips/train2014.zip), [test2015](http://images.cocodataset.org/zips/test2015.zip), [val2014](http://images.cocodataset.org/zips/val2014.zip) |
-| RefCOCO  | [annotation](https://bvisionweb1.cs.unc.edu/licheng/referit/data/refcoco.zip) | 
-| RefCOCO+  | [annotation](https://bvisionweb1.cs.unc.edu/licheng/referit/data/refcoco+.zip) | 
-| RefCOCOg  | [annotation](https://bvisionweb1.cs.unc.edu/licheng/referit/data/refcocog.zip) | 
-| ImageNet  | [images](https://image-net.org/challenges/LSVRC/index.php) | 
-| OCR-VQA  | [images](https://drive.google.com/drive/folders/1_GYPY5UkUy7HIcR0zq3ZCFgeZN7BAfm_) | 
-| GQA  | [images](https://downloads.cs.stanford.edu/nlp/data/gqa/images.zip) | 
-| TextVQA  | [train](https://dl.fbaipublicfiles.com/textvqa/images/train_val_images.zip),[test](https://dl.fbaipublicfiles.com/textvqa/images/test_images.zip) | 
-| ScienceQA  | [images](https://drive.google.com/drive/folders/1w8imCXWYn2LxajmGeGH_g5DaL2rabHev) | 
-| VizWiz  | [train](https://vizwiz.cs.colorado.edu/VizWiz_final/images/train.zip), [val](https://vizwiz.cs.colorado.edu/VizWiz_final/images/val.zip), [test](https://vizwiz.cs.colorado.edu/VizWiz_final/images/test.zip) | 
+| RefCOCO  | [annotation](https://bvisionweb1.cs.unc.edu/licheng/referit/data/refcoco.zip) |
+| RefCOCO+  | [annotation](https://bvisionweb1.cs.unc.edu/licheng/referit/data/refcoco+.zip) |
+| RefCOCOg  | [annotation](https://bvisionweb1.cs.unc.edu/licheng/referit/data/refcocog.zip) |
+| ImageNet  | [images](https://image-net.org/challenges/LSVRC/index.php) |
+| OCR-VQA  | [images](https://drive.google.com/drive/folders/1_GYPY5UkUy7HIcR0zq3ZCFgeZN7BAfm_) |
+| GQA  | [images](https://downloads.cs.stanford.edu/nlp/data/gqa/images.zip) |
+| TextVQA  | [train](https://dl.fbaipublicfiles.com/textvqa/images/train_val_images.zip),[test](https://dl.fbaipublicfiles.com/textvqa/images/test_images.zip) |
+| ScienceQA  | [images](https://drive.google.com/drive/folders/1w8imCXWYn2LxajmGeGH_g5DaL2rabHev) |
+| VizWiz  | [train](https://vizwiz.cs.colorado.edu/VizWiz_final/images/train.zip), [val](https://vizwiz.cs.colorado.edu/VizWiz_final/images/val.zip), [test](https://vizwiz.cs.colorado.edu/VizWiz_final/images/test.zip) |
 
 After downloading all of them, organize the data as follows:
 ```
@@ -101,7 +101,7 @@ To evaluate the general knowldege, you could add the result path to `scripts/Eva
 ## Citation
 ```
 @misc{chen2024coin,
-    title={CoIN: A Benchmark of Continual Instruction tuNing for Multimodel Large Language Model}, 
+    title={CoIN: A Benchmark of Continual Instruction tuNing for Multimodel Large Language Model},
     author={Cheng Chen and Junchen Zhu and Xu Luo and Hengtao Shen and Lianli Gao and Jingkuan Song},
     year={2024},
     eprint={2403.08350},
